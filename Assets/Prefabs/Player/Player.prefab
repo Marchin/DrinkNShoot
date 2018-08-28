@@ -19,7 +19,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4213684508472864}
-  m_Layer: 0
+  - component: {fileID: 114865819334060708}
+  m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +35,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4444115650738588}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Weapon Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +52,7 @@ GameObject:
   - component: {fileID: 4717655254110784}
   - component: {fileID: 33636585513236762}
   - component: {fileID: 23635682784512708}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +70,7 @@ GameObject:
   - component: {fileID: 33894275240091650}
   - component: {fileID: 23467154499397268}
   - component: {fileID: 136811271299116704}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +87,7 @@ GameObject:
   - component: {fileID: 4755100971459818}
   - component: {fileID: 20595221888706796}
   - component: {fileID: 81253242595823662}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FPS Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1016744340782938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.95, y: 0.29, z: 20.7}
+  m_LocalPosition: {x: 50, y: 0.3, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4755100971459818}
@@ -293,6 +294,20 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1856566059247930}
   m_Enabled: 1
+--- !u!114 &114865819334060708
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1016744340782938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313585ac24e60e1438c34cd058b6293a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 270
+  horizontalRange: 80
+  verticalRange: 70
 --- !u!136 &136811271299116704
 CapsuleCollider:
   m_ObjectHideFlags: 1
