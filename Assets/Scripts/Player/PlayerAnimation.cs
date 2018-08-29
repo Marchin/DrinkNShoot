@@ -33,5 +33,11 @@ public class PlayerAnimation : MonoBehaviour
 	void IsReloading()
 	{
 		animator.SetBool("Is Reloading", true);
+		Invoke("HasFinishedReloading", currentGun.GetReloadTime());
+	}
+
+	void HasFinishedReloading()
+	{
+		animator.SetBool("Is Reloading", false);
 	}
 }

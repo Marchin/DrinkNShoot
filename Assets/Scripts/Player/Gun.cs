@@ -65,7 +65,7 @@ public class Gun : MonoBehaviour
 
 		for (int i = bulletsInCylinder; i < cylinderCapacity; i++)
 		{
-			yield return new WaitForSeconds(2);
+			yield return new WaitForSeconds(reloadAnimation.length);
 			onReload.Invoke();
 			bulletsInCylinder++;
 			ammoLeft--;
@@ -82,6 +82,11 @@ public class Gun : MonoBehaviour
 	bool CanReload()
 	{
 		return (!isReloading && Time.time - lastFireTime >= 1 / fireRate && ammoLeft > 0 && bulletsInCylinder < cylinderCapacity);
+	}
+
+	public float GetReloadTime()
+	{
+		return reloadAnimation.length;
 	}
 
 	public UnityEvent OnShot
