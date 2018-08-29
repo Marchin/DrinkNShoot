@@ -12,9 +12,13 @@ public class Gun : MonoBehaviour
 	[SerializeField] int ammoLeft;
 	[SerializeField] int cylinderCapacity;
 	[SerializeField] AnimationClip shootAnimation;
+	[SerializeField] AnimationClip reloadStartAnimation;
 	[SerializeField] AnimationClip reloadAnimation;
+	[SerializeField] AnimationClip reloadFinishAnimation;
 	[SerializeField] UnityEvent onShot;
+	[SerializeField] UnityEvent onReloadStart;
 	[SerializeField] UnityEvent onReload;
+	[SerializeField] UnityEvent onReloadFinish;
 	[SerializeField] UnityEvent onEmptyGun;
 
 	float lastFireTime = 0;
@@ -47,10 +51,13 @@ public class Gun : MonoBehaviour
 	{
 		lastFireTime = Time.time;
 		bulletsInCylinder--;
+		Debug.Log(bulletsInCylinder);
+		
 
 		RaycastHit hit;
 
-		if (Physics.Raycast(transform.position, transform.forward, out hit, range, LayerMask.GetMask("Dynamic Decoration, Shootables")))
+		if (Physics.Raycast(transform.position, transform.forward, out hit, range, 
+			LayerMask.GetMask("Dynamic Decoration, Shootables")))
 		{
 			Rigidbody targetRigidbody = hit.transform.GetComponent<Rigidbody>();
 
@@ -62,15 +69,18 @@ public class Gun : MonoBehaviour
 	IEnumerator Reload()
 	{
 		isReloading = true;
+		onReloadStart.Invoke();
 
 		for (int i = bulletsInCylinder; i < cylinderCapacity; i++)
 		{
-			yield return new WaitForSeconds(reloadAnimation.length);
 			onReload.Invoke();
+			yield return new WaitForSeconds(reloadAnimation.length);
 			bulletsInCylinder++;
+			Debug.Log(bulletsInCylinder);
 			ammoLeft--;
 		}
 
+		onReloadFinish.Invoke();
 		isReloading = false;
 	}
 
@@ -94,11 +104,20 @@ public class Gun : MonoBehaviour
 		get { return onShot; }
 	}
 
+	public UnityEvent OnReloadStart
+	{
+		get { return onReloadStart; }
+	}
+
 	public UnityEvent OnReload
 	{
 		get { return onReload; }
 	}
 
+	public UnityEvent OnReloadFinish
+	{
+		get { return onReloadFinish; }
+	}
 	public UnityEvent OnEmptyGun
 	{
 		get { return onEmptyGun; }

@@ -17,7 +17,9 @@ public class PlayerAnimation : MonoBehaviour
 	void Start()
 	{
 		currentGun.OnShot.AddListener(HasShot);
-		currentGun.OnReload.AddListener(IsReloading);
+		currentGun.OnReloadStart.AddListener(HasStartedReloading);
+		currentGun.OnReload.AddListener(HasReloaded);
+		currentGun.OnReloadFinish.AddListener(HasFinishedReloading);
 	}
 
 	void Update()
@@ -30,10 +32,13 @@ public class PlayerAnimation : MonoBehaviour
 		animator.SetTrigger("Has Shot");
 	}
 
-	void IsReloading()
+	void HasStartedReloading()
 	{
 		animator.SetBool("Is Reloading", true);
-		Invoke("HasFinishedReloading", currentGun.GetReloadTime());
+	}
+	void HasReloaded()
+	{
+		animator.SetTrigger("Has Reloaded");
 	}
 
 	void HasFinishedReloading()
