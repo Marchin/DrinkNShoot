@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 
 public class DrunkCamera : MonoBehaviour {
-	[SerializeField] Transform m_camera;
-	[SerializeField] float m_speed;
-	[SerializeField] float m_shakeness;
-	[SerializeField] float m_min = 0.3f;
+    [SerializeField] Transform m_camera;
+    [SerializeField] float m_speed;
+    [SerializeField] float m_shakeness;
+    [Range(0f, 100f)]
+    [SerializeField] float m_variance = 0.3f;
+    [Range(0, 25)]
+    [SerializeField] int m_level;
 	const float m_HALF_PI = Mathf.PI / 2f;
-	float m_shakenessMult;
+    float m_min = 0.3f;
+    float m_shakenessMult;
 	float m_currRotation;
     float m_prevRot; 
 
@@ -17,7 +21,21 @@ public class DrunkCamera : MonoBehaviour {
 	}
 
 	private void Update() {
-		Vector3 newRotation = m_camera.eulerAngles;
+        float deltaMin = 0.05f;
+        m_min = 1f - deltaMin * m_level;
+        if (m_min < deltaMin) {
+            m_min = 0.1f;
+        }
+        if (m_level > 12) {
+            m_speed = 1.5f;
+        } else {
+            m_speed = 1f;
+        }
+        float deltaShake = 0.025f;
+        m_shakeness = deltaShake * m_level + 0.075f;
+        m_min = 1f - (m_variance / 100f);
+
+        Vector3 newRotation = m_camera.eulerAngles;
 		float oscillation = Mathf.Sin(f: Time.time * m_speed + m_HALF_PI);
 		m_currRotation += oscillation * m_shakeness * m_shakenessMult;
         if (Mathf.Sign(m_prevRot) != Mathf.Sign(m_currRotation)) {
