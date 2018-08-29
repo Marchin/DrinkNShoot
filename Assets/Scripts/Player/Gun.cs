@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Gun : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class Gun : MonoBehaviour
 	[SerializeField] int cylinderCapacity;
 	[SerializeField] AnimationClip shootAnimation;
 	[SerializeField] AnimationClip reloadAnimation;
+	[SerializeField] UnityEvent onShot;
+	[SerializeField] UnityEvent onReload;
+	[SerializeField] UnityEvent onEmptyGun;
+
 	float lastFireTime = 0;
 	int bulletsInCylinder = 0;
 	bool isReloading = false;
@@ -23,8 +28,16 @@ public class Gun : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetButtonDown("Fire1") && CanShoot())
-			Shoot();
+		if (Input.GetButtonDown("Fire1"))
+		{
+			if (CanShoot())
+			{
+				Shoot();
+				onShot.Invoke();
+			}
+			else
+				onEmptyGun.Invoke();
+		}
 
 		if (Input.GetButton("Reload") && CanReload())
 			StartCoroutine(Reload());
@@ -37,7 +50,7 @@ public class Gun : MonoBehaviour
 
 		RaycastHit hit;
 
-		if (Physics.Raycast(transform.position, transform.forward, out hit, range))
+		if (Physics.Raycast(transform.position, transform.forward, out hit, range, LayerMask.GetMask("Dynamic Decoration, Shootables")))
 		{
 			Rigidbody targetRigidbody = hit.transform.GetComponent<Rigidbody>();
 
@@ -53,6 +66,7 @@ public class Gun : MonoBehaviour
 		for (int i = bulletsInCylinder; i < cylinderCapacity; i++)
 		{
 			yield return new WaitForSeconds(2);
+			onReload.Invoke();
 			bulletsInCylinder++;
 			ammoLeft--;
 		}
@@ -70,8 +84,18 @@ public class Gun : MonoBehaviour
 		return (!isReloading && Time.time - lastFireTime >= 1 / fireRate && ammoLeft > 0 && bulletsInCylinder < cylinderCapacity);
 	}
 
-	public float FireRate
+	public UnityEvent OnShot
 	{
-		get { return fireRate;}
+		get { return onShot; }
+	}
+
+	public UnityEvent OnReload
+	{
+		get { return onReload; }
+	}
+
+	public UnityEvent OnEmptyGun
+	{
+		get { return onEmptyGun; }
 	}
 }

@@ -11,7 +11,7 @@ public class CameraRotation : MonoBehaviour
 	float horizontalAngle = 0;
 	float verticalAngle = 0;
 	
-	void Start()
+	void Awake()
 	{
 		fpsCamera = GetComponentInChildren<Camera>().transform;
 	}
