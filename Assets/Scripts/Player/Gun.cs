@@ -32,7 +32,7 @@ public class Gun : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetButtonDown("Fire1"))
+		if (InputManager.Instance.GetFireButton())
 		{
 			if (CanShoot())
 			{
@@ -43,7 +43,7 @@ public class Gun : MonoBehaviour
 				onEmptyGun.Invoke();
 		}
 
-		if (Input.GetButton("Reload") && CanReload())
+		if (InputManager.Instance.GetReloadButton() && CanReload())
 			StartCoroutine(Reload());
 	}
 
@@ -83,12 +83,14 @@ public class Gun : MonoBehaviour
 
 	bool CanShoot()
 	{
-		return (!isReloading && Time.time - lastFireTime >= 1 / fireRate && bulletsInCylinder > 0);
+		return (!isReloading && Time.time - lastFireTime >= 1 / fireRate && 
+				bulletsInCylinder > 0);
 	}
 
 	bool CanReload()
 	{
-		return (!isReloading && Time.time - lastFireTime >= 1 / fireRate && ammoLeft > 0 && bulletsInCylinder < cylinderCapacity);
+		return (!isReloading && Time.time - lastFireTime >= 1 / fireRate && 
+				ammoLeft > 0 && bulletsInCylinder < cylinderCapacity);
 	}
 
 	public float GetReloadTime()
