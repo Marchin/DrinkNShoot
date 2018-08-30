@@ -7,6 +7,7 @@ public class DrunkCamera : MonoBehaviour {
     [Range(0f, 100f)]
     [Tooltip("How much the total shakness varies (percentage)")]
     [SerializeField] float m_variance = 0.3f;
+    [Tooltip("Temporal Dificult Level")]
     [Range(0, 25)]
     [SerializeField] int m_level;
 	const float m_HALF_PI = Mathf.PI / 2f;
