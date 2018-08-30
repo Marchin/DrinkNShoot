@@ -51,9 +51,7 @@ public class Gun : MonoBehaviour
 	{
 		lastFireTime = Time.time;
 		bulletsInCylinder--;
-		Debug.Log(bulletsInCylinder);
 		
-
 		RaycastHit hit;
 
 		if (Physics.Raycast(transform.position, transform.forward, out hit, range, 
@@ -76,7 +74,6 @@ public class Gun : MonoBehaviour
 			onReload.Invoke();
 			yield return new WaitForSeconds(reloadAnimation.length);
 			bulletsInCylinder++;
-			Debug.Log(bulletsInCylinder);
 			ammoLeft--;
 		}
 
