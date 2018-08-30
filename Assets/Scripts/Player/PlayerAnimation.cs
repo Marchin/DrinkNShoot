@@ -34,7 +34,7 @@ public class PlayerAnimation : MonoBehaviour
 
 	void HasStartedReloading()
 	{
-		animator.SetBool("Is Reloading", true);
+		animator.SetBool("Has Started Reloading", true);
 	}
 	void HasReloaded()
 	{
@@ -43,6 +43,6 @@ public class PlayerAnimation : MonoBehaviour
 
 	void HasFinishedReloading()
 	{
-		animator.SetBool("Is Reloading", false);
+		animator.SetTrigger("Has Finished Reloading");
 	}
 }
