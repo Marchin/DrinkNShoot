@@ -5,22 +5,29 @@ using UnityEngine.Events;
 
 public class Gun : MonoBehaviour
 {
+	// Main Attributes
 	[SerializeField] float damage;
 	[SerializeField] float fireRate;
 	[SerializeField] float range;
 	[SerializeField] float impactForce;
 	[SerializeField] int ammoLeft;
 	[SerializeField] int cylinderCapacity;
+	// Animation Clips
 	[SerializeField] AnimationClip shootAnimation;
 	[SerializeField] AnimationClip reloadStartAnimation;
 	[SerializeField] AnimationClip reloadAnimation;
 	[SerializeField] AnimationClip reloadFinishAnimation;
+	// Audio Sources
+	[SerializeField] AudioSource shootSound;
+	[SerializeField] AudioSource reloadSound;
+	[SerializeField] AudioSource emptyGunSound;
+	// Unity Events
 	[SerializeField] UnityEvent onShot;
 	[SerializeField] UnityEvent onReloadStart;
 	[SerializeField] UnityEvent onReload;
 	[SerializeField] UnityEvent onReloadFinish;
 	[SerializeField] UnityEvent onEmptyGun;
-
+	// Computing Attributes
 	float lastFireTime = 0;
 	int bulletsInCylinder = 0;
 	bool isReloading = false;
@@ -40,13 +47,14 @@ public class Gun : MonoBehaviour
 				onShot.Invoke();
 			}
 			else
-				onEmptyGun.Invoke();
+				if (bulletsInCylinder == 0)
+					onEmptyGun.Invoke();
 		}
 
 		if (InputManager.Instance.GetReloadButton() && CanReload())
 			StartCoroutine(Reload());
 	}
-
+	// Private Methods
 	void Shoot()
 	{
 		lastFireTime = Time.time;
@@ -92,12 +100,7 @@ public class Gun : MonoBehaviour
 		return (!isReloading && Time.time - lastFireTime >= 1 / fireRate && 
 				ammoLeft > 0 && bulletsInCylinder < cylinderCapacity);
 	}
-
-	public float GetReloadTime()
-	{
-		return reloadAnimation.length;
-	}
-
+	// Public Methods
 	public AnimationClip ShootAnimation
 	{
 		get { return shootAnimation;}
@@ -116,6 +119,20 @@ public class Gun : MonoBehaviour
 	public AnimationClip ReloadFinishAnimation
 	{
 		get { return reloadFinishAnimation;}
+	}
+
+	public AudioSource ShootSound
+	{
+		get { return shootSound; }
+	}
+
+	public AudioSource ReloadSound
+	{
+		get { return reloadSound; }
+	}
+	public AudioSource EmptyGunSound
+	{
+		get { return emptyGunSound; }
 	}
 
 	public UnityEvent OnShot
