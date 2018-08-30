@@ -99,6 +99,26 @@ public class Gun : MonoBehaviour
 		return reloadAnimation.length;
 	}
 
+	public AnimationClip ShootAnimation
+	{
+		get { return shootAnimation;}
+	}
+
+	public AnimationClip ReloadStartAnimation
+	{
+		get { return reloadStartAnimation;}
+	}
+
+	public AnimationClip ReloadAnimation
+	{
+		get { return reloadAnimation;}
+	}
+
+	public AnimationClip ReloadFinishAnimation
+	{
+		get { return reloadFinishAnimation;}
+	}
+
 	public UnityEvent OnShot
 	{
 		get { return onShot; }

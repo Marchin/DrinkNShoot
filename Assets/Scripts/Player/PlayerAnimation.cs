@@ -5,7 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimation : MonoBehaviour
 {
+	[SerializeField] AnimatorOverrideController animatorOverrideController;
 	[SerializeField] Gun currentGun;
+	[SerializeField] AnimationClip[] handgunAnimations;
 	Animator animator;
 
 	void Awake()
@@ -16,6 +18,8 @@ public class PlayerAnimation : MonoBehaviour
 
 	void Start()
 	{
+		ChangeGunAnimations();
+
 		currentGun.OnShot.AddListener(HasShot);
 		currentGun.OnReloadStart.AddListener(HasStartedReloading);
 		currentGun.OnReload.AddListener(HasReloaded);
@@ -44,5 +48,16 @@ public class PlayerAnimation : MonoBehaviour
 	void HasFinishedReloading()
 	{
 		animator.SetTrigger("Has Finished Reloading");
+	}
+
+	void ChangeGunAnimations()
+	{
+		animator.runtimeAnimatorController = animatorOverrideController;
+
+		animatorOverrideController["DEFAULT IDLE"] = handgunAnimations[0];
+		animatorOverrideController["DEFAULT SHOOTING"] = currentGun.ShootAnimation;
+		animatorOverrideController["DEFAULT RELOADING START"] = currentGun.ReloadStartAnimation;
+		animatorOverrideController["DEFAULT RELOADING"] = currentGun.ReloadAnimation;
+		animatorOverrideController["DEFAULT RELOADING FINISH"] = currentGun.ReloadFinishAnimation;
 	}
 }
