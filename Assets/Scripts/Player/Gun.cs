@@ -5,36 +5,40 @@ using UnityEngine.Events;
 
 public class Gun : MonoBehaviour
 {
-	// Main Attributes
+	[Header("Gun Stats")] 
 	[SerializeField] float damage;
 	[SerializeField] float fireRate;
 	[SerializeField] float range;
 	[SerializeField] float impactForce;
 	[SerializeField] int ammoLeft;
 	[SerializeField] int cylinderCapacity;
-	// Animation Clips
+	[Header("Gun Animations")]
 	[SerializeField] AnimationClip shootAnimation;
 	[SerializeField] AnimationClip reloadStartAnimation;
 	[SerializeField] AnimationClip reloadAnimation;
 	[SerializeField] AnimationClip reloadFinishAnimation;
-	// Audio Sources
+	[Header("Gun Audio Souces")]
 	[SerializeField] AudioSource shootSound;
 	[SerializeField] AudioSource reloadSound;
 	[SerializeField] AudioSource emptyGunSound;
-	// Unity Events
+	[Header("Layers Masks")]
+	[SerializeField] string[] shootingLayers;
+	[Header("Events")]
 	[SerializeField] UnityEvent onShot;
 	[SerializeField] UnityEvent onReloadStart;
 	[SerializeField] UnityEvent onReload;
 	[SerializeField] UnityEvent onReloadFinish;
 	[SerializeField] UnityEvent onEmptyGun;
-	// Computing Attributes
+	// Computing Fields
 	float lastFireTime = 0;
 	int bulletsInCylinder = 0;
 	bool isReloading = false;
+	int shootingLayerMask;
 
 	void Start()
 	{
-		bulletsInCylinder = cylinderCapacity; 
+		bulletsInCylinder = cylinderCapacity;
+		shootingLayerMask = LayerMask.GetMask(shootingLayers);
 	}
 
 	void Update()
@@ -62,13 +66,12 @@ public class Gun : MonoBehaviour
 		
 		RaycastHit hit;
 
-		if (Physics.Raycast(transform.position, transform.forward, out hit, range, 
-			LayerMask.GetMask("Dynamic Decoration, Shootables")))
+		if (Physics.Raycast(transform.position, transform.forward, out hit, range, shootingLayerMask))
 		{
 			Rigidbody targetRigidbody = hit.transform.GetComponent<Rigidbody>();
 
 			if (targetRigidbody)
-				targetRigidbody.AddForce(-hit.normal * impactForce);
+				targetRigidbody.AddForceAtPosition(-hit.normal * impactForce, hit.point);
 		}
 	}
 

@@ -2025,7 +2025,7 @@ MonoBehaviour:
   damage: 20
   fireRate: 1.5
   range: 100
-  impactForce: 75
+  impactForce: 1000
   ammoLeft: 96
   cylinderCapacity: 6
   shootAnimation: {fileID: 7400000, guid: c871985883e6d524bb0311afdfd5f33c, type: 2}
@@ -2037,6 +2037,9 @@ MonoBehaviour:
   shootSound: {fileID: 82455088881770588}
   reloadSound: {fileID: 82573242685369006}
   emptyGunSound: {fileID: 82781341373114522}
+  shootingLayers:
+  - Shootables
+  - Dynamic Decoration
   onShot:
     m_PersistentCalls:
       m_Calls: []
