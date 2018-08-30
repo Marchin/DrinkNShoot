@@ -68,7 +68,14 @@ public class Gun : MonoBehaviour
 
 		if (Physics.Raycast(transform.position, transform.forward, out hit, range, shootingLayerMask))
 		{
+			Life targetLife = hit.transform.GetComponent<Life>();
 			Rigidbody targetRigidbody = hit.transform.GetComponent<Rigidbody>();
+
+			if (targetLife)
+			{
+				float dmgPercentage = 1 - (transform.position - hit.transform.position).sqrMagnitude / (range * range);
+				targetLife.TakeDamage(damage * dmgPercentage);
+			}
 
 			if (targetRigidbody)
 				targetRigidbody.AddForceAtPosition(-hit.normal * impactForce, hit.point);
