@@ -12,6 +12,9 @@ public class Gun : MonoBehaviour
 	[SerializeField] float impactForce;
 	[SerializeField] int ammoLeft;
 	[SerializeField] int cylinderCapacity;
+	[SerializeField] float regularSway;
+	[SerializeField] float recoilSway;
+	[SerializeField] float recoilDuration;
 	[Header("Gun Animations")]
 	[SerializeField] AnimationClip shootAnimation;
 	[SerializeField] AnimationClip reloadStartAnimation;
@@ -30,10 +33,16 @@ public class Gun : MonoBehaviour
 	[SerializeField] UnityEvent onReloadFinish;
 	[SerializeField] UnityEvent onEmptyGun;
 	// Computing Fields
+	Transform fpsCamera;
+	int shootingLayerMask;
 	float lastFireTime = 0;
 	int bulletsInCylinder = 0;
 	bool isReloading = false;
-	int shootingLayerMask;
+
+	void Awake()
+	{
+		fpsCamera = GetComponentInParent<Camera>().transform;
+	}
 
 	void Start()
 	{
@@ -61,12 +70,21 @@ public class Gun : MonoBehaviour
 	// Private Methods
 	void Shoot()
 	{
+		float horizontalSway = lastFireTime + recoilDuration < Time.time ? 
+								Random.Range(-regularSway, regularSway) : Random.Range(-recoilSway, recoilSway);
+		float verticalSway = lastFireTime + recoilDuration < Time.time ? 
+								Random.Range(-regularSway, regularSway) : Random.Range(-recoilSway, recoilSway);
+		Vector3 shotSway = new Vector3(horizontalSway, verticalSway, 0);
+
+		Debug.DrawRay(fpsCamera.position, (fpsCamera.forward + shotSway).normalized * range, Color.red, 5);
+
 		lastFireTime = Time.time;
 		bulletsInCylinder--;
 		
 		RaycastHit hit;
 
-		if (Physics.Raycast(transform.position, transform.forward, out hit, range, shootingLayerMask))
+		if (Physics.Raycast(fpsCamera.position, (fpsCamera.forward + shotSway).normalized, 
+			out hit, range, shootingLayerMask))
 		{
 			Life targetLife = hit.transform.GetComponent<Life>();
 			Rigidbody targetRigidbody = hit.transform.GetComponent<Rigidbody>();
