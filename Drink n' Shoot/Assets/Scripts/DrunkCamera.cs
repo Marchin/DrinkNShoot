@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Camera))]
 public class DrunkCamera : MonoBehaviour {
-    [SerializeField] Transform m_camera;
     [SerializeField] float m_speed;
     [SerializeField] float m_shakeness;
     [Range(0f, 100f)]
+    [Tooltip("How much the total shakness varies (percentage)")]
     [SerializeField] float m_variance = 0.3f;
     [Range(0, 25)]
     [SerializeField] int m_level;
@@ -15,7 +16,7 @@ public class DrunkCamera : MonoBehaviour {
     float m_prevRot; 
 
 	private void Awake() {
-		m_currRotation = m_camera.eulerAngles.z;
+		m_currRotation = transform.eulerAngles.z;
         m_prevRot = m_currRotation;
 		m_shakenessMult = Random.Range(m_min, 1f);
 	}
@@ -35,7 +36,7 @@ public class DrunkCamera : MonoBehaviour {
         m_shakeness = deltaShake * m_level + 0.075f;
         m_min = 1f - (m_variance / 100f);
 
-        Vector3 newRotation = m_camera.eulerAngles;
+        Vector3 newRotation = transform.eulerAngles;
 		float oscillation = Mathf.Sin(f: Time.time * m_speed + m_HALF_PI);
 		m_currRotation += oscillation * m_shakeness * m_shakenessMult;
         if (Mathf.Sign(m_prevRot) != Mathf.Sign(m_currRotation)) {
@@ -43,6 +44,6 @@ public class DrunkCamera : MonoBehaviour {
         }
         newRotation.z = m_currRotation;
         m_prevRot = m_currRotation;
-		m_camera.eulerAngles = newRotation;
+		transform.eulerAngles = newRotation;
 	}
 }
