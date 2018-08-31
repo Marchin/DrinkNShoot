@@ -6,26 +6,43 @@ using UnityEngine.Events;
 public class Gun : MonoBehaviour
 {
 	[Header("Gun Stats")] 
-	[SerializeField] float damage;
-	[SerializeField] float fireRate;
-	[SerializeField] float range;
-	[SerializeField] float impactForce;
-	[SerializeField] int ammoLeft;
-	[SerializeField] int cylinderCapacity;
-	[SerializeField] float regularSway;
-	[SerializeField] float recoilSway;
-	[SerializeField] float recoilDuration;
+	[SerializeField] [Range(0, 100)] [Tooltip("Maximum gun damage.")] 
+	float damage;
+	[SerializeField] [Range(0, 12)] [Tooltip("Bullets fired per second.")] 
+	float fireRate;
+	[SerializeField] [Range(0, 1000)] [Tooltip("Maximum gun range.")] 
+	float range;
+	[SerializeField] [Range(0, 1250)] [Tooltip("Maximum force applied to a shot target.")] 
+	float impactForce;
+	[SerializeField] [Range(0, 1000)] [Tooltip("Maximum amount of ammo that can be carried.")] 
+	int ammoLeft;
+	[SerializeField] [Range(0, 100)] [Tooltip("Amount of bullets that can be inside the gun.")] 
+	int cylinderCapacity;
+	[SerializeField] [Range(0, 0.0025f)] [Tooltip("Regular sway of the gun; affects accuracy.")]
+	float regularSway;
+	[SerializeField] [Range(0, 0.025f)] [Tooltip("Gun sway after being fired; affects accuracy.")]
+	float recoilSway;
+	[SerializeField] [Range(0, 5)] [Tooltip("The number of seconds that the recoil affects the sway.")]
+	float recoilDuration;
 	[Header("Gun Animations")]
-	[SerializeField] AnimationClip shootAnimation;
-	[SerializeField] AnimationClip reloadStartAnimation;
-	[SerializeField] AnimationClip reloadAnimation;
-	[SerializeField] AnimationClip reloadFinishAnimation;
+	[SerializeField] [Tooltip("The shoot animation associated to the gun.")]
+	AnimationClip shootAnimation;
+	[SerializeField] [Tooltip("The 'start to reload' animation associated to the gun.")]
+	AnimationClip reloadStartAnimation;
+	[SerializeField] [Tooltip("The reload animation associated to the gun.")]
+	AnimationClip reloadAnimation;
+	[SerializeField] [Tooltip("The 'finish reloading' animation associated to the gun.")]
+	AnimationClip reloadFinishAnimation;
 	[Header("Gun Audio Souces")]
-	[SerializeField] AudioSource shootSound;
-	[SerializeField] AudioSource reloadSound;
-	[SerializeField] AudioSource emptyGunSound;
+	[SerializeField] [Tooltip("The shoot sound associated to the gun.")]
+	AudioSource shootSound;
+	[SerializeField] [Tooltip("The reload sound associated to the gun.")]
+	AudioSource reloadSound;
+	[SerializeField] [Tooltip("The sound the gun makes when it is fired while being empty.")]
+	AudioSource emptyGunSound;
 	[Header("Layers Masks")]
-	[SerializeField] string[] shootingLayers;
+	[SerializeField] [Tooltip("The name of layers that contain the possibe shooting targets.")]
+	string[] shootingLayers;
 	[Header("Events")]
 	[SerializeField] UnityEvent onShot;
 	[SerializeField] UnityEvent onReloadStart;
@@ -70,13 +87,11 @@ public class Gun : MonoBehaviour
 	// Private Methods
 	void Shoot()
 	{
-		float horizontalSway = lastFireTime + recoilDuration < Time.time ? 
+		float horizontalSway = lastFireTime < Time.time - recoilDuration ? 
 								Random.Range(-regularSway, regularSway) : Random.Range(-recoilSway, recoilSway);
-		float verticalSway = lastFireTime + recoilDuration < Time.time ? 
+		float verticalSway = lastFireTime < Time.time - recoilDuration? 
 								Random.Range(-regularSway, regularSway) : Random.Range(-recoilSway, recoilSway);
 		Vector3 shotSway = new Vector3(horizontalSway, verticalSway, 0);
-
-		Debug.DrawRay(fpsCamera.position, (fpsCamera.forward + shotSway).normalized * range, Color.red, 5);
 
 		lastFireTime = Time.time;
 		bulletsInCylinder--;
@@ -96,7 +111,10 @@ public class Gun : MonoBehaviour
 			}
 
 			if (targetRigidbody)
+			{
+				float forcePercentage = 1 - (transform.position - hit.transform.position).sqrMagnitude / (range * range);
 				targetRigidbody.AddForceAtPosition(-hit.normal * impactForce, hit.point);
+			}
 		}
 	}
 

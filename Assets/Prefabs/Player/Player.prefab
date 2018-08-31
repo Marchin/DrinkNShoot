@@ -2025,9 +2025,12 @@ MonoBehaviour:
   damage: 20
   fireRate: 1.5
   range: 100
-  impactForce: 1000
+  impactForce: 750
   ammoLeft: 96
   cylinderCapacity: 6
+  regularSway: 0.001
+  recoilSway: 0.02
+  recoilDuration: 1
   shootAnimation: {fileID: 7400000, guid: c871985883e6d524bb0311afdfd5f33c, type: 2}
   reloadStartAnimation: {fileID: 7400000, guid: 7a410fd10affa8149b08bcaeb68e25e4,
     type: 2}
