@@ -18,25 +18,25 @@ public class Gun : MonoBehaviour
 	int ammoLeft;
 	[SerializeField] [Range(0, 100)] [Tooltip("Amount of bullets that can be inside the gun.")] 
 	int cylinderCapacity;
-	[SerializeField] [Range(0, 0.0025f)] [Tooltip("Regular sway of the gun; affects accuracy.")]
-	float regularSway;
-	[SerializeField] [Range(0, 0.025f)] [Tooltip("Gun sway after being fired; affects accuracy.")]
-	float recoilSway;
+	[SerializeField] [Range(0, 10)] [Tooltip("Regular sway of the gun; affects accuracy.")]
+	float regularSwayLevel;
+	[SerializeField] [Range(0, 10)] [Tooltip("Gun sway after being fired; affects accuracy.")]
+	float recoilSwayLevel;
 	[SerializeField] [Range(0, 5)] [Tooltip("The number of seconds that the recoil affects the sway.")]
 	float recoilDuration;
 	[Header("Gun Animations")]
-	[SerializeField] [Tooltip("The shoot animation associated to the gun.")]
+	[SerializeField] [Tooltip("The 'shoot' animation associated to the gun.")]
 	AnimationClip shootAnimation;
 	[SerializeField] [Tooltip("The 'start to reload' animation associated to the gun.")]
 	AnimationClip reloadStartAnimation;
-	[SerializeField] [Tooltip("The reload animation associated to the gun.")]
+	[SerializeField] [Tooltip("The 'reload' animation associated to the gun.")]
 	AnimationClip reloadAnimation;
 	[SerializeField] [Tooltip("The 'finish reloading' animation associated to the gun.")]
 	AnimationClip reloadFinishAnimation;
 	[Header("Gun Audio Souces")]
-	[SerializeField] [Tooltip("The shoot sound associated to the gun.")]
+	[SerializeField] [Tooltip("The'shoot' sound associated to the gun.")]
 	AudioSource shootSound;
-	[SerializeField] [Tooltip("The reload sound associated to the gun.")]
+	[SerializeField] [Tooltip("The 'reload' sound associated to the gun.")]
 	AudioSource reloadSound;
 	[SerializeField] [Tooltip("The sound the gun makes when it is fired while being empty.")]
 	AudioSource emptyGunSound;
@@ -50,11 +50,15 @@ public class Gun : MonoBehaviour
 	[SerializeField] UnityEvent onReloadFinish;
 	[SerializeField] UnityEvent onEmptyGun;
 	// Computing Fields
+	const float baseSway = 0.005f;
 	Transform fpsCamera;
 	int shootingLayerMask;
 	float lastFireTime = 0;
 	int bulletsInCylinder = 0;
 	bool isReloading = false;
+	float regularSway;
+	float recoilSway;
+	int consecutiveShots;
 
 	void Awake()
 	{
@@ -65,10 +69,17 @@ public class Gun : MonoBehaviour
 	{
 		bulletsInCylinder = cylinderCapacity;
 		shootingLayerMask = LayerMask.GetMask(shootingLayers);
+		regularSway = baseSway * regularSwayLevel;
+		recoilSway = baseSway * recoilSwayLevel;
+		recoilDuration += 1 / fireRate;
 	}
 
 	void Update()
 	{
+		if (lastFireTime < Time.time - recoilDuration)
+			if (consecutiveShots != 0)
+				consecutiveShots = 0;
+
 		if (InputManager.Instance.GetFireButton())
 		{
 			if (CanShoot())
@@ -87,12 +98,24 @@ public class Gun : MonoBehaviour
 	// Private Methods
 	void Shoot()
 	{
-		float horizontalSway = lastFireTime < Time.time - recoilDuration ? 
-								Random.Range(-regularSway, regularSway) : Random.Range(-recoilSway, recoilSway);
-		float verticalSway = lastFireTime < Time.time - recoilDuration? 
-								Random.Range(-regularSway, regularSway) : Random.Range(-recoilSway, recoilSway);
-		Vector3 shotSway = new Vector3(horizontalSway, verticalSway, 0);
+		Vector3 shotSway;
+		float horSway;
+		float verSway;
 
+		if (lastFireTime < Time.time - recoilDuration)
+		{
+			horSway = Random.Range(-regularSway, regularSway);
+			verSway = Random.Range(-regularSway, regularSway);	
+		}
+		else
+		{
+			float additionalSway = baseSway * consecutiveShots;
+			horSway = Random.Range(-recoilSway - additionalSway, recoilSway + additionalSway);
+			verSway = Random.Range(-recoilSway - additionalSway, recoilSway + additionalSway);
+			consecutiveShots++;
+		}
+
+		shotSway = new Vector3(horSway, verSway, 0);
 		lastFireTime = Time.time;
 		bulletsInCylinder--;
 		
