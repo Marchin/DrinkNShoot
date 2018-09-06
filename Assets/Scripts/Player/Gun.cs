@@ -50,15 +50,15 @@ public class Gun : MonoBehaviour
 	[SerializeField] UnityEvent onReloadFinish;
 	[SerializeField] UnityEvent onEmptyGun;
 	// Computing Fields
-	const float baseSway = 0.005f;
+	const float baseSway = 0.0025f;
 	Transform fpsCamera;
 	int shootingLayerMask;
 	float lastFireTime = 0;
 	int bulletsInCylinder = 0;
 	bool isReloading = false;
-	float regularSway;
-	float recoilSway;
-	int consecutiveShots;
+	float regularSway = 0;
+	float recoilSway = 0;
+	int consecutiveShots = 0;
 
 	void Awake()
 	{
@@ -70,7 +70,7 @@ public class Gun : MonoBehaviour
 		bulletsInCylinder = cylinderCapacity;
 		shootingLayerMask = LayerMask.GetMask(shootingLayers);
 		regularSway = baseSway * regularSwayLevel;
-		recoilSway = baseSway * recoilSwayLevel;
+		recoilSway = regularSway + baseSway * recoilSwayLevel;
 		recoilDuration += 1 / fireRate;
 	}
 
@@ -101,18 +101,23 @@ public class Gun : MonoBehaviour
 		Vector3 shotSway;
 		float horSway;
 		float verSway;
+		float swayDir;
 
 		if (lastFireTime < Time.time - recoilDuration)
 		{
-			horSway = Random.Range(-regularSway, regularSway);
-			verSway = Random.Range(-regularSway, regularSway);	
+			swayDir = Random.Range(0, 2);
+			horSway = swayDir == 0 ? Random.Range(-regularSway, -baseSway) : Random.Range(baseSway, regularSway);
+			swayDir = Random.Range(0, 2);
+			verSway = swayDir == 0 ? Random.Range(-regularSway, -baseSway) : Random.Range(baseSway, regularSway);	
 		}
 		else
 		{
-			float additionalSway = baseSway * consecutiveShots;
-			horSway = Random.Range(-recoilSway - additionalSway, recoilSway + additionalSway);
-			verSway = Random.Range(-recoilSway - additionalSway, recoilSway + additionalSway);
 			consecutiveShots++;
+			float addedRecoilSway = recoilSway + baseSway * consecutiveShots;
+			swayDir = Random.Range(0, 2);
+			horSway = swayDir == 0 ? Random.Range(-addedRecoilSway, -regularSway) : Random.Range(regularSway, addedRecoilSway);
+			swayDir = Random.Range(0, 2);
+			verSway = swayDir == 0 ? Random.Range(-addedRecoilSway, -regularSway): Random.Range(regularSway, addedRecoilSway);
 		}
 
 		shotSway = new Vector3(horSway, verSway, 0);
@@ -136,7 +141,7 @@ public class Gun : MonoBehaviour
 			if (targetRigidbody)
 			{
 				float forcePercentage = 1 - (transform.position - hit.transform.position).sqrMagnitude / (range * range);
-				targetRigidbody.AddForceAtPosition(-hit.normal * impactForce, hit.point);
+				targetRigidbody.AddForceAtPosition(-hit.normal * impactForce * forcePercentage, hit.point);
 			}
 		}
 	}
@@ -160,14 +165,12 @@ public class Gun : MonoBehaviour
 
 	bool CanShoot()
 	{
-		return (!isReloading && Time.time - lastFireTime >= 1 / fireRate && 
-				bulletsInCylinder > 0);
+		return !isReloading && Time.time - lastFireTime >= 1 / fireRate && bulletsInCylinder > 0;
 	}
 
 	bool CanReload()
 	{
-		return (!isReloading && Time.time - lastFireTime >= 1 / fireRate && 
-				ammoLeft > 0 && bulletsInCylinder < cylinderCapacity);
+		return !isReloading && Time.time - lastFireTime >= 1 / fireRate && ammoLeft > 0 && bulletsInCylinder < cylinderCapacity;
 	}
 	// Public Methods
 	public AnimationClip ShootAnimation
