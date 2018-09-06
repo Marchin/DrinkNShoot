@@ -2022,14 +2022,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2d509252c4ba54b8161b786510c260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunType: 0
   damage: 20
-  fireRate: 1.5
+  fireRate: 2
   range: 100
-  impactForce: 750
-  ammoLeft: 96
+  impactForce: 700
+  maxAmmo: 96
   cylinderCapacity: 6
-  regularSway: 0.001
-  recoilSway: 0.02
+  regularSwayLevel: 3
+  recoilSwayLevel: 5
   recoilDuration: 1
   shootAnimation: {fileID: 7400000, guid: c871985883e6d524bb0311afdfd5f33c, type: 2}
   reloadStartAnimation: {fileID: 7400000, guid: 7a410fd10affa8149b08bcaeb68e25e4,
@@ -2093,7 +2094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animatorOverrideController: {fileID: 22100000, guid: 49ba16f31735edc48b890903a06b7a7e,
     type: 2}
-  currentGun: {fileID: 114052699904740838}
+  weaponHolder: {fileID: 0}
   handgunAnimations:
   - {fileID: 7400000, guid: 28d1bdc8d2098ca4fbf86721e3c387c1, type: 2}
 --- !u!114 &114620971807325598

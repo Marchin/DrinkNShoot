@@ -5,7 +5,14 @@ using UnityEngine.Events;
 
 public class Gun : MonoBehaviour
 {
-	[Header("Gun Stats")] 
+	public enum GunType
+	{
+		Handgun
+	}
+
+	[Header("Gun Stats")]
+	[SerializeField] [Tooltip("Type of gun.")]
+	GunType gunType;
 	[SerializeField] [Range(0, 100)] [Tooltip("Maximum gun damage.")] 
 	float damage;
 	[SerializeField] [Range(0, 12)] [Tooltip("Bullets fired per second.")] 
@@ -15,7 +22,7 @@ public class Gun : MonoBehaviour
 	[SerializeField] [Range(0, 1250)] [Tooltip("Maximum force applied to a shot target.")] 
 	float impactForce;
 	[SerializeField] [Range(0, 1000)] [Tooltip("Maximum amount of ammo that can be carried.")] 
-	int ammoLeft;
+	int maxAmmo;
 	[SerializeField] [Range(0, 100)] [Tooltip("Amount of bullets that can be inside the gun.")] 
 	int cylinderCapacity;
 	[SerializeField] [Range(0, 10)] [Tooltip("Regular sway of the gun; affects accuracy.")]
@@ -53,6 +60,7 @@ public class Gun : MonoBehaviour
 	const float baseSway = 0.0025f;
 	Transform fpsCamera;
 	int shootingLayerMask;
+	int ammoLeft;
 	float lastFireTime = 0;
 	int bulletsInCylinder = 0;
 	bool isReloading = false;
@@ -68,6 +76,7 @@ public class Gun : MonoBehaviour
 	void Start()
 	{
 		bulletsInCylinder = cylinderCapacity;
+		ammoLeft = maxAmmo;
 		shootingLayerMask = LayerMask.GetMask(shootingLayers);
 		regularSway = baseSway * regularSwayLevel;
 		recoilSway = regularSway + baseSway * recoilSwayLevel;
@@ -173,6 +182,21 @@ public class Gun : MonoBehaviour
 		return !isReloading && Time.time - lastFireTime >= 1 / fireRate && ammoLeft > 0 && bulletsInCylinder < cylinderCapacity;
 	}
 	// Public Methods
+	public GunType TypeOfGun
+	{
+		get { return gunType; }
+	}
+
+	public int BulletsInCylinder
+	{
+		get { return bulletsInCylinder; }
+	}
+
+	public int AmmoLeft
+	{
+		get { return ammoLeft; }
+	}
+
 	public AnimationClip ShootAnimation
 	{
 		get { return shootAnimation;}

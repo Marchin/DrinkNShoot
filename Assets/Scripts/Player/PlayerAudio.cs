@@ -4,27 +4,32 @@ using UnityEngine;
 
 public class PlayerAudio : MonoBehaviour 
 {
-	[SerializeField] Gun currentGun;
+	WeaponHolder weaponHolder;
+
+	void Awake()
+	{
+		weaponHolder = GetComponentInChildren<WeaponHolder>();
+	}
 
 	void Start()
 	{
-		currentGun.OnShot.AddListener(PlayShootSound);
-		currentGun.OnReload.AddListener(PlayReloadSound);
-		currentGun.OnEmptyGun.AddListener(PlayEmptyGunSound);
+		weaponHolder.EquippedGun.OnShot.AddListener(PlayShootSound);
+		weaponHolder.EquippedGun.OnReload.AddListener(PlayReloadSound);
+		weaponHolder.EquippedGun.OnEmptyGun.AddListener(PlayEmptyGunSound);
 	}
 
 	void PlayShootSound()
 	{
-		currentGun.ShootSound.Play();
+		weaponHolder.EquippedGun.ShootSound.Play();
 	}
 
 	void PlayReloadSound()
 	{
-		currentGun.ReloadSound.Play();
+		weaponHolder.EquippedGun.ReloadSound.Play();
 	}
 
 	void PlayEmptyGunSound()
 	{
-		currentGun.EmptyGunSound.Play();
+		weaponHolder.EquippedGun.EmptyGunSound.Play();
 	}
 }

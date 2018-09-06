@@ -6,24 +6,24 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
 	[SerializeField] AnimatorOverrideController animatorOverrideController;
-	[SerializeField] Gun currentGun;
 	[SerializeField] AnimationClip[] handgunAnimations;
 	Animator animator;
+	WeaponHolder weaponHolder;
 
 	void Awake()
 	{
 		animator = GetComponent<Animator>();
-		currentGun = GetComponentInChildren<Gun>(); 
+		weaponHolder = GetComponentInChildren<WeaponHolder>();
 	}
 
 	void Start()
 	{
 		ChangeGunAnimations();
 
-		currentGun.OnShot.AddListener(HasShot);
-		currentGun.OnReloadStart.AddListener(HasStartedReloading);
-		currentGun.OnReload.AddListener(HasReloaded);
-		currentGun.OnReloadFinish.AddListener(HasFinishedReloading);
+		weaponHolder.EquippedGun.OnShot.AddListener(HasShot);
+		weaponHolder.EquippedGun.OnReloadStart.AddListener(HasStartedReloading);
+		weaponHolder.EquippedGun.OnReload.AddListener(HasReloaded);
+		weaponHolder.EquippedGun.OnReloadFinish.AddListener(HasFinishedReloading);
 	}
 
 	void Update()
@@ -55,9 +55,9 @@ public class PlayerAnimation : MonoBehaviour
 		animator.runtimeAnimatorController = animatorOverrideController;
 
 		animatorOverrideController["DEFAULT IDLE"] = handgunAnimations[0];
-		animatorOverrideController["DEFAULT SHOOTING"] = currentGun.ShootAnimation;
-		animatorOverrideController["DEFAULT RELOADING START"] = currentGun.ReloadStartAnimation;
-		animatorOverrideController["DEFAULT RELOADING"] = currentGun.ReloadAnimation;
-		animatorOverrideController["DEFAULT RELOADING FINISH"] = currentGun.ReloadFinishAnimation;
+		animatorOverrideController["DEFAULT SHOOTING"] = weaponHolder.EquippedGun.ShootAnimation;
+		animatorOverrideController["DEFAULT RELOADING START"] = weaponHolder.EquippedGun.ReloadStartAnimation;
+		animatorOverrideController["DEFAULT RELOADING"] = weaponHolder.EquippedGun.ReloadAnimation;
+		animatorOverrideController["DEFAULT RELOADING FINISH"] = weaponHolder.EquippedGun.ReloadFinishAnimation;
 	}
 }
