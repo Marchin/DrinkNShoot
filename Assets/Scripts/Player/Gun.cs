@@ -27,8 +27,10 @@ public class Gun : MonoBehaviour
 	int cylinderCapacity;
 	[SerializeField] [Range(0, 10)] [Tooltip("Regular sway of the gun; affects accuracy.")]
 	float regularSwayLevel;
-	[SerializeField] [Range(0, 10)] [Tooltip("Gun sway after being fired; affects accuracy.")]
+	[SerializeField] [Range(1, 10)] [Tooltip("Gun sway after being fired; affects accuracy.")]
 	float recoilSwayLevel;
+	[SerializeField] [Range(0, 10)]
+	int drunkLevel;
 	[SerializeField] [Range(0, 5)] [Tooltip("The number of seconds that the recoil affects the sway.")]
 	float recoilDuration;
 	[Header("Gun Animations")]
@@ -56,8 +58,12 @@ public class Gun : MonoBehaviour
 	[SerializeField] UnityEvent onReload;
 	[SerializeField] UnityEvent onReloadFinish;
 	[SerializeField] UnityEvent onEmptyGun;
+	[SerializeField] UnityEvent onCrosshairScale;
+
 	// Computing Fields
-	const float baseSway = 0.0025f;
+	const float baseSway = 0.005f;
+	const float swayApproximation = 0.0001f;
+	const float interpPerc = 0.1f;
 	Transform fpsCamera;
 	int shootingLayerMask;
 	int ammoLeft;
@@ -66,7 +72,10 @@ public class Gun : MonoBehaviour
 	bool isReloading = false;
 	float regularSway = 0;
 	float recoilSway = 0;
+	float drunkSway = 0;
+	float crosshairScale = 1;
 	int consecutiveShots = 0;
+	bool isIncreasingDrunkSway = true;
 
 	void Awake()
 	{
@@ -80,14 +89,34 @@ public class Gun : MonoBehaviour
 		shootingLayerMask = LayerMask.GetMask(shootingLayers);
 		regularSway = baseSway * regularSwayLevel;
 		recoilSway = regularSway + baseSway * recoilSwayLevel;
-		recoilDuration += 1 / fireRate;
 	}
 
 	void Update()
 	{
-		if (lastFireTime < Time.time - recoilDuration)
+		if (isIncreasingDrunkSway)
+		{
+			drunkSway = Mathf.Lerp(drunkSway, regularSway * drunkLevel, interpPerc);
+			if (drunkSway >= regularSway * drunkLevel - swayApproximation)
+				isIncreasingDrunkSway = false;
+		}
+		else
+		{
+			drunkSway = Mathf.Lerp(drunkSway, 0, interpPerc);
+			if (drunkSway <= swayApproximation)
+				isIncreasingDrunkSway = true;
+		}
+
+		if (crosshairScale != 1 + drunkSway)
+		{
+			crosshairScale = Mathf.Lerp(crosshairScale, 1 + drunkSway * 10, interpPerc);
+			onCrosshairScale.Invoke();
+		}
+
+		if (lastFireTime < Time.time - recoilDuration - 1 / fireRate)
+		{
 			if (consecutiveShots != 0)
 				consecutiveShots = 0;
+		}
 
 		if (InputManager.Instance.GetFireButton())
 		{
@@ -112,26 +141,35 @@ public class Gun : MonoBehaviour
 		float verSway;
 		float swayDir;
 
-		if (lastFireTime < Time.time - recoilDuration)
+		if (lastFireTime < Time.time - recoilDuration - 1 / fireRate)
 		{
+			float minSway = -regularSway - drunkSway;
+			float maxSway = regularSway + drunkSway;
+			crosshairScale += regularSway * 10;
 			swayDir = Random.Range(0, 2);
-			horSway = swayDir == 0 ? Random.Range(-regularSway, -baseSway) : Random.Range(baseSway, regularSway);
+			horSway = swayDir == 0 ? Random.Range(minSway, -baseSway) : Random.Range(baseSway, maxSway);
 			swayDir = Random.Range(0, 2);
-			verSway = swayDir == 0 ? Random.Range(-regularSway, -baseSway) : Random.Range(baseSway, regularSway);	
+			verSway = swayDir == 0 ? Random.Range(minSway, -baseSway) : Random.Range(baseSway, maxSway);
 		}
 		else
 		{
 			consecutiveShots++;
-			float addedRecoilSway = recoilSway + baseSway * consecutiveShots;
+			float minAddedRecoilSway = -recoilSway - baseSway * consecutiveShots - drunkSway;
+			float maxAddedRecoilSway = recoilSway + baseSway * consecutiveShots + drunkSway;
+			crosshairScale += recoilSway * consecutiveShots * 10;
 			swayDir = Random.Range(0, 2);
-			horSway = swayDir == 0 ? Random.Range(-addedRecoilSway, -regularSway) : Random.Range(regularSway, addedRecoilSway);
+			horSway = swayDir == 0 ? Random.Range(minAddedRecoilSway, -regularSway) : Random.Range(regularSway, maxAddedRecoilSway);
 			swayDir = Random.Range(0, 2);
-			verSway = swayDir == 0 ? Random.Range(-addedRecoilSway, -regularSway): Random.Range(regularSway, addedRecoilSway);
+			verSway = swayDir == 0 ? Random.Range(minAddedRecoilSway, -regularSway): Random.Range(regularSway, maxAddedRecoilSway);
 		}
+		
+		OnCrosshairScale.Invoke();
 
 		shotSway = new Vector3(horSway, verSway, 0);
 		lastFireTime = Time.time;
 		bulletsInCylinder--;
+
+		Debug.DrawRay(fpsCamera.position, (fpsCamera.forward + shotSway) * range, Color.red, 3);
 		
 		RaycastHit hit;
 
@@ -197,6 +235,11 @@ public class Gun : MonoBehaviour
 		get { return ammoLeft; }
 	}
 
+	public float CrossshairScale
+	{
+		get { return crosshairScale; }
+	}
+
 	public AnimationClip ShootAnimation
 	{
 		get { return shootAnimation;}
@@ -253,5 +296,10 @@ public class Gun : MonoBehaviour
 	public UnityEvent OnEmptyGun
 	{
 		get { return onEmptyGun; }
+	}
+
+	public UnityEvent OnCrosshairScale
+	{
+		get { return onCrosshairScale; }
 	}
 }
