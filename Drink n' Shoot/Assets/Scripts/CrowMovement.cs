@@ -2,10 +2,10 @@
 
 public class CrowMovement : MonoBehaviour {
     [SerializeField] GameObject m_roof;
-    [SerializeField] float m_maxJumpInterval;
-    [SerializeField] float m_height;
     [SerializeField] float m_maxMovementInterval;
     [SerializeField] float m_distance;
+    [SerializeField] float m_speed;
+    [SerializeField] float m_rotationSpeed;
     CrowFly m_crowFly;
     Vector3 m_roofSize;
     Vector3 m_targetPosition;
@@ -15,13 +15,6 @@ public class CrowMovement : MonoBehaviour {
     bool m_flipping;
 
     private void Awake() {
-        // m_roofSize = Vector3.Scale(
-        //     m_roof.GetComponent<MeshRenderer>().bounds.size,
-        //     transform.localScale
-        // );
-        // if (m_targetPosition != transform.position) {
-        //     Vector3.Lerp(transform.position, m_targetPosition, Time.deltaTime);
-        // }
         m_distToFront = GetComponent<BoxCollider>().bounds.extents.z;
         m_crowFly = GetComponent<CrowFly>();
         m_moving = false;
@@ -32,22 +25,24 @@ public class CrowMovement : MonoBehaviour {
         Move();
         if (transform.position != m_targetPosition) {
             transform.position = Vector3.Lerp(
-                transform.position, m_targetPosition, Time.deltaTime * 2f);
+                transform.position, m_targetPosition, m_speed * Time.deltaTime);
         }
-        if (transform.rotation != m_targetRotation) {
+        if (transform.eulerAngles != m_targetRotation.eulerAngles) {
             transform.rotation = Quaternion.RotateTowards(
-                transform.rotation, m_targetRotation, 2f * Time.deltaTime);
+                transform.rotation, m_targetRotation, m_rotationSpeed * Time.deltaTime);
         }
         if (transform.position == m_targetPosition &&
-            transform.rotation == m_targetRotation) {
+            transform.eulerAngles == m_targetRotation.eulerAngles) {
 
             ResetState();
         }
     }
 
     void Move() {
-        if (!(m_moving && m_crowFly.IsFlying() && m_flipping)) {
-            Vector3 targetOffset = transform.forward * (m_distance + m_distToFront);
+        if (!m_moving /*&& !m_crowFly.IsFlying()*/ && !m_flipping) {
+            Vector3 maxDistance = (m_roof.transform.position +
+                m_distToFront * Vector3.right) - transform.position;
+            Vector3 targetOffset = transform.forward * maxDistance.magnitude * Random.Range(0f, 1f);
             if (Physics.Raycast(transform.position + targetOffset, -transform.up, 2f)) {
 
                 m_targetPosition = transform.position + transform.forward * m_distance;
