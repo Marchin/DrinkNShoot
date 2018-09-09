@@ -29,8 +29,6 @@ public class Gun : MonoBehaviour
 	float regularSwayLevel;
 	[SerializeField] [Range(1, 10)] [Tooltip("Gun sway after being fired; affects accuracy.")]
 	float recoilSwayLevel;
-	[SerializeField] [Range(0, 10)]
-	int drunkLevel;
 	[SerializeField] [Range(0, 5)] [Tooltip("The number of seconds that the recoil affects the sway.")]
 	float recoilDuration;
 	[Header("Gun Animations")]
@@ -66,6 +64,7 @@ public class Gun : MonoBehaviour
 	const float interpPerc = 0.1f;
 	const int crosshairScaleMultiplier = 20;
 	Transform fpsCamera;
+	DrunkCamera drunkCamera;
 	int shootingLayerMask;
 	int ammoLeft;
 	float lastFireTime = 0;
@@ -81,6 +80,7 @@ public class Gun : MonoBehaviour
 	void Awake()
 	{
 		fpsCamera = GetComponentInParent<Camera>().transform;
+		drunkCamera = GetComponentInParent<DrunkCamera>();
 	}
 
 	void Start()
@@ -197,8 +197,8 @@ public class Gun : MonoBehaviour
     {
         if (isIncreasingDrunkSway)
         {
-            drunkSway = Mathf.Lerp(drunkSway, regularSway * drunkLevel, interpPerc);
-            if (drunkSway >= regularSway * drunkLevel - swayApproximation)
+            drunkSway = Mathf.Lerp(drunkSway, regularSway * drunkCamera.DrunkLevel, interpPerc);
+            if (drunkSway >= regularSway * drunkCamera.DrunkLevel - swayApproximation)
                 isIncreasingDrunkSway = false;
         }
         else

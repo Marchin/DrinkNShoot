@@ -209,6 +209,11 @@ Prefab:
       propertyPath: recoilDuration
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 114620971807325598, guid: 8b769d4a47a81d6478e50f881a4879ed,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b769d4a47a81d6478e50f881a4879ed, type: 2}
   m_IsPrefabAsset: 0
@@ -1283,6 +1288,26 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e03816b1e16280489d9df32ef182451, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1170143538 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1233117144670592, guid: 8b769d4a47a81d6478e50f881a4879ed,
+    type: 2}
+  m_PrefabInternal: {fileID: 50590474}
+--- !u!114 &1170143540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1170143538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9074f6a694bc5e4c835009f8f724acb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_speed: 1
+  m_shakeness: 1
+  m_variance: 0.3
+  m_level: 0
 --- !u!1001 &1192080379
 Prefab:
   m_ObjectHideFlags: 0
