@@ -61,9 +61,10 @@ public class Gun : MonoBehaviour
 	[SerializeField] UnityEvent onCrosshairScale;
 
 	// Computing Fields
-	const float baseSway = 0.005f;
+	const float baseSway = 0.003f;
 	const float swayApproximation = 0.0001f;
 	const float interpPerc = 0.1f;
+	const int crosshairScaleMultiplier = 20;
 	Transform fpsCamera;
 	int shootingLayerMask;
 	int ammoLeft;
@@ -93,30 +94,8 @@ public class Gun : MonoBehaviour
 
 	void Update()
 	{
-		if (isIncreasingDrunkSway)
-		{
-			drunkSway = Mathf.Lerp(drunkSway, regularSway * drunkLevel, interpPerc);
-			if (drunkSway >= regularSway * drunkLevel - swayApproximation)
-				isIncreasingDrunkSway = false;
-		}
-		else
-		{
-			drunkSway = Mathf.Lerp(drunkSway, 0, interpPerc);
-			if (drunkSway <= swayApproximation)
-				isIncreasingDrunkSway = true;
-		}
-
-		if (crosshairScale != 1 + drunkSway)
-		{
-			crosshairScale = Mathf.Lerp(crosshairScale, 1 + drunkSway * 10, interpPerc);
-			onCrosshairScale.Invoke();
-		}
-
-		if (lastFireTime < Time.time - recoilDuration - 1 / fireRate)
-		{
-			if (consecutiveShots != 0)
-				consecutiveShots = 0;
-		}
+		ComputeDrunkSway();
+		ComputeConsecutiveShots();
 
 		if (InputManager.Instance.GetFireButton())
 		{
@@ -133,6 +112,7 @@ public class Gun : MonoBehaviour
 		if (InputManager.Instance.GetReloadButton() && CanReload())
 			StartCoroutine(Reload());
 	}
+
 	// Private Methods
 	void Shoot()
 	{
@@ -145,7 +125,7 @@ public class Gun : MonoBehaviour
 		{
 			float minSway = -regularSway - drunkSway;
 			float maxSway = regularSway + drunkSway;
-			crosshairScale += regularSway * 10;
+			crosshairScale += regularSway * crosshairScaleMultiplier;
 			swayDir = Random.Range(0, 2);
 			horSway = swayDir == 0 ? Random.Range(minSway, -baseSway) : Random.Range(baseSway, maxSway);
 			swayDir = Random.Range(0, 2);
@@ -156,7 +136,7 @@ public class Gun : MonoBehaviour
 			consecutiveShots++;
 			float minAddedRecoilSway = -recoilSway - baseSway * consecutiveShots - drunkSway;
 			float maxAddedRecoilSway = recoilSway + baseSway * consecutiveShots + drunkSway;
-			crosshairScale += recoilSway * consecutiveShots * 10;
+			crosshairScale += recoilSway * consecutiveShots * crosshairScaleMultiplier;
 			swayDir = Random.Range(0, 2);
 			horSway = swayDir == 0 ? Random.Range(minAddedRecoilSway, -regularSway) : Random.Range(regularSway, maxAddedRecoilSway);
 			swayDir = Random.Range(0, 2);
@@ -210,6 +190,37 @@ public class Gun : MonoBehaviour
 		isReloading = false;
 	}
 
+    void ComputeDrunkSway()
+    {
+        if (isIncreasingDrunkSway)
+        {
+            drunkSway = Mathf.Lerp(drunkSway, regularSway * drunkLevel, interpPerc);
+            if (drunkSway >= regularSway * drunkLevel - swayApproximation)
+                isIncreasingDrunkSway = false;
+        }
+        else
+        {
+            drunkSway = Mathf.Lerp(drunkSway, 0, interpPerc);
+            if (drunkSway <= swayApproximation)
+                isIncreasingDrunkSway = true;
+        }
+
+        if (crosshairScale != 1 + drunkSway)
+        {
+            crosshairScale = Mathf.Lerp(crosshairScale, 1 + drunkSway * crosshairScaleMultiplier, interpPerc);
+            onCrosshairScale.Invoke();
+        }
+    }
+
+	void ComputeConsecutiveShots()
+	{
+        if (lastFireTime < Time.time - recoilDuration - 1 / fireRate)
+        {
+            if (consecutiveShots != 0)
+                consecutiveShots = 0;
+        }
+	}
+
 	bool CanShoot()
 	{
 		return !isReloading && Time.time - lastFireTime >= 1 / fireRate && bulletsInCylinder > 0;
@@ -219,6 +230,7 @@ public class Gun : MonoBehaviour
 	{
 		return !isReloading && Time.time - lastFireTime >= 1 / fireRate && ammoLeft > 0 && bulletsInCylinder < cylinderCapacity;
 	}
+
 	// Public Methods
 	public GunType TypeOfGun
 	{
