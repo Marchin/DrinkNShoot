@@ -21,7 +21,9 @@ GameObject:
   - component: {fileID: 4932014202725962}
   - component: {fileID: 33873849756264212}
   - component: {fileID: 23964171770757168}
-  m_Layer: 0
+  - component: {fileID: 54159599081700764}
+  - component: {fileID: 65955113486059658}
+  m_Layer: 13
   m_Name: Bottle 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1200767631447288}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 6.236, y: 0.841, z: 4.506}
-  m_LocalScale: {x: 0.6790511, y: 0.73317105, z: 0.87932414}
+  m_LocalPosition: {x: 5.05, y: 0.86, z: 7.78}
+  m_LocalScale: {x: 0.67905134, y: 0.73317105, z: 0.8793246}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -83,3 +85,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1200767631447288}
   m_Mesh: {fileID: 4300000, guid: 92193f194c918ce45a2e74571c8ec85a, type: 3}
+--- !u!54 &54159599081700764
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1200767631447288}
+  serializedVersion: 2
+  m_Mass: 0.1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65955113486059658
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1200767631447288}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.23032175, y: 0.9295996, z: 0.23032175}
+  m_Center: {x: -0.0000038146973, y: 0.04244152, z: 0.0000038146973}

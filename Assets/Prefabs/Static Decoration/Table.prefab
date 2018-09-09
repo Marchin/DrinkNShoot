@@ -19,12 +19,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4697370528548438}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: pCylinder3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1202782168716224
 GameObject:
@@ -34,12 +34,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4090809656606340}
-  m_Layer: 0
+  - component: {fileID: 65498520183017434}
+  m_Layer: 11
   m_Name: Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1231782387470722
 GameObject:
@@ -51,12 +52,12 @@ GameObject:
   - component: {fileID: 4584885674776504}
   - component: {fileID: 33550272696689282}
   - component: {fileID: 23605582411715934}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: pCube4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1279855459573314
 GameObject:
@@ -66,12 +67,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4629924036749376}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: transform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1345676559813612
 GameObject:
@@ -81,12 +82,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4244522829398764}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: transform4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1372629636124396
 GameObject:
@@ -96,12 +97,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4763147813991688}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: pCube3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1385565308444722
 GameObject:
@@ -111,12 +112,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4907622865353442}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: transform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1410159460208702
 GameObject:
@@ -126,12 +127,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4655260029059670}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: pCylinder1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1639690309185082
 GameObject:
@@ -141,12 +142,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4245013268748570}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: transform3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1934637933584422
 GameObject:
@@ -156,12 +157,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4397436450231650}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: pCylinder4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4090809656606340
 Transform:
@@ -170,7 +171,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1202782168716224}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 56.434895, y: 0.238, z: 28.300518}
+  m_LocalPosition: {x: 47.91, y: 0.248, z: 30.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4763147813991688}
@@ -345,3 +346,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1231782387470722}
   m_Mesh: {fileID: 4300000, guid: 606d1dce9402b074fb5e0a72520d82aa, type: 3}
+--- !u!65 &65498520183017434
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1202782168716224}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7727432, y: 1.2404592, z: 1.8235092}
+  m_Center: {x: -0.036663055, y: 0.36485112, z: -0.028202057}

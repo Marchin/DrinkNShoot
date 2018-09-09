@@ -21,12 +21,13 @@ GameObject:
   - component: {fileID: 4216539843157888}
   - component: {fileID: 33171016736811634}
   - component: {fileID: 23278854781522392}
-  m_Layer: 0
+  - component: {fileID: 65133970426402966}
+  m_Layer: 10
   m_Name: Drug Store
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4216539843157888
 Transform:
@@ -35,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1595625791882694}
   m_LocalRotation: {x: -0, y: -0.00749146, z: -0, w: 0.9999719}
-  m_LocalPosition: {x: 16.27, y: 4.58, z: 0.31}
+  m_LocalPosition: {x: 16.27, y: 4.58, z: 5.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -87,3 +88,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1595625791882694}
   m_Mesh: {fileID: 4300000, guid: f909c77fd17703d45908c42a2fb2a4b3, type: 3}
+--- !u!65 &65133970426402966
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1595625791882694}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.458182, y: 9.398716, z: 11.854988}
+  m_Center: {x: -0.000011444092, y: 0, z: 0.0000038146973}

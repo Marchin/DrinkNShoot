@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4041975251215474}
   - component: {fileID: 33820943975124918}
   - component: {fileID: 23285469893125714}
+  - component: {fileID: 65306072982140158}
   m_Layer: 10
   m_Name: Western House
   m_TagString: Untagged
@@ -83,3 +84,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1540919071811834}
   m_Mesh: {fileID: 4300000, guid: b105394492569a4449d1c710eea0df48, type: 3}
+--- !u!65 &65306072982140158
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1540919071811834}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.878657, y: 6.5553956, z: 5.995075}
+  m_Center: {x: 0.10406256, y: 3.147044, z: -0.09599483}
