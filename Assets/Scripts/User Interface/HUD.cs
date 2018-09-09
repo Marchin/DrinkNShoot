@@ -8,27 +8,48 @@ public class HUD : MonoBehaviour
 {
 	[SerializeField] Image crosshair;
 	[SerializeField] TextMeshProUGUI ammoText;
+	[SerializeField] TextMeshProUGUI crowsText;
+	[SerializeField] TextMeshProUGUI timerText;
 	[SerializeField] WeaponHolder weaponHolder;
 
-	void Start()
+    void Start()
+    {
+        weaponHolder.EquippedGun.OnShot.AddListener(ChangeAmmoDisplay);
+        weaponHolder.EquippedGun.OnReload.AddListener(ChangeAmmoDisplay);
+        weaponHolder.EquippedGun.OnReloadFinish.AddListener(ChangeAmmoDisplay);
+        weaponHolder.EquippedGun.OnCrosshairScale.AddListener(ScaleCrosshair);
+		// EnemyManager.Instance.OnCrowKill.AddListener(ChangeCrowsDisplay);
+    }
+
+	void Update()
 	{
-		weaponHolder.EquippedGun.OnShot.AddListener(ChangeAmmoDisplay);
-		weaponHolder.EquippedGun.OnReload.AddListener(ChangeAmmoDisplay);
-		weaponHolder.EquippedGun.OnReloadFinish.AddListener(ChangeAmmoDisplay);
-		weaponHolder.EquippedGun.OnCrosshairScale.AddListener(ScaleCrosshair);
+		ChangeTimerDisplay();
 	}
 
-	void ChangeAmmoDisplay()
-	{
-		string bulletsInCylinder = weaponHolder.EquippedGun.BulletsInCylinder.ToString();
-		string ammoLeft = weaponHolder.EquippedGun.AmmoLeft.ToString();
+    void ScaleCrosshair()
+    {
+        float newScale = weaponHolder.EquippedGun.CrossshairScale;
+        crosshair.transform.localScale = new Vector2(newScale, newScale);
+    }
 
-		ammoText.text = bulletsInCylinder + "/" + ammoLeft;
+    void ChangeAmmoDisplay()
+    {
+        string bulletsInCylinder = weaponHolder.EquippedGun.BulletsInCylinder.ToString();
+        string ammoLeft = weaponHolder.EquippedGun.AmmoLeft.ToString();
+
+        ammoText.text = bulletsInCylinder + "/" + ammoLeft;
+    }
+
+	void ChangeCrowsDisplay()
+	{
+		// string crowsKilled = EnemyManager.Instance.CrowsKilled.ToString();
+		// string targetKills =  EnemyManager.Instance.TargetKills.ToString();
+
+		// crowsText.text = crowsKilled + "/" + targetKills;
 	}
 
-	void ScaleCrosshair()
+	void ChangeTimerDisplay()
 	{
-		float newScale = weaponHolder.EquippedGun.CrossshairScale;
-		crosshair.transform.localScale = new Vector2(newScale, newScale);
+		// timerText.text = LevelManager.Instance.TimeLeft.ToString() + "'";
 	}
 }

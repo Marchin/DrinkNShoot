@@ -8,4 +8,5 @@ interface IInput
 	float GetVerticalViewAxis();
 	bool GetFireButton();
 	bool GetReloadButton();
+	bool GetPauseButton();
 }

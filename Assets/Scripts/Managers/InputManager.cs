@@ -38,6 +38,11 @@ public class InputManager : MonoBehaviour
         return input.GetReloadButton();
     }
 
+	public bool GetPauseButton()
+    {
+        return input.GetPauseButton();
+    }
+
 	public static InputManager Instance
 	{
 		get

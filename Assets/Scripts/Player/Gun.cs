@@ -94,8 +94,11 @@ public class Gun : MonoBehaviour
 
 	void Update()
 	{
-		ComputeDrunkSway();
-		ComputeConsecutiveShots();
+		if (!PauseMenu.IsPaused)
+		{
+			ComputeDrunkSway();
+			ComputeConsecutiveShots();
+		}
 
 		if (InputManager.Instance.GetFireButton())
 		{
@@ -223,12 +226,14 @@ public class Gun : MonoBehaviour
 
 	bool CanShoot()
 	{
-		return !isReloading && Time.time - lastFireTime >= 1 / fireRate && bulletsInCylinder > 0;
+		return !PauseMenu.IsPaused && !isReloading && Time.time - lastFireTime >= 1 / fireRate && 
+				bulletsInCylinder > 0;
 	}
 
 	bool CanReload()
 	{
-		return !isReloading && Time.time - lastFireTime >= 1 / fireRate && ammoLeft > 0 && bulletsInCylinder < cylinderCapacity;
+		return !PauseMenu.IsPaused && !isReloading && Time.time - lastFireTime >= 1 / fireRate &&
+				ammoLeft > 0 && bulletsInCylinder < cylinderCapacity;
 	}
 
 	// Public Methods
