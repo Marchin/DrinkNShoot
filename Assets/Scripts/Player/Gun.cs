@@ -242,6 +242,16 @@ public class Gun : MonoBehaviour
 		get { return gunType; }
 	}
 
+	public int CylinderCapacity
+	{
+		get { return cylinderCapacity; }
+	}
+	
+	public int MaxAmmo
+	{
+		get { return maxAmmo; }
+	}
+
 	public int BulletsInCylinder
 	{
 		get { return bulletsInCylinder; }

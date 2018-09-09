@@ -11,6 +11,10 @@ public class HUD : MonoBehaviour
 	[SerializeField] TextMeshProUGUI crowsText;
 	[SerializeField] TextMeshProUGUI timerText;
 	[SerializeField] WeaponHolder weaponHolder;
+	const int criticalAmmoLeftPortion = 5;
+	const int criticalAmmoInGunPortion = 3;
+	int criticalAmmoLeft;
+	int criticalAmmoInGun;
 
     void Start()
     {
@@ -19,6 +23,9 @@ public class HUD : MonoBehaviour
         weaponHolder.EquippedGun.OnReloadFinish.AddListener(ChangeAmmoDisplay);
         weaponHolder.EquippedGun.OnCrosshairScale.AddListener(ScaleCrosshair);
 		// EnemyManager.Instance.OnCrowKill.AddListener(ChangeCrowsDisplay);
+
+		criticalAmmoLeft = weaponHolder.EquippedGun.MaxAmmo / criticalAmmoLeftPortion ;
+		criticalAmmoInGun = weaponHolder.EquippedGun.CylinderCapacity / criticalAmmoInGunPortion;
     }
 
 	void Update()
@@ -36,6 +43,16 @@ public class HUD : MonoBehaviour
     {
         string bulletsInCylinder = weaponHolder.EquippedGun.BulletsInCylinder.ToString();
         string ammoLeft = weaponHolder.EquippedGun.AmmoLeft.ToString();
+
+		if (weaponHolder.EquippedGun.AmmoLeft <= criticalAmmoLeft)
+			ammoText.color = Color.red;
+		else
+		{
+			if (weaponHolder.EquippedGun.BulletsInCylinder <= criticalAmmoInGun)
+				ammoText.color = Color.yellow;
+			else
+				ammoText.color = Color.white;
+		}
 
         ammoText.text = bulletsInCylinder + "/" + ammoLeft;
     }
