@@ -15,13 +15,15 @@ public class CrowMovement : MonoBehaviour {
     float m_distToFront;
     bool m_moving;
     bool m_flipping;
+    float m_rotRate;
 
     private void Awake() {
         m_distToFront = GetComponent<BoxCollider>().bounds.extents.z;
         //m_crowFly = GetComponent<CrowFly>();
         m_moving = false;
         m_targetPosition = transform.position;
-        m_targetRotation = transform.localRotation;
+        m_targetRotation = transform.rotation;
+        m_rotRate = 1f / m_rotationSpeed;
     }
 
     private void Update() {
@@ -32,14 +34,14 @@ public class CrowMovement : MonoBehaviour {
         } else {
             transform.position = m_targetPosition;
         }
-        if (Vector3.Distance(transform.localEulerAngles, m_targetRotation.eulerAngles) > m_negligible) {
-            // transform.localRotation = Quaternion.RotateTowards(
-            //     transform.localRotation, m_targetRotation, m_rotationSpeed * Time.deltaTime);
+        if (Vector3.Distance(transform.eulerAngles, m_targetRotation.eulerAngles) > m_negligible) {
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation, m_targetRotation, m_rotationSpeed * Time.deltaTime);
         } else {
-            transform.localRotation = m_targetRotation;
+            transform.rotation = m_targetRotation;
         }
         if (transform.position == m_targetPosition &&
-            transform.localEulerAngles == m_targetRotation.eulerAngles) {
+            transform.eulerAngles == m_targetRotation.eulerAngles) {
 
             ResetState();
         }
@@ -47,16 +49,15 @@ public class CrowMovement : MonoBehaviour {
 
     void Move() {
         if (!m_moving /*&& !m_crowFly.IsFlying()*/ && !m_flipping) {
-            Vector3 maxDistance = (m_roof.transform.position +
-                m_distToFront * transform.forward) - transform.position;
             Vector3 targetOffset = transform.forward * (m_distance * Random.Range(0f, 1f) + m_distToFront);
             Debug.DrawRay(transform.position + targetOffset, -transform.up, Color.green, 1f);
             RaycastHit hit;
-            Physics.Raycast(transform.position + targetOffset, -transform.up, out hit, 2f);
-            if (hit.transform.gameObject == m_roof) {
-
-                m_targetPosition = transform.position + transform.forward * m_distance;
-                m_moving = true;
+            bool wasHit = Physics.Raycast(transform.position + targetOffset, -transform.up, out hit, 2f);
+            if (wasHit) { 
+                if (hit.transform.gameObject == m_roof) {
+                    m_targetPosition = transform.position + transform.forward * m_distance;
+                    m_moving = true;
+                }
             } else {
                 Flip();
             }
@@ -69,9 +70,8 @@ public class CrowMovement : MonoBehaviour {
     }
 
     void Flip() {
-        Vector3 flip = transform.localEulerAngles;
-        flip.y += 180f;
-        m_targetRotation = Quaternion.Euler(flip);
+        m_targetRotation = Quaternion.LookRotation(-transform.forward, transform.up);
+
         m_flipping = true;
     }
 
