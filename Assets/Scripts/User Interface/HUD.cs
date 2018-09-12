@@ -6,13 +6,16 @@ using TMPro;
 
 public class HUD : MonoBehaviour 
 {
+	[Header("HUD Elements")]
 	[SerializeField] Image crosshair;
 	[SerializeField] TextMeshProUGUI ammoText;
 	[SerializeField] TextMeshProUGUI crowsText;
 	[SerializeField] TextMeshProUGUI timerText;
+	[Header("References")]
 	[SerializeField] WeaponHolder weaponHolder;
 	const int criticalAmmoLeftPortion = 5;
 	const int criticalAmmoInGunPortion = 3;
+	const int criticalTimeLeft = 15;
 	int criticalAmmoLeft;
 	int criticalAmmoInGun;
 
@@ -59,14 +62,17 @@ public class HUD : MonoBehaviour
 
 	void ChangeCrowsDisplay()
 	{
-		// string crowsKilled = EnemyManager.Instance.CrowsKilled.ToString();
-		// string targetKills =  EnemyManager.Instance.TargetKills.ToString();
+		string crowsKilled = LevelManager.Instance.CrowsKilled.ToString();
+		string targetKills =  LevelManager.Instance.TargetKills.ToString();
 
-		// crowsText.text = crowsKilled + "/" + targetKills;
+		crowsText.text = crowsKilled + "/" + targetKills;
 	}
 
 	void ChangeTimerDisplay()
 	{
-		// timerText.text = LevelManager.Instance.TimeLeft.ToString() + "'";
+		timerText.text = ((int)LevelManager.Instance.TimeLeft).ToString() + "'";
+
+		if (LevelManager.Instance.TimeLeft <= criticalTimeLeft)
+			timerText.color = Color.red;
 	}
 }

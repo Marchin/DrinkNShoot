@@ -64,7 +64,6 @@ public class Gun : MonoBehaviour
 	const float interpPerc = 0.1f;
 	const int crosshairScaleMultiplier = 20;
 	Transform fpsCamera;
-	DrunkCamera drunkCamera;
 	int shootingLayerMask;
 	int ammoLeft;
 	float lastFireTime = 0;
@@ -80,7 +79,6 @@ public class Gun : MonoBehaviour
 	void Awake()
 	{
 		fpsCamera = GetComponentInParent<Camera>().transform;
-		drunkCamera = GetComponentInParent<DrunkCamera>();
 	}
 
 	void Start()
@@ -197,8 +195,8 @@ public class Gun : MonoBehaviour
     {
         if (isIncreasingDrunkSway)
         {
-            drunkSway = Mathf.Lerp(drunkSway, regularSway * drunkCamera.DrunkLevel, interpPerc);
-            if (drunkSway >= regularSway * drunkCamera.DrunkLevel - swayApproximation)
+            drunkSway = Mathf.Lerp(drunkSway, regularSway * LevelManager.Instance.DifficultyLevel, interpPerc);
+            if (drunkSway >= regularSway * LevelManager.Instance.DifficultyLevel - swayApproximation)
                 isIncreasingDrunkSway = false;
         }
         else
@@ -226,14 +224,14 @@ public class Gun : MonoBehaviour
 
 	bool CanShoot()
 	{
-		return !PauseMenu.IsPaused && !isReloading && Time.time - lastFireTime >= 1 / fireRate && 
-				bulletsInCylinder > 0;
+		return !PauseMenu.IsPaused &&  !LevelManager.Instance.GameOver && !isReloading && 
+		Time.time - lastFireTime >= 1 / fireRate && bulletsInCylinder > 0;
 	}
 
 	bool CanReload()
 	{
-		return !PauseMenu.IsPaused && !isReloading && Time.time - lastFireTime >= 1 / fireRate &&
-				ammoLeft > 0 && bulletsInCylinder < cylinderCapacity;
+		return !PauseMenu.IsPaused && !LevelManager.Instance.GameOver && !isReloading &&
+		Time.time - lastFireTime >= 1 / fireRate && ammoLeft > 0 && bulletsInCylinder < cylinderCapacity;
 	}
 
 	// Public Methods

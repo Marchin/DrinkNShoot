@@ -41,7 +41,9 @@ public class PauseMenu : MonoBehaviour
 
 	public void Quit()
 	{
-		Application.Quit();
+		isPaused = false;
+		Time.timeScale = 1;
+		LevelManager.Instance.QuitLevel();
 	}
 
 	public static bool IsPaused
