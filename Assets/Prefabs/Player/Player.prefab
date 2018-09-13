@@ -2046,6 +2046,7 @@ MonoBehaviour:
   shootingLayers:
   - Shootables
   - Dynamic Decoration
+  - Crows
   onShot:
     m_PersistentCalls:
       m_Calls: []
@@ -2127,7 +2128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 313585ac24e60e1438c34cd058b6293a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 270
+  rotationSpeed: 180
   horizontalRange: 80
   verticalRange: 70
 --- !u!114 &114996378004007086

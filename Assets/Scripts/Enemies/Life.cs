@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Life : MonoBehaviour 
 {
-	[SerializeField] float health;
+	[SerializeField] int hitPoints;
 	[SerializeField] float deathLength;
 	[SerializeField] UnityEvent onDeath;
 
@@ -14,11 +14,11 @@ public class Life : MonoBehaviour
 		Destroy(gameObject, deathLength);
 	}
 	
-	public void TakeDamage(float amount)
+	public void TakeDamage()
 	{
-		health -= amount;
+		hitPoints--;
 		
-		if (health <= 0)
+		if (hitPoints <= 0)
 		{
 			onDeath.Invoke();
 			Die();

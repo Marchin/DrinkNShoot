@@ -13,8 +13,6 @@ public class Gun : MonoBehaviour
 	[Header("Gun Stats")]
 	[SerializeField] [Tooltip("Type of gun.")]
 	GunType gunType;
-	[SerializeField] [Range(0, 100)] [Tooltip("Maximum gun damage.")] 
-	float damage;
 	[SerializeField] [Range(0, 12)] [Tooltip("Bullets fired per second.")] 
 	float fireRate;
 	[SerializeField] [Range(0, 1000)] [Tooltip("Maximum gun range.")] 
@@ -79,10 +77,6 @@ public class Gun : MonoBehaviour
 	void Awake()
 	{
 		fpsCamera = GetComponentInParent<Camera>().transform;
-	}
-
-	void Start()
-	{
 		bulletsInCylinder = cylinderCapacity;
 		ammoLeft = maxAmmo;
 		shootingLayerMask = LayerMask.GetMask(shootingLayers);
@@ -161,10 +155,7 @@ public class Gun : MonoBehaviour
 			Rigidbody targetRigidbody = hit.transform.GetComponent<Rigidbody>();
 
 			if (targetLife)
-			{
-				float dmgPercentage = 1 - (transform.position - hit.transform.position).sqrMagnitude / (range * range);
-				targetLife.TakeDamage(damage * dmgPercentage);
-			}
+				targetLife.TakeDamage();
 
 			if (targetRigidbody)
 			{

@@ -9,48 +9,48 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1963162174065758}
+  m_RootGameObject: {fileID: 1913150792173850}
   m_IsPrefabAsset: 1
---- !u!1 &1963162174065758
+--- !u!1 &1913150792173850
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4934351079228960}
-  - component: {fileID: 33492501110702184}
-  - component: {fileID: 23778931891027418}
-  - component: {fileID: 65845390221779426}
-  - component: {fileID: 54393355544388190}
-  - component: {fileID: 114179451117668482}
-  - component: {fileID: 114479270694619888}
-  m_Layer: 0
+  - component: {fileID: 4756269106357616}
+  - component: {fileID: 33398639462430354}
+  - component: {fileID: 23602336895646472}
+  - component: {fileID: 65884374033699816}
+  - component: {fileID: 54667140273447868}
+  - component: {fileID: 114912934776019400}
+  - component: {fileID: 114644030167287328}
+  m_Layer: 15
   m_Name: Crow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4934351079228960
+--- !u!4 &4756269106357616
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1963162174065758}
-  m_LocalRotation: {x: -0.27059802, y: 0.6532815, z: -0.27059802, w: 0.65328145}
-  m_LocalPosition: {x: 93.52, y: 8.732, z: 90.713}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1913150792173850}
+  m_LocalRotation: {x: -0.27059805, y: 0.65328157, z: -0.27059805, w: 0.6532815}
+  m_LocalPosition: {x: 13.08, y: 4.57, z: -8.520004}
+  m_LocalScale: {x: 1, y: 1, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: -45}
---- !u!23 &23778931891027418
+--- !u!23 &23602336895646472
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1963162174065758}
+  m_GameObject: {fileID: 1913150792173850}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -80,19 +80,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33492501110702184
+--- !u!33 &33398639462430354
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1963162174065758}
+  m_GameObject: {fileID: 1913150792173850}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54393355544388190
+--- !u!54 &54667140273447868
 Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1963162174065758}
+  m_GameObject: {fileID: 1913150792173850}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -102,24 +102,42 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65845390221779426
+--- !u!65 &65884374033699816
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1963162174065758}
+  m_GameObject: {fileID: 1913150792173850}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114179451117668482
+--- !u!114 &114644030167287328
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1963162174065758}
+  m_GameObject: {fileID: 1913150792173850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74602d82ebe3dbe4daa878325af9341b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 1
+  deathLength: 1.25
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &114912934776019400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1913150792173850}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a20c90affd1cfbe4588b2397368ab212, type: 3}
@@ -128,23 +146,5 @@ MonoBehaviour:
   m_roof: {fileID: 0}
   m_maxMovementInterval: 1
   m_distance: 1
-  m_speed: 3
-  m_rotationSpeed: 180
---- !u!114 &114479270694619888
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1963162174065758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74602d82ebe3dbe4daa878325af9341b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  deathLength: 0
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  m_speed: 5
+  m_rotationSpeed: 90
