@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
@@ -13,16 +14,26 @@ public class LevelManager : MonoBehaviour
 	[SerializeField]
 	 GameObject hudUI;
 	[Header("Level Properties")]
+	[SerializeField] 
+	Life[] enemiesLife;
 	[SerializeField] [Range(20, 600)]
 	float completionTime;
 	[SerializeField] [Range(0, 25)]
 	int difficultyLevel;
 	[SerializeField] [Range(1, 200)]
-	int targetKills;
+	int requiredKills;
+	[SerializeField]
+	UnityEvent onEnemyKill; 
 	static LevelManager instance;
 	bool gameOver = false;
 	float timeLeft = 0;
-	int crowsKilled = 0;
+	int targetsKilled = 0;
+
+	void Awake()
+	{
+		foreach (Life life in enemiesLife)
+			life.OnDeath.AddListener(IncreaseKillCounter);
+	}
 
 	void Start()
 	{
@@ -35,7 +46,7 @@ public class LevelManager : MonoBehaviour
 
 		if (timeLeft <= 0)
 		{
-			if (crowsKilled >= targetKills)
+			if (targetsKilled >= requiredKills)
 				CompleteLevel();
 			else
 				FailLevel();
@@ -56,6 +67,12 @@ public class LevelManager : MonoBehaviour
         hudUI.SetActive(false);
 	}
 
+	void IncreaseKillCounter()
+	{
+		targetsKilled++;
+		onEnemyKill.Invoke();
+	}
+
 	public void RestartLevel()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -64,6 +81,11 @@ public class LevelManager : MonoBehaviour
 	public void QuitLevel()
 	{
 		SceneManager.LoadScene("Main Menu");
+	}
+
+	public UnityEvent OnEnemyKill
+	{
+		get { return onEnemyKill; }
 	}
 
 	public static LevelManager Instance
@@ -97,13 +119,13 @@ public class LevelManager : MonoBehaviour
 		get { return difficultyLevel; }
 	}
 
-	public int CrowsKilled
+	public int TargetsKilled
 	{
-		get { return crowsKilled; }
+		get { return targetsKilled; }
 	}
 
-	public int TargetKills
+	public int RequiredKills
 	{
-		get { return targetKills; }
+		get { return requiredKills; }
 	}
 }

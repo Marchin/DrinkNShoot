@@ -25,10 +25,13 @@ public class HUD : MonoBehaviour
         weaponHolder.EquippedGun.OnReload.AddListener(ChangeAmmoDisplay);
         weaponHolder.EquippedGun.OnReloadFinish.AddListener(ChangeAmmoDisplay);
         weaponHolder.EquippedGun.OnCrosshairScale.AddListener(ScaleCrosshair);
-		// EnemyManager.Instance.OnCrowKill.AddListener(ChangeCrowsDisplay);
+		LevelManager.Instance.OnEnemyKill.AddListener(ChangeKillsDisplay);
 
 		criticalAmmoLeft = weaponHolder.EquippedGun.MaxAmmo / criticalAmmoLeftPortion ;
 		criticalAmmoInGun = weaponHolder.EquippedGun.CylinderCapacity / criticalAmmoInGunPortion;
+
+		ChangeAmmoDisplay();
+		ChangeKillsDisplay();
     }
 
 	void Update()
@@ -39,19 +42,20 @@ public class HUD : MonoBehaviour
     void ScaleCrosshair()
     {
         float newScale = weaponHolder.EquippedGun.CrossshairScale;
+
         crosshair.transform.localScale = new Vector2(newScale, newScale);
     }
 
     void ChangeAmmoDisplay()
     {
-        string bulletsInCylinder = weaponHolder.EquippedGun.BulletsInCylinder.ToString();
-        string ammoLeft = weaponHolder.EquippedGun.AmmoLeft.ToString();
+        int bulletsInCylinder = weaponHolder.EquippedGun.BulletsInCylinder;
+        int ammoLeft = weaponHolder.EquippedGun.AmmoLeft;
 
-		if (weaponHolder.EquippedGun.AmmoLeft <= criticalAmmoLeft)
+		if (ammoLeft <= criticalAmmoLeft)
 			ammoText.color = Color.red;
 		else
 		{
-			if (weaponHolder.EquippedGun.BulletsInCylinder <= criticalAmmoInGun)
+			if (bulletsInCylinder <= criticalAmmoInGun)
 				ammoText.color = Color.yellow;
 			else
 				ammoText.color = Color.white;
@@ -60,19 +64,21 @@ public class HUD : MonoBehaviour
         ammoText.text = bulletsInCylinder + "/" + ammoLeft;
     }
 
-	void ChangeCrowsDisplay()
+	void ChangeKillsDisplay()
 	{
-		string crowsKilled = LevelManager.Instance.CrowsKilled.ToString();
-		string targetKills =  LevelManager.Instance.TargetKills.ToString();
+		int targetsKilled =  LevelManager.Instance.TargetsKilled;
+		int requiredKills = LevelManager.Instance.RequiredKills;
 
-		crowsText.text = crowsKilled + "/" + targetKills;
+		crowsText.text = targetsKilled + "/" + requiredKills;
+		crowsText.color = targetsKilled < requiredKills ? Color.red : Color.green;
 	}
 
 	void ChangeTimerDisplay()
 	{
-		timerText.text = ((int)LevelManager.Instance.TimeLeft).ToString() + "'";
+		int timeLeft = (int)LevelManager.Instance.TimeLeft;
+		timerText.text = timeLeft.ToString() + "'";
 
-		if (LevelManager.Instance.TimeLeft <= criticalTimeLeft)
+		if (timeLeft <= criticalTimeLeft)
 			timerText.color = Color.red;
 	}
 }
