@@ -7,6 +7,7 @@ public class EndLevelMenu : MonoBehaviour
 	void Start()
 	{
 		Time.timeScale = 0;
+		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
 	}
 

@@ -106,6 +106,9 @@ public class Gun : MonoBehaviour
 
 		if (InputManager.Instance.GetReloadButton() && CanReload())
 			StartCoroutine(Reload());
+
+		if (InputManager.Instance.GetFireButton() && isReloading)
+			CancelReload();
 	}
 
 	// Private Methods
@@ -172,6 +175,11 @@ public class Gun : MonoBehaviour
 
 		for (int i = bulletsInCylinder; i < cylinderCapacity; i++)
 		{
+			if (!isReloading)
+			{
+				onReloadFinish.Invoke();
+				yield break;
+			}
 			onReload.Invoke();
 			yield return new WaitForSeconds(reloadAnimation.length);
 			bulletsInCylinder++;
@@ -179,6 +187,11 @@ public class Gun : MonoBehaviour
 		}
 
 		onReloadFinish.Invoke();
+		isReloading = false;
+	}
+
+	void CancelReload()
+	{
 		isReloading = false;
 	}
 

@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour
 
 	void Update()
 	{
-		if (InputManager.Instance.GetPauseButton())
+		if (InputManager.Instance.GetPauseButton() && !LevelManager.Instance.GameOver)
 		{
 			if (!isPaused)
 				Pause();

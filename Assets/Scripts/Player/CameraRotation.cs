@@ -13,6 +13,7 @@ public class CameraRotation : MonoBehaviour
 	
 	void Awake()
 	{
+		Cursor.lockState = CursorLockMode.Locked;
 		fpsCamera = GetComponentInChildren<Camera>().transform;
 	}
 
