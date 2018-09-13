@@ -15,7 +15,6 @@ public class CrowMovement : MonoBehaviour {
     float m_distToFront;
     bool m_moving;
     bool m_flipping;
-    float m_rotRate;
 
     private void Awake() {
         m_distToFront = GetComponent<BoxCollider>().bounds.extents.z;
@@ -23,7 +22,6 @@ public class CrowMovement : MonoBehaviour {
         m_moving = false;
         m_targetPosition = transform.position;
         m_targetRotation = transform.rotation;
-        m_rotRate = 1f / m_rotationSpeed;
     }
 
     private void Update() {
@@ -53,7 +51,7 @@ public class CrowMovement : MonoBehaviour {
             Debug.DrawRay(transform.position + targetOffset, -transform.up, Color.green, 1f);
             RaycastHit hit;
             bool wasHit = Physics.Raycast(transform.position + targetOffset, -transform.up, out hit, 2f);
-            if (wasHit) { 
+            if (wasHit) {
                 if (hit.transform.gameObject == m_roof) {
                     m_targetPosition = transform.position + transform.forward * m_distance;
                     m_moving = true;
