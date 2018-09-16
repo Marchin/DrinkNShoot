@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class CrowMovement : MonoBehaviour {
-    [SerializeField] GameObject m_roof;
+    [SerializeField] LayerMask m_landingZonesLayer;
     [SerializeField] float m_maxMovementInterval;
     [SerializeField] float m_distance;
     [SerializeField] float m_speed;
@@ -16,7 +16,7 @@ public class CrowMovement : MonoBehaviour {
     bool m_moving;
     bool m_flipping;
 
-    private void Awake() {
+    private void OnEnable() {
         m_distToFront = GetComponent<BoxCollider>().bounds.extents.z;
         //m_crowFly = GetComponent<CrowFly>();
         m_moving = false;
@@ -50,12 +50,11 @@ public class CrowMovement : MonoBehaviour {
             Vector3 targetOffset = transform.forward * (m_distance * Random.Range(0f, 1f) + m_distToFront);
             Debug.DrawRay(transform.position + targetOffset, -transform.up, Color.green, 1f);
             RaycastHit hit;
-            bool wasHit = Physics.Raycast(transform.position + targetOffset, -transform.up, out hit, 2f);
+            bool wasHit = Physics.Raycast(transform.position + targetOffset, -transform.up,
+                out hit, 2f, m_landingZonesLayer);
             if (wasHit) {
-                if (hit.transform.gameObject == m_roof) {
-                    m_targetPosition = transform.position + transform.forward * m_distance;
-                    m_moving = true;
-                }
+                m_targetPosition = transform.position + transform.forward * m_distance;
+                m_moving = true;
             } else {
                 Flip();
             }

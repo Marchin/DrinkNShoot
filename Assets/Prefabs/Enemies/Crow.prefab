@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23778931891027418}
   - component: {fileID: 65845390221779426}
   - component: {fileID: 54393355544388190}
+  - component: {fileID: 114339490115248636}
   - component: {fileID: 114179451117668482}
   - component: {fileID: 114479270694619888}
   m_Layer: 0
@@ -125,11 +126,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a20c90affd1cfbe4588b2397368ab212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_roof: {fileID: 0}
+  m_landingZonesLayer:
+    serializedVersion: 2
+    m_Bits: 32768
   m_maxMovementInterval: 1
   m_distance: 1
   m_speed: 3
   m_rotationSpeed: 180
+--- !u!114 &114339490115248636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1963162174065758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f8f46aed70aa2498614e53ca8e2ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_landingZones: []
+  m_landingZonesLayer:
+    serializedVersion: 2
+    m_Bits: 32768
+  m_flightSpeed: 1
+  m_turnSpeed: 30
 --- !u!114 &114479270694619888
 MonoBehaviour:
   m_ObjectHideFlags: 1
