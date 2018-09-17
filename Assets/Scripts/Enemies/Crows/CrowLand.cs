@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrowLand : MonoBehaviour {
+public class CrowLand : MonoBehaviour, IState {
 	[SerializeField] Collider[] m_landingZones;
 	[SerializeField] LayerMask m_landingZonesLayer;
 	[SerializeField] float m_flightSpeed;
@@ -20,7 +20,19 @@ public class CrowLand : MonoBehaviour {
 		m_rotCalculated = false;
 	}
 
-	void Update() {
+	void Update() { }
+
+	Vector3 GetLandingZone() {
+		Collider landingZone = m_landingZones[Random.Range(0, m_landingZones.Length)];
+		Vector3 offSet = new Vector3(
+			Random.Range(-landingZone.bounds.extents.x, landingZone.bounds.extents.x),
+			0f,
+			Random.Range(-landingZone.bounds.extents.z, landingZone.bounds.extents.z)
+		);
+		return (landingZone.transform.position + offSet);
+	}
+
+	public void StateUpdate(out IState nextState) {
 		if (Vector3.Distance(transform.position, m_targetPosition) > m_neglible) {
 			transform.position = Vector3.Lerp(
 				transform.position, m_targetPosition, m_flightSpeed * Time.deltaTime);
@@ -54,18 +66,11 @@ public class CrowLand : MonoBehaviour {
 		if ((transform.position == m_targetPosition) &&
 			(transform.rotation == m_targetRotation)) {
 
-			gameObject.GetComponent<CrowMovement>().enabled = true;
-			enabled = false;
+			nextState = GetComponent<CrowMovement>();
+		} else {
+			nextState = this;
 		}
 	}
 
-	Vector3 GetLandingZone() {
-		Collider landingZone = m_landingZones[Random.Range(0, m_landingZones.Length)];
-		Vector3 offSet = new Vector3(
-			Random.Range(-landingZone.bounds.extents.x, landingZone.bounds.extents.x),
-			0f,
-			Random.Range(-landingZone.bounds.extents.z, landingZone.bounds.extents.z)
-		);
-		return (landingZone.transform.position + offSet);
-	}
+	public void StateFixedUpdate() { }
 }

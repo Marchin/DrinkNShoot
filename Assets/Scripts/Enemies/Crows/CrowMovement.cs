@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CrowMovement : MonoBehaviour {
+public class CrowMovement : MonoBehaviour, IState {
     [SerializeField] LayerMask m_landingZonesLayer;
     [SerializeField] float m_maxMovementInterval;
     [SerializeField] float m_distance;
@@ -24,7 +24,7 @@ public class CrowMovement : MonoBehaviour {
         m_targetRotation = transform.rotation;
     }
 
-    private void Update() {
+    public void StateUpdate(out IState nextState) {
         Move();
         if (Vector3.Distance(transform.position, m_targetPosition) > m_negligible) {
             transform.position = Vector3.Lerp(
@@ -43,7 +43,10 @@ public class CrowMovement : MonoBehaviour {
 
             ResetState();
         }
+        nextState = this;
     }
+
+    public void StateFixedUpdate() { }
 
     void Move() {
         if (!m_moving /*&& !m_crowFly.IsFlying()*/ && !m_flipping) {
@@ -75,5 +78,4 @@ public class CrowMovement : MonoBehaviour {
     public bool IsMoving() {
         return (m_moving || m_flipping);
     }
-
 }
