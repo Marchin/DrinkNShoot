@@ -100,10 +100,10 @@ public class Gun : MonoBehaviour
 				onShot.Invoke();
 			}
 			else
-				if (bulletsInCylinder == 0)
+				if (bulletsInCylinder == 0 && !isReloading)
 					onEmptyGun.Invoke();
 		}
-
+		
 		if (InputManager.Instance.GetReloadButton() && CanReload())
 			StartCoroutine(Reload());
 
@@ -175,15 +175,15 @@ public class Gun : MonoBehaviour
 
 		for (int i = bulletsInCylinder; i < cylinderCapacity; i++)
 		{
+			onReload.Invoke();
+			yield return new WaitForSeconds(reloadAnimation.length);
+			bulletsInCylinder++;
+			ammoLeft--;
 			if (!isReloading)
 			{
 				onReloadFinish.Invoke();
 				yield break;
 			}
-			onReload.Invoke();
-			yield return new WaitForSeconds(reloadAnimation.length);
-			bulletsInCylinder++;
-			ammoLeft--;
 		}
 
 		onReloadFinish.Invoke();
