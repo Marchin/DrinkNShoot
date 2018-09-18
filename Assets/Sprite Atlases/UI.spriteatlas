@@ -5,7 +5,7 @@ SpriteAtlas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Main Menu
+  m_Name: UI
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -31,6 +31,7 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: 03818ade37eed0d4a9fd50082318c1c4, type: 3}
     - {fileID: 102900000, guid: fdaeb9bca6dbbc1448154ff1c08aa0c0, type: 3}
+    - {fileID: 102900000, guid: 6abfb9a2811451448bad8e2737363667, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -50,13 +51,18 @@ SpriteAtlas:
   - {fileID: 21300000, guid: edeb676741e692e4b80fd6c81c30f3e1, type: 3}
   - {fileID: 21300000, guid: c717e5580db03f743961898d307d5faf, type: 3}
   - {fileID: 21300000, guid: f3a72e98b85ecbb43be5a1e42342d370, type: 3}
+  - {fileID: 21300000, guid: 1e1b3d1921a8132418550aaeb27e059e, type: 3}
   - {fileID: 21300000, guid: c98f58f9d072ad0408cfbdbd60681941, type: 3}
   - {fileID: 21300000, guid: 9a445ef9f44d1224fb57f76515dfd253, type: 3}
+  - {fileID: 21300000, guid: 8406fd6a2526fc446bc0a7417e298785, type: 3}
   - {fileID: 21300000, guid: 08e8e47a48297424cbab8b6dc5bb8e25, type: 3}
   - {fileID: 21300000, guid: 9e62afaac76ee5c49bb79f295804c8bd, type: 3}
+  - {fileID: 21300000, guid: 933e91da424301746a316ea0144c6d40, type: 3}
   - {fileID: 21300000, guid: 7f7fefeb09d59c14d8dcd1313d3b8b36, type: 3}
   - {fileID: 21300000, guid: db6b78bcff11c9340915396afb30a7a9, type: 3}
+  - {fileID: 21300000, guid: bb7a041d4645f434e9ed268f290bd041, type: 3}
   - {fileID: 21300000, guid: f362984da931ec34fa300a8fcb6e3200, type: 3}
+  - {fileID: 21300000, guid: c6102c4da95e4b747b1ef427d96053b3, type: 3}
   m_PackedSpriteNamesToIndex:
   - Option - High
   - Slider - Volume
@@ -64,9 +70,9 @@ SpriteAtlas:
   - Button - Settings
   - Button - Exit
   - Option - Low
-  - Button - Highlighted - Return
-  - Button - Highligthed - Settings
-  - Button - Highligthed - How to Play
+  - Button - Return (Highligthed)
+  - Button - Settings (Highligthed)
+  - Button - How to Play (Highligthed)
   - Title - Image Quality
   - Title - Voulme Setting
   - Button - Return
@@ -74,12 +80,17 @@ SpriteAtlas:
   - Button - Volume Controller
   - Button - How to Play
   - Option - Medium
+  - Button - Quit
   - Button - Navigation
   - Option - Very High
+  - Title - Pause Menu
   - Button - Play
-  - Button - Highligthed - Exit
+  - Button - Exit (Highligthed)
+  - Button - Resume
   - Option - Wild
-  - Button - Highlighted - Navigation
-  - Button - Highligthed - Play
-  m_Tag: Main Menu
+  - Button - Navigation (Highligthed)
+  - Button - Quit (Highlighted)
+  - Button - Play (Highligthed)
+  - Button - Resume (Highlighted)
+  m_Tag: UI
   m_IsVariant: 0

@@ -26,7 +26,8 @@ public class SettingsMenu : MonoBehaviour
 		if (currentGfxSetting == GfxSetting.VeryLow)
 			decreaseGfxButton.SetActive(false);
 
-		currentGfxOption.SetActive(true);
+		foreach (GameObject gfxOption in gfxOptions)
+			gfxOption.SetActive(gfxOption == currentGfxOption);
 	}
 
 	public void IncreaseGraphicsSetting()
