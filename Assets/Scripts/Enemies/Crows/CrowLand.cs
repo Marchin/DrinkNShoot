@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Crow))]
 public class CrowLand : MonoBehaviour, IState {
-	[SerializeField] Collider[] m_landingZones;
 	[SerializeField] LayerMask m_landingZonesLayer;
 	[SerializeField] float m_flightSpeed;
 	[SerializeField] float m_turnSpeed;
+	Crow m_crow;
 	Vector3 m_targetPosition;
 	Quaternion m_targetRotation;
 	const float m_neglible = 0.1f;
@@ -14,22 +15,14 @@ public class CrowLand : MonoBehaviour, IState {
 	bool m_rotCalculated;
 
 	private void Awake() {
-		m_targetPosition = GetLandingZone();
+		m_crow = GetComponent<Crow>();
 		m_targetRotation = transform.rotation;
 		m_footOffset = GetComponent<Collider>().bounds.extents.y;
-		m_rotCalculated = false;
 	}
 
-	void Update() { }
-
-	Vector3 GetLandingZone() {
-		Collider landingZone = m_landingZones[Random.Range(0, m_landingZones.Length)];
-		Vector3 offSet = new Vector3(
-			Random.Range(-landingZone.bounds.extents.x, landingZone.bounds.extents.x),
-			0f,
-			Random.Range(-landingZone.bounds.extents.z, landingZone.bounds.extents.z)
-		);
-		return (landingZone.transform.position + offSet);
+	private void OnEnable() {
+		m_targetPosition = m_crow.GetLandingZone();
+		m_rotCalculated = false;
 	}
 
 	public void StateUpdate(out IState nextState) {
@@ -73,4 +66,5 @@ public class CrowLand : MonoBehaviour, IState {
 	}
 
 	public void StateFixedUpdate() { }
+
 }
