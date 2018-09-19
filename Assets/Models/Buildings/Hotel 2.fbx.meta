@@ -38,7 +38,67 @@ ModelImporter:
     2300000: polySurface2580
     3300000: polySurface2580
     4300000: polySurface2580
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_2_Barras
+    second: {fileID: 2100000, guid: 93222eb1b76a3724bb9fce2934ecf99a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_2_Bordes
+    second: {fileID: 2100000, guid: 435cfeefa0a66a94fa750be138b4d714, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_2_Maderas
+    second: {fileID: 2100000, guid: 97b1793461f1c8a4092cdcfed15925e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_2_Paredes
+    second: {fileID: 2100000, guid: c10a6e727c5242c4aa5009a146ddc6b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_2_Picaporte
+    second: {fileID: 2100000, guid: 18010faf7e680f043b514acfdfa7bab6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_2_Piso
+    second: {fileID: 2100000, guid: e01e75528407a4c4cb98d171e413b08e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_2_Puerta_1
+    second: {fileID: 2100000, guid: 7130816f9d397a64cb90b875aa1a9736, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_2_Puerta_2
+    second: {fileID: 2100000, guid: cdcb42d612fb4dc4a8f6561e6ad0b496, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_2_Tela
+    second: {fileID: 2100000, guid: 55144629c149dca49876ec13214b1f0d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_2_Ventanas_Arriba
+    second: {fileID: 2100000, guid: c0112ff2ce51df844b871b46c9f4f4e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_2_Vidrios
+    second: {fileID: 2100000, guid: ea63e9c1b504c1143999053087cfead7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Techos1
+    second: {fileID: 2100000, guid: 99ee9b422ff4bc74d896551f3819b775, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

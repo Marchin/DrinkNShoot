@@ -28,7 +28,97 @@ ModelImporter:
     2300000: polySurface2574
     3300000: polySurface2574
     4300000: polySurface2574
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Barras
+    second: {fileID: 2100000, guid: 9b6fbbb8a99033a4db582af3805461e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Cadenas
+    second: {fileID: 2100000, guid: 99a40d29e06c5174288439b2688ada5e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Cartel
+    second: {fileID: 2100000, guid: 9c01fbf29bbaf3f4096be30204c30949, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Cartel_2
+    second: {fileID: 2100000, guid: 7bcd9ff4f627f34489fa966a3da0b7a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Maderas_1
+    second: {fileID: 2100000, guid: 7237ce8d0786f764c9943ac4cf008a54, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Maderas_2
+    second: {fileID: 2100000, guid: 8e829e19e12b60245837738f1234922f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Maderas_3
+    second: {fileID: 2100000, guid: 4f33df13f62500842811998eef3489c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Paredes
+    second: {fileID: 2100000, guid: dd03070327ca0464087f25a8178472c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Paredes_Rotas
+    second: {fileID: 2100000, guid: 31a9c2e89d584ef498085f8bc38f698e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Piso
+    second: {fileID: 2100000, guid: 62acb35123292474cb3dac517ac73742, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Tejas
+    second: {fileID: 2100000, guid: f16467c41d092bf488e3dd97b5a32d1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Texto
+    second: {fileID: 2100000, guid: b125f79edfaf77f4ebba98ed3335224b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Texto_2
+    second: {fileID: 2100000, guid: 6c6e2bf8e7cd8644e87e468813faf9ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Ventanas
+    second: {fileID: 2100000, guid: a7e3a7a83e0db5b4595aba3165d6b8bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Ventanas_Arriba
+    second: {fileID: 2100000, guid: d7e62cf1fd1e0f940ab9f6f2b031b72d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Vidrio_2
+    second: {fileID: 2100000, guid: e2b01d8082452fc4e9cf36d27b73abbf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hotel_Vidrios
+    second: {fileID: 2100000, guid: f275185d885f26d4296cb0aabaf053ce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Techos2
+    second: {fileID: 2100000, guid: fb2e01ac5209fc5469007f80eeb2cfac, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
