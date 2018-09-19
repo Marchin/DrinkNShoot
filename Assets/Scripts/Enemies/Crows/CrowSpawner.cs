@@ -22,7 +22,7 @@ public class CrowSpawner : MonoBehaviour {
 				Crow crow = go.GetComponent<Crow>();
 				crow.SetLandingZones(m_landingZones);
 				crow.Init();
-				m_counter = m_spawnInterval; //setear landingzone
+				m_counter = m_spawnInterval; 
 			}
 		} else {
 			m_counter -= Time.deltaTime;

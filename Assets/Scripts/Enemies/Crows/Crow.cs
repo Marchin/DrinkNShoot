@@ -47,6 +47,6 @@ public class Crow : MonoBehaviour {
             0f,
             Random.Range(-landingZone.bounds.extents.z, landingZone.bounds.extents.z)
         );
-        return (landingZone.transform.position + offSet);
+        return (landingZone.bounds.center + offSet);
     }
 }
