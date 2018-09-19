@@ -10,11 +10,16 @@ public class CameraRotation : MonoBehaviour
 	Transform fpsCamera;
 	float horizontalAngle = 0;
 	float verticalAngle = 0;
+	float minHorizontalAngle;
+	float maxHorizontalAngle;
 	
 	void Awake()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
 		fpsCamera = GetComponentInChildren<Camera>().transform;
+		horizontalAngle = transform.localEulerAngles.y;
+		minHorizontalAngle = horizontalAngle - verticalRange;
+		maxHorizontalAngle = horizontalAngle + verticalRange;
 	}
 
 	void Update()
@@ -25,10 +30,10 @@ public class CameraRotation : MonoBehaviour
 		horizontalAngle += horizontalRotation;
 		verticalAngle -= verticalRotation;
 
-		horizontalAngle = Mathf.Clamp(horizontalAngle, -horizontalRange, horizontalRange);
+		horizontalAngle = Mathf.Clamp(horizontalAngle, minHorizontalAngle, maxHorizontalAngle);
 		verticalAngle = Mathf.Clamp(verticalAngle, -verticalRange, verticalRange);
 
-		transform.localEulerAngles = new Vector3(0, horizontalAngle, 0);
+		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, horizontalAngle, transform.localEulerAngles.z);
 		fpsCamera.localEulerAngles = new Vector3(verticalAngle, fpsCamera.localEulerAngles.y, fpsCamera.localEulerAngles.z);
 	}
 }
