@@ -1598,6 +1598,10 @@ Prefab:
       propertyPath: m_landingZones.Array.data[0]
       value: 
       objectReference: {fileID: 1763123568}
+    - target: {fileID: 1963162174065758, guid: 1a87db5b1cc3fc84bba8a5f25db95370, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a87db5b1cc3fc84bba8a5f25db95370, type: 2}
   m_IsPrefabAsset: 0
@@ -1685,7 +1689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1022061571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1697,6 +1701,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6bbeadb66324194ba82a435e2e6c3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_landingZones:
+  - {fileID: 1763123568}
   m_spawnInterval: 2
 --- !u!114 &1022061572
 MonoBehaviour:

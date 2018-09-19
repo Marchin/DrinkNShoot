@@ -13,7 +13,7 @@ public class CrowSpawner : MonoBehaviour {
 		m_pool = GetComponent<ObjectPool>();
 		m_counter = m_spawnInterval;
 	}
-
+	
 	void Update() {
 		if (m_counter <= 0f) {
 			GameObject go;

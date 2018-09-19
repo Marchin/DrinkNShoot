@@ -27,8 +27,9 @@ public class CrowLand : MonoBehaviour, IState {
 
 	public void StateUpdate(out IState nextState) {
 		if (Vector3.Distance(transform.position, m_targetPosition) > m_neglible) {
-			transform.position = Vector3.Lerp(
-				transform.position, m_targetPosition, m_flightSpeed * Time.deltaTime);
+			// transform.position = Vector3.Lerp(
+			// 	transform.position, m_targetPosition, m_flightSpeed * Time.deltaTime);
+			transform.position += transform.forward * m_flightSpeed * Time.deltaTime;
 			RaycastHit hit;
 			if (Physics.Raycast(transform.position, m_targetPosition - transform.position,
 					out hit, 5f, m_landingZonesLayer)) {
