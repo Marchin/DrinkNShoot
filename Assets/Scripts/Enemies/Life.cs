@@ -8,10 +8,21 @@ public class Life : MonoBehaviour
 	[SerializeField] int hitPoints;
 	[SerializeField] float deathLength;
 	[SerializeField] UnityEvent onDeath;
+	int totalHitPoints;
+
+	private void Awake() 
+	{
+		totalHitPoints = hitPoints;	
+	}
+
+	private void OnEnable() 
+	{
+		hitPoints = totalHitPoints;
+	}
 
 	void Die()
 	{
-		Destroy(gameObject, deathLength);
+		Invoke("Disable", deathLength);
 	}
 	
 	public void TakeDamage()
@@ -23,6 +34,11 @@ public class Life : MonoBehaviour
 			onDeath.Invoke();
 			Die();
 		}		
+	}
+
+	void Disable()
+	{
+		gameObject.SetActive(false);
 	}
 
 	public UnityEvent OnDeath
