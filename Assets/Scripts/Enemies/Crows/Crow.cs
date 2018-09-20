@@ -46,7 +46,7 @@ public class Crow : MonoBehaviour {
         m_landingZones = landingZones;
     }
 
-    public Vector3 GetLandingZone() {
+    public Vector3 GetLandingZone(out Vector3 direction) {
         Collider landingZone = m_landingZones[Random.Range(0, m_landingZones.Length)];
         float offSetX = landingZone.bounds.extents.x - m_collider.bounds.size.x;
         float offSetZ = landingZone.bounds.extents.z - m_collider.bounds.size.z;
@@ -57,6 +57,7 @@ public class Crow : MonoBehaviour {
             0f,
             Random.Range(-offSetZ, offSetZ)
         );
+        direction = landingZone.transform.forward;
         return (landingZone.bounds.center + offSet);
     }
 }

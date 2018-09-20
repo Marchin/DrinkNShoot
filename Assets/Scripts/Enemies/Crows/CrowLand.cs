@@ -11,6 +11,7 @@ public class CrowLand : MonoBehaviour, IState {
 	Crow m_crow;
 	Vector3 m_targetPosition;
 	Quaternion m_targetRotation;
+	Vector3 m_direction;
 	const float m_neglible = 0.1f;
 	float m_footOffset;
 	bool m_rotCalculated;
@@ -23,7 +24,7 @@ public class CrowLand : MonoBehaviour, IState {
 	}
 
 	private void OnEnable() {
-		m_targetPosition = m_crow.GetLandingZone();
+		m_targetPosition = m_crow.GetLandingZone(out m_direction);
 		m_targetY = m_targetPosition.y;
 		m_targetPosition.y = transform.position.y;
 		m_rotCalculated = false;
@@ -48,7 +49,7 @@ public class CrowLand : MonoBehaviour, IState {
 				// Debug.DrawRay(transform.position, Vector3.down, Color.magenta, 10f);
 				if (!m_rotCalculated) {
 					m_targetRotation = Quaternion.LookRotation(
-						Vector3.forward, hit.normal);
+						m_direction, hit.normal);
 					m_rotCalculated = true;
 					m_turnSpeed *= 2f;
 				}
