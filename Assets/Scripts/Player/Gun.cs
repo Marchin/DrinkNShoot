@@ -100,7 +100,7 @@ public class Gun : MonoBehaviour
 				onShot.Invoke();
 			}
 			else
-				if (bulletsInCylinder == 0 && !isReloading)
+				if (CanPlayEmptyMagSound())
 					onEmptyGun.Invoke();
 		}
 		
@@ -229,13 +229,19 @@ public class Gun : MonoBehaviour
 	bool CanShoot()
 	{
 		return !PauseMenu.IsPaused &&  !LevelManager.Instance.GameOver && !isReloading && 
-		Time.time - lastFireTime >= 1 / fireRate && bulletsInCylinder > 0;
+				Time.time - lastFireTime >= 1 / fireRate && bulletsInCylinder > 0;
 	}
 
 	bool CanReload()
 	{
 		return !PauseMenu.IsPaused && !LevelManager.Instance.GameOver && !isReloading &&
-		Time.time - lastFireTime >= 1 / fireRate && ammoLeft > 0 && bulletsInCylinder < cylinderCapacity;
+				Time.time - lastFireTime >= 1 / fireRate && ammoLeft > 0 && bulletsInCylinder < cylinderCapacity;
+	}
+
+	bool CanPlayEmptyMagSound()
+	{
+		return !PauseMenu.IsPaused && !LevelManager.Instance.GameOver && !isReloading &&
+				bulletsInCylinder == 0;
 	}
 
 	// Public Methods
