@@ -38,8 +38,10 @@ GameObject:
   - component: {fileID: 4756269106357616}
   - component: {fileID: 65884374033699816}
   - component: {fileID: 54667140273447868}
-  - component: {fileID: 114912934776019400}
   - component: {fileID: 114644030167287328}
+  - component: {fileID: 114687038063762062}
+  - component: {fileID: 114335771004750828}
+  - component: {fileID: 114322977971419858}
   m_Layer: 15
   m_Name: Crow
   m_TagString: Untagged
@@ -143,6 +145,41 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.7976055, z: 0.8968961}
   m_Center: {x: 0, y: 0.24227476, z: -0.0715103}
+--- !u!114 &114322977971419858
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1913150792173850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f8f46aed70aa2498614e53ca8e2ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_landingZonesLayer:
+    serializedVersion: 2
+    m_Bits: 65536
+  m_flightSpeed: 30
+  m_turnSpeed: 30
+  m_landingRadius: 100
+--- !u!114 &114335771004750828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1913150792173850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20c90affd1cfbe4588b2397368ab212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_landingZonesLayer:
+    serializedVersion: 2
+    m_Bits: 65536
+  m_maxMovementInterval: 2
+  m_distance: 1
+  m_speed: 2
+  m_rotationSpeed: 180
 --- !u!114 &114644030167287328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -161,7 +198,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114912934776019400
+--- !u!114 &114687038063762062
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,11 +206,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1913150792173850}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e31092ba8d19da846a343a75276ab784, type: 3}
+  m_Script: {fileID: 11500000, guid: 46a345e6d15949d4f8ca3ad3acf8ab08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_roof: {fileID: 0}
-  m_maxMovementInterval: 1
-  m_distance: 1
-  m_speed: 5
-  m_rotationSpeed: 90

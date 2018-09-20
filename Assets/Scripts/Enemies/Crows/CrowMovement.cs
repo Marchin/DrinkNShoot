@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 
-public class CrowMovement : MonoBehaviour {
-    [SerializeField] GameObject m_roof;
+public class CrowMovement : MonoBehaviour, IState {
+    [SerializeField] LayerMask m_landingZonesLayer;
     [SerializeField] float m_maxMovementInterval;
     [SerializeField] float m_distance;
     [SerializeField] float m_speed;
     [SerializeField] float m_rotationSpeed;
-    //CrowFly m_crowFly;
     Vector3 m_roofSize;
     Vector3 m_targetPosition;
     Quaternion m_targetRotation;
@@ -15,18 +14,15 @@ public class CrowMovement : MonoBehaviour {
     float m_distToFront;
     bool m_moving;
     bool m_flipping;
-    float m_rotRate;
 
-    private void Awake() {
+    private void OnEnable() {
         m_distToFront = GetComponent<BoxCollider>().bounds.extents.z;
-        //m_crowFly = GetComponent<CrowFly>();
         m_moving = false;
         m_targetPosition = transform.position;
         m_targetRotation = transform.rotation;
-        m_rotRate = 1f / m_rotationSpeed;
     }
 
-    private void Update() {
+    public void StateUpdate(out IState nextState) {
         Move();
         if (Vector3.Distance(transform.position, m_targetPosition) > m_negligible) {
             transform.position = Vector3.Lerp(
@@ -45,19 +41,21 @@ public class CrowMovement : MonoBehaviour {
 
             ResetState();
         }
+        nextState = this;
     }
 
+    public void StateFixedUpdate() { }
+
     void Move() {
-        if (!m_moving /*&& !m_crowFly.IsFlying()*/ && !m_flipping) {
+        if (!m_moving && !m_flipping) {
             Vector3 targetOffset = transform.forward * (m_distance * Random.Range(0f, 1f) + m_distToFront);
             Debug.DrawRay(transform.position + targetOffset, -transform.up, Color.green, 1f);
             RaycastHit hit;
-            bool wasHit = Physics.Raycast(transform.position + targetOffset, -transform.up, out hit, 2f);
-            if (wasHit) { 
-                if (hit.transform.gameObject == m_roof) {
-                    m_targetPosition = transform.position + transform.forward * m_distance;
-                    m_moving = true;
-                }
+            bool wasHit = Physics.Raycast(transform.position + targetOffset, -transform.up,
+                out hit, 2f, m_landingZonesLayer);
+            if (wasHit) {
+                m_targetPosition = transform.position + transform.forward * m_distance;
+                m_moving = true;
             } else {
                 Flip();
             }
@@ -78,5 +76,4 @@ public class CrowMovement : MonoBehaviour {
     public bool IsMoving() {
         return (m_moving || m_flipping);
     }
-
 }

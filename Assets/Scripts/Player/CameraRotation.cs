@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraRotation : MonoBehaviour
-{
+public class CameraRotation : MonoBehaviour {
 	[SerializeField] float rotationSpeed;
 	[SerializeField] float horizontalRange;
 	[SerializeField] float verticalRange;
@@ -22,8 +21,7 @@ public class CameraRotation : MonoBehaviour
 		maxHorizontalAngle = horizontalAngle + verticalRange;
 	}
 
-	void Update()
-	{
+	void Update() {
 		float horizontalRotation = InputManager.Instance.GetHorizontalViewAxis() * rotationSpeed * Time.deltaTime;
 		float verticalRotation = InputManager.Instance.GetVerticalViewAxis() * rotationSpeed * Time.deltaTime;
 
