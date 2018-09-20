@@ -42,7 +42,7 @@ public class CrowLand : MonoBehaviour, IState {
 			}
 			RaycastHit hit;
 			if (Physics.Raycast(transform.position, m_targetPosition - transform.position,
-					out hit, 15f, m_landingZonesLayer)) {
+					out hit, 20f, m_landingZonesLayer)) {
 
 				Debug.DrawRay(m_targetPosition, hit.normal, Color.magenta, 10f);
 				Debug.DrawRay(transform.position, Vector3.down, Color.magenta, 10f);
@@ -50,11 +50,11 @@ public class CrowLand : MonoBehaviour, IState {
 					m_targetRotation = Quaternion.LookRotation(
 						Vector3.right, hit.normal);
 					m_rotCalculated = true;
+					m_turnSpeed *= 2f;
 				}
 				if (hit.distance <= m_footOffset) {
 					m_targetPosition = transform.position;
 					transform.rotation = m_targetRotation;
-					m_turnSpeed = 180f;
 				}
 			} else {
 				m_targetRotation = Quaternion.LookRotation(m_targetPosition - transform.position);
