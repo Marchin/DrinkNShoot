@@ -26,11 +26,6 @@ public class PlayerAnimation : MonoBehaviour
 		weaponHolder.EquippedGun.OnReloadFinish.AddListener(HasFinishedReloading);
 	}
 
-	void Update()
-	{
-
-	}
-
 	void HasShot()
 	{
 		animator.SetTrigger("Has Shot");

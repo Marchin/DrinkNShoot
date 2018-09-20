@@ -3,13 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
+	[SerializeField]
+	TextMeshProUGUI appVersionText;
+	const float quitDelay = 0.5f;
+
 	void Start()
 	{
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
+		appVersionText.text = "Application Version: " + Application.version;
+	}
+
+	void QuitApplication()
+	{
+		Application.Quit();
 	}
 
 	public void Play()
@@ -21,6 +32,6 @@ public class MainMenu : MonoBehaviour
 
 	public void Exit()
 	{
-		Application.Quit();
+		Invoke("QuitApplication", quitDelay);
 	}
 }
