@@ -23,7 +23,8 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] [Range(1, 200)]
 	int requiredKills;
 	[SerializeField]
-	UnityEvent onEnemyKill; 
+	UnityEvent onEnemyKill;
+	const float loadDelay = 0.5f;
 	static LevelManager instance;
 	bool gameOver = false;
 	float timeLeft = 0;
@@ -73,14 +74,24 @@ public class LevelManager : MonoBehaviour
 		onEnemyKill.Invoke();
 	}
 
-	public void RestartLevel()
+	void Restart()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
-	public void QuitLevel()
+	void Quit()
 	{
 		SceneManager.LoadScene("Main Menu");
+	}
+
+	public void RestartLevel()
+	{
+		Invoke("Restart", loadDelay);
+	}
+
+	public void QuitLevel()
+	{
+		Invoke("Quit", loadDelay);
 	}
 
 	public UnityEvent OnEnemyKill

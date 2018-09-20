@@ -10,6 +10,11 @@ public class PauseMenu : MonoBehaviour
 	GameObject hudUI;
 	static bool isPaused;
 
+	void Start()
+	{
+		isPaused = false;
+	}
+
 	void Update()
 	{
 		if (InputManager.Instance.GetPauseButton() && !LevelManager.Instance.GameOver)
@@ -43,7 +48,6 @@ public class PauseMenu : MonoBehaviour
 
 	public void Quit()
 	{
-		isPaused = false;
 		Time.timeScale = 1;
 		LevelManager.Instance.QuitLevel();
 	}
