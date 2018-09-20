@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -12,22 +13,33 @@ public class SettingsMenu : MonoBehaviour
 
 	[Header("Graphics Settings")]
 	[SerializeField] GfxSetting currentGfxSetting;
-	[SerializeField] GameObject[] gfxOptions;
+	[SerializeField] TextMeshProUGUI gfxText;
 	[SerializeField] GameObject decreaseGfxButton;
 	[SerializeField] GameObject increaseGfxButton;
-	GameObject currentGfxOption;
+	const string veryHighStr = "Very High";
+	const string veryLowStr = "Very Low";
 
 	void Start()
 	{
-		currentGfxOption = gfxOptions[(int)currentGfxSetting];
+		ChangeGfxText();
 
 		if (currentGfxSetting == GfxSetting.Wild)
 			increaseGfxButton.SetActive(false);
 		if (currentGfxSetting == GfxSetting.VeryLow)
 			decreaseGfxButton.SetActive(false);
+	}
 
-		foreach (GameObject gfxOption in gfxOptions)
-			gfxOption.SetActive(gfxOption == currentGfxOption);
+	void ChangeGfxText()
+	{
+		if (currentGfxSetting != GfxSetting.VeryHigh && currentGfxSetting != GfxSetting.VeryLow)
+			gfxText.text = currentGfxSetting.ToString();
+		else
+		{
+			if (currentGfxSetting == GfxSetting.VeryHigh)
+				gfxText.text = veryHighStr;
+			else
+				gfxText.text = veryLowStr;
+		}
 	}
 
 	public void IncreaseGraphicsSetting()
@@ -35,9 +47,8 @@ public class SettingsMenu : MonoBehaviour
 		if (currentGfxSetting != GfxSetting.Wild)
 		{
 			currentGfxSetting++;
-			currentGfxOption.SetActive(false);
-			currentGfxOption = gfxOptions[(int)currentGfxSetting];
-			currentGfxOption.SetActive(true);
+
+			ChangeGfxText();
 
 			increaseGfxButton.GetComponent<Button>().interactable = false;
 
@@ -56,9 +67,8 @@ public class SettingsMenu : MonoBehaviour
 		if (currentGfxSetting != GfxSetting.VeryLow)
 		{
 			currentGfxSetting--;
-			currentGfxOption.SetActive(false);
-			currentGfxOption = gfxOptions[(int)currentGfxSetting];
-			currentGfxOption.SetActive(true);
+
+			ChangeGfxText();
 
 			decreaseGfxButton.GetComponent<Button>().interactable = false;
 
