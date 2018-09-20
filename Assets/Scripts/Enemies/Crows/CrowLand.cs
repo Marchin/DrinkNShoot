@@ -71,7 +71,7 @@ public class CrowLand : MonoBehaviour, IState {
 		if ((transform.position == m_targetPosition) &&
 			(transform.rotation == m_targetRotation)) {
 
-			m_turnSpeed *= 0.25f;
+			m_turnSpeed *= 0.5f;
 			nextState = GetComponent<CrowMovement>();
 		} else {
 			nextState = this;
