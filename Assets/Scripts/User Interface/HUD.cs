@@ -76,7 +76,7 @@ public class HUD : MonoBehaviour
 	void ChangeTimerDisplay()
 	{
 		int timeLeft = (int)LevelManager.Instance.TimeLeft;
-		timerText.text = timeLeft.ToString() + "'";
+		timerText.text = timeLeft.ToString() + "\"";
 
 		if (timeLeft <= criticalTimeLeft)
 			timerText.color = Color.red;
