@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: User Interface
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 30ea839578dc4fd4c9a0e2ea84fcf0da, type: 3}
+    - {fileID: 102900000, guid: 5153141b4c6e3fe40adee781379825e6, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: f63c15245d42a0f4582daab17c3f10c2, type: 3}
+  - {fileID: 21300000, guid: ffda762574e1c3d478502dfca6e29c41, type: 3}
+  - {fileID: 21300000, guid: 22674dc6807922e4abe1b500e2d6e727, type: 3}
+  - {fileID: 21300000, guid: edeb676741e692e4b80fd6c81c30f3e1, type: 3}
+  - {fileID: 21300000, guid: 7d9d297761a217f4b843a107c78ab6ef, type: 3}
+  - {fileID: 21300000, guid: c98f58f9d072ad0408cfbdbd60681941, type: 3}
+  - {fileID: 21300000, guid: db6b78bcff11c9340915396afb30a7a9, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Button - Selection (Highlighted)
+  - Panel - How To Play
+  - Buttons' Panel
+  - Button - Volume Controller
+  - Button - Selection
+  - Button - Navigation
+  - Button - Navigation (Highligthed)
+  m_Tag: User Interface
+  m_IsVariant: 0
