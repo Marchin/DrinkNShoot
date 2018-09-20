@@ -7,12 +7,14 @@ public class CrowLand : MonoBehaviour, IState {
 	[SerializeField] LayerMask m_landingZonesLayer;
 	[SerializeField] float m_flightSpeed;
 	[SerializeField] float m_turnSpeed;
+	[SerializeField] float m_landingRadius;
 	Crow m_crow;
 	Vector3 m_targetPosition;
 	Quaternion m_targetRotation;
 	const float m_neglible = 0.1f;
 	float m_footOffset;
 	bool m_rotCalculated;
+	float m_targetY;
 
 	private void Awake() {
 		m_crow = GetComponent<Crow>();
@@ -22,20 +24,28 @@ public class CrowLand : MonoBehaviour, IState {
 
 	private void OnEnable() {
 		m_targetPosition = m_crow.GetLandingZone();
+		m_targetY = m_targetPosition.y;
+		m_targetPosition.y = transform.position.y;
 		m_rotCalculated = false;
 	}
 
 	public void StateUpdate(out IState nextState) {
 		if (Vector3.Distance(transform.position, m_targetPosition) > m_neglible) {
-			// transform.position = Vector3.Lerp(
-			// 	transform.position, m_targetPosition, m_flightSpeed * Time.deltaTime);
-			transform.position += transform.forward * m_flightSpeed * Time.deltaTime;
+			if (Vector3.Distance(transform.position, m_targetPosition) < 15f) {
+				transform.position = Vector3.Lerp(
+					transform.position, m_targetPosition, 2f * Time.deltaTime);
+			} else if ((Vector3.Distance(transform.position, m_targetPosition) < m_landingRadius)) {
+				m_targetPosition.y = m_targetY;
+				transform.position += (transform.forward - transform.up * .1f) * m_flightSpeed * Time.deltaTime;
+			} else {
+				transform.position += transform.forward * m_flightSpeed * Time.deltaTime;
+			}
 			RaycastHit hit;
 			if (Physics.Raycast(transform.position, m_targetPosition - transform.position,
-					out hit, 5f, m_landingZonesLayer)) {
+					out hit, 15f, m_landingZonesLayer)) {
 
-				Debug.DrawRay(m_targetPosition, hit.normal, Color.magenta, 3f);
-				Debug.DrawRay(transform.position, transform.forward, Color.magenta, 10f);
+				Debug.DrawRay(m_targetPosition, hit.normal, Color.magenta, 10f);
+				Debug.DrawRay(transform.position, Vector3.down, Color.magenta, 10f);
 				if (!m_rotCalculated) {
 					m_targetRotation = Quaternion.LookRotation(
 						Vector3.right, hit.normal);
@@ -44,6 +54,7 @@ public class CrowLand : MonoBehaviour, IState {
 				if (hit.distance <= m_footOffset) {
 					m_targetPosition = transform.position;
 					transform.rotation = m_targetRotation;
+					m_turnSpeed = 180f;
 				}
 			} else {
 				m_targetRotation = Quaternion.LookRotation(m_targetPosition - transform.position);
@@ -60,6 +71,7 @@ public class CrowLand : MonoBehaviour, IState {
 		if ((transform.position == m_targetPosition) &&
 			(transform.rotation == m_targetRotation)) {
 
+			m_turnSpeed *= 0.25f;
 			nextState = GetComponent<CrowMovement>();
 		} else {
 			nextState = this;

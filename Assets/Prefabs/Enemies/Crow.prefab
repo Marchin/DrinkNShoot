@@ -133,7 +133,7 @@ MonoBehaviour:
   m_maxMovementInterval: 1
   m_distance: 1
   m_speed: 3
-  m_rotationSpeed: 180
+  m_rotationSpeed: 90
 --- !u!114 &114339490115248636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,6 +150,7 @@ MonoBehaviour:
     m_Bits: 32768
   m_flightSpeed: 20
   m_turnSpeed: 30
+  m_landingRadius: 50
 --- !u!114 &114479270694619888
 MonoBehaviour:
   m_ObjectHideFlags: 1
