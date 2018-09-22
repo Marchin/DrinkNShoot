@@ -1446,14 +1446,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1596737028357478}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 99.915, y: 1.629, z: 72.1}
+  m_LocalRotation: {x: -0, y: 0.7098957, z: -0, w: 0.7043069}
+  m_LocalPosition: {x: 183.992, y: 1.033, z: 236.751}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4253131077055008}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.453, z: 0}
 --- !u!4 &4832975102837208
 Transform:
   m_ObjectHideFlags: 1
@@ -1718,7 +1718,8 @@ AudioSource:
   m_GameObject: {fileID: 1100486427802442}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: a3deb91ad8b33054ab991aea2fcd8e1b,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: c6d493c87dd8a274282c6c6ee81280db, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1813,7 +1814,8 @@ AudioSource:
   m_GameObject: {fileID: 1100486427802442}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: a3deb91ad8b33054ab991aea2fcd8e1b,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 0491c41a54fe1874bbe2322c3131d761, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1908,7 +1910,8 @@ AudioSource:
   m_GameObject: {fileID: 1100486427802442}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: a3deb91ad8b33054ab991aea2fcd8e1b,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: aa9e1b4610de02d45ab60f47349f436f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -2025,7 +2028,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunType: 0
-  damage: 20
   fireRate: 2
   range: 100
   impactForce: 700
@@ -2045,7 +2047,6 @@ MonoBehaviour:
   emptyGunSound: {fileID: 82781341373114522}
   shootingLayers:
   - Shootables
-  - Dynamic Decoration
   - Crows
   onShot:
     m_PersistentCalls:
