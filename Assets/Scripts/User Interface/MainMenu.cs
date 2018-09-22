@@ -7,9 +7,8 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
-	[SerializeField]
-	TextMeshProUGUI appVersionText;
-	const float quitDelay = 0.5f;
+	[SerializeField] TextMeshProUGUI appVersionText;
+	const float QUIT_DELAY = 0.5f;
 
 	void Start()
 	{
@@ -32,6 +31,6 @@ public class MainMenu : MonoBehaviour
 
 	public void Exit()
 	{
-		Invoke("QuitApplication", quitDelay);
+		Invoke("QuitApplication", QUIT_DELAY);
 	}
 }

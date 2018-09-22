@@ -57,10 +57,10 @@ public class Gun : MonoBehaviour
 	[SerializeField] UnityEvent onCrosshairScale;
 
 	// Computing Fields
-	const float baseSway = 0.003f;
-	const float swayApproximation = 0.0001f;
-	const float interpPerc = 0.1f;
-	const int crosshairScaleMultiplier = 20;
+	const float BASE_SWAY = 0.003f;
+	const float SWAY_APPROX = 0.0001f;
+	const float INTERPOLATION_PERC = 0.1f;
+	const int CROSSHAIR_SCALE_MULT = 20;
 	Transform fpsCamera;
 	int shootingLayerMask;
 	int ammoLeft;
@@ -80,17 +80,14 @@ public class Gun : MonoBehaviour
 		bulletsInCylinder = cylinderCapacity;
 		ammoLeft = maxAmmo;
 		shootingLayerMask = LayerMask.GetMask(shootingLayers);
-		regularSway = baseSway * regularSwayLevel;
-		recoilSway = regularSway + baseSway * recoilSwayLevel;
+		regularSway = BASE_SWAY * regularSwayLevel;
+		recoilSway = regularSway + BASE_SWAY * recoilSwayLevel;
 	}
 
 	void Update()
 	{
-		if (!PauseMenu.IsPaused)
-		{
-			ComputeDrunkSway();
-			ComputeConsecutiveShots();
-		}
+		ComputeDrunkSway();
+		ComputeConsecutiveShots();
 
 		if (InputManager.Instance.GetFireButton())
 		{
@@ -100,7 +97,7 @@ public class Gun : MonoBehaviour
 				onShot.Invoke();
 			}
 			else
-				if (CanPlayEmptyMagSound())
+				if (ShouldPlayEmptyMagSound())
 					onEmptyGun.Invoke();
 		}
 		
@@ -123,18 +120,18 @@ public class Gun : MonoBehaviour
 		{
 			float minSway = -regularSway - drunkSway;
 			float maxSway = regularSway + drunkSway;
-			crosshairScale += regularSway * crosshairScaleMultiplier;
+			crosshairScale += regularSway * CROSSHAIR_SCALE_MULT;
 			swayDir = Random.Range(0, 2);
-			horSway = swayDir == 0 ? Random.Range(minSway, -baseSway) : Random.Range(baseSway, maxSway);
+			horSway = swayDir == 0 ? Random.Range(minSway, -BASE_SWAY) : Random.Range(BASE_SWAY, maxSway);
 			swayDir = Random.Range(0, 2);
-			verSway = swayDir == 0 ? Random.Range(minSway, -baseSway) : Random.Range(baseSway, maxSway);
+			verSway = swayDir == 0 ? Random.Range(minSway, -BASE_SWAY) : Random.Range(BASE_SWAY, maxSway);
 		}
 		else
 		{
 			consecutiveShots++;
-			float minAddedRecoilSway = -recoilSway - baseSway * consecutiveShots - drunkSway;
-			float maxAddedRecoilSway = recoilSway + baseSway * consecutiveShots + drunkSway;
-			crosshairScale += recoilSway * consecutiveShots * crosshairScaleMultiplier;
+			float minAddedRecoilSway = -recoilSway - BASE_SWAY * consecutiveShots - drunkSway;
+			float maxAddedRecoilSway = recoilSway + BASE_SWAY * consecutiveShots + drunkSway;
+			crosshairScale += recoilSway * consecutiveShots * CROSSHAIR_SCALE_MULT;
 			swayDir = Random.Range(0, 2);
 			horSway = swayDir == 0 ? Random.Range(minAddedRecoilSway, -regularSway) : Random.Range(regularSway, maxAddedRecoilSway);
 			swayDir = Random.Range(0, 2);
@@ -199,20 +196,20 @@ public class Gun : MonoBehaviour
     {
         if (isIncreasingDrunkSway)
         {
-            drunkSway = Mathf.Lerp(drunkSway, regularSway * LevelManager.Instance.DifficultyLevel, interpPerc);
-            if (drunkSway >= regularSway * LevelManager.Instance.DifficultyLevel - swayApproximation)
+            drunkSway = Mathf.Lerp(drunkSway, regularSway * LevelManager.Instance.DifficultyLevel, INTERPOLATION_PERC);
+            if (drunkSway >= regularSway * LevelManager.Instance.DifficultyLevel - SWAY_APPROX)
                 isIncreasingDrunkSway = false;
         }
         else
         {
-            drunkSway = Mathf.Lerp(drunkSway, 0, interpPerc);
-            if (drunkSway <= swayApproximation)
+            drunkSway = Mathf.Lerp(drunkSway, 0, INTERPOLATION_PERC);
+            if (drunkSway <= SWAY_APPROX)
                 isIncreasingDrunkSway = true;
         }
 
         if (crosshairScale != 1 + drunkSway)
         {
-            crosshairScale = Mathf.Lerp(crosshairScale, 1 + drunkSway * crosshairScaleMultiplier, interpPerc);
+            crosshairScale = Mathf.Lerp(crosshairScale, 1 + drunkSway * CROSSHAIR_SCALE_MULT, INTERPOLATION_PERC);
             onCrosshairScale.Invoke();
         }
     }
@@ -228,20 +225,17 @@ public class Gun : MonoBehaviour
 
 	bool CanShoot()
 	{
-		return !PauseMenu.IsPaused &&  !LevelManager.Instance.GameOver && !isReloading && 
-				Time.time - lastFireTime >= 1 / fireRate && bulletsInCylinder > 0;
+		return !isReloading && Time.time - lastFireTime >= 1 / fireRate && bulletsInCylinder > 0;
 	}
 
 	bool CanReload()
 	{
-		return !PauseMenu.IsPaused && !LevelManager.Instance.GameOver && !isReloading &&
-				Time.time - lastFireTime >= 1 / fireRate && ammoLeft > 0 && bulletsInCylinder < cylinderCapacity;
+		return !isReloading && Time.time - lastFireTime >= 1 / fireRate && ammoLeft > 0 && bulletsInCylinder < cylinderCapacity;
 	}
 
-	bool CanPlayEmptyMagSound()
+	bool ShouldPlayEmptyMagSound()
 	{
-		return !PauseMenu.IsPaused && !LevelManager.Instance.GameOver && !isReloading &&
-				bulletsInCylinder == 0;
+		return !isReloading && bulletsInCylinder == 0;
 	}
 
 	// Public Methods

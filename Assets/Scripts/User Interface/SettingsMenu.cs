@@ -16,8 +16,8 @@ public class SettingsMenu : MonoBehaviour
 	[SerializeField] TextMeshProUGUI gfxText;
 	[SerializeField] GameObject decreaseGfxButton;
 	[SerializeField] GameObject increaseGfxButton;
-	const string veryHighStr = "Very High";
-	const string veryLowStr = "Very Low";
+	const string VERT_HIG_STR = "Very High";
+	const string VERY_LOW_STR = "Very Low";
 
 	void Start()
 	{
@@ -36,9 +36,9 @@ public class SettingsMenu : MonoBehaviour
 		else
 		{
 			if (currentGfxSetting == GfxSetting.VeryHigh)
-				gfxText.text = veryHighStr;
+				gfxText.text = VERT_HIG_STR;
 			else
-				gfxText.text = veryLowStr;
+				gfxText.text = VERY_LOW_STR;
 		}
 	}
 
