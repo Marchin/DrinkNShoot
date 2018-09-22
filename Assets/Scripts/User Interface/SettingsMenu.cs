@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
 
 public class SettingsMenu : MonoBehaviour
 {
-	enum GfxSetting
+	public enum GfxSetting
 	{
 		VeryLow, Low, Medium, High, VeryHigh, Wild
 	}
@@ -16,11 +17,18 @@ public class SettingsMenu : MonoBehaviour
 	[SerializeField] TextMeshProUGUI gfxText;
 	[SerializeField] GameObject decreaseGfxButton;
 	[SerializeField] GameObject increaseGfxButton;
+	[Header("Audio Settings")]
+	[SerializeField] AudioMixer sfxMixer;
+	[SerializeField] Slider sfxSlider;
 	const string VERT_HIG_STR = "Very High";
 	const string VERY_LOW_STR = "Very Low";
+	const float MIXER_MULT = 12f;
 
 	void Start()
 	{
+		currentGfxSetting = GameManager.Instance.CurrentGfxSetting;
+		sfxSlider.value = GameManager.Instance.CurrentSfxVolume;
+
 		ChangeGfxText();
 
 		if (currentGfxSetting == GfxSetting.Wild)
@@ -42,11 +50,26 @@ public class SettingsMenu : MonoBehaviour
 		}
 	}
 
+	float GetMixerLevel(AudioMixer audioMixer)
+	{
+		float volume;
+		bool result = audioMixer.GetFloat("Volume", out volume);
+
+		return result ? volume : 0f;
+	}
+
+	public void SetSfxVolume(float volume)
+	{
+		GameManager.Instance.CurrentSfxVolume = volume;
+		sfxMixer.SetFloat("Volume", Mathf.Log(volume) * MIXER_MULT);
+	}
+
 	public void IncreaseGraphicsSetting()
 	{
 		if (currentGfxSetting != GfxSetting.Wild)
 		{
 			currentGfxSetting++;
+			GameManager.Instance.CurrentGfxSetting = currentGfxSetting;
 
 			ChangeGfxText();
 
@@ -67,6 +90,7 @@ public class SettingsMenu : MonoBehaviour
 		if (currentGfxSetting != GfxSetting.VeryLow)
 		{
 			currentGfxSetting--;
+			GameManager.Instance.CurrentGfxSetting = currentGfxSetting;
 
 			ChangeGfxText();
 

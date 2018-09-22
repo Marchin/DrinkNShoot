@@ -795,7 +795,8 @@ AudioSource:
   m_GameObject: {fileID: 1003666454098192}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: a3deb91ad8b33054ab991aea2fcd8e1b,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 5296b08dd419c5142a54fcc8cdbb9ad7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1199,6 +1200,8 @@ MonoBehaviour:
   gfxText: {fileID: 114468362280211864}
   decreaseGfxButton: {fileID: 1404100293126220}
   increaseGfxButton: {fileID: 1092275719909034}
+  sfxMixer: {fileID: 24100000, guid: a3deb91ad8b33054ab991aea2fcd8e1b, type: 2}
+  sfxSlider: {fileID: 114937163767587352}
 --- !u!114 &114196495950957880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1812,11 +1815,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -3537,7 +3540,18 @@ MonoBehaviour:
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114196161772288056}
+        m_MethodName: SetSfxVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114951845241956662

@@ -38,7 +38,7 @@ public class Gun : MonoBehaviour
 	AnimationClip reloadAnimation;
 	[SerializeField] [Tooltip("The 'finish reloading' animation associated to the gun.")]
 	AnimationClip reloadFinishAnimation;
-	[Header("Gun Audio Souces")]
+	[Header("Gun Audio Sources")]
 	[SerializeField] [Tooltip("The'shoot' sound associated to the gun.")]
 	AudioSource shootSound;
 	[SerializeField] [Tooltip("The 'reload' sound associated to the gun.")]
