@@ -13,13 +13,13 @@ public class SettingsMenu : MonoBehaviour
 	}
 
 	[Header("Graphics Settings")]
-	[SerializeField] GfxSetting currentGfxSetting;
 	[SerializeField] TextMeshProUGUI gfxText;
 	[SerializeField] GameObject decreaseGfxButton;
 	[SerializeField] GameObject increaseGfxButton;
 	[Header("Audio Settings")]
 	[SerializeField] AudioMixer sfxMixer;
 	[SerializeField] Slider sfxSlider;
+	GfxSetting currentGfxSetting;
 	const string VERT_HIG_STR = "Very High";
 	const string VERY_LOW_STR = "Very Low";
 	const float MIXER_MULT = 12f;
@@ -70,6 +70,7 @@ public class SettingsMenu : MonoBehaviour
 		{
 			currentGfxSetting++;
 			GameManager.Instance.CurrentGfxSetting = currentGfxSetting;
+			QualitySettings.SetQualityLevel((int)currentGfxSetting);
 
 			ChangeGfxText();
 
@@ -91,6 +92,7 @@ public class SettingsMenu : MonoBehaviour
 		{
 			currentGfxSetting--;
 			GameManager.Instance.CurrentGfxSetting = currentGfxSetting;
+			QualitySettings.SetQualityLevel((int)currentGfxSetting);
 
 			ChangeGfxText();
 

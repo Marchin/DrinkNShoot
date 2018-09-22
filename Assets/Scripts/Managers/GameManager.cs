@@ -5,16 +5,21 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	static GameManager instance;
-	SettingsMenu.GfxSetting currentGfxSetting = SettingsMenu.GfxSetting.Wild;
-	float currentSfxVolume = 0.75f;
+	[SerializeField] SettingsMenu.GfxSetting currentGfxSetting;
+	[SerializeField] float currentSfxVolume = 0.75f;
 
 	void Awake()
 	{
 		if (Instance == this)
 			DontDestroyOnLoad(gameObject);
 		else
-			Debug.Log("There already was a Game Manager; avoid duplicates.", gameObject);
+			Destroy(gameObject);
 
+	}
+
+	void Start()
+	{
+		QualitySettings.SetQualityLevel((int)currentGfxSetting);
 	}
 
 	public static GameManager Instance
