@@ -31,7 +31,6 @@ public class PlayerManager : MonoBehaviour
 
 	void SetLevelReferences()
 	{
-		Debug.Log("Set");
         cameraRotation = FindObjectOfType<CameraRotation>();
         drunkCamera = FindObjectOfType<DrunkCamera>();
         equippedGun = FindObjectOfType<WeaponHolder>().EquippedGun;
