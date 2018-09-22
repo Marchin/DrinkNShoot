@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PauseMenu : MonoBehaviour 
 {
-	[SerializeField]
-	GameObject pauseMenuUI;
-	[SerializeField]
-	GameObject hudUI;
-	static bool isPaused;
+	[SerializeField] GameObject pauseMenuUI;
+	[SerializeField] GameObject hudUI;
+	[SerializeField] UnityEvent onPauseToggle;
+	bool isPaused;
 
 	void Start()
 	{
@@ -34,6 +34,7 @@ public class PauseMenu : MonoBehaviour
 		pauseMenuUI.SetActive(true);
 		hudUI.SetActive(false);
 		isPaused = true;
+		onPauseToggle.Invoke();
 	}
 
 	public void Resume()
@@ -44,6 +45,7 @@ public class PauseMenu : MonoBehaviour
 		pauseMenuUI.SetActive(false);
 		hudUI.SetActive(true);
 		isPaused = false;
+		onPauseToggle.Invoke();
 	}
 
 	public void Quit()
@@ -52,8 +54,8 @@ public class PauseMenu : MonoBehaviour
 		LevelManager.Instance.QuitLevel();
 	}
 
-	public static bool IsPaused
+	public UnityEvent OnPauseToggle
 	{
-		get { return isPaused; }
+		get { return onPauseToggle; }
 	}
 }

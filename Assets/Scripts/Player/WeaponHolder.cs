@@ -21,9 +21,7 @@ public class WeaponHolder : MonoBehaviour
 		{
 			gun.gameObject.SetActive(i == (int)equippedGunType);
 			if (i == (int)equippedGunType)
-			{
 				equippedGun = gun.GetComponent<Gun>();
-			}
 			i++;
 		}
 	}

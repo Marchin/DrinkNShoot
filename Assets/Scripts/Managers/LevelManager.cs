@@ -7,24 +7,17 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
 	[Header("UI Refreneces")]
-	[SerializeField]
-	GameObject completeLevelUI;
-	[SerializeField]
-	 GameObject failLevelUI;
-	[SerializeField]
-	 GameObject hudUI;
+	[SerializeField] GameObject completeLevelUI;
+	[SerializeField] GameObject failLevelUI;
+	[SerializeField] GameObject hudUI;
 	[Header("Level Properties")]
-	[SerializeField] 
-	Life[] enemiesLife;
-	[SerializeField] [Range(20, 600)]
-	float completionTime;
-	[SerializeField] [Range(0, 25)]
-	int difficultyLevel;
-	[SerializeField] [Range(1, 200)]
-	int requiredKills;
-	[SerializeField]
-	UnityEvent onEnemyKill;
-	const float loadDelay = 0.5f;
+	[SerializeField] Life[] enemiesLife;
+	[SerializeField] [Range(20, 600)] float completionTime;
+	[SerializeField] [Range(0, 25)] int difficultyLevel;
+	[SerializeField] [Range(1, 200)] int requiredKills;
+	[SerializeField] UnityEvent onEnemyKill;
+	[SerializeField] UnityEvent onGameOver;
+	const float QUIT_DELAY = 0.5f;
 	static LevelManager instance;
 	bool gameOver = false;
 	float timeLeft = 0;
@@ -59,6 +52,7 @@ public class LevelManager : MonoBehaviour
 		gameOver = true;
 		completeLevelUI.SetActive(true);
 		hudUI.SetActive(false);
+		onGameOver.Invoke();
 	}
 
 	void FailLevel()
@@ -66,6 +60,7 @@ public class LevelManager : MonoBehaviour
         gameOver = true;
         failLevelUI.SetActive(true);
         hudUI.SetActive(false);
+		onGameOver.Invoke();
 	}
 
 	void IncreaseKillCounter()
@@ -86,12 +81,12 @@ public class LevelManager : MonoBehaviour
 
 	public void RestartLevel()
 	{
-		Invoke("Restart", loadDelay);
+		Invoke("Restart", QUIT_DELAY);
 	}
 
 	public void QuitLevel()
 	{
-		Invoke("Quit", loadDelay);
+		Invoke("Quit", QUIT_DELAY);
 	}
 
 	public UnityEvent OnEnemyKill
@@ -113,6 +108,11 @@ public class LevelManager : MonoBehaviour
 			
 			return instance;
 		}
+	}
+
+	public UnityEvent OnGameOver
+	{
+		get { return onGameOver; }
 	}
 
 	public bool GameOver
