@@ -2,78 +2,61 @@
 
 public class CrowMovement : MonoBehaviour, IState {
     [SerializeField] LayerMask m_landingZonesLayer;
-    [SerializeField] float m_maxMovementInterval;
+    [SerializeField] float m_interval;
     [SerializeField] float m_distance;
     [SerializeField] float m_speed;
-    [SerializeField] float m_rotationSpeed;
     Vector3 m_roofSize;
     Vector3 m_targetPosition;
-    Quaternion m_targetRotation;
     Vector3 m_meshOffset;
+    float m_timer;
     float m_negligible = 0.01f;
     float m_distToFront;
     bool m_moving;
-    bool m_flipping;
+    bool m_hasToFlip;
 
     private void OnEnable() {
         m_distToFront = GetComponent<BoxCollider>().bounds.extents.z;
-        m_moving = false;
         m_targetPosition = transform.position;
-        m_targetRotation = transform.rotation;
+        m_hasToFlip = false;
+        m_moving = false;
+        m_timer = m_interval;
     }
 
     public void StateUpdate(out IState nextState) {
-        Move();
-        if (Vector3.Distance(transform.position, m_targetPosition) > m_negligible) {
-            transform.position = Vector3.Lerp(
-                transform.position, m_targetPosition, m_speed * Time.deltaTime);
+        m_timer -= Time.deltaTime;
+        if (m_timer <= 0f && !m_moving) {
+            Move();
+        }
+        if (m_moving) {
+            if (Vector3.Distance(transform.position, m_targetPosition) > m_negligible) {
+                transform.position = Vector3.Lerp(
+                    transform.position, m_targetPosition, m_speed * Time.deltaTime);
+            } else {
+                transform.position = m_targetPosition;
+                m_timer = m_interval;
+                m_moving = false;
+            }
+        }
+        if (m_hasToFlip) {
+            nextState = GetComponent<CrowFlip>();
         } else {
-            transform.position = m_targetPosition;
+            nextState = this;
         }
-        if (Vector3.Distance(transform.eulerAngles, m_targetRotation.eulerAngles) > m_negligible) {
-            transform.rotation = Quaternion.RotateTowards(
-                transform.rotation, m_targetRotation, m_rotationSpeed * Time.deltaTime);
-        } else {
-            transform.rotation = m_targetRotation;
-        }
-        if (transform.position == m_targetPosition &&
-            transform.eulerAngles == m_targetRotation.eulerAngles) {
-
-            ResetState();
-        }
-        nextState = this;
     }
 
     public void StateFixedUpdate() { }
 
     void Move() {
-        if (!m_moving && !m_flipping) {
-            Vector3 targetOffset = transform.forward * (m_distance * Random.Range(0f, 1f) + m_distToFront);
-            Debug.DrawRay(transform.position + targetOffset, -transform.up, Color.green, 1f);
-            RaycastHit hit;
-            bool wasHit = Physics.Raycast(transform.position + targetOffset, -transform.up,
-                out hit, 2f, m_landingZonesLayer);
-            if (wasHit) {
-                m_targetPosition = transform.position + transform.forward * m_distance;
-                m_moving = true;
-            } else {
-                Flip();
-            }
+        Vector3 targetOffset = transform.forward * (m_distance * Random.Range(0f, 1f) + m_distToFront);
+        Debug.DrawRay(transform.position + targetOffset, -transform.up, Color.green, 1f);
+        RaycastHit hit;
+        bool wasHit = Physics.Raycast(transform.position + targetOffset, -transform.up,
+            out hit, 2f, m_landingZonesLayer);
+        if (wasHit) {
+            m_targetPosition = transform.position + transform.forward * m_distance;
+            m_moving = true;
+        } else {
+            m_hasToFlip = true;
         }
-    }
-
-    void ResetState() {
-        m_moving = false;
-        m_flipping = false;
-    }
-
-    void Flip() {
-        m_targetRotation = Quaternion.LookRotation(-transform.forward, transform.up);
-
-        m_flipping = true;
-    }
-
-    public bool IsMoving() {
-        return (m_moving || m_flipping);
     }
 }

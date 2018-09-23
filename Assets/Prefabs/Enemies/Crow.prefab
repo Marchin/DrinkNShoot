@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114644030167287328}
   - component: {fileID: 114687038063762062}
   - component: {fileID: 114335771004750828}
+  - component: {fileID: 114309668539239630}
   - component: {fileID: 114322977971419858}
   m_Layer: 15
   m_Name: Crow
@@ -145,6 +146,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.7976055, z: 0.8968961}
   m_Center: {x: 0, y: 0.24227476, z: -0.0715103}
+--- !u!114 &114309668539239630
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1913150792173850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddaf627fcaa71404bb7611cb42e1002d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotationSpeed: 180
 --- !u!114 &114322977971419858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,10 +189,9 @@ MonoBehaviour:
   m_landingZonesLayer:
     serializedVersion: 2
     m_Bits: 65536
-  m_maxMovementInterval: 2
+  m_interval: 1
   m_distance: 1
   m_speed: 2
-  m_rotationSpeed: 180
 --- !u!114 &114644030167287328
 MonoBehaviour:
   m_ObjectHideFlags: 1

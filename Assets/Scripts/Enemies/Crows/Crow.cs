@@ -3,6 +3,7 @@
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(CrowLand))]
 [RequireComponent(typeof(CrowMovement))]
+[RequireComponent(typeof(CrowFlip))]
 public class Crow : MonoBehaviour {
     Collider[] m_landingZones;
     Collider m_collider;
@@ -16,6 +17,7 @@ public class Crow : MonoBehaviour {
     private void OnEnable() {
         SetStateActive(GetComponent<CrowMovement>(), false);
         SetStateActive(GetComponent<CrowLand>(), false);
+        SetStateActive(GetComponent<CrowFlip>(), false);
     }
 
     public void Init() {
@@ -50,8 +52,8 @@ public class Crow : MonoBehaviour {
         Collider landingZone = m_landingZones[Random.Range(0, m_landingZones.Length)];
         float offSetX = landingZone.bounds.extents.x - m_collider.bounds.size.x;
         float offSetZ = landingZone.bounds.extents.z - m_collider.bounds.size.z;
-        if (offSetX < 0f) offSetX = 0f;
-        if (offSetZ < 0f) offSetZ = 0f;
+        if (offSetX < 0f)offSetX = 0f;
+        if (offSetZ < 0f)offSetZ = 0f;
         Vector3 offSet = new Vector3(
             Random.Range(-offSetX, offSetX),
             0f,
