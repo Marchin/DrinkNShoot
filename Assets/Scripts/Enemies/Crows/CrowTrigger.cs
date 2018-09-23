@@ -2,16 +2,18 @@
 
 public class CrowTrigger : MonoBehaviour {
 	[SerializeField] Collider[] m_landingZones;
+	CrowSpawner m_crowSpawner;
 
 	private void Awake() {
+		m_crowSpawner = GetComponentInParent<CrowSpawner>();
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		CrowSpawner.Instance.gameObject.SetActive(true);
-		CrowSpawner.Instance.SetLandingZones(m_landingZones);
+		m_crowSpawner.enabled = true;
+		m_crowSpawner.SetLandingZones(m_landingZones);
 	}
 
 	private void OnTriggerExit(Collider other) {
-		CrowSpawner.Instance.gameObject.SetActive(false);		
+		m_crowSpawner.enabled = false;
 	}
 }

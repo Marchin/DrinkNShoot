@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1506861428519596}
+  m_RootGameObject: {fileID: 1754954581055320}
   m_IsPrefabAsset: 1
---- !u!1 &1506861428519596
+--- !u!1 &1754954581055320
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4714119917255038}
-  - component: {fileID: 114785618220763852}
-  - component: {fileID: 114165559362799604}
+  - component: {fileID: 4267023890869834}
+  - component: {fileID: 114517179880367768}
+  - component: {fileID: 114261857304258724}
   m_Layer: 0
   m_Name: CrowSpawner
   m_TagString: Untagged
@@ -28,25 +28,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4714119917255038
+--- !u!4 &4267023890869834
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1506861428519596}
+  m_GameObject: {fileID: 1754954581055320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 216.07402, y: -2.8300679, z: 223.95589}
+  m_LocalPosition: {x: 188.68953, y: 4.525625, z: 245.04785}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114165559362799604
+--- !u!114 &114261857304258724
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1506861428519596}
+  m_GameObject: {fileID: 1754954581055320}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6bbeadb66324194ba82a435e2e6c3b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_spawnInterval: 2
+--- !u!114 &114517179880367768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1754954581055320}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d48e1ce2b1a23245b74b10dbd4872fa, type: 3}
@@ -55,16 +67,3 @@ MonoBehaviour:
   m_gameObject: {fileID: 1913150792173850, guid: 66bfa892b68e0e14baf4dabf67e229db,
     type: 2}
   m_size: 10
---- !u!114 &114785618220763852
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1506861428519596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6bbeadb66324194ba82a435e2e6c3b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_landingZones: []
-  m_spawnInterval: 2
