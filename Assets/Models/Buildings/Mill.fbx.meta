@@ -86,7 +86,22 @@ ModelImporter:
     3300002: polySurface2600
     4300000: polySurface2600
     4300002: polySurface2588
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Molino_Maderas
+    second: {fileID: 2100000, guid: bd5ca0fbe7695354883005f2cb45050a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Molino_Paleta
+    second: {fileID: 2100000, guid: 80a8782974668954ca165971633f7f8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Molino_Ventilador
+    second: {fileID: 2100000, guid: ae599bc00f0ef5d4988e9383e27c6685, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

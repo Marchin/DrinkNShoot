@@ -19,7 +19,62 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: pCube1658
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Iglesia_Campana
+    second: {fileID: 2100000, guid: 231d71faf24402a4c8013e8f744afbf1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Iglesia_Cruces
+    second: {fileID: 2100000, guid: 7593409999edcad44aaa8bf01c53e08a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Iglesia_Maderas_1
+    second: {fileID: 2100000, guid: df5abaeda2788a1498d4203866a0c596, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Iglesia_Maderas_2
+    second: {fileID: 2100000, guid: 59e40eb6e31e88746b944cafe1d47566, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Iglesia_Paredes
+    second: {fileID: 2100000, guid: 441cd65f16f21964482c46195daf4575, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Iglesia_Picaporte
+    second: {fileID: 2100000, guid: f04a003e6f4ee9a458c4698cb93c2283, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Iglesia_Puertas
+    second: {fileID: 2100000, guid: 8eee955460feb3b43b870adc74c2cca7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Iglesia_Tejas
+    second: {fileID: 2100000, guid: a6605e9805c31f044806d1dbad0f126c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Iglesia_Ventanas
+    second: {fileID: 2100000, guid: c4a54e359052b99448883f046c12e2f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Iglesia_Vidrios
+    second: {fileID: 2100000, guid: b34ed727446721d44b6f858ed05594ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert3
+    second: {fileID: 2100000, guid: 065f093478f64974a8ff3535f2a1f248, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
