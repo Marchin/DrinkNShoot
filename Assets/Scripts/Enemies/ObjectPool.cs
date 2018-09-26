@@ -7,11 +7,12 @@ public class ObjectPool : MonoBehaviour {
 	[SerializeField] uint m_size;
 	List<GameObject> m_list;
 
-	private void Awake() {
+	private void Start() {
 		m_list = new List<GameObject>();
 		GameObject go;
 		for (uint i = 0; i < m_size; i++) {
 			go = Instantiate(m_gameObject, transform);
+			LevelManager.Instance.AddEnemyLife(go.GetComponent<Life>());
 			go.SetActive(false);
 			m_list.Add(go);
 		}
@@ -27,5 +28,13 @@ public class ObjectPool : MonoBehaviour {
 			}
 		}
 		return (requested != null);
+	}
+
+	public void DisableAll() {
+		foreach (GameObject go in m_list) {
+			if (go.activeInHierarchy) {
+				go.SetActive(false);
+			}
+		}
 	}
 }
