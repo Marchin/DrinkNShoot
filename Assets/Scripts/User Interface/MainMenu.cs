@@ -9,10 +9,13 @@ public class MainMenu : MonoBehaviour
 {
 	[SerializeField] TextMeshProUGUI appVersionText;
 	const float QUIT_DELAY = 0.5f;
+    bool playRequested;
 
 	void Start()
 	{
-		Cursor.lockState = CursorLockMode.None;
+        playRequested = false;
+        StartCoroutine("LoadAsyncScene");
+        Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
 		appVersionText.text = "Application Version: " + Application.version;
 	}
@@ -26,11 +29,27 @@ public class MainMenu : MonoBehaviour
 	{
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        playRequested = true;
+		//SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
 
 	public void Exit()
 	{
 		Invoke("QuitApplication", QUIT_DELAY);
 	}
+
+    IEnumerator LoadAsyncScene()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Town Level");
+        asyncLoad.allowSceneActivation = false;
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            if (playRequested)
+            {
+                asyncLoad.allowSceneActivation = true;
+            }
+            yield return null;
+        }
+    }
 }
