@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4392143564883094}
   - component: {fileID: 33082432552105642}
   - component: {fileID: 23670057051727400}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 114335771004750828}
   - component: {fileID: 114309668539239630}
   - component: {fileID: 114322977971419858}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: Crow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_landingZonesLayer:
     serializedVersion: 2
-    m_Bits: 65536
+    m_Bits: 32768
   m_flightSpeed: 30
   m_turnSpeed: 30
   m_landingRadius: 100
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_landingZonesLayer:
     serializedVersion: 2
-    m_Bits: 65536
+    m_Bits: 32768
   m_interval: 1
   m_distance: 1
   m_speed: 2

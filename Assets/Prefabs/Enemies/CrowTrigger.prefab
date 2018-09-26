@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4521373356672498}
   - component: {fileID: 65135333011877738}
   - component: {fileID: 114529765105928728}
-  m_Layer: 17
+  m_Layer: 16
   m_Name: CrowTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,4 +65,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_landingZones:
+  - {fileID: 0}
   - {fileID: 0}

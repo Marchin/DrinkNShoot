@@ -1,25 +1,20 @@
 fileFormatVersion: 2
-guid: 4d0a2c3b4778f5e42976dda1b02822c6
+guid: 6cdacea4c556b6f47900d5bcb1ac8f5d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Iglesia_Campana
-    2100002: Iglesia_Maderas_2
-    2100004: Iglesia_Picaporte
-    2100006: Iglesia_Puertas
-    2100008: Iglesia_Tejas
-    2100010: lambert3
-    2100012: Iglesia_Maderas_1
-    2100014: Iglesia_Cruces
-    2100016: Iglesia_Ventanas
-    2100018: Iglesia_Vidrios
-    2100020: Iglesia_Paredes
+    2100000: Cactus
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pCube1658
-  externalObjects: {}
+    4300000: pCylinder5
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus
+    second: {fileID: 2100000, guid: b5cccfe9efd6d464db9e9a83a73b8c1e, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -50,7 +45,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 60
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

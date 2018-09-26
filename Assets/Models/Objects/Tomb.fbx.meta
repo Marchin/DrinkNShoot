@@ -1,25 +1,22 @@
 fileFormatVersion: 2
-guid: 4d0a2c3b4778f5e42976dda1b02822c6
+guid: 8a4c26ab49cdb6f4abdd45d4af96d6a2
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Iglesia_Campana
-    2100002: Iglesia_Maderas_2
-    2100004: Iglesia_Picaporte
-    2100006: Iglesia_Puertas
-    2100008: Iglesia_Tejas
-    2100010: lambert3
-    2100012: Iglesia_Maderas_1
-    2100014: Iglesia_Cruces
-    2100016: Iglesia_Ventanas
-    2100018: Iglesia_Vidrios
-    2100020: Iglesia_Paredes
+    2100000: lambert5
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pCube1658
-  externalObjects: {}
+    4300000: Cruz
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert5
+    second: {fileID: 2100000, guid: a765ff500da3b444a83811ae65785e2c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -50,7 +47,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 15
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -70,8 +67,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    previousCalculatedGlobalScale: 0.06
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -96,7 +93,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
