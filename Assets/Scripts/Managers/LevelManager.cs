@@ -6,44 +6,55 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-	[Header("UI Refreneces")]
+	[Header("Entities References")]
+	[SerializeField] Transform player;
+	[SerializeField] List<Transform> enemySpawnPoints;
+	[SerializeField] CrowSpawner crowSpawner;
+	[Header("UI References")]
 	[SerializeField] GameObject completeLevelUI;
 	[SerializeField] GameObject failLevelUI;
 	[SerializeField] GameObject hudUI;
 	[Header("Level Properties")]
-	[SerializeField] Life[] enemiesLife;
-	[SerializeField] [Range(20, 600)] float completionTime;
-	[SerializeField] [Range(0, 25)] int difficultyLevel;
-	[SerializeField] [Range(1, 200)] int requiredKills;
+	[SerializeField] [Range(20, 600)] float startCompletionTime;
+	[SerializeField] [Range(0, 25)] int startDifficultyLevel;
+	[SerializeField] [Range(1, 200)] int startRequiredKills;
 	[SerializeField] UnityEvent onEnemyKill;
 	[SerializeField] UnityEvent onGameOver;
 	const float QUIT_DELAY = 0.5f;
+	const int DIFFICULTY_INCREASE = 2;
 	static LevelManager instance;
+	List<Life> enemiesLives;
+	int currentStage;
+	float completionTime;
+	int difficultyLevel;
+	int requiredKills;
 	bool gameOver = false;
 	float timeLeft = 0;
 	int targetsKilled = 0;
 
 	void Awake()
 	{
-		foreach (Life life in enemiesLife)
-			life.OnDeath.AddListener(IncreaseKillCounter);
-	}
-
-	void Start()
-	{
+		enemiesLives = new List<Life>();
+		completionTime = startCompletionTime;
 		timeLeft = completionTime;
+		difficultyLevel = startDifficultyLevel;
+		requiredKills = startRequiredKills;
+		currentStage = 0;
 	}
 
 	void Update()
 	{
-		timeLeft -= Time.deltaTime;
-
-		if (timeLeft <= 0)
+		if (!gameOver)
 		{
-			if (targetsKilled >= requiredKills)
-				CompleteLevel();
-			else
-				FailLevel();
+			timeLeft -= Time.deltaTime;
+
+			if (timeLeft <= 0)
+			{
+				if (targetsKilled >= requiredKills)
+					CompleteLevel();
+				else
+					FailLevel();
+			}
 		}
 	}
 
@@ -52,6 +63,9 @@ public class LevelManager : MonoBehaviour
 		gameOver = true;
 		completeLevelUI.SetActive(true);
 		hudUI.SetActive(false);
+		Time.timeScale = 0;
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
 		onGameOver.Invoke();
 	}
 
@@ -60,6 +74,9 @@ public class LevelManager : MonoBehaviour
         gameOver = true;
         failLevelUI.SetActive(true);
         hudUI.SetActive(false);
+		Time.timeScale = 0;
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
 		onGameOver.Invoke();
 	}
 
@@ -87,6 +104,32 @@ public class LevelManager : MonoBehaviour
 	public void QuitLevel()
 	{
 		Invoke("Quit", QUIT_DELAY);
+	}
+
+	public void AddEnemyLife(Life enemyLife)
+	{
+		enemiesLives.Add(enemyLife);
+		enemiesLives[enemiesLives.Count - 1].OnDeath.AddListener(IncreaseKillCounter);
+	}
+
+	public void IncreaseStageLevel()
+	{
+		difficultyLevel += DIFFICULTY_INCREASE * currentStage;
+		requiredKills += DIFFICULTY_INCREASE * currentStage;
+		onEnemyKill.Invoke();
+		Debug.Log(DifficultyLevel);
+	}
+
+	public void MoveToNextStage()
+	{
+		crowSpawner.DisableCrows();
+		gameOver = false;
+		currentStage++;
+		player.position = enemySpawnPoints[currentStage].position;
+		player.rotation = enemySpawnPoints[currentStage].rotation;
+		completionTime = startCompletionTime + 10;
+		targetsKilled = 0;
+		timeLeft = completionTime;
 	}
 
 	public UnityEvent OnEnemyKill

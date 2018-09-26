@@ -15,5 +15,6 @@ public class CrowTrigger : MonoBehaviour {
 
 	private void OnTriggerExit(Collider other) {
 		m_crowSpawner.enabled = false;
+		LevelManager.Instance.IncreaseStageLevel();
 	}
 }

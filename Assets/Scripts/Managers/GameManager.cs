@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	static GameManager instance;
-	[SerializeField] SettingsMenu.GfxSetting currentGfxSetting;
+	[SerializeField] SettingsMenu.GfxSetting currentGfxSetting = SettingsMenu.GfxSetting.Wild;
 	[SerializeField] float currentSfxVolume = 0.75f;
 
 	void Awake()

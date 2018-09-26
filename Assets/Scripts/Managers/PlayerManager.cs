@@ -36,11 +36,13 @@ public class PlayerManager : MonoBehaviour
         equippedGun = FindObjectOfType<WeaponHolder>().EquippedGun;
         playerAnimator = cameraRotation.gameObject.GetComponentInChildren<Animator>();
 		FindObjectOfType<PauseMenu>().OnPauseToggle.AddListener(TogglePlayerAvailability);
+		FindObjectOfType<EndLevelMenu>().OnContinue.AddListener(TogglePlayerAvailability);
         LevelManager.Instance.OnGameOver.AddListener(TogglePlayerAvailability);
 	}
 
 	void TogglePlayerAvailability()
 	{
+		Debug.Log("Toggle");
 		cameraRotation.enabled = !cameraRotation.enabled;
 		drunkCamera.enabled = !drunkCamera.enabled;
 		equippedGun.enabled = !equippedGun.enabled;

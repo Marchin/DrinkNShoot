@@ -26,10 +26,14 @@ public class CrowSpawner : MonoBehaviour {
 		} else {
 			m_counter -= Time.deltaTime;
 		}
-
 	}
 
 	public void SetLandingZones(Collider[] landingZones) {
 		m_landingZones = landingZones;
+	}
+
+	public void DisableCrows() {
+		m_counter = m_spawnInterval;
+		m_pool.DisableAll();
 	}
 }

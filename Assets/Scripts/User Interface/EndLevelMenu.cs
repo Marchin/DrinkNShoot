@@ -1,15 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EndLevelMenu : MonoBehaviour 
 {
-	void Start()
-	{
-		Time.timeScale = 0;
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
-	}
+	[SerializeField] UnityEvent onContinue;
 
 	public void Restart()
 	{
@@ -17,9 +13,23 @@ public class EndLevelMenu : MonoBehaviour
 		LevelManager.Instance.RestartLevel();
 	}
 
+	public void PlayNextStage()
+	{
+		Time.timeScale = 1;
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+		LevelManager.Instance.MoveToNextStage();
+		onContinue.Invoke();
+	}
+
 	public void Quit()
 	{
 		Time.timeScale = 1;
 		LevelManager.Instance.QuitLevel();
+	}
+
+	public UnityEvent OnContinue
+	{
+		get { return onContinue; }
 	}
 }
