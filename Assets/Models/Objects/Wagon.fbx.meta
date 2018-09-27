@@ -396,7 +396,37 @@ ModelImporter:
     2300000: pPlane3
     3300000: pPlane3
     4300000: pPlane3
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Centro_rueda
+    second: {fileID: 2100000, guid: dba152986fc28314db4a6130fe14a5f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Maderas_Bordes
+    second: {fileID: 2100000, guid: 4ae0e8b7d10f0dd45bfd89f12e136579, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Maderas_adentro
+    second: {fileID: 2100000, guid: 19ab2ce32b0fbca46a0401582e00ca3b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rueda
+    second: {fileID: 2100000, guid: b04ed3f978eedd447bfc2fc486294abd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tela
+    second: {fileID: 2100000, guid: 0b0febd64a4493c4d86deceffa010824, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 2fdfc005dac18044c8538a78be1f0e27, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
