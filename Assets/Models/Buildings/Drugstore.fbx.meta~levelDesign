@@ -1,0 +1,195 @@
+fileFormatVersion: 2
+guid: f2942b832f27d404d9a102ee4cd9d5f4
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Drugs_Store_Picaporte
+    2100002: Drugs_Store_Puerta_1
+    2100004: Drugs_Store_Puerta_2
+    2100006: Drugs_Store_Maderas_4
+    2100008: Drugs_store_Madera_1
+    2100010: Drugs_Store_Barras
+    2100012: Drugs_Store_Bordes
+    2100014: Drugs_store_Ventanas_Arriba
+    2100016: Drugs_Store_Ventanas
+    2100018: Drugs_Store_Texto
+    2100020: Drugs_Store_Barras_2
+    2100022: Drugs_store_Piso
+    2100024: Drugs_Store_Maderas_2
+    2100026: Drugs_Store_Tejas
+    2100028: Drugs_store_Paredes
+    2100030: Drugs_store_Maderas_3
+    2100032: Techos
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Western:pCube1628
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drugs_Store_Barras
+    second: {fileID: 2100000, guid: d8ad95d1f47a4a549b413612234f745f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drugs_Store_Barras_2
+    second: {fileID: 2100000, guid: 3dd6707532cffbf4292474837e79c328, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drugs_Store_Bordes
+    second: {fileID: 2100000, guid: 09b9b977067c6f54e8a037eb582c1834, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drugs_Store_Maderas_2
+    second: {fileID: 2100000, guid: ea4ab27b63a2d944c81442ec2a9ac80b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drugs_Store_Maderas_4
+    second: {fileID: 2100000, guid: 33173babcebd4024db43b33904cf6253, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drugs_Store_Picaporte
+    second: {fileID: 2100000, guid: dae053c374c62514a89e3b3b327acf47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drugs_Store_Puerta_1
+    second: {fileID: 2100000, guid: fd2b37fc33302e0469e72185599dccfc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drugs_Store_Puerta_2
+    second: {fileID: 2100000, guid: afb8711e40734fe42b6d9ffe7a97818f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drugs_Store_Tejas
+    second: {fileID: 2100000, guid: 3ab4929c876cad143bd080492b2a3ab3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drugs_Store_Texto
+    second: {fileID: 2100000, guid: ee7df474367d5d44dae766d5ba5b8db5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drugs_Store_Ventanas
+    second: {fileID: 2100000, guid: dd2643030c28e4147953329a23e45b3b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drugs_store_Madera_1
+    second: {fileID: 2100000, guid: c5db2836a273a92499564c94171272f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drugs_store_Maderas_3
+    second: {fileID: 2100000, guid: c2e7438d561e2d74c9216a2ceb27a632, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drugs_store_Paredes
+    second: {fileID: 2100000, guid: efaac288756994d488ca8d679a9df2b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drugs_store_Piso
+    second: {fileID: 2100000, guid: 043685cdf83ad594e9ba32e7c51b77df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drugs_store_Ventanas_Arriba
+    second: {fileID: 2100000, guid: c90e280b284447d4c8cfdb9560633307, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Techos
+    second: {fileID: 2100000, guid: 41e112fe49e335442933e76748b28d9d, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -42,7 +42,6 @@ public class PlayerManager : MonoBehaviour
 
 	void TogglePlayerAvailability()
 	{
-		Debug.Log("Toggle");
 		cameraRotation.enabled = !cameraRotation.enabled;
 		drunkCamera.enabled = !drunkCamera.enabled;
 		equippedGun.enabled = !equippedGun.enabled;

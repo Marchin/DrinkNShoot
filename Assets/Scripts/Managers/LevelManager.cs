@@ -14,12 +14,16 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] GameObject completeLevelUI;
 	[SerializeField] GameObject failLevelUI;
 	[SerializeField] GameObject hudUI;
+	[SerializeField] GameObject tutorialUI;
 	[Header("Level Properties")]
 	[SerializeField] [Range(20, 600)] float startCompletionTime;
 	[SerializeField] [Range(0, 25)] int startDifficultyLevel;
 	[SerializeField] [Range(1, 200)] int startRequiredKills;
+	[SerializeField] bool tutorialEnabled = true;
+	[Header("Events")]
 	[SerializeField] UnityEvent onEnemyKill;
 	[SerializeField] UnityEvent onGameOver;
+	[SerializeField] UnityEvent onFirstEmptyGun;
 	const float QUIT_DELAY = 0.5f;
 	const int DIFFICULTY_INCREASE = 2;
 	static LevelManager instance;
@@ -31,6 +35,7 @@ public class LevelManager : MonoBehaviour
 	bool gameOver = false;
 	float timeLeft = 0;
 	int targetsKilled = 0;
+	bool hasNotifiedEmptyGun = false;
 
 	void Awake()
 	{
@@ -40,6 +45,13 @@ public class LevelManager : MonoBehaviour
 		difficultyLevel = startDifficultyLevel;
 		requiredKills = startRequiredKills;
 		currentStage = 0;
+	}
+
+	void Start()
+	{
+		player.GetComponentInChildren<WeaponHolder>().EquippedGun.OnEmptyGun.AddListener(FirstEmptyGunNotice);
+		if (tutorialEnabled)
+			tutorialUI.SetActive(true);
 	}
 
 	void Update()
@@ -96,6 +108,15 @@ public class LevelManager : MonoBehaviour
 		SceneManager.LoadScene("Main Menu");
 	}
 
+	void FirstEmptyGunNotice()
+	{
+		if (!hasNotifiedEmptyGun)
+		{
+			hasNotifiedEmptyGun = true;
+			onFirstEmptyGun.Invoke();
+		}
+	}
+
 	public void RestartLevel()
 	{
 		Invoke("Restart", QUIT_DELAY);
@@ -132,11 +153,6 @@ public class LevelManager : MonoBehaviour
 		timeLeft = completionTime;
 	}
 
-	public UnityEvent OnEnemyKill
-	{
-		get { return onEnemyKill; }
-	}
-
 	public static LevelManager Instance
 	{
 		get
@@ -153,9 +169,19 @@ public class LevelManager : MonoBehaviour
 		}
 	}
 
+	public UnityEvent OnEnemyKill
+	{
+		get { return onEnemyKill; }
+	}
+
 	public UnityEvent OnGameOver
 	{
 		get { return onGameOver; }
+	}
+
+	public UnityEvent OnFirstEmptyGun
+	{
+		get { return onFirstEmptyGun; }
 	}
 
 	public bool GameOver
