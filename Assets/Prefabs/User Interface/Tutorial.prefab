@@ -28,7 +28,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1580133832172262
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   - Press the left mouse button to shoot
   - Kill as many crows as possible before time runs out!
   reloadInstruction: Press 'r' to reload
+  slidingAnimation: {fileID: 7400000, guid: 6c2b8d7dd9c31914abbcabf6f50d1cf5, type: 2}
 --- !u!114 &114431460536113876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -263,11 +264,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

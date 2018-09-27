@@ -16,6 +16,7 @@ public class TutorialUI : MonoBehaviour
 	[SerializeField] float initialBannerDelay = 3f;
 	[SerializeField] string[] initialInstructions;
 	[SerializeField] string reloadInstruction;
+	[SerializeField] AnimationClip slidingAnimation;
 	BannerType activeBannerType;
 	Animator bannerAnimator;
 	int initialInstructionIndex = 0;
@@ -40,19 +41,19 @@ public class TutorialUI : MonoBehaviour
 		switch (activeBannerType)
 		{
 			case BannerType.Initial:
-				if (timer >= instructionDisplayDuration + initialInstructionIndex * 0.33f)
+				if (timer >= instructionDisplayDuration + initialInstructionIndex * slidingAnimation.length)
 				{
 					timer = 0;
 					initialInstructionIndex++;
 					bannerAnimator.SetTrigger("Exit");
 					
 					if (initialInstructionIndex != initialInstructions.Length)
-						Invoke("ShowNextBanner", 0.33f);
+						Invoke("ShowNextBanner", slidingAnimation.length);
 					else
 					{
 						activeBannerType = BannerType.None;
 						bannerAnimator.SetTrigger("Exit");
-						Invoke("DisableBanner", 0.33f);
+						Invoke("DisableBanner", slidingAnimation.length);
 					}
 				}
 				else
