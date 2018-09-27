@@ -21,13 +21,14 @@ GameObject:
   - component: {fileID: 224639217900146534}
   - component: {fileID: 222696747307104334}
   - component: {fileID: 114431460536113876}
+  - component: {fileID: 95367265121003706}
   m_Layer: 5
   m_Name: Instructions Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1580133832172262
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,7 +47,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1595586744909176
 GameObject:
   m_ObjectHideFlags: 1
@@ -64,6 +65,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &95367265121003706
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1174876279521770}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6a0c454ef822d8e46b94d5043f2e005f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114304130554202660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,8 +96,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   banner: {fileID: 1174876279521770}
   tutorialText: {fileID: 114798456321568086}
-  instructionDisplayDuration: 7
-  initialBannerDelay: 2
+  instructionDisplayDuration: 5
+  initialBannerDelay: 3
   initialInstructions:
   - Move the mouse to aim
   - Press the left mouse button to shoot
@@ -244,11 +263,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

@@ -12,16 +12,22 @@ public class TutorialUI : MonoBehaviour
 
 	[SerializeField] GameObject banner;
 	[SerializeField] TextMeshProUGUI tutorialText;
-	[SerializeField] float instructionDisplayDuration = 8f;
+	[SerializeField] float instructionDisplayDuration = 5f;
 	[SerializeField] float initialBannerDelay = 3f;
 	[SerializeField] string[] initialInstructions;
 	[SerializeField] string reloadInstruction;
 	BannerType activeBannerType;
+	Animator bannerAnimator;
 	int initialInstructionIndex = 0;
 	float timer = 0f;
 	bool initialBannerEnabled = false;
 	bool reloadBannerEnabled = false;
 	bool hasPressedReloadButton = false;
+
+	void Awake()
+	{
+		bannerAnimator = banner.GetComponent<Animator>();
+	}
 
 	void Start()
 	{
@@ -34,15 +40,20 @@ public class TutorialUI : MonoBehaviour
 		switch (activeBannerType)
 		{
 			case BannerType.Initial:
-				if (timer >= instructionDisplayDuration)
+				if (timer >= instructionDisplayDuration + initialInstructionIndex * 0.33f)
 				{
 					timer = 0;
 					initialInstructionIndex++;
+					bannerAnimator.SetTrigger("Exit");
 					
 					if (initialInstructionIndex != initialInstructions.Length)
-						tutorialText.text = initialInstructions[initialInstructionIndex];
+						Invoke("ShowNextBanner", 0.33f);
 					else
-						DisableBanner();
+					{
+						activeBannerType = BannerType.None;
+						bannerAnimator.SetTrigger("Exit");
+						Invoke("DisableBanner", 0.33f);
+					}
 				}
 				else
 					timer += Time.deltaTime;
@@ -56,7 +67,9 @@ public class TutorialUI : MonoBehaviour
 					if (hasPressedReloadButton)
 					{
 						timer = 0;
-						DisableBanner();
+						activeBannerType = BannerType.None;
+						bannerAnimator.SetTrigger("Exit");
+						Invoke("DisableBanner", 0.33f);
 					}
 				}
 				else
@@ -73,6 +86,7 @@ public class TutorialUI : MonoBehaviour
 		timer = 0;
 		banner.SetActive(true);
 		activeBannerType = BannerType.Initial;
+		bannerAnimator.SetTrigger("Start");
 	}
 
 	void EnableReloadBanner()
@@ -81,11 +95,17 @@ public class TutorialUI : MonoBehaviour
 		banner.SetActive(true);
 		tutorialText.text = reloadInstruction;
 		activeBannerType = BannerType.Reload;
+		bannerAnimator.SetTrigger("Start");
 	}
 
 	void DisableBanner()
 	{
-		activeBannerType = BannerType.None;
         banner.SetActive(false);
+	}
+
+	void ShowNextBanner()
+	{
+		tutorialText.text = initialInstructions[initialInstructionIndex];
+		bannerAnimator.SetTrigger("Start");
 	}
 }
