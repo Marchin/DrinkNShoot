@@ -18465,6 +18465,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 65932691131311810, guid: 892867bb2c7e45244951903649a8e95a,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 65932691131311810, guid: 892867bb2c7e45244951903649a8e95a,
+        type: 2}
+      propertyPath: m_Center.x
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 65932691131311810, guid: 892867bb2c7e45244951903649a8e95a,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 892867bb2c7e45244951903649a8e95a, type: 2}
   m_IsPrefabAsset: 0
@@ -35820,6 +35835,22 @@ Prefab:
       propertyPath: m_landingZones.Array.data[1]
       value: 
       objectReference: {fileID: 1710245592}
+    - target: {fileID: 114517179880367768, guid: 9c61c9ac601a4d9449757c75742e65d7,
+        type: 2}
+      propertyPath: m_gameObject
+      value: 
+      objectReference: {fileID: 1306119874549748, guid: 66bfa892b68e0e14baf4dabf67e229db,
+        type: 2}
+    - target: {fileID: 114261857304258724, guid: 9c61c9ac601a4d9449757c75742e65d7,
+        type: 2}
+      propertyPath: m_spawnDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261857304258724, guid: 9c61c9ac601a4d9449757c75742e65d7,
+        type: 2}
+      propertyPath: m_spawnHeight
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c61c9ac601a4d9449757c75742e65d7, type: 2}
   m_IsPrefabAsset: 0
@@ -36389,7 +36420,7 @@ MonoBehaviour:
   completeLevelUI: {fileID: 428945616}
   failLevelUI: {fileID: 2078355698}
   hudUI: {fileID: 1500698464}
-  startCompletionTime: 20
+  startCompletionTime: 30
   startDifficultyLevel: 0
   startRequiredKills: 3
   onEnemyKill:
