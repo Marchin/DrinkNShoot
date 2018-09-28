@@ -21,8 +21,6 @@ public class TutorialUI : MonoBehaviour
 	Animator bannerAnimator;
 	int initialInstructionIndex = 0;
 	float timer = 0f;
-	bool initialBannerEnabled = false;
-	bool reloadBannerEnabled = false;
 	bool hasPressedReloadButton = false;
 
 	void Awake()
@@ -45,8 +43,7 @@ public class TutorialUI : MonoBehaviour
 				{
 					timer = 0;
 					initialInstructionIndex++;
-					bannerAnimator.SetTrigger("Exit");
-					
+					bannerAnimator.SetTrigger("Exit");			
 					if (initialInstructionIndex != initialInstructions.Length)
 						Invoke("ShowNextBanner", slidingAnimation.length);
 					else
@@ -62,7 +59,7 @@ public class TutorialUI : MonoBehaviour
 			
 			case BannerType.Reload:
 				if (!hasPressedReloadButton && InputManager.Instance.GetReloadButton())
-					hasPressedReloadButton = true;
+					hasPressedReloadButton = true;			
 				if (timer >= instructionDisplayDuration)
 				{
 					if (hasPressedReloadButton)

@@ -10,9 +10,19 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: pCylinder8
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bordes
+    second: {fileID: 2100000, guid: 2f9e38e0b8bf2bd4d873c69a64035a9f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Maderas
+    second: {fileID: 2100000, guid: e51c4479a5169ba449003d9791c642fe, type: 2}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1

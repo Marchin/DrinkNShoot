@@ -56,7 +56,7 @@ public class LevelManager : MonoBehaviour
 
 	void Update()
 	{
-		if (!gameOver)
+		if (!gameOver && !PauseMenu.IsPaused)
 		{
 			timeLeft -= Time.deltaTime;
 
@@ -138,7 +138,6 @@ public class LevelManager : MonoBehaviour
 		difficultyLevel += DIFFICULTY_INCREASE * currentStage;
 		requiredKills += DIFFICULTY_INCREASE * currentStage;
 		onEnemyKill.Invoke();
-		Debug.Log(DifficultyLevel);
 	}
 
 	public void MoveToNextStage()

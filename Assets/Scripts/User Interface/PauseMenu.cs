@@ -8,7 +8,7 @@ public class PauseMenu : MonoBehaviour
 	[SerializeField] GameObject pauseMenuUI;
 	[SerializeField] GameObject hudUI;
 	[SerializeField] UnityEvent onPauseToggle;
-	bool isPaused;
+	static bool isPaused;
 
 	void Start()
 	{
@@ -53,7 +53,12 @@ public class PauseMenu : MonoBehaviour
 		Time.timeScale = 1;
 		LevelManager.Instance.QuitLevel();
 	}
-
+	
+	public static bool IsPaused
+	{
+		get { return isPaused;}
+	}
+	
 	public UnityEvent OnPauseToggle
 	{
 		get { return onPauseToggle; }
