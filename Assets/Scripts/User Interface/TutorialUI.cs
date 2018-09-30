@@ -51,7 +51,6 @@ public class TutorialUI : MonoBehaviour
 					{
 						activeBannerType = BannerType.None;
 						initialInstructionsIndex = 0;
-						bannerAnimator.SetTrigger("Exit");
 						Invoke("DisableBanner", slidingAnimation.length);
 					}
 				}
@@ -73,7 +72,6 @@ public class TutorialUI : MonoBehaviour
 					{
 						activeBannerType = BannerType.None;
 						reloadInstructionsIndex = 0;
-						bannerAnimator.SetTrigger("Exit");
 						Invoke("DisableBanner",slidingAnimation.length);
 					}
 				}
