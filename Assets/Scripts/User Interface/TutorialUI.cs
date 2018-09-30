@@ -15,11 +15,12 @@ public class TutorialUI : MonoBehaviour
 	[SerializeField] float instructionDisplayDuration = 5f;
 	[SerializeField] float initialBannerDelay = 3f;
 	[SerializeField] string[] initialInstructions;
-	[SerializeField] string reloadInstruction;
+	[SerializeField] string[] reloadInstructions;
 	[SerializeField] AnimationClip slidingAnimation;
 	BannerType activeBannerType;
 	Animator bannerAnimator;
-	int initialInstructionIndex = 0;
+	int initialInstructionsIndex = 0;
+	int reloadInstructionsIndex = 0;
 	float timer = 0f;
 	bool hasPressedReloadButton = false;
 
@@ -39,16 +40,17 @@ public class TutorialUI : MonoBehaviour
 		switch (activeBannerType)
 		{
 			case BannerType.Initial:
-				if (timer >= instructionDisplayDuration + initialInstructionIndex * slidingAnimation.length)
+				if (timer >= instructionDisplayDuration + initialInstructionsIndex * slidingAnimation.length)
 				{
 					timer = 0;
-					initialInstructionIndex++;
+					initialInstructionsIndex++;
 					bannerAnimator.SetTrigger("Exit");			
-					if (initialInstructionIndex != initialInstructions.Length)
+					if (initialInstructionsIndex < initialInstructions.Length)
 						Invoke("ShowNextBanner", slidingAnimation.length);
 					else
 					{
 						activeBannerType = BannerType.None;
+						initialInstructionsIndex = 0;
 						bannerAnimator.SetTrigger("Exit");
 						Invoke("DisableBanner", slidingAnimation.length);
 					}
@@ -60,14 +62,19 @@ public class TutorialUI : MonoBehaviour
 			case BannerType.Reload:
 				if (!hasPressedReloadButton && InputManager.Instance.GetReloadButton())
 					hasPressedReloadButton = true;			
-				if (timer >= instructionDisplayDuration)
+				if (timer >= instructionDisplayDuration && hasPressedReloadButton)
 				{
-					if (hasPressedReloadButton)
+					timer = 0;
+					reloadInstructionsIndex++;
+					bannerAnimator.SetTrigger("Exit");
+					if (reloadInstructionsIndex < reloadInstructions.Length)
+						Invoke("ShowNextBanner", slidingAnimation.length);
+					else
 					{
-						timer = 0;
 						activeBannerType = BannerType.None;
+						reloadInstructionsIndex = 0;
 						bannerAnimator.SetTrigger("Exit");
-						Invoke("DisableBanner", 0.33f);
+						Invoke("DisableBanner",slidingAnimation.length);
 					}
 				}
 				else
@@ -91,7 +98,7 @@ public class TutorialUI : MonoBehaviour
 	{
 		timer = 0;
 		banner.SetActive(true);
-		tutorialText.text = reloadInstruction;
+		tutorialText.text = reloadInstructions[0];
 		activeBannerType = BannerType.Reload;
 		bannerAnimator.SetTrigger("Start");
 	}
@@ -103,7 +110,16 @@ public class TutorialUI : MonoBehaviour
 
 	void ShowNextBanner()
 	{
-		tutorialText.text = initialInstructions[initialInstructionIndex];
+		switch (activeBannerType)
+		{
+			case BannerType.Initial:
+				tutorialText.text = initialInstructions[initialInstructionsIndex];
+				break;
+			
+			case BannerType.Reload:
+				tutorialText.text = reloadInstructions[reloadInstructionsIndex];
+				break;
+		}
 		bannerAnimator.SetTrigger("Start");
 	}
 }

@@ -99,10 +99,12 @@ MonoBehaviour:
   instructionDisplayDuration: 5
   initialBannerDelay: 3
   initialInstructions:
-  - Move the mouse to aim
-  - Press the left mouse button to shoot
+  - Move the mouse to aim.
+  - Press the left mouse button to shoot.
   - Kill as many crows as possible before time runs out!
-  reloadInstruction: Press 'r' to reload
+  reloadInstructions:
+  - Press 'r' to reload
+  - You may cancel the reload by pressing the left mouse button.
   slidingAnimation: {fileID: 7400000, guid: 6c2b8d7dd9c31914abbcabf6f50d1cf5, type: 2}
 --- !u!114 &114431460536113876
 MonoBehaviour:
@@ -123,7 +125,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7d9d297761a217f4b843a107c78ab6ef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 35c36f1b6fd2be248b7182727485b440, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -189,8 +191,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Move the mouse to aim
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 081f7ff30c361824f85bcc19e602fc02, type: 2}
-  m_sharedMaterial: {fileID: 21376470516422978, guid: 081f7ff30c361824f85bcc19e602fc02,
+  m_fontAsset: {fileID: 11400000, guid: d6f86f2680e7c784aa7a58bf44257c55, type: 2}
+  m_sharedMaterial: {fileID: 21510035921187684, guid: d6f86f2680e7c784aa7a58bf44257c55,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -215,7 +217,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 77.65
+  m_fontSize: 95.3
   m_fontSizeBase: 112
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -261,7 +263,7 @@ MonoBehaviour:
     spaceCount: 4
     wordCount: 5
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 1
@@ -350,8 +352,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -500, y: 100}
-  m_SizeDelta: {x: 800, y: 150}
+  m_AnchoredPosition: {x: -350, y: 200}
+  m_SizeDelta: {x: 600, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224937471260028434
 RectTransform:
