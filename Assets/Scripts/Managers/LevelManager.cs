@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
 	[Header("Entities References")]
-	[SerializeField] Transform player;
-	[SerializeField] List<Transform> enemySpawnPoints;
+	[SerializeField] NavMeshAgent playersWagon;
 	[SerializeField] CrowSpawner crowSpawner;
 	[Header("UI References")]
 	[SerializeField] GameObject completeLevelUI;
@@ -23,11 +23,12 @@ public class LevelManager : MonoBehaviour
 	[Header("Events")]
 	[SerializeField] UnityEvent onEnemyKill;
 	[SerializeField] UnityEvent onGameOver;
+	[SerializeField] UnityEvent onStartNextStage;
 	[SerializeField] UnityEvent onFirstEmptyGun;
+	List<Transform> enemySpawnPoints;
 	const float QUIT_DELAY = 0.5f;
 	const int DIFFICULTY_INCREASE = 2;
 	static LevelManager instance;
-	List<Life> enemiesLives;
 	int currentStage;
 	float completionTime;
 	int difficultyLevel;
@@ -39,7 +40,7 @@ public class LevelManager : MonoBehaviour
 
 	void Awake()
 	{
-		enemiesLives = new List<Life>();
+		enemySpawnPoints = new List<Transform>();
 		completionTime = startCompletionTime;
 		timeLeft = completionTime;
 		difficultyLevel = startDifficultyLevel;
@@ -49,9 +50,14 @@ public class LevelManager : MonoBehaviour
 
 	void Start()
 	{
-		player.GetComponentInChildren<WeaponHolder>().EquippedGun.OnEmptyGun.AddListener(FirstEmptyGunNotice);
+		foreach (Transform spawnPoint in crowSpawner.transform)
+			enemySpawnPoints.Add(spawnPoint);
+
 		if (tutorialEnabled)
+		{
+			playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().EquippedGun.OnEmptyGun.AddListener(FirstEmptyGunNotice);
 			tutorialUI.SetActive(true);
+		}
 	}
 
 	void Update()
@@ -129,15 +135,7 @@ public class LevelManager : MonoBehaviour
 
 	public void AddEnemyLife(Life enemyLife)
 	{
-		enemiesLives.Add(enemyLife);
-		enemiesLives[enemiesLives.Count - 1].OnDeath.AddListener(IncreaseKillCounter);
-	}
-
-	public void IncreaseStageLevel()
-	{
-		difficultyLevel += DIFFICULTY_INCREASE * currentStage;
-		requiredKills += DIFFICULTY_INCREASE * currentStage;
-		onEnemyKill.Invoke();
+		enemyLife.OnDeath.AddListener(IncreaseKillCounter);
 	}
 
 	public void MoveToNextStage()
@@ -145,11 +143,13 @@ public class LevelManager : MonoBehaviour
 		crowSpawner.DisableCrows();
 		gameOver = false;
 		currentStage++;
-		player.position = enemySpawnPoints[currentStage].position;
-		player.rotation = enemySpawnPoints[currentStage].rotation;
+		playersWagon.destination = enemySpawnPoints[currentStage].position;
 		completionTime = startCompletionTime + 10;
 		targetsKilled = 0;
 		timeLeft = completionTime;
+		difficultyLevel += DIFFICULTY_INCREASE * currentStage;
+		requiredKills += DIFFICULTY_INCREASE * currentStage;
+		onStartNextStage.Invoke();
 	}
 
 	public static LevelManager Instance
@@ -176,6 +176,11 @@ public class LevelManager : MonoBehaviour
 	public UnityEvent OnGameOver
 	{
 		get { return onGameOver; }
+	}
+
+	public UnityEvent OnStartNextStage
+	{
+		get { return onStartNextStage; }
 	}
 
 	public UnityEvent OnFirstEmptyGun

@@ -26,6 +26,7 @@ public class HUD : MonoBehaviour
         weaponHolder.EquippedGun.OnReloadFinish.AddListener(ChangeAmmoDisplay);
         weaponHolder.EquippedGun.OnCrosshairScale.AddListener(ScaleCrosshair);
 		LevelManager.Instance.OnEnemyKill.AddListener(ChangeKillsDisplay);
+		LevelManager.Instance.OnStartNextStage.AddListener(ChangeKillsDisplay);
 
 		criticalAmmoLeft = weaponHolder.EquippedGun.MaxAmmo / criticalAmmoLeftPortion ;
 		criticalAmmoInGun = weaponHolder.EquippedGun.CylinderCapacity / criticalAmmoInGunPortion;

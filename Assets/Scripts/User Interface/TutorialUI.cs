@@ -33,6 +33,8 @@ public class TutorialUI : MonoBehaviour
 	{
 		Invoke("EnableInitialBanner", initialBannerDelay);
 		LevelManager.Instance.OnFirstEmptyGun.AddListener(EnableReloadBanner);
+		initialInstructionsIndex = 0;
+		reloadInstructionsIndex = 0;
 	}
 
 	void Update()

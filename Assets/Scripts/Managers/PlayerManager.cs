@@ -35,6 +35,7 @@ public class PlayerManager : MonoBehaviour
         drunkCamera = FindObjectOfType<DrunkCamera>();
         equippedGun = FindObjectOfType<WeaponHolder>().EquippedGun;
         playerAnimator = cameraRotation.gameObject.GetComponentInChildren<Animator>();
+		
 		FindObjectOfType<PauseMenu>().OnPauseToggle.AddListener(TogglePlayerAvailability);
 		FindObjectOfType<EndLevelMenu>().OnContinue.AddListener(TogglePlayerAvailability);
         LevelManager.Instance.OnGameOver.AddListener(TogglePlayerAvailability);

@@ -7,8 +7,6 @@ public class DrunkCamera : MonoBehaviour {
     [Range(0f, 100f)]
     [Tooltip("How much the total shakness varies (percentage)")]
     [SerializeField] float m_variance = 0.3f;
-    [Tooltip("Temporal Dificult Level")]
-    [Range(0, 25)]
     int m_level;
 	const float m_HALF_PI = Mathf.PI / 2f;
     float m_min = 0.3f;
@@ -17,6 +15,7 @@ public class DrunkCamera : MonoBehaviour {
     float m_prevRot; 
 
 	private void Awake() {
+        LevelManager.Instance.OnStartNextStage.AddListener(IncreaseDrunkLevel);
         m_level = LevelManager.Instance.DifficultyLevel;
 		m_currRotation = transform.eulerAngles.z;
         m_prevRot = m_currRotation;
@@ -47,5 +46,9 @@ public class DrunkCamera : MonoBehaviour {
         newRotation.z = m_currRotation;
         m_prevRot = m_currRotation;
         transform.eulerAngles = newRotation;
+    }
+
+    private void IncreaseDrunkLevel() {
+        m_level = LevelManager.Instance.DifficultyLevel;
     }
 }
