@@ -13,11 +13,15 @@ public class HUD : MonoBehaviour
 	[SerializeField] TextMeshProUGUI timerText;
 	[Header("References")]
 	[SerializeField] WeaponHolder weaponHolder;
-	const int criticalAmmoLeftPortion = 5;
-	const int criticalAmmoInGunPortion = 3;
-	const int criticalTimeLeft = 15;
+	const int CRITICAL_AMMO_LEFT_FRACT = 5;
+	const int CRITICAL_AMMO_IN_GUN_FRAC = 3;
+	const int WARNING_TIME_LEFT = 20;
+	const int CRITICAL_TIME_LEFT = 10;
 	int criticalAmmoLeft;
 	int criticalAmmoInGun;
+	Color darkGreen;
+	Color darkRed;
+	Color yellow;
 
     void Start()
     {
@@ -28,8 +32,12 @@ public class HUD : MonoBehaviour
 		LevelManager.Instance.OnEnemyKill.AddListener(ChangeKillsDisplay);
 		LevelManager.Instance.OnStartNextStage.AddListener(ChangeKillsDisplay);
 
-		criticalAmmoLeft = weaponHolder.EquippedGun.MaxAmmo / criticalAmmoLeftPortion ;
-		criticalAmmoInGun = weaponHolder.EquippedGun.CylinderCapacity / criticalAmmoInGunPortion;
+		criticalAmmoLeft = weaponHolder.EquippedGun.MaxAmmo / CRITICAL_AMMO_LEFT_FRACT ;
+		criticalAmmoInGun = weaponHolder.EquippedGun.CylinderCapacity / CRITICAL_AMMO_IN_GUN_FRAC;
+
+		darkGreen = new Color(0.1f, 0.5f, 0.1f);
+		darkRed = new Color(0.5f, 0.1f, 0.1f);
+		yellow = new Color(0.8f, 0.6f, 0.1f);
 
 		ChangeAmmoDisplay();
 		ChangeKillsDisplay();
@@ -53,11 +61,11 @@ public class HUD : MonoBehaviour
         int ammoLeft = weaponHolder.EquippedGun.AmmoLeft;
 
 		if (ammoLeft <= criticalAmmoLeft)
-			ammoText.color = Color.red;
+			ammoText.color = darkRed;
 		else
 		{
 			if (bulletsInCylinder <= criticalAmmoInGun)
-				ammoText.color = Color.yellow;
+				ammoText.color = yellow;
 			else
 				ammoText.color = Color.white;
 		}
@@ -71,7 +79,7 @@ public class HUD : MonoBehaviour
 		int requiredKills = LevelManager.Instance.RequiredKills;
 
 		crowsText.text = targetsKilled + "/" + requiredKills;
-		crowsText.color = targetsKilled < requiredKills ? Color.red : Color.green;
+		crowsText.color = targetsKilled < requiredKills ? darkRed : darkGreen;
 	}
 
 	void ChangeTimerDisplay()
@@ -79,7 +87,14 @@ public class HUD : MonoBehaviour
 		int timeLeft = (int)LevelManager.Instance.TimeLeft;
 		timerText.text = timeLeft.ToString() + "\"";
 
-		if (timeLeft <= criticalTimeLeft)
-			timerText.color = Color.red;
+		if (timeLeft <= CRITICAL_TIME_LEFT)
+			timerText.color = darkRed;
+		else
+		{
+			if (timeLeft <= WARNING_TIME_LEFT)
+				timerText.color = yellow;
+			else
+				timerText.color = Color.white;
+		}
 	}
 }

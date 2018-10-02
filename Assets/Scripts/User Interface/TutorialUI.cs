@@ -7,7 +7,7 @@ public class TutorialUI : MonoBehaviour
 {
 	enum BannerType
 	{
-		None, Initial, Reload
+		None, Initial, Reload, Drunk
 	}
 
 	[SerializeField] GameObject banner;
@@ -16,11 +16,13 @@ public class TutorialUI : MonoBehaviour
 	[SerializeField] float initialBannerDelay = 3f;
 	[SerializeField] string[] initialInstructions;
 	[SerializeField] string[] reloadInstructions;
+	[SerializeField] string[] drunkInstructions;
 	[SerializeField] AnimationClip slidingAnimation;
 	BannerType activeBannerType;
 	Animator bannerAnimator;
 	int initialInstructionsIndex = 0;
 	int reloadInstructionsIndex = 0;
+	int drunkInstructionsIndex = 0;
 	float timer = 0f;
 	bool hasPressedReloadButton = false;
 
@@ -33,8 +35,7 @@ public class TutorialUI : MonoBehaviour
 	{
 		Invoke("EnableInitialBanner", initialBannerDelay);
 		LevelManager.Instance.OnFirstEmptyGun.AddListener(EnableReloadBanner);
-		initialInstructionsIndex = 0;
-		reloadInstructionsIndex = 0;
+		LevelManager.Instance.OnClearFirstStage.AddListener(EnableDrunkBanner);
 	}
 
 	void Update()
@@ -63,7 +64,7 @@ public class TutorialUI : MonoBehaviour
 			case BannerType.Reload:
 				if (!hasPressedReloadButton && InputManager.Instance.GetReloadButton())
 					hasPressedReloadButton = true;			
-				if (timer >= instructionDisplayDuration && hasPressedReloadButton)
+				if (timer >= instructionDisplayDuration + reloadInstructionsIndex * slidingAnimation.length && hasPressedReloadButton)
 				{
 					timer = 0;
 					reloadInstructionsIndex++;
@@ -76,6 +77,25 @@ public class TutorialUI : MonoBehaviour
 						reloadInstructionsIndex = 0;
 						Invoke("DisableBanner",slidingAnimation.length);
 					}
+				}
+				else
+					timer += Time.deltaTime;
+				break;
+
+			case BannerType.Drunk:
+				if (timer >= instructionDisplayDuration + drunkInstructionsIndex * slidingAnimation.length)
+				{
+					timer = 0;
+					drunkInstructionsIndex++;
+					bannerAnimator.SetTrigger("Exit");
+                    if (drunkInstructionsIndex < drunkInstructions.Length)
+                        Invoke("ShowNextBanner", slidingAnimation.length);
+                    else
+                    {
+                        activeBannerType = BannerType.None;
+                        drunkInstructionsIndex = 0;
+                        Invoke("DisableBanner", slidingAnimation.length);
+                    }
 				}
 				else
 					timer += Time.deltaTime;
@@ -103,6 +123,15 @@ public class TutorialUI : MonoBehaviour
 		bannerAnimator.SetTrigger("Start");
 	}
 
+	void EnableDrunkBanner()
+	{
+		timer = 0;
+		banner.SetActive(true);
+		tutorialText.text = drunkInstructions[0];
+		activeBannerType = BannerType.Drunk;
+		bannerAnimator.SetTrigger("Start");
+	}
+
 	void DisableBanner()
 	{
         banner.SetActive(false);
@@ -118,6 +147,10 @@ public class TutorialUI : MonoBehaviour
 			
 			case BannerType.Reload:
 				tutorialText.text = reloadInstructions[reloadInstructionsIndex];
+				break;
+
+			case BannerType.Drunk:
+				tutorialText.text = drunkInstructions[drunkInstructionsIndex];
 				break;
 		}
 		bannerAnimator.SetTrigger("Start");
