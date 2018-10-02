@@ -11,6 +11,7 @@ public class HUD : MonoBehaviour
 	[SerializeField] TextMeshProUGUI ammoText;
 	[SerializeField] TextMeshProUGUI crowsText;
 	[SerializeField] TextMeshProUGUI timerText;
+	[SerializeField] TextMeshProUGUI currencyText;
 	[Header("References")]
 	[SerializeField] WeaponHolder weaponHolder;
 	const int CRITICAL_AMMO_LEFT_FRACT = 5;
@@ -96,5 +97,10 @@ public class HUD : MonoBehaviour
 			else
 				timerText.color = Color.white;
 		}
+	}
+
+	public void ChangeCurrencyDisplay(int currency)
+	{
+		currencyText.text = "$" + currency.ToString();
 	}
 }

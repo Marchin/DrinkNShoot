@@ -10,7 +10,8 @@ public class PlayerManager : MonoBehaviour
 	DrunkCamera drunkCamera;
 	Gun equippedGun;
 	Animator playerAnimator; 
-	uint m_crowCurrency;
+	int currency;
+	int totalKills;
 
 	void Awake() 
 	{
@@ -68,9 +69,15 @@ public class PlayerManager : MonoBehaviour
 		}
 	}
 
-	public uint CrowCurrency
+	public int Currency
 	{
-		get { return m_crowCurrency; }
-		set { m_crowCurrency = value; }
+		get { return currency; }
+		set { currency = value; }
+	}
+
+	public int TotalKills
+	{
+		get { return totalKills; }
+		set { totalKills = value; }
 	}
 }

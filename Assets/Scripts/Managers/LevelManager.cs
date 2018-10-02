@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] CrowSpawner crowSpawner;
 	[Header("UI References")]
 	[SerializeField] GameObject completeLevelUI;
+	[SerializeField] GameObject completeStageUI;
 	[SerializeField] GameObject failLevelUI;
 	[SerializeField] GameObject hudUI;
 	[SerializeField] GameObject tutorialUI;
@@ -27,17 +28,24 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] UnityEvent onFirstEmptyGun;
 	[SerializeField] UnityEvent onClearFirstStage;
 	List<Transform> enemySpawnPoints;
+	EndLevelMenu endLevelMenu;
+	HUD hud;
 	const float QUIT_DELAY = 0.5f;
 	const int KILLS_INCREASE = 3;
 	const int TIME_INCREASE = 15;
+	const int CASH_PER_KILL = 5;
 	static LevelManager instance;
 	int currentStageIndex;
+	int maxStageIndex;
 	float completionTime;
 	int difficultyLevel;
 	int requiredKills;
 	bool gameOver = false;
 	float timeLeft = 0;
-	int targetsKilled = 0;
+	int targetsKilledInStage = 0;
+	int totalKills = 0;
+	int cashEarnedInStage = 0;
+	int totalIncome = 0;
 	bool hasNotifiedEmptyGun = false;
 	bool inShootingStage = true;
 
@@ -49,12 +57,16 @@ public class LevelManager : MonoBehaviour
 		difficultyLevel = startDifficultyLevel;
 		requiredKills = startRequiredKills;
 		currentStageIndex = 0;
+		maxStageIndex = enemySpawnPoints.Count - 1;
 	}
 
 	void Start()
 	{
 		foreach (Transform spawnPoint in crowSpawner.transform)
 			enemySpawnPoints.Add(spawnPoint);
+
+		endLevelMenu = FindObjectOfType<EndLevelMenu>();
+		hud = FindObjectOfType<HUD>();
 
 		if (tutorialEnabled)
 		{
@@ -71,7 +83,7 @@ public class LevelManager : MonoBehaviour
 
 			if (timeLeft <= 0)
 			{
-				if (targetsKilled >= requiredKills)
+				if (targetsKilledInStage >= requiredKills)
 					CompleteStage();
 				else
 					FailLevel();
@@ -82,11 +94,21 @@ public class LevelManager : MonoBehaviour
 	void CompleteStage()
 	{
 		gameOver = true;
-		completeLevelUI.SetActive(true);
+		if (currentStageIndex != maxStageIndex)
+			completeStageUI.SetActive(true);
+		else
+			completeLevelUI.SetActive(true);
 		hudUI.SetActive(false);
 		Time.timeScale = 0;
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
+		totalKills += targetsKilledInStage;
+		cashEarnedInStage = targetsKilledInStage * CASH_PER_KILL;
+		totalIncome += cashEarnedInStage;
+		PlayerManager.Instance.Currency += cashEarnedInStage;
+		PlayerManager.Instance.TotalKills += targetsKilledInStage;
+		endLevelMenu.ChangeEndScreenText(cashEarnedInStage, totalIncome, targetsKilledInStage, totalKills);
+		hud.ChangeCurrencyDisplay(totalIncome);
 		onGameOver.Invoke();
 	}
 
@@ -103,7 +125,7 @@ public class LevelManager : MonoBehaviour
 
 	void IncreaseKillCounter()
 	{
-		targetsKilled++;
+		targetsKilledInStage++;
 		onEnemyKill.Invoke();
 	}
 
@@ -153,7 +175,7 @@ public class LevelManager : MonoBehaviour
 		completionTime += TIME_INCREASE;
 		requiredKills += KILLS_INCREASE * currentStageIndex ;
 		difficultyLevel++;
-		targetsKilled = 0;
+		targetsKilledInStage = 0;
 		timeLeft = completionTime;
 		onStartNextStage.Invoke();
 	}
@@ -221,7 +243,7 @@ public class LevelManager : MonoBehaviour
 
 	public int TargetsKilled
 	{
-		get { return targetsKilled; }
+		get { return targetsKilledInStage; }
 	}
 
 	public int RequiredKills
