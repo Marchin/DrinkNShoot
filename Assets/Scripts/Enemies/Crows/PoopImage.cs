@@ -6,12 +6,14 @@ public class PoopImage : MonoBehaviour {
     [SerializeField] float m_duration;
     [SerializeField] float m_fadeDuration;
     Image m_image;
+    AudioSource m_soundFX;
     float m_fadingRate;
     bool m_fading;
 
     private void Awake() {
         m_fading = false;
         m_image = GetComponent<Image>();
+        m_soundFX = GetComponent<AudioSource>();
         m_fadingRate = m_maxAlpha / m_fadeDuration;
         SetAlpha(0f);
     }
@@ -34,6 +36,7 @@ public class PoopImage : MonoBehaviour {
     [ContextMenu("Poop")]
     public void Poop() {
         SetAlpha(m_maxAlpha);
+        m_soundFX.Play();
         Invoke("StartToFade", m_duration);
     }
 
