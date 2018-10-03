@@ -20668,7 +20668,7 @@ GameObject:
   - component: {fileID: 1262321493}
   - component: {fileID: 1262321496}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Poop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20704,8 +20704,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxAlpha: 0.5
-  m_duration: 2
+  m_duration: 5
   m_fadeDuration: 4
+  m_interval: 20
 --- !u!114 &1262321494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26524,7 +26525,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1393894713
 Prefab:
@@ -36821,7 +36822,7 @@ Transform:
   - {fileID: 14199260}
   - {fileID: 1447646571}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1975345103
 Prefab:
