@@ -1,0 +1,595 @@
+fileFormatVersion: 2
+guid: 10a2684bfa240af48b1fba55611da197
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: polySurface20
+    100004: polySurface24
+    100006: polySurface21
+    100008: polySurface22
+    100010: polySurface23
+    100012: polySurface31
+    100014: polySurface33
+    100016: polySurface34
+    100018: polySurface35
+    100020: polySurface36
+    100022: polySurface37
+    100024: Revolver:Group32313
+    100026: Revolver:pCube12
+    100028: Revolver:pCube5
+    100030: Revolver:pCube6
+    100032: Revolver:pCylinder29
+    100034: Revolver:pCylinder36
+    100036: Revolver:pCylinder38
+    100038: Revolver:pCylinder39
+    100040: Revolver:pCylinder40
+    100042: Revolver:pCylinder40.002
+    100044: Revolver:pCylinder40.003
+    100046: Revolver:pCylinder40.004
+    100048: Revolver:pCylinder41
+    100050: Revolver:pCylinder41.001
+    100052: Revolver:pCylinder42
+    100054: Revolver:pCylinder43
+    100056: Revolver:pCylinder44
+    100058: Revolver:pCylinder45
+    100060: Revolver:pCylinder46
+    100062: Revolver:pCylinder47
+    100064: Revolver:pCylinder48
+    100066: Revolver:PolySphere1:Group32313
+    100068: Revolver:polySurface1
+    100070: Revolver:polySurface2
+    100072: Revolver:polySurface3
+    100074: Revolver:polySurface4
+    100076: Revolver:polySurface5
+    100078: Revolver:polySurface5.001
+    100080: Revolver:polySurface6
+    100082: Revolver:transform1
+    100084: Revolver:transform10
+    100086: Revolver:transform11
+    100088: Revolver:transform12
+    100090: Revolver:transform13
+    100092: Revolver:transform14
+    100094: Revolver:transform15
+    100096: Revolver:transform16
+    100098: Revolver:transform17
+    100100: Revolver:transform18
+    100102: Revolver:transform19
+    100104: Revolver:transform2
+    100106: Revolver:transform20
+    100108: Revolver:transform21
+    100110: Revolver:transform22
+    100112: Revolver:transform23
+    100114: Revolver:transform24
+    100116: Revolver:transform26
+    100118: Revolver:transform27
+    100120: Revolver:transform28
+    100122: Revolver:transform3
+    100124: Revolver:transform4
+    100126: Revolver:transform5
+    100128: Revolver:transform6
+    100130: Revolver:transform7
+    100132: Revolver:transform8
+    100134: Revolver:transform9
+    100136: Right_Hand
+    100138: transform1
+    400000: //RootNode
+    400002: polySurface20
+    400004: polySurface24
+    400006: polySurface21
+    400008: polySurface22
+    400010: polySurface23
+    400012: polySurface31
+    400014: polySurface33
+    400016: polySurface34
+    400018: polySurface35
+    400020: polySurface36
+    400022: polySurface37
+    400024: Revolver:Group32313
+    400026: Revolver:pCube12
+    400028: Revolver:pCube5
+    400030: Revolver:pCube6
+    400032: Revolver:pCylinder29
+    400034: Revolver:pCylinder36
+    400036: Revolver:pCylinder38
+    400038: Revolver:pCylinder39
+    400040: Revolver:pCylinder40
+    400042: Revolver:pCylinder40.002
+    400044: Revolver:pCylinder40.003
+    400046: Revolver:pCylinder40.004
+    400048: Revolver:pCylinder41
+    400050: Revolver:pCylinder41.001
+    400052: Revolver:pCylinder42
+    400054: Revolver:pCylinder43
+    400056: Revolver:pCylinder44
+    400058: Revolver:pCylinder45
+    400060: Revolver:pCylinder46
+    400062: Revolver:pCylinder47
+    400064: Revolver:pCylinder48
+    400066: Revolver:PolySphere1:Group32313
+    400068: Revolver:polySurface1
+    400070: Revolver:polySurface2
+    400072: Revolver:polySurface3
+    400074: Revolver:polySurface4
+    400076: Revolver:polySurface5
+    400078: Revolver:polySurface5.001
+    400080: Revolver:polySurface6
+    400082: Revolver:transform1
+    400084: Revolver:transform10
+    400086: Revolver:transform11
+    400088: Revolver:transform12
+    400090: Revolver:transform13
+    400092: Revolver:transform14
+    400094: Revolver:transform15
+    400096: Revolver:transform16
+    400098: Revolver:transform17
+    400100: Revolver:transform18
+    400102: Revolver:transform19
+    400104: Revolver:transform2
+    400106: Revolver:transform20
+    400108: Revolver:transform21
+    400110: Revolver:transform22
+    400112: Revolver:transform23
+    400114: Revolver:transform24
+    400116: Revolver:transform26
+    400118: Revolver:transform27
+    400120: Revolver:transform28
+    400122: Revolver:transform3
+    400124: Revolver:transform4
+    400126: Revolver:transform5
+    400128: Revolver:transform6
+    400130: Revolver:transform7
+    400132: Revolver:transform8
+    400134: Revolver:transform9
+    400136: Right_Hand
+    400138: transform1
+    2100000: Revolver_Revolver_Madera
+    2100002: Revolver_Revolver_Metal
+    2300000: //RootNode
+    2300002: polySurface20
+    2300004: polySurface24
+    2300006: polySurface21
+    2300008: polySurface22
+    2300010: polySurface23
+    2300012: polySurface31
+    2300014: polySurface33
+    2300016: polySurface34
+    2300018: polySurface35
+    2300020: polySurface36
+    2300022: polySurface37
+    3300000: //RootNode
+    3300002: polySurface20
+    3300004: polySurface24
+    3300006: polySurface21
+    3300008: polySurface22
+    3300010: polySurface23
+    3300012: polySurface31
+    3300014: polySurface33
+    3300016: polySurface34
+    3300018: polySurface35
+    3300020: polySurface36
+    3300022: polySurface37
+    4300000: polySurface20
+    4300002: polySurface24
+    4300004: polySurface21
+    4300006: polySurface22
+    4300008: polySurface23
+    4300010: polySurface31
+    4300012: polySurface37
+    4300014: polySurface36
+    4300016: polySurface35
+    4300018: polySurface34
+    4300020: polySurface33
+    7400000: polySurface20|polySurface20|Take 001|BaseLayer
+    7400002: polySurface20|polySurface21|Take 001|BaseLayer
+    7400004: polySurface20|polySurface22|Take 001|BaseLayer
+    7400006: polySurface20|polySurface23|Take 001|BaseLayer
+    7400008: polySurface20|polySurface24|Take 001|BaseLayer
+    7400010: polySurface20|polySurface31|Take 001|BaseLayer
+    7400012: polySurface20|polySurface33|Take 001|BaseLayer
+    7400014: polySurface20|polySurface34|Take 001|BaseLayer
+    7400016: polySurface20|polySurface35|Take 001|BaseLayer
+    7400018: polySurface20|polySurface36|Take 001|BaseLayer
+    7400020: polySurface20|polySurface37|Take 001|BaseLayer
+    7400022: polySurface20|Revolver:pCube5|Take 001|BaseLayer
+    7400024: polySurface20|Revolver:pCube6|Take 001|BaseLayer
+    7400026: polySurface20|Revolver:pCylinder38|Take 001|BaseLayer
+    7400028: polySurface20|Revolver:pCylinder40.001|Take 001|BaseLayer
+    7400030: polySurface20|Revolver:polySurface4|Take 001|BaseLayer
+    7400032: polySurface20|Right_Hand|Take 001|BaseLayer
+    7400034: polySurface24|polySurface20|Take 001|BaseLayer
+    7400036: polySurface24|polySurface21|Take 001|BaseLayer
+    7400038: polySurface24|polySurface22|Take 001|BaseLayer
+    7400040: polySurface24|polySurface23|Take 001|BaseLayer
+    7400042: polySurface24|polySurface24|Take 001|BaseLayer
+    7400044: polySurface24|polySurface31|Take 001|BaseLayer
+    7400046: polySurface24|polySurface33|Take 001|BaseLayer
+    7400048: polySurface24|polySurface34|Take 001|BaseLayer
+    7400050: polySurface24|polySurface35|Take 001|BaseLayer
+    7400052: polySurface24|polySurface36|Take 001|BaseLayer
+    7400054: polySurface24|polySurface37|Take 001|BaseLayer
+    7400056: polySurface24|Revolver:pCube5|Take 001|BaseLayer
+    7400058: polySurface24|Revolver:pCube6|Take 001|BaseLayer
+    7400060: polySurface24|Revolver:pCylinder38|Take 001|BaseLayer
+    7400062: polySurface24|Revolver:pCylinder40.001|Take 001|BaseLayer
+    7400064: polySurface24|Revolver:polySurface4|Take 001|BaseLayer
+    7400066: polySurface24|Right_Hand|Take 001|BaseLayer
+    7400068: polySurface21|polySurface20|Take 001|BaseLayer
+    7400070: polySurface21|polySurface21|Take 001|BaseLayer
+    7400072: polySurface21|polySurface22|Take 001|BaseLayer
+    7400074: polySurface21|polySurface23|Take 001|BaseLayer
+    7400076: polySurface21|polySurface24|Take 001|BaseLayer
+    7400078: polySurface21|polySurface31|Take 001|BaseLayer
+    7400080: polySurface21|polySurface33|Take 001|BaseLayer
+    7400082: polySurface21|polySurface34|Take 001|BaseLayer
+    7400084: polySurface21|polySurface35|Take 001|BaseLayer
+    7400086: polySurface21|polySurface36|Take 001|BaseLayer
+    7400088: polySurface21|polySurface37|Take 001|BaseLayer
+    7400090: polySurface21|Revolver:pCube5|Take 001|BaseLayer
+    7400092: polySurface21|Revolver:pCube6|Take 001|BaseLayer
+    7400094: polySurface21|Revolver:pCylinder38|Take 001|BaseLayer
+    7400096: polySurface21|Revolver:pCylinder40.001|Take 001|BaseLayer
+    7400098: polySurface21|Revolver:polySurface4|Take 001|BaseLayer
+    7400100: polySurface21|Right_Hand|Take 001|BaseLayer
+    7400102: polySurface22|polySurface20|Take 001|BaseLayer
+    7400104: polySurface22|polySurface21|Take 001|BaseLayer
+    7400106: polySurface22|polySurface22|Take 001|BaseLayer
+    7400108: polySurface22|polySurface23|Take 001|BaseLayer
+    7400110: polySurface22|polySurface24|Take 001|BaseLayer
+    7400112: polySurface22|polySurface31|Take 001|BaseLayer
+    7400114: polySurface22|polySurface33|Take 001|BaseLayer
+    7400116: polySurface22|polySurface34|Take 001|BaseLayer
+    7400118: polySurface22|polySurface35|Take 001|BaseLayer
+    7400120: polySurface22|polySurface36|Take 001|BaseLayer
+    7400122: polySurface22|polySurface37|Take 001|BaseLayer
+    7400124: polySurface22|Revolver:pCube5|Take 001|BaseLayer
+    7400126: polySurface22|Revolver:pCube6|Take 001|BaseLayer
+    7400128: polySurface22|Revolver:pCylinder38|Take 001|BaseLayer
+    7400130: polySurface22|Revolver:pCylinder40.001|Take 001|BaseLayer
+    7400132: polySurface22|Revolver:polySurface4|Take 001|BaseLayer
+    7400134: polySurface22|Right_Hand|Take 001|BaseLayer
+    7400136: polySurface23|polySurface20|Take 001|BaseLayer
+    7400138: polySurface23|polySurface21|Take 001|BaseLayer
+    7400140: polySurface23|polySurface22|Take 001|BaseLayer
+    7400142: polySurface23|polySurface23|Take 001|BaseLayer
+    7400144: polySurface23|polySurface24|Take 001|BaseLayer
+    7400146: polySurface23|polySurface31|Take 001|BaseLayer
+    7400148: polySurface23|polySurface33|Take 001|BaseLayer
+    7400150: polySurface23|polySurface34|Take 001|BaseLayer
+    7400152: polySurface23|polySurface35|Take 001|BaseLayer
+    7400154: polySurface23|polySurface36|Take 001|BaseLayer
+    7400156: polySurface23|polySurface37|Take 001|BaseLayer
+    7400158: polySurface23|Revolver:pCube5|Take 001|BaseLayer
+    7400160: polySurface23|Revolver:pCube6|Take 001|BaseLayer
+    7400162: polySurface23|Revolver:pCylinder38|Take 001|BaseLayer
+    7400164: polySurface23|Revolver:pCylinder40.001|Take 001|BaseLayer
+    7400166: polySurface23|Revolver:polySurface4|Take 001|BaseLayer
+    7400168: polySurface23|Right_Hand|Take 001|BaseLayer
+    7400170: polySurface31|polySurface20|Take 001|BaseLayer
+    7400172: polySurface31|polySurface21|Take 001|BaseLayer
+    7400174: polySurface31|polySurface22|Take 001|BaseLayer
+    7400176: polySurface31|polySurface23|Take 001|BaseLayer
+    7400178: polySurface31|polySurface24|Take 001|BaseLayer
+    7400180: polySurface31|polySurface31|Take 001|BaseLayer
+    7400182: polySurface31|polySurface33|Take 001|BaseLayer
+    7400184: polySurface31|polySurface34|Take 001|BaseLayer
+    7400186: polySurface31|polySurface35|Take 001|BaseLayer
+    7400188: polySurface31|polySurface36|Take 001|BaseLayer
+    7400190: polySurface31|polySurface37|Take 001|BaseLayer
+    7400192: polySurface31|Revolver:pCube5|Take 001|BaseLayer
+    7400194: polySurface31|Revolver:pCube6|Take 001|BaseLayer
+    7400196: polySurface31|Revolver:pCylinder38|Take 001|BaseLayer
+    7400198: polySurface31|Revolver:pCylinder40.001|Take 001|BaseLayer
+    7400200: polySurface31|Revolver:polySurface4|Take 001|BaseLayer
+    7400202: polySurface31|Right_Hand|Take 001|BaseLayer
+    7400204: polySurface37|polySurface20|Take 001|BaseLayer
+    7400206: polySurface37|polySurface21|Take 001|BaseLayer
+    7400208: polySurface37|polySurface22|Take 001|BaseLayer
+    7400210: polySurface37|polySurface23|Take 001|BaseLayer
+    7400212: polySurface37|polySurface24|Take 001|BaseLayer
+    7400214: polySurface37|polySurface31|Take 001|BaseLayer
+    7400216: polySurface37|polySurface33|Take 001|BaseLayer
+    7400218: polySurface37|polySurface34|Take 001|BaseLayer
+    7400220: polySurface37|polySurface35|Take 001|BaseLayer
+    7400222: polySurface37|polySurface36|Take 001|BaseLayer
+    7400224: polySurface37|polySurface37|Take 001|BaseLayer
+    7400226: polySurface37|Revolver:pCube5|Take 001|BaseLayer
+    7400228: polySurface37|Revolver:pCube6|Take 001|BaseLayer
+    7400230: polySurface37|Revolver:pCylinder38|Take 001|BaseLayer
+    7400232: polySurface37|Revolver:pCylinder40.001|Take 001|BaseLayer
+    7400234: polySurface37|Revolver:polySurface4|Take 001|BaseLayer
+    7400236: polySurface37|Right_Hand|Take 001|BaseLayer
+    7400238: polySurface36|polySurface20|Take 001|BaseLayer
+    7400240: polySurface36|polySurface21|Take 001|BaseLayer
+    7400242: polySurface36|polySurface22|Take 001|BaseLayer
+    7400244: polySurface36|polySurface23|Take 001|BaseLayer
+    7400246: polySurface36|polySurface24|Take 001|BaseLayer
+    7400248: polySurface36|polySurface31|Take 001|BaseLayer
+    7400250: polySurface36|polySurface33|Take 001|BaseLayer
+    7400252: polySurface36|polySurface34|Take 001|BaseLayer
+    7400254: polySurface36|polySurface35|Take 001|BaseLayer
+    7400256: polySurface36|polySurface36|Take 001|BaseLayer
+    7400258: polySurface36|polySurface37|Take 001|BaseLayer
+    7400260: polySurface36|Revolver:pCube5|Take 001|BaseLayer
+    7400262: polySurface36|Revolver:pCube6|Take 001|BaseLayer
+    7400264: polySurface36|Revolver:pCylinder38|Take 001|BaseLayer
+    7400266: polySurface36|Revolver:pCylinder40.001|Take 001|BaseLayer
+    7400268: polySurface36|Revolver:polySurface4|Take 001|BaseLayer
+    7400270: polySurface36|Right_Hand|Take 001|BaseLayer
+    7400272: polySurface35|polySurface20|Take 001|BaseLayer
+    7400274: polySurface35|polySurface21|Take 001|BaseLayer
+    7400276: polySurface35|polySurface22|Take 001|BaseLayer
+    7400278: polySurface35|polySurface23|Take 001|BaseLayer
+    7400280: polySurface35|polySurface24|Take 001|BaseLayer
+    7400282: polySurface35|polySurface31|Take 001|BaseLayer
+    7400284: polySurface35|polySurface33|Take 001|BaseLayer
+    7400286: polySurface35|polySurface34|Take 001|BaseLayer
+    7400288: polySurface35|polySurface35|Take 001|BaseLayer
+    7400290: polySurface35|polySurface36|Take 001|BaseLayer
+    7400292: polySurface35|polySurface37|Take 001|BaseLayer
+    7400294: polySurface35|Revolver:pCube5|Take 001|BaseLayer
+    7400296: polySurface35|Revolver:pCube6|Take 001|BaseLayer
+    7400298: polySurface35|Revolver:pCylinder38|Take 001|BaseLayer
+    7400300: polySurface35|Revolver:pCylinder40.001|Take 001|BaseLayer
+    7400302: polySurface35|Revolver:polySurface4|Take 001|BaseLayer
+    7400304: polySurface35|Right_Hand|Take 001|BaseLayer
+    7400306: polySurface34|polySurface20|Take 001|BaseLayer
+    7400308: polySurface34|polySurface21|Take 001|BaseLayer
+    7400310: polySurface34|polySurface22|Take 001|BaseLayer
+    7400312: polySurface34|polySurface23|Take 001|BaseLayer
+    7400314: polySurface34|polySurface24|Take 001|BaseLayer
+    7400316: polySurface34|polySurface31|Take 001|BaseLayer
+    7400318: polySurface34|polySurface33|Take 001|BaseLayer
+    7400320: polySurface34|polySurface34|Take 001|BaseLayer
+    7400322: polySurface34|polySurface35|Take 001|BaseLayer
+    7400324: polySurface34|polySurface36|Take 001|BaseLayer
+    7400326: polySurface34|polySurface37|Take 001|BaseLayer
+    7400328: polySurface34|Revolver:pCube5|Take 001|BaseLayer
+    7400330: polySurface34|Revolver:pCube6|Take 001|BaseLayer
+    7400332: polySurface34|Revolver:pCylinder38|Take 001|BaseLayer
+    7400334: polySurface34|Revolver:pCylinder40.001|Take 001|BaseLayer
+    7400336: polySurface34|Revolver:polySurface4|Take 001|BaseLayer
+    7400338: polySurface34|Right_Hand|Take 001|BaseLayer
+    7400340: polySurface33|polySurface20|Take 001|BaseLayer
+    7400342: polySurface33|polySurface21|Take 001|BaseLayer
+    7400344: polySurface33|polySurface22|Take 001|BaseLayer
+    7400346: polySurface33|polySurface23|Take 001|BaseLayer
+    7400348: polySurface33|polySurface24|Take 001|BaseLayer
+    7400350: polySurface33|polySurface31|Take 001|BaseLayer
+    7400352: polySurface33|polySurface33|Take 001|BaseLayer
+    7400354: polySurface33|polySurface34|Take 001|BaseLayer
+    7400356: polySurface33|polySurface35|Take 001|BaseLayer
+    7400358: polySurface33|polySurface36|Take 001|BaseLayer
+    7400360: polySurface33|polySurface37|Take 001|BaseLayer
+    7400362: polySurface33|Revolver:pCube5|Take 001|BaseLayer
+    7400364: polySurface33|Revolver:pCube6|Take 001|BaseLayer
+    7400366: polySurface33|Revolver:pCylinder38|Take 001|BaseLayer
+    7400368: polySurface33|Revolver:pCylinder40.001|Take 001|BaseLayer
+    7400370: polySurface33|Revolver:polySurface4|Take 001|BaseLayer
+    7400372: polySurface33|Right_Hand|Take 001|BaseLayer
+    7400374: Revolver:pCylinder38|polySurface20|Take 001|BaseLayer
+    7400376: Revolver:pCylinder38|polySurface21|Take 001|BaseLayer
+    7400378: Revolver:pCylinder38|polySurface22|Take 001|BaseLayer
+    7400380: Revolver:pCylinder38|polySurface23|Take 001|BaseLayer
+    7400382: Revolver:pCylinder38|polySurface24|Take 001|BaseLayer
+    7400384: Revolver:pCylinder38|polySurface31|Take 001|BaseLayer
+    7400386: Revolver:pCylinder38|polySurface33|Take 001|BaseLayer
+    7400388: Revolver:pCylinder38|polySurface34|Take 001|BaseLayer
+    7400390: Revolver:pCylinder38|polySurface35|Take 001|BaseLayer
+    7400392: Revolver:pCylinder38|polySurface36|Take 001|BaseLayer
+    7400394: Revolver:pCylinder38|polySurface37|Take 001|BaseLayer
+    7400396: Revolver:pCylinder38|Revolver:pCube5|Take 001|BaseLayer
+    7400398: Revolver:pCylinder38|Revolver:pCube6|Take 001|BaseLayer
+    7400400: Revolver:pCylinder38|Revolver:pCylinder38|Take 001|BaseLayer
+    7400402: Revolver:pCylinder38|Revolver:pCylinder40.001|Take 001|BaseLayer
+    7400404: Revolver:pCylinder38|Revolver:polySurface4|Take 001|BaseLayer
+    7400406: Revolver:pCylinder38|Right_Hand|Take 001|BaseLayer
+    7400408: Revolver:polySurface4|polySurface20|Take 001|BaseLayer
+    7400410: Revolver:polySurface4|polySurface21|Take 001|BaseLayer
+    7400412: Revolver:polySurface4|polySurface22|Take 001|BaseLayer
+    7400414: Revolver:polySurface4|polySurface23|Take 001|BaseLayer
+    7400416: Revolver:polySurface4|polySurface24|Take 001|BaseLayer
+    7400418: Revolver:polySurface4|polySurface31|Take 001|BaseLayer
+    7400420: Revolver:polySurface4|polySurface33|Take 001|BaseLayer
+    7400422: Revolver:polySurface4|polySurface34|Take 001|BaseLayer
+    7400424: Revolver:polySurface4|polySurface35|Take 001|BaseLayer
+    7400426: Revolver:polySurface4|polySurface36|Take 001|BaseLayer
+    7400428: Revolver:polySurface4|polySurface37|Take 001|BaseLayer
+    7400430: Revolver:polySurface4|Revolver:pCube5|Take 001|BaseLayer
+    7400432: Revolver:polySurface4|Revolver:pCube6|Take 001|BaseLayer
+    7400434: Revolver:polySurface4|Revolver:pCylinder38|Take 001|BaseLayer
+    7400436: Revolver:polySurface4|Revolver:pCylinder40.001|Take 001|BaseLayer
+    7400438: Revolver:polySurface4|Revolver:polySurface4|Take 001|BaseLayer
+    7400440: Revolver:polySurface4|Right_Hand|Take 001|BaseLayer
+    7400442: Revolver:pCube5|polySurface20|Take 001|BaseLayer
+    7400444: Revolver:pCube5|polySurface21|Take 001|BaseLayer
+    7400446: Revolver:pCube5|polySurface22|Take 001|BaseLayer
+    7400448: Revolver:pCube5|polySurface23|Take 001|BaseLayer
+    7400450: Revolver:pCube5|polySurface24|Take 001|BaseLayer
+    7400452: Revolver:pCube5|polySurface31|Take 001|BaseLayer
+    7400454: Revolver:pCube5|polySurface33|Take 001|BaseLayer
+    7400456: Revolver:pCube5|polySurface34|Take 001|BaseLayer
+    7400458: Revolver:pCube5|polySurface35|Take 001|BaseLayer
+    7400460: Revolver:pCube5|polySurface36|Take 001|BaseLayer
+    7400462: Revolver:pCube5|polySurface37|Take 001|BaseLayer
+    7400464: Revolver:pCube5|Revolver:pCube5|Take 001|BaseLayer
+    7400466: Revolver:pCube5|Revolver:pCube6|Take 001|BaseLayer
+    7400468: Revolver:pCube5|Revolver:pCylinder38|Take 001|BaseLayer
+    7400470: Revolver:pCube5|Revolver:pCylinder40.001|Take 001|BaseLayer
+    7400472: Revolver:pCube5|Revolver:polySurface4|Take 001|BaseLayer
+    7400474: Revolver:pCube5|Right_Hand|Take 001|BaseLayer
+    7400476: Revolver:pCube6|polySurface20|Take 001|BaseLayer
+    7400478: Revolver:pCube6|polySurface21|Take 001|BaseLayer
+    7400480: Revolver:pCube6|polySurface22|Take 001|BaseLayer
+    7400482: Revolver:pCube6|polySurface23|Take 001|BaseLayer
+    7400484: Revolver:pCube6|polySurface24|Take 001|BaseLayer
+    7400486: Revolver:pCube6|polySurface31|Take 001|BaseLayer
+    7400488: Revolver:pCube6|polySurface33|Take 001|BaseLayer
+    7400490: Revolver:pCube6|polySurface34|Take 001|BaseLayer
+    7400492: Revolver:pCube6|polySurface35|Take 001|BaseLayer
+    7400494: Revolver:pCube6|polySurface36|Take 001|BaseLayer
+    7400496: Revolver:pCube6|polySurface37|Take 001|BaseLayer
+    7400498: Revolver:pCube6|Revolver:pCube5|Take 001|BaseLayer
+    7400500: Revolver:pCube6|Revolver:pCube6|Take 001|BaseLayer
+    7400502: Revolver:pCube6|Revolver:pCylinder38|Take 001|BaseLayer
+    7400504: Revolver:pCube6|Revolver:pCylinder40.001|Take 001|BaseLayer
+    7400506: Revolver:pCube6|Revolver:polySurface4|Take 001|BaseLayer
+    7400508: Revolver:pCube6|Right_Hand|Take 001|BaseLayer
+    7400510: Right_Hand|polySurface20|Take 001|BaseLayer
+    7400512: Right_Hand|polySurface21|Take 001|BaseLayer
+    7400514: Right_Hand|polySurface22|Take 001|BaseLayer
+    7400516: Right_Hand|polySurface23|Take 001|BaseLayer
+    7400518: Right_Hand|polySurface24|Take 001|BaseLayer
+    7400520: Right_Hand|polySurface31|Take 001|BaseLayer
+    7400522: Right_Hand|polySurface33|Take 001|BaseLayer
+    7400524: Right_Hand|polySurface34|Take 001|BaseLayer
+    7400526: Right_Hand|polySurface35|Take 001|BaseLayer
+    7400528: Right_Hand|polySurface36|Take 001|BaseLayer
+    7400530: Right_Hand|polySurface37|Take 001|BaseLayer
+    7400532: Right_Hand|Revolver:pCube5|Take 001|BaseLayer
+    7400534: Right_Hand|Revolver:pCube6|Take 001|BaseLayer
+    7400536: Right_Hand|Revolver:pCylinder38|Take 001|BaseLayer
+    7400538: Right_Hand|Revolver:pCylinder40.001|Take 001|BaseLayer
+    7400540: Right_Hand|Revolver:polySurface4|Take 001|BaseLayer
+    7400542: Right_Hand|Right_Hand|Take 001|BaseLayer
+    9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: polySurface20|polySurface20|Take 001|BaseLayer
+      takeName: polySurface20|polySurface20|Take 001|BaseLayer
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Revolver:pCube6|polySurface20|Take 001|BaseLayer
+      takeName: Revolver:pCube6|polySurface20|Take 001|BaseLayer
+      firstFrame: 0
+      lastFrame: 124
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.2
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.002
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

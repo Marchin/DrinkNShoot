@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 65710796246551324}
   - component: {fileID: 114074142597568652}
   m_Layer: 16
-  m_Name: CrowTrigger (1)
+  m_Name: CrowTrigger 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 65750440642745736}
   - component: {fileID: 114141254075659796}
   m_Layer: 16
-  m_Name: CrowTrigger
+  m_Name: CrowTrigger 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 65615692683112902}
   - component: {fileID: 114639216887672170}
   m_Layer: 16
-  m_Name: CrowTrigger (3)
+  m_Name: CrowTrigger 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,23 +79,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1832145173362552
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4898995437904334}
-  - component: {fileID: 65106605519777380}
-  - component: {fileID: 114353580639688522}
-  m_Layer: 16
-  m_Name: CrowTrigger (4)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1832900540190574
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +90,7 @@ GameObject:
   - component: {fileID: 65879512580720618}
   - component: {fileID: 114006832488659626}
   m_Layer: 16
-  m_Name: CrowTrigger (2)
+  m_Name: CrowTrigger 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,7 +110,6 @@ Transform:
   - {fileID: 4441149030020056}
   - {fileID: 4300926715395024}
   - {fileID: 4464470636636112}
-  - {fileID: 4898995437904334}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -183,31 +165,6 @@ Transform:
   m_Father: {fileID: 4267023890869834}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4898995437904334
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1832145173362552}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -14.38, y: -0.1, z: 34.49}
-  m_LocalScale: {x: 1.0000004, y: 1, z: 1.0000004}
-  m_Children: []
-  m_Father: {fileID: 4267023890869834}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!65 &65106605519777380
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1832145173362552}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.5, y: 1.5, z: 4.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65615692683112902
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -218,7 +175,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 1.5, z: 4.5}
+  m_Size: {x: 2.5, y: 1.5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65710796246551324
 BoxCollider:
@@ -267,9 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_landingZones:
-  - {fileID: 0}
-  - {fileID: 0}
+  m_stage: {fileID: 0}
 --- !u!114 &114074142597568652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -281,9 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_landingZones:
-  - {fileID: 0}
-  - {fileID: 0}
+  m_stage: {fileID: 0}
 --- !u!114 &114141254075659796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -295,9 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_landingZones:
-  - {fileID: 0}
-  - {fileID: 0}
+  m_stage: {fileID: 0}
 --- !u!114 &114261857304258724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -310,20 +261,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_spawnInterval: 2
---- !u!114 &114353580639688522
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1832145173362552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_landingZones:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &114517179880367768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -349,7 +286,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_landingZones:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_stage: {fileID: 0}
