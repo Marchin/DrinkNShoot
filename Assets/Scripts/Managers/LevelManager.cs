@@ -21,6 +21,9 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] [Range(0, 25)] int startDifficultyLevel;
 	[SerializeField] [Range(1, 200)] int startRequiredKills;
 	[SerializeField] bool tutorialEnabled = true;
+	[Header("Sounds")]
+	[SerializeField] AudioSource completeLevelSound;
+	[SerializeField] AudioSource failLevelSound;
 	[Header("Events")]
 	[SerializeField] UnityEvent onEnemyKill;
 	[SerializeField] UnityEvent onGameOver;
@@ -109,6 +112,7 @@ public class LevelManager : MonoBehaviour
 		PlayerManager.Instance.TotalKills += targetsKilledInStage;
 		endLevelMenu.ChangeEndScreenText(cashEarnedInStage, totalIncome, targetsKilledInStage, totalKills);
 		hud.ChangeCurrencyDisplay(totalIncome);
+		completeLevelSound.Play();
 		onGameOver.Invoke();
 	}
 
@@ -120,6 +124,7 @@ public class LevelManager : MonoBehaviour
 		Time.timeScale = 0;
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
+		failLevelSound.Play();
 		onGameOver.Invoke();
 	}
 

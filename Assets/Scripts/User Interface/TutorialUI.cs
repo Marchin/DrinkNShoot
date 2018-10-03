@@ -18,6 +18,8 @@ public class TutorialUI : MonoBehaviour
 	[SerializeField] string[] reloadInstructions;
 	[SerializeField] string[] drunkInstructions;
 	[SerializeField] AnimationClip slidingAnimation;
+	[SerializeField] AudioSource slideInSound;
+	[SerializeField] AudioSource slideOutSound;
 	BannerType activeBannerType;
 	Animator bannerAnimator;
 	int initialInstructionsIndex = 0;
@@ -47,7 +49,8 @@ public class TutorialUI : MonoBehaviour
 				{
 					timer = 0;
 					initialInstructionsIndex++;
-					bannerAnimator.SetTrigger("Exit");			
+					bannerAnimator.SetTrigger("Exit");
+					slideOutSound.Play();		
 					if (initialInstructionsIndex < initialInstructions.Length)
 						Invoke("ShowNextBanner", slidingAnimation.length);
 					else
@@ -69,6 +72,7 @@ public class TutorialUI : MonoBehaviour
 					timer = 0;
 					reloadInstructionsIndex++;
 					bannerAnimator.SetTrigger("Exit");
+					slideOutSound.Play();
 					if (reloadInstructionsIndex < reloadInstructions.Length)
 						Invoke("ShowNextBanner", slidingAnimation.length);
 					else
@@ -88,6 +92,7 @@ public class TutorialUI : MonoBehaviour
 					timer = 0;
 					drunkInstructionsIndex++;
 					bannerAnimator.SetTrigger("Exit");
+					slideOutSound.Play();		
                     if (drunkInstructionsIndex < drunkInstructions.Length)
                         Invoke("ShowNextBanner", slidingAnimation.length);
                     else
@@ -112,6 +117,7 @@ public class TutorialUI : MonoBehaviour
 		banner.SetActive(true);
 		activeBannerType = BannerType.Initial;
 		bannerAnimator.SetTrigger("Start");
+		slideInSound.Play();		
 	}
 
 	void EnableReloadBanner()
@@ -121,6 +127,7 @@ public class TutorialUI : MonoBehaviour
 		tutorialText.text = reloadInstructions[0];
 		activeBannerType = BannerType.Reload;
 		bannerAnimator.SetTrigger("Start");
+		slideInSound.Play();		
 	}
 
 	void EnableDrunkBanner()
@@ -130,6 +137,7 @@ public class TutorialUI : MonoBehaviour
 		tutorialText.text = drunkInstructions[0];
 		activeBannerType = BannerType.Drunk;
 		bannerAnimator.SetTrigger("Start");
+		slideInSound.Play();		
 	}
 
 	void DisableBanner()
@@ -154,5 +162,6 @@ public class TutorialUI : MonoBehaviour
 				break;
 		}
 		bannerAnimator.SetTrigger("Start");
+		slideInSound.Play();		
 	}
 }
