@@ -4465,11 +4465,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunType: 0
-  fireRate: 2
+  fireRate: 1.5
   range: 100
   impactForce: 700
-  maxAmmo: 96
-  cylinderCapacity: 6
+  maxAmmo: 100
+  cylinderCapacity: 5
   regularSwayLevel: 3
   recoilSwayLevel: 5
   recoilDuration: 1.2
@@ -4501,6 +4501,11 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onReloadFinish:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onReloadCancel:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
