@@ -11,12 +11,7 @@ public class CrowTrigger : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		m_crowSpawner.enabled = true;
-		m_crowSpawner.SetLandingZones(m_landingZones);
 		LevelManager.Instance.EnterShootingStage();
-	}
-
-	private void OnTriggerExit(Collider other) {
-		m_crowSpawner.enabled = false;
+		m_crowSpawner.SetLandingZones(m_landingZones);
 	}
 }

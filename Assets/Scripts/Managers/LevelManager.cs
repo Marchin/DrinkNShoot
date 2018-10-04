@@ -173,6 +173,7 @@ public class LevelManager : MonoBehaviour
 		if (currentStageIndex == 0)
 			onClearFirstStage.Invoke();
 		crowSpawner.DisableCrows();
+		crowSpawner.enabled = false;
 		gameOver = false;
 		inShootingStage = false;
 		currentStageIndex++;
@@ -187,6 +188,7 @@ public class LevelManager : MonoBehaviour
 
 	public void EnterShootingStage()
 	{
+		crowSpawner.enabled = true;
 		inShootingStage = true;
 	}
 
