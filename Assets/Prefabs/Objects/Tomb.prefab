@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4773079671679222}
   - component: {fileID: 33236378305609588}
   - component: {fileID: 23569883639381232}
-  - component: {fileID: 95933884922237100}
   m_Layer: 11
   m_Name: Tomb
   m_TagString: Untagged
@@ -36,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1430280127569874}
   m_LocalRotation: {x: 0.00000006657903, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.104767, y: -22.195, z: -0.602417}
+  m_LocalPosition: {x: 16.930008, y: -22.19, z: -12.559998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,21 +83,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1430280127569874}
   m_Mesh: {fileID: 4300000, guid: 8a4c26ab49cdb6f4abdd45d4af96d6a2, type: 3}
---- !u!95 &95933884922237100
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1430280127569874}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 8a4c26ab49cdb6f4abdd45d4af96d6a2, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0

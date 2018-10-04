@@ -53,6 +53,7 @@ public class Gun : MonoBehaviour
 	[SerializeField] UnityEvent onReloadStart;
 	[SerializeField] UnityEvent onReload;
 	[SerializeField] UnityEvent onReloadFinish;
+	[SerializeField] UnityEvent onReloadCancel;
 	[SerializeField] UnityEvent onEmptyGun;
 	[SerializeField] UnityEvent onCrosshairScale;
 
@@ -62,11 +63,13 @@ public class Gun : MonoBehaviour
 	const float INTERPOLATION_PERC = 0.1f;
 	const int CROSSHAIR_SCALE_MULT = 20;
 	Transform fpsCamera;
+	Coroutine reloadRoutine;
 	int shootingLayerMask;
 	int ammoLeft;
 	float lastFireTime = 0;
 	int bulletsInCylinder = 0;
 	bool isReloading = false;
+	bool hasCanceledReload = false;
 	float regularSway = 0;
 	float recoilSway = 0;
 	float drunkSway = 0;
@@ -102,10 +105,10 @@ public class Gun : MonoBehaviour
 		}
 		
 		if (InputManager.Instance.GetReloadButton() && CanReload())
-			StartCoroutine(Reload());
+			reloadRoutine = StartCoroutine(Reload());
 
-		if (InputManager.Instance.GetFireButton() && isReloading)
-			CancelReload();
+		if (InputManager.Instance.GetFireButton() && isReloading && !hasCanceledReload)
+			StopReloading();
 	}
 
 	// Private Methods
@@ -176,20 +179,10 @@ public class Gun : MonoBehaviour
 			yield return new WaitForSeconds(reloadAnimation.length);
 			bulletsInCylinder++;
 			ammoLeft--;
-			if (!isReloading)
-			{
-				onReloadFinish.Invoke();
-				yield break;
-			}
-		}
+        }
 
 		onReloadFinish.Invoke();
-		isReloading = false;
-	}
-
-	void CancelReload()
-	{
-		isReloading = false;
+		Invoke("ReEnableShooting", reloadFinishAnimation.length);
 	}
 
     void ComputeDrunkSway()
@@ -221,6 +214,21 @@ public class Gun : MonoBehaviour
             if (consecutiveShots != 0)
                 consecutiveShots = 0;
         }
+	}
+
+	void StopReloading()
+	{
+		hasCanceledReload = true;
+		onReloadCancel.Invoke();
+		StopCoroutine(reloadRoutine);
+		onReloadFinish.Invoke();
+		Invoke("ReEnableShooting", reloadFinishAnimation.length);
+	}
+
+	void ReEnableShooting()
+	{
+		isReloading = false;
+		hasCanceledReload = false;
 	}
 
 	bool CanShoot()
@@ -322,6 +330,12 @@ public class Gun : MonoBehaviour
 	{
 		get { return onReloadFinish; }
 	}
+
+	public UnityEvent OnReloadCancel
+	{
+		get { return onReloadCancel; }
+	}
+
 	public UnityEvent OnEmptyGun
 	{
 		get { return onEmptyGun; }
