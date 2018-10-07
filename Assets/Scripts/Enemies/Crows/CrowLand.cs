@@ -19,12 +19,12 @@ public class CrowLand : MonoBehaviour, IState {
 
 	private void Awake() {
 		m_crow = GetComponent<Crow>();
-		m_targetRotation = transform.rotation;
-		m_footOffset = GetComponent<Collider>().bounds.extents.y;
+		m_footOffset = GetComponent<BoxCollider>().size.y * 0.5f;
 	}
 
 	private void OnEnable() {
 		m_targetPosition = m_crow.GetLandingZone(out m_direction);
+		transform.rotation = Quaternion.LookRotation(m_targetPosition - transform.position);
 		m_targetY = m_targetPosition.y;
 		m_targetPosition.y = transform.position.y;
 		m_rotCalculated = false;
@@ -32,9 +32,9 @@ public class CrowLand : MonoBehaviour, IState {
 
 	public void StateUpdate(out IState nextState) {
 		if (Vector3.Distance(transform.position, m_targetPosition) > m_neglible) {
-			if (Vector3.Distance(transform.position, m_targetPosition) < 15f) {
+			if (Vector3.Distance(transform.position, m_targetPosition) < 8f) {
 				transform.position = Vector3.Lerp(
-					transform.position, m_targetPosition, 2f * Time.deltaTime);
+					transform.position, m_targetPosition, 1.5f * Time.deltaTime);
 			} else if ((Vector3.Distance(transform.position, m_targetPosition) < m_landingRadius)) {
 				m_targetPosition.y = m_targetY;
 				transform.position += (transform.forward - transform.up * .1f) * m_flightSpeed * Time.deltaTime;
@@ -58,10 +58,12 @@ public class CrowLand : MonoBehaviour, IState {
 					transform.rotation = m_targetRotation;
 				}
 			} else {
-				m_targetRotation = Quaternion.LookRotation(m_targetPosition - transform.position);
+				m_targetRotation = Quaternion.LookRotation(m_targetPosition - transform.position, Vector3.up);
 			}
 		} else {
-			transform.position = m_targetPosition;
+			if (m_targetPosition.y == m_targetY) {
+				transform.position = m_targetPosition;
+			}
 		}
 		if (Vector3.Distance(transform.eulerAngles, m_targetRotation.eulerAngles) > m_neglible) {
 			transform.rotation = Quaternion.RotateTowards(

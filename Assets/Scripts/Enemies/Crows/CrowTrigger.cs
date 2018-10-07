@@ -2,11 +2,11 @@
 
 public class CrowTrigger : MonoBehaviour {
 	[SerializeField] GameObject m_stage;
-	Collider[] m_landingZones;
+	BoxCollider[] m_landingZones;
 	CrowSpawner m_crowSpawner;
 
 	private void Awake() {
-		m_landingZones = m_stage.GetComponentsInChildren<Collider>();
+		m_landingZones = m_stage.GetComponentsInChildren<BoxCollider>();
 		m_crowSpawner = GetComponentInParent<CrowSpawner>();
 	}
 

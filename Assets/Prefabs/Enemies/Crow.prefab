@@ -87,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1306119874549748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 190.42078, y: 0.771, z: 228.79414}
+  m_LocalPosition: {x: 190.27603, y: 0.788, z: 234.76012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4464240437807232}
@@ -175,8 +175,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.7976055, z: 0.8968961}
-  m_Center: {x: 0, y: 0.24227476, z: -0.0715103}
+  m_Size: {x: 0.2, y: 0.75, z: 0.8968961}
+  m_Center: {x: 0, y: 0.29, z: -0.0715103}
 --- !u!114 &114436409991276952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -202,9 +202,9 @@ MonoBehaviour:
   m_landingZonesLayer:
     serializedVersion: 2
     m_Bits: 32768
-  m_flightSpeed: 30
+  m_flightSpeed: 20
   m_turnSpeed: 30
-  m_landingRadius: 100
+  m_landingRadius: 150
 --- !u!114 &114536975175338598
 MonoBehaviour:
   m_ObjectHideFlags: 1

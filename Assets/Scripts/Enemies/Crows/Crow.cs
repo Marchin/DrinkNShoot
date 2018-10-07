@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(CrowLand))]
 [RequireComponent(typeof(CrowMovement))]
 [RequireComponent(typeof(CrowFlip))]
 public class Crow : MonoBehaviour {
-    Collider[] m_landingZones;
-    Collider m_collider;
+    BoxCollider[] m_landingZones;
+    BoxCollider m_collider;
     IState m_currState;
     IState m_nextState;
 
     private void Awake() {
-        m_collider = GetComponent<Collider>();
+        m_collider = GetComponent<BoxCollider>();
     }
 
     private void OnEnable() {
@@ -44,14 +44,14 @@ public class Crow : MonoBehaviour {
         (state as MonoBehaviour).enabled = active;
     }
 
-    public void SetLandingZones(Collider[] landingZones) {
+    public void SetLandingZones(BoxCollider[] landingZones) {
         m_landingZones = landingZones;
     }
 
     public Vector3 GetLandingZone(out Vector3 direction) {
-        Collider landingZone = m_landingZones[Random.Range(0, m_landingZones.Length)];
-        float offSetX = landingZone.bounds.extents.x - m_collider.bounds.size.x;
-        float offSetZ = landingZone.bounds.extents.z - m_collider.bounds.size.z;
+        BoxCollider landingZone = m_landingZones[Random.Range(0, m_landingZones.Length)];
+        float offSetX = landingZone.size.x * 0.5f - m_collider.size.x;
+        float offSetZ = landingZone.size.z * 0.5f - m_collider.size.z;
         if (offSetX < 0f)offSetX = 0f;
         if (offSetZ < 0f)offSetZ = 0f;
         Vector3 offSet = new Vector3(
@@ -59,6 +59,7 @@ public class Crow : MonoBehaviour {
             0f,
             Random.Range(-offSetZ, offSetZ)
         );
+        offSet = landingZone.transform.TransformDirection(offSet);
         direction = landingZone.transform.forward;
         return (landingZone.bounds.center + offSet);
     }

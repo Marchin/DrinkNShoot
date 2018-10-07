@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(ObjectPool))]
 public class CrowSpawner : MonoBehaviour {
 	[SerializeField] float m_spawnInterval = 2f;
-	Collider[] m_landingZones;
+	BoxCollider[] m_landingZones;
 	ObjectPool m_pool;
 	float m_counter;
 	private void Awake() {
@@ -17,7 +17,7 @@ public class CrowSpawner : MonoBehaviour {
 		if (m_counter <= 0f) {
 			GameObject go;
 			if (m_pool.Request(out go)) {
-				go.transform.position = new Vector3(150f, 50f, 100f);
+				go.transform.position = new Vector3(150f, 80f, 100f);
 				Crow crow = go.GetComponent<Crow>();
 				crow.SetLandingZones(m_landingZones);
 				crow.Init();
@@ -28,7 +28,7 @@ public class CrowSpawner : MonoBehaviour {
 		}
 	}
 
-	public void SetLandingZones(Collider[] landingZones) {
+	public void SetLandingZones(BoxCollider[] landingZones) {
 		m_landingZones = landingZones;
 	}
 
