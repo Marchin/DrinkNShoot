@@ -47,13 +47,14 @@ public class CrowMovement : MonoBehaviour, IState {
     public void StateFixedUpdate() { }
 
     void Move() {
-        Vector3 targetOffset = transform.forward * (m_distance * Random.Range(0f, 1f) + m_distToFront);
+        float distanceVariation = m_distance * Random.Range(0f, 1f);
+        Vector3 targetOffset = transform.forward * (distanceVariation + m_distToFront);
         Debug.DrawRay(transform.position + targetOffset, -transform.up, Color.green, 1f);
         RaycastHit hit;
         bool wasHit = Physics.Raycast(transform.position + targetOffset, -transform.up,
             out hit, 2f, m_landingZonesLayer);
         if (wasHit) {
-            m_targetPosition = transform.position + transform.forward * m_distance;
+            m_targetPosition = transform.position + transform.forward * distanceVariation;
             m_moving = true;
         } else {
             m_hasToFlip = true;
