@@ -60,13 +60,14 @@ public class LevelManager : MonoBehaviour
 		difficultyLevel = startDifficultyLevel;
 		requiredKills = startRequiredKills;
 		currentStageIndex = 0;
-		maxStageIndex = enemySpawnPoints.Count - 1;
 	}
 
 	void Start()
 	{
 		foreach (Transform spawnPoint in crowSpawner.transform)
-			enemySpawnPoints.Add(spawnPoint);
+			if (spawnPoint.gameObject.activeInHierarchy && spawnPoint.GetComponent<CrowTrigger>())
+				enemySpawnPoints.Add(spawnPoint);
+		maxStageIndex = enemySpawnPoints.Count - 1;
 
 		endLevelMenu = FindObjectOfType<EndLevelMenu>();
 		hud = FindObjectOfType<HUD>();
