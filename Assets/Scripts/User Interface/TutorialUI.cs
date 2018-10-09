@@ -21,11 +21,13 @@ public class TutorialUI : MonoBehaviour
 	[SerializeField] AudioSource slideInSound;
 	[SerializeField] AudioSource slideOutSound;
 	BannerType activeBannerType;
+	BannerType followingBannerType;
 	Animator bannerAnimator;
 	int initialInstructionsIndex = 0;
 	int reloadInstructionsIndex = 0;
 	int drunkInstructionsIndex = 0;
 	float timer = 0f;
+	float timerWhenInterrupted;
 	bool hasPressedReloadButton = false;
 
 	void Awake()
@@ -77,7 +79,7 @@ public class TutorialUI : MonoBehaviour
 						Invoke("ShowNextBanner", slidingAnimation.length);
 					else
 					{
-						activeBannerType = BannerType.None;
+						activeBannerType = followingBannerType;
 						reloadInstructionsIndex = 0;
 						Invoke("DisableBanner",slidingAnimation.length);
 					}
@@ -97,7 +99,7 @@ public class TutorialUI : MonoBehaviour
                         Invoke("ShowNextBanner", slidingAnimation.length);
                     else
                     {
-                        activeBannerType = BannerType.None;
+                        activeBannerType = followingBannerType;
                         drunkInstructionsIndex = 0;
                         Invoke("DisableBanner", slidingAnimation.length);
                     }
@@ -116,12 +118,15 @@ public class TutorialUI : MonoBehaviour
 		timer = 0;
 		banner.SetActive(true);
 		activeBannerType = BannerType.Initial;
+		followingBannerType = BannerType.None;
 		bannerAnimator.SetTrigger("Start");
 		slideInSound.Play();		
 	}
 
 	void EnableReloadBanner()
 	{
+		followingBannerType = activeBannerType;
+		timerWhenInterrupted = (followingBannerType != BannerType.None) ? timer : 0f;
 		timer = 0;
 		banner.SetActive(true);
 		tutorialText.text = reloadInstructions[0];
@@ -132,6 +137,8 @@ public class TutorialUI : MonoBehaviour
 
 	void EnableDrunkBanner()
 	{
+		followingBannerType = activeBannerType;
+		timerWhenInterrupted = (followingBannerType != BannerType.None) ? timer : 0f;
 		timer = 0;
 		banner.SetActive(true);
 		tutorialText.text = drunkInstructions[0];
@@ -142,7 +149,10 @@ public class TutorialUI : MonoBehaviour
 
 	void DisableBanner()
 	{
-        banner.SetActive(false);
+		if (activeBannerType == BannerType.None)
+        	banner.SetActive(false);
+		else
+			timer = timerWhenInterrupted;
 	}
 
 	void ShowNextBanner()

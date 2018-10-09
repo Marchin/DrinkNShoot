@@ -24,8 +24,8 @@ public class EndLevelMenu : MonoBehaviour
 		Time.timeScale = 1;
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
-		onContinue.Invoke();
 		LevelManager.Instance.MoveToNextStage();
+		onContinue.Invoke();
 	}
 
 	public void Quit()
