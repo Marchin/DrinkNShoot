@@ -14,7 +14,8 @@ public class HUD : MonoBehaviour
 	[SerializeField] TextMeshProUGUI currencyText;
 	[SerializeField] GameObject objectiveBanner;
 	[Header("Audio Sources")]
-	[SerializeField] AudioSource slidingBannerSound;
+	[SerializeField] AudioSource slideInBannerSound;
+	[SerializeField] AudioSource slideOutBannerSound;
 	[Header("Animations")]
 	[SerializeField] AnimationClip slidingAnimation;
 	[Header("References")]
@@ -23,11 +24,11 @@ public class HUD : MonoBehaviour
 	const int CRITICAL_AMMO_IN_GUN_FRAC = 3;
 	const int WARNING_TIME_LEFT = 20;
 	const int CRITICAL_TIME_LEFT = 10;
-	const float OBJECTIVE_BANNER_DURATION = 1.5f;
+	const float OBJECTIVE_BANNER_DURATION = 3.0f;
 	int criticalAmmoLeft;
 	int criticalAmmoInGun;
 	float objectiveBannerTimer;
-	bool objectiveBannerWasDisabled;
+	bool objectiveBannerWasJustDisabled;
 	Animator objectiveBannerAnimator;
 	Color darkGreen;
 	Color darkRed;
@@ -51,6 +52,7 @@ public class HUD : MonoBehaviour
 		criticalAmmoInGun = weaponHolder.EquippedGun.CylinderCapacity / CRITICAL_AMMO_IN_GUN_FRAC;
 
 		objectiveBannerTimer = 0f;
+		objectiveBannerWasJustDisabled = false;
 
 		darkGreen = new Color(0.1f, 0.5f, 0.1f);
 		darkRed = new Color(0.5f, 0.1f, 0.1f);
@@ -109,7 +111,7 @@ public class HUD : MonoBehaviour
 			{
 				objectiveBanner.SetActive(true);
 				objectiveBannerAnimator.SetTrigger("Start");
-				slidingBannerSound.Play();
+				slideInBannerSound.Play();
 			}
 		}
 	}
@@ -132,14 +134,14 @@ public class HUD : MonoBehaviour
 
 	void ComputeObjectiveBannerDisplay()
 	{
-		if (objectiveBannerWasDisabled)
+		if (objectiveBanner.activeInHierarchy && !objectiveBannerWasJustDisabled)
 		{
 			if (objectiveBannerTimer >= OBJECTIVE_BANNER_DURATION)
 			{
-				objectiveBannerWasDisabled = true;
+				objectiveBannerWasJustDisabled = true;
 				objectiveBannerTimer = 0f;
 				objectiveBannerAnimator.SetTrigger("Exit");
-				slidingBannerSound.Play();
+				slideOutBannerSound.Play();
 				Invoke("DisableBanner", slidingAnimation.length);
 			}
 			else
@@ -149,6 +151,7 @@ public class HUD : MonoBehaviour
 
 	void DisableBanner()
 	{
+		objectiveBannerWasJustDisabled = false;
 		objectiveBanner.SetActive(false);
 	}
 
