@@ -1953,6 +1953,48 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4062146829713982, guid: ba236bffe61f400489e60bdce8bacbe8,
     type: 2}
   m_PrefabInternal: {fileID: 64466592}
+--- !u!1001 &64748599
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4088406816738536, guid: 744bdcbc6524d284ab45e5da03bc2fb5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 181.97794
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088406816738536, guid: 744bdcbc6524d284ab45e5da03bc2fb5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.4739761
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088406816738536, guid: 744bdcbc6524d284ab45e5da03bc2fb5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 236.55614
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088406816738536, guid: 744bdcbc6524d284ab45e5da03bc2fb5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088406816738536, guid: 744bdcbc6524d284ab45e5da03bc2fb5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088406816738536, guid: 744bdcbc6524d284ab45e5da03bc2fb5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088406816738536, guid: 744bdcbc6524d284ab45e5da03bc2fb5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088406816738536, guid: 744bdcbc6524d284ab45e5da03bc2fb5, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 744bdcbc6524d284ab45e5da03bc2fb5, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &67268242
 Prefab:
   m_ObjectHideFlags: 0
@@ -4366,38 +4408,11 @@ Transform:
   m_Father: {fileID: 1742571001}
   m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &177659452
+--- !u!1 &177659452 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1949751928787512, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
     type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 177659453}
-  m_Layer: 16
-  m_Name: Stage 3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &177659453
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4975954642793044, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 177659452}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1648946252}
-  - {fileID: 1392258059}
-  m_Father: {fileID: 1078529666}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_PrefabInternal: {fileID: 64748599}
 --- !u!1 &178927827
 GameObject:
   m_ObjectHideFlags: 0
@@ -7516,50 +7531,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4062146829713982, guid: ba236bffe61f400489e60bdce8bacbe8,
     type: 2}
   m_PrefabInternal: {fileID: 335534264}
---- !u!1 &335913628
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1301791595392712, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 335913629}
-  - component: {fileID: 335913630}
-  m_Layer: 15
-  m_Name: Roof Collider (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 87
-  m_IsActive: 1
---- !u!4 &335913629
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4772413027806996, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 335913628}
-  m_LocalRotation: {x: 0.0011899704, y: 0.04738722, z: 0.024986751, w: 0.99856335}
-  m_LocalPosition: {x: 10.771988, y: -0.4695896, z: 13.17366}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1460448541}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0.432, y: 4.9410005, z: 3}
---- !u!65 &335913630
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 65191053560642062, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 335913628}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 0.1, z: 9.47673}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &337258922
 Prefab:
   m_ObjectHideFlags: 0
@@ -8882,50 +8853,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4062146829713982, guid: ba236bffe61f400489e60bdce8bacbe8,
     type: 2}
   m_PrefabInternal: {fileID: 395930401}
---- !u!1 &397497634
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1793696172721592, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 397497635}
-  - component: {fileID: 397497636}
-  m_Layer: 15
-  m_Name: Roof Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 87
-  m_IsActive: 1
---- !u!4 &397497635
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4699570024925472, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 397497634}
-  m_LocalRotation: {x: -0.055485174, y: 0.72054327, z: -0.05306745, w: 0.6891464}
-  m_LocalPosition: {x: 8.577667, y: 2.7152576, z: 43.068863}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1900711312}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -8.807}
---- !u!65 &397497636
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 65924956412392998, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 397497634}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.3913136, y: 0.1, z: 7.1419077}
-  m_Center: {x: 0.030196913, y: -0.000000011802893, z: 0.08790924}
 --- !u!1001 &397757129
 Prefab:
   m_ObjectHideFlags: 0
@@ -20105,6 +20032,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114268724594066266, guid: aab4d281757e5a2469856cd509938d47,
+        type: 2}
+      propertyPath: m_shakeness
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114268724594066266, guid: aab4d281757e5a2469856cd509938d47,
+        type: 2}
+      propertyPath: m_speed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aab4d281757e5a2469856cd509938d47, type: 2}
   m_IsPrefabAsset: 0
@@ -21799,40 +21736,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4062146829713982, guid: ba236bffe61f400489e60bdce8bacbe8,
     type: 2}
   m_PrefabInternal: {fileID: 1076304078}
---- !u!1 &1078529665
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1847466850831696, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1078529666}
-  m_Layer: 16
-  m_Name: Town Level - Stages' Landing Zones
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1078529666
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4088406816738536, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1078529665}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 181.97794, y: 1.4739761, z: 236.55614}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1867055565}
-  - {fileID: 1460448541}
-  - {fileID: 177659453}
-  - {fileID: 1900711312}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: -0, y: 0, z: 0}
 --- !u!1001 &1078758140
 Prefab:
   m_ObjectHideFlags: 0
@@ -23229,50 +23132,6 @@ Transform:
   m_Father: {fileID: 1532061303}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1164874144
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1549692935417314, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1164874145}
-  - component: {fileID: 1164874146}
-  m_Layer: 15
-  m_Name: Roof Collider (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 87
-  m_IsActive: 1
---- !u!4 &1164874145
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4064104870379716, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1164874144}
-  m_LocalRotation: {x: -2.3283062e-10, y: 0.72267634, z: 4.6566123e-10, w: 0.6911866}
-  m_LocalPosition: {x: 8.577667, y: -1.0047425, z: 43.068863}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1900711312}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1164874146
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 65830991789826846, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1164874144}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.3913136, y: 0.1, z: 6.279278}
-  m_Center: {x: 0.030196892, y: -0.000000011175871, z: -0.10394044}
 --- !u!1001 &1165576447
 Prefab:
   m_ObjectHideFlags: 0
@@ -23753,50 +23612,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4968139092439258, guid: 9a12bfcf9a1dae34e8f1c29e2da90b1e,
     type: 2}
   m_PrefabInternal: {fileID: 1197624709}
---- !u!1 &1199747566
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1926728522525192, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1199747567}
-  - component: {fileID: 1199747568}
-  m_Layer: 15
-  m_Name: Roof Collider (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 87
-  m_IsActive: 1
---- !u!4 &1199747567
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4117696890316546, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1199747566}
-  m_LocalRotation: {x: -0.00005088863, y: 0.04740213, z: -0.0011611272, w: 0.99887526}
-  m_LocalPosition: {x: 12.194229, y: 6.7339973, z: -0.86701965}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1867055565}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0.432, y: 4.9410005, z: 0}
---- !u!65 &1199747568
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 65767080403475342, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1199747566}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8, y: 0, z: 10.5}
-  m_Center: {x: 0, y: 0, z: -0.1}
 --- !u!1001 &1200631498
 Prefab:
   m_ObjectHideFlags: 0
@@ -28770,50 +28585,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4259640873027538, guid: 3c8e1be6b2d093640885d44db7b85859,
     type: 2}
   m_PrefabInternal: {fileID: 1385311824}
---- !u!1 &1392258058
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1460000533110392, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1392258059}
-  - component: {fileID: 1392258060}
-  m_Layer: 15
-  m_Name: Roof Collider (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 87
-  m_IsActive: 1
---- !u!4 &1392258059
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4896639337907480, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1392258058}
-  m_LocalRotation: {x: -0, y: -4.656613e-10, z: 0.051141616, w: 0.99869144}
-  m_LocalPosition: {x: 9.692078, y: -0.7639761, z: 28.113846}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 177659453}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5.8630004}
---- !u!65 &1392258060
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 65484486852142546, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1392258058}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 0.1, z: 8.818695}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1393877237
 GameObject:
   m_ObjectHideFlags: 0
@@ -32969,38 +32740,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4062146829713982, guid: ba236bffe61f400489e60bdce8bacbe8,
     type: 2}
   m_PrefabInternal: {fileID: 1458696561}
---- !u!1 &1460448540
+--- !u!1 &1460448540 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1522397779809548, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
     type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1460448541}
-  m_Layer: 16
-  m_Name: Stage 2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1460448541
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4749094087469762, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1460448540}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1949126430}
-  - {fileID: 335913629}
-  m_Father: {fileID: 1078529666}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_PrefabInternal: {fileID: 64748599}
 --- !u!1001 &1461010061
 Prefab:
   m_ObjectHideFlags: 0
@@ -34380,50 +34124,6 @@ Transform:
   m_Father: {fileID: 1742571001}
   m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1537570926
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1265873795578502, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1537570927}
-  - component: {fileID: 1537570928}
-  m_Layer: 15
-  m_Name: Roof Collider (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 87
-  m_IsActive: 1
---- !u!4 &1537570927
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4009679519881274, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1537570926}
-  m_LocalRotation: {x: -3.6379788e-11, y: 0.9997521, z: -6.9849193e-10, w: -0.022266624}
-  m_LocalPosition: {x: 1.9656372, y: -1.0047427, z: 45.866013}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1900711312}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &1537570928
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 65358056281834778, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1537570926}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.3913136, y: 0.1, z: 6.279278}
-  m_Center: {x: 0.030196892, y: -0.000000011175871, z: -0.10394044}
 --- !u!1001 &1539301859
 Prefab:
   m_ObjectHideFlags: 0
@@ -36686,50 +36386,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4780255300392826, guid: 7ead7a0b1fa84d942944b96e2962312c,
     type: 2}
   m_PrefabInternal: {fileID: 1648730074}
---- !u!1 &1648946251
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1558174802289766, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1648946252}
-  - component: {fileID: 1648946253}
-  m_Layer: 15
-  m_Name: Roof Collider (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 87
-  m_IsActive: 1
---- !u!4 &1648946252
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4051556095139292, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1648946251}
-  m_LocalRotation: {x: -0, y: -0, z: -1.6370903e-11, w: 1}
-  m_LocalPosition: {x: 12.879929, y: 4.6693377, z: 24.59468}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 177659453}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1648946253
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 65338358393110672, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1648946251}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.1, z: 5.389801}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1650665588 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4267408245254102, guid: aab4d281757e5a2469856cd509938d47,
@@ -36816,50 +36472,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4062146829713982, guid: ba236bffe61f400489e60bdce8bacbe8,
     type: 2}
   m_PrefabInternal: {fileID: 1651519116}
---- !u!1 &1653422049
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1972824749560124, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1653422050}
-  - component: {fileID: 1653422051}
-  m_Layer: 15
-  m_Name: Roof Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 87
-  m_IsActive: 1
---- !u!4 &1653422050
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4582641218100950, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1653422049}
-  m_LocalRotation: {x: 0.0031644295, y: 0.047300156, z: 0.07854154, w: 0.99578315}
-  m_LocalPosition: {x: 10.962067, y: 2.4760234, z: -0.85614014}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1867055565}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.065000005, y: 5.4340005, z: 9.017}
---- !u!65 &1653422051
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 65508533154673394, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1653422049}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.6223714, y: 0, z: 9.68584}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1662531195
 Prefab:
   m_ObjectHideFlags: 0
@@ -41591,38 +41203,11 @@ Transform:
   m_Father: {fileID: 1285736938}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1867055564
+--- !u!1 &1867055564 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1439535826174692, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
     type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1867055565}
-  m_Layer: 16
-  m_Name: Stage 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1867055565
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4078450038994060, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1867055564}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1653422050}
-  - {fileID: 1199747567}
-  m_Father: {fileID: 1078529666}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_PrefabInternal: {fileID: 64748599}
 --- !u!1001 &1867142244
 Prefab:
   m_ObjectHideFlags: 0
@@ -42193,39 +41778,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4349007909095354, guid: c87366286b3312641bf3def5d3b25b4b,
     type: 2}
   m_PrefabInternal: {fileID: 1894735939}
---- !u!1 &1900711311
+--- !u!1 &1900711311 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1973507284783784, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
     type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1900711312}
-  m_Layer: 16
-  m_Name: Stage 4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1900711312
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4306018795224450, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1900711311}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 397497635}
-  - {fileID: 1164874145}
-  - {fileID: 1537570927}
-  m_Father: {fileID: 1078529666}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_PrefabInternal: {fileID: 64748599}
 --- !u!1001 &1901487814
 Prefab:
   m_ObjectHideFlags: 0
@@ -43033,50 +42590,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4968139092439258, guid: 9a12bfcf9a1dae34e8f1c29e2da90b1e,
     type: 2}
   m_PrefabInternal: {fileID: 1947722328}
---- !u!1 &1949126429
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1653297115016098, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1949126430}
-  - component: {fileID: 1949126431}
-  m_Layer: 15
-  m_Name: Roof Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 87
-  m_IsActive: 1
---- !u!4 &1949126430
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4207504112207320, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1949126429}
-  m_LocalRotation: {x: 0.0077963383, y: 0.04692464, z: 0.07832325, w: 0.99579257}
-  m_LocalPosition: {x: 12.358643, y: 6.0163503, z: 13.728073}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1460448541}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.9, y: 4.9410005, z: 9.150001}
---- !u!65 &1949126431
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 65548569955729402, guid: 744bdcbc6524d284ab45e5da03bc2fb5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1949126429}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0255728, y: 0.100000925, z: 8.8}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1951118396
 GameObject:
   m_ObjectHideFlags: 0
