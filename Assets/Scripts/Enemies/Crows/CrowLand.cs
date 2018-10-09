@@ -12,7 +12,7 @@ public class CrowLand : MonoBehaviour, IState {
 	Vector3 m_targetPosition;
 	Quaternion m_targetRotation;
 	Vector3 m_direction;
-	const float m_neglible = 0.1f;
+	const float m_NEGLEGIBLE = 0.01f;
 	float m_footOffset;
 	bool m_rotCalculated;
 	float m_targetY;
@@ -31,13 +31,14 @@ public class CrowLand : MonoBehaviour, IState {
 	}
 
 	public void StateUpdate(out IState nextState) {
-		if (Vector3.Distance(transform.position, m_targetPosition) > m_neglible) {
-			if (Vector3.Distance(transform.position, m_targetPosition) < 8f) {
+		if (Vector3.Distance(transform.position, m_targetPosition) > m_NEGLEGIBLE) {
+			if (Vector3.Distance(transform.position, m_targetPosition) < 5f) {
 				transform.position = Vector3.Lerp(
 					transform.position, m_targetPosition, 1.5f * Time.deltaTime);
 			} else if ((Vector3.Distance(transform.position, m_targetPosition) < m_landingRadius)) {
 				m_targetPosition.y = m_targetY;
-				transform.position += (transform.forward - transform.up * .1f) * m_flightSpeed * Time.deltaTime;
+				Vector3 diff = m_targetPosition - transform.position;
+				transform.position += diff.normalized * m_flightSpeed * Time.deltaTime;
 			} else {
 				transform.position += transform.forward * m_flightSpeed * Time.deltaTime;
 			}
@@ -50,8 +51,11 @@ public class CrowLand : MonoBehaviour, IState {
 				if (!m_rotCalculated) {
 					m_targetRotation = Quaternion.LookRotation(
 						m_direction, hit.normal);
+					m_targetY = hit.transform.position.y;
+					m_targetPosition.y = m_targetY;
+					Debug.DrawRay(hit.transform.position, hit.normal, Color.magenta, 10f);
 					m_rotCalculated = true;
-					m_turnSpeed *= 2f;
+					m_turnSpeed *= 3f;
 				}
 				if (hit.distance <= m_footOffset) {
 					m_targetPosition = transform.position;
@@ -64,8 +68,9 @@ public class CrowLand : MonoBehaviour, IState {
 			if (m_targetPosition.y == m_targetY) {
 				transform.position = m_targetPosition;
 			}
+			transform.rotation = m_targetRotation;
 		}
-		if (Vector3.Distance(transform.eulerAngles, m_targetRotation.eulerAngles) > m_neglible) {
+		if (Vector3.Distance(transform.eulerAngles, m_targetRotation.eulerAngles) > m_NEGLEGIBLE) {
 			transform.rotation = Quaternion.RotateTowards(
 				transform.rotation, m_targetRotation, m_turnSpeed * Time.deltaTime);
 		} else {

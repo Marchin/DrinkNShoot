@@ -5,17 +5,17 @@ public class CrowMovement : MonoBehaviour, IState {
     [SerializeField] float m_interval;
     [SerializeField] float m_distance;
     [SerializeField] float m_speed;
-    Vector3 m_roofSize;
     Vector3 m_targetPosition;
-    Vector3 m_meshOffset;
+    const float m_NEGLEGIBLE = 0.01f;
     float m_timer;
-    float m_negligible = 0.01f;
     float m_distToFront;
+    float m_distToFoot;
     bool m_moving;
     bool m_hasToFlip;
 
     private void OnEnable() {
-        m_distToFront = GetComponent<BoxCollider>().bounds.extents.z;
+        m_distToFront = GetComponent<BoxCollider>().size.z / 2f;
+        m_distToFoot = GetComponent<BoxCollider>().size.y / 2f;
         m_targetPosition = transform.position;
         m_hasToFlip = false;
         m_moving = false;
@@ -28,7 +28,7 @@ public class CrowMovement : MonoBehaviour, IState {
             Move();
         }
         if (m_moving) {
-            if (Vector3.Distance(transform.position, m_targetPosition) > m_negligible) {
+            if (Vector3.Distance(transform.position, m_targetPosition) > m_NEGLEGIBLE) {
                 transform.position = Vector3.Lerp(
                     transform.position, m_targetPosition, m_speed * Time.deltaTime);
             } else {
@@ -52,7 +52,7 @@ public class CrowMovement : MonoBehaviour, IState {
         Debug.DrawRay(transform.position + targetOffset, -transform.up, Color.green, 1f);
         RaycastHit hit;
         bool wasHit = Physics.Raycast(transform.position + targetOffset, -transform.up,
-            out hit, 2f, m_landingZonesLayer);
+            out hit, m_distToFoot, m_landingZonesLayer);
         if (wasHit) {
             m_targetPosition = transform.position + transform.forward * distanceVariation;
             m_moving = true;
