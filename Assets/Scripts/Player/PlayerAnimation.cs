@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.Animations;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimation : MonoBehaviour
@@ -20,10 +21,18 @@ public class PlayerAnimation : MonoBehaviour
 	{
 		ChangeGunAnimations();
 
+		weaponHolder.EquippedGun.OnBackToIdle.AddListener(ResetTriggers);
 		weaponHolder.EquippedGun.OnShot.AddListener(HasShot);
 		weaponHolder.EquippedGun.OnReloadStart.AddListener(HasStartedReloading);
 		weaponHolder.EquippedGun.OnReload.AddListener(HasReloaded);
 		weaponHolder.EquippedGun.OnReloadFinish.AddListener(HasFinishedReloading);
+	}
+
+	void ResetTriggers()
+	{
+		foreach (AnimatorControllerParameter parameter in animator.parameters)
+			if (parameter.type == AnimatorControllerParameterType.Trigger)
+				animator.ResetTrigger(parameter.name);
 	}
 
 	void HasShot()
@@ -33,8 +42,9 @@ public class PlayerAnimation : MonoBehaviour
 
 	void HasStartedReloading()
 	{
-		animator.SetBool("Has Started Reloading", true);
+		animator.SetTrigger("Has Started Reloading");
 	}
+
 	void HasReloaded()
 	{
 		animator.SetTrigger("Has Reloaded");

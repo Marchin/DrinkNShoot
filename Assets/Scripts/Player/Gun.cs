@@ -10,6 +10,11 @@ public class Gun : MonoBehaviour
 		Handgun
 	}
 
+	enum GunState
+	{
+		Idle, Shooting, Reloading
+	}
+
 	[Header("Gun Stats")]
 	[SerializeField] [Tooltip("Type of gun.")]
 	GunType gunType;
@@ -49,10 +54,12 @@ public class Gun : MonoBehaviour
 	[SerializeField] [Tooltip("The name of layers that contain the possibe shooting targets.")]
 	string[] shootingLayers;
 	[Header("Events")]
+	[SerializeField] UnityEvent onBackToIdle;
 	[SerializeField] UnityEvent onShot;
 	[SerializeField] UnityEvent onReloadStart;
 	[SerializeField] UnityEvent onReload;
 	[SerializeField] UnityEvent onReloadFinish;
+	[SerializeField] UnityEvent onReloadCancel;
 	[SerializeField] UnityEvent onEmptyGun;
 	[SerializeField] UnityEvent onCrosshairScale;
 
@@ -62,11 +69,13 @@ public class Gun : MonoBehaviour
 	const float INTERPOLATION_PERC = 0.1f;
 	const int CROSSHAIR_SCALE_MULT = 20;
 	Transform fpsCamera;
+	Coroutine reloadRoutine;
+	GunState currentState;
 	int shootingLayerMask;
 	int ammoLeft;
 	float lastFireTime = 0;
 	int bulletsInCylinder = 0;
-	bool isReloading = false;
+	bool hasCanceledReload = false;
 	float regularSway = 0;
 	float recoilSway = 0;
 	float drunkSway = 0;
@@ -77,6 +86,7 @@ public class Gun : MonoBehaviour
 	void Awake()
 	{
 		fpsCamera = GetComponentInParent<Camera>().transform;
+		currentState = GunState.Idle;
 		bulletsInCylinder = cylinderCapacity;
 		ammoLeft = maxAmmo;
 		shootingLayerMask = LayerMask.GetMask(shootingLayers);
@@ -89,23 +99,41 @@ public class Gun : MonoBehaviour
 		ComputeDrunkSway();
 		ComputeConsecutiveShots();
 
-		if (InputManager.Instance.GetFireButton())
+		switch (currentState)
 		{
-			if (CanShoot())
-			{
-				Shoot();
-				onShot.Invoke();
-			}
-			else
-				if (ShouldPlayEmptyMagSound())
-					onEmptyGun.Invoke();
+			case GunState.Idle:
+				if (InputManager.Instance.GetFireButton())
+				{
+					if (CanShoot())
+					{
+						Shoot();
+						onShot.Invoke();
+						currentState = GunState.Shooting;
+					}
+					else
+						if (ShouldPlayEmptyMagSound())
+							onEmptyGun.Invoke();
+				}
+				else
+					if (InputManager.Instance.GetReloadButton() && CanReload())
+					{
+						reloadRoutine = StartCoroutine(Reload());
+						currentState = GunState.Reloading;
+					}
+				break;
+			
+			case GunState.Shooting:
+				if (Time.time - lastFireTime >= 1 / fireRate)
+					currentState = GunState.Idle;
+					break;
+			
+			case GunState.Reloading:
+				if (InputManager.Instance.GetFireButton() && !hasCanceledReload)
+					StopReloading();
+					break;
+			default:
+				break;
 		}
-		
-		if (InputManager.Instance.GetReloadButton() && CanReload())
-			StartCoroutine(Reload());
-
-		if (InputManager.Instance.GetFireButton() && isReloading)
-			CancelReload();
 	}
 
 	// Private Methods
@@ -167,7 +195,6 @@ public class Gun : MonoBehaviour
 
 	IEnumerator Reload()
 	{
-		isReloading = true;
 		onReloadStart.Invoke();
 
 		for (int i = bulletsInCylinder; i < cylinderCapacity; i++)
@@ -176,20 +203,12 @@ public class Gun : MonoBehaviour
 			yield return new WaitForSeconds(reloadAnimation.length);
 			bulletsInCylinder++;
 			ammoLeft--;
-			if (!isReloading)
-			{
-				onReloadFinish.Invoke();
-				yield break;
-			}
-		}
+        }
 
 		onReloadFinish.Invoke();
-		isReloading = false;
-	}
-
-	void CancelReload()
-	{
-		isReloading = false;
+		yield return new WaitForSeconds(reloadFinishAnimation.length);
+		currentState = GunState.Idle;
+		onBackToIdle.Invoke();
 	}
 
     void ComputeDrunkSway()
@@ -217,25 +236,40 @@ public class Gun : MonoBehaviour
 	void ComputeConsecutiveShots()
 	{
         if (lastFireTime < Time.time - recoilDuration - 1 / fireRate)
-        {
             if (consecutiveShots != 0)
                 consecutiveShots = 0;
-        }
+	}
+
+	void StopReloading()
+	{
+		StopCoroutine(reloadRoutine);
+		reloadRoutine = null;
+		hasCanceledReload = true;
+		onReloadCancel.Invoke();
+		onReloadFinish.Invoke();
+		Invoke("ReEnableShooting", reloadFinishAnimation.length);
+	}
+
+	void ReEnableShooting()
+	{
+		currentState = GunState.Idle;
+		onBackToIdle.Invoke();
+		hasCanceledReload = false;
 	}
 
 	bool CanShoot()
 	{
-		return !isReloading && Time.time - lastFireTime >= 1 / fireRate && bulletsInCylinder > 0;
+		return Time.time - lastFireTime >= 1 / fireRate && bulletsInCylinder > 0;
 	}
 
 	bool CanReload()
 	{
-		return !isReloading && Time.time - lastFireTime >= 1 / fireRate && ammoLeft > 0 && bulletsInCylinder < cylinderCapacity;
+		return ammoLeft > 0 && bulletsInCylinder < cylinderCapacity;
 	}
 
 	bool ShouldPlayEmptyMagSound()
 	{
-		return !isReloading && bulletsInCylinder == 0;
+		return bulletsInCylinder == 0;
 	}
 
 	// Public Methods
@@ -303,6 +337,11 @@ public class Gun : MonoBehaviour
 		get { return emptyGunSound; }
 	}
 
+	public UnityEvent OnBackToIdle
+	{
+		get { return onBackToIdle; }
+	}
+
 	public UnityEvent OnShot
 	{
 		get { return onShot; }
@@ -322,6 +361,12 @@ public class Gun : MonoBehaviour
 	{
 		get { return onReloadFinish; }
 	}
+
+	public UnityEvent OnReloadCancel
+	{
+		get { return onReloadCancel; }
+	}
+
 	public UnityEvent OnEmptyGun
 	{
 		get { return onEmptyGun; }
