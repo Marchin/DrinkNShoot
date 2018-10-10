@@ -75,7 +75,6 @@ public class Gun : MonoBehaviour
 	int ammoLeft;
 	float lastFireTime = 0;
 	int bulletsInCylinder = 0;
-	bool hasCanceledReload = false;
 	float regularSway = 0;
 	float recoilSway = 0;
 	float drunkSway = 0;
@@ -125,12 +124,12 @@ public class Gun : MonoBehaviour
 			case GunState.Shooting:
 				if (Time.time - lastFireTime >= 1 / fireRate)
 					currentState = GunState.Idle;
-					break;
+				break;
 			
 			case GunState.Reloading:
-				if (InputManager.Instance.GetFireButton() && !hasCanceledReload)
+				if (InputManager.Instance.GetFireButton() && reloadRoutine != null)
 					StopReloading();
-					break;
+				break;
 			default:
 				break;
 		}
@@ -196,6 +195,7 @@ public class Gun : MonoBehaviour
 	IEnumerator Reload()
 	{
 		onReloadStart.Invoke();
+		yield return new WaitForSeconds(reloadStartAnimation.length);
 
 		for (int i = bulletsInCylinder; i < cylinderCapacity; i++)
 		{
@@ -244,7 +244,6 @@ public class Gun : MonoBehaviour
 	{
 		StopCoroutine(reloadRoutine);
 		reloadRoutine = null;
-		hasCanceledReload = true;
 		onReloadCancel.Invoke();
 		onReloadFinish.Invoke();
 		Invoke("ReEnableShooting", reloadFinishAnimation.length);
@@ -254,7 +253,6 @@ public class Gun : MonoBehaviour
 	{
 		currentState = GunState.Idle;
 		onBackToIdle.Invoke();
-		hasCanceledReload = false;
 	}
 
 	bool CanShoot()
