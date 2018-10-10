@@ -16,6 +16,7 @@ public class HUD : MonoBehaviour
 	[Header("Audio Sources")]
 	[SerializeField] AudioSource slideInBannerSound;
 	[SerializeField] AudioSource slideOutBannerSound;
+	[SerializeField] AudioSource clockTickSound;
 	[Header("Animations")]
 	[SerializeField] AnimationClip slidingAnimation;
 	[Header("References")]
@@ -25,9 +26,11 @@ public class HUD : MonoBehaviour
 	const int WARNING_TIME_LEFT = 20;
 	const int CRITICAL_TIME_LEFT = 10;
 	const float OBJECTIVE_BANNER_DURATION = 3.0f;
+	const int SECOND = 1;
 	int criticalAmmoLeft;
 	int criticalAmmoInGun;
 	float objectiveBannerTimer;
+	float clockTickTimer;
 	bool objectiveBannerWasJustDisabled;
 	Animator objectiveBannerAnimator;
 	Color darkGreen;
@@ -53,6 +56,7 @@ public class HUD : MonoBehaviour
 
 		objectiveBannerTimer = 0f;
 		objectiveBannerWasJustDisabled = false;
+		clockTickTimer = 0f;
 
 		darkGreen = new Color(0.1f, 0.5f, 0.1f);
 		darkRed = new Color(0.5f, 0.1f, 0.1f);
@@ -122,7 +126,15 @@ public class HUD : MonoBehaviour
 		timerText.text = timeLeft.ToString() + "\"";
 
 		if (timeLeft <= CRITICAL_TIME_LEFT)
+		{
 			timerText.color = darkRed;
+			clockTickTimer += Time.deltaTime;
+			if (clockTickTimer >= SECOND)
+			{
+				clockTickTimer = 0f;
+				clockTickSound.Play();
+			}
+		}
 		else
 		{
 			if (timeLeft <= WARNING_TIME_LEFT)

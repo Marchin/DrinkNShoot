@@ -20,6 +20,7 @@ public class TutorialUI : MonoBehaviour
 	[SerializeField] AnimationClip slidingAnimation;
 	[SerializeField] AudioSource slideInSound;
 	[SerializeField] AudioSource slideOutSound;
+	const float NEGLIGIBLE_DIFF = 1.5f;
 	BannerType activeBannerType;
 	BannerType followingBannerType;
 	Animator bannerAnimator;
@@ -125,8 +126,16 @@ public class TutorialUI : MonoBehaviour
 
 	void EnableReloadBanner()
 	{
-		followingBannerType = activeBannerType;
-		timerWhenInterrupted = (followingBannerType != BannerType.None) ? timer : 0f;
+		if (instructionDisplayDuration - timer > NEGLIGIBLE_DIFF)
+		{
+			followingBannerType = activeBannerType;
+			timerWhenInterrupted = (followingBannerType != BannerType.None) ? timer : 0f;
+		}
+		else
+		{
+			followingBannerType = BannerType.None;
+			timerWhenInterrupted = 0f;
+		}
 		timer = 0;
 		banner.SetActive(true);
 		tutorialText.text = reloadInstructions[0];
@@ -137,8 +146,16 @@ public class TutorialUI : MonoBehaviour
 
 	void EnableDrunkBanner()
 	{
-		followingBannerType = activeBannerType;
-		timerWhenInterrupted = (followingBannerType != BannerType.None) ? timer : 0f;
+		if (instructionDisplayDuration - timer > NEGLIGIBLE_DIFF && followingBannerType != BannerType.None)
+		{
+			followingBannerType = activeBannerType;
+			timerWhenInterrupted = (followingBannerType != BannerType.None) ? timer : 0f;
+		}
+		else
+		{
+			followingBannerType = BannerType.None;
+			timerWhenInterrupted = 0f;
+		}
 		timer = 0;
 		banner.SetActive(true);
 		tutorialText.text = drunkInstructions[0];
