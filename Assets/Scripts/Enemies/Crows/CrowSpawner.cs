@@ -24,9 +24,10 @@ public class CrowSpawner : MonoBehaviour {
 		if (m_counter <= 0f) {
 			GameObject go;
 			if (m_pool.Request(out go)) {
-				go.transform.position = new Vector3(180f, 80f, 130f);
+				go.transform.position = new Vector3(180f, 80f, 150f);
 				Crow crow = go.GetComponent<Crow>();
 				crow.SetLandingZones(m_landingZones);
+				go.GetComponent<CrowLand>().SetRotationToDestination();
 				crow.Init();
 				m_counter = m_spawnInterval;
 			}

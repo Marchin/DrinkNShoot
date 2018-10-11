@@ -17,11 +17,11 @@ public class CrowFly : MonoBehaviour, IState {
             Quaternion.LookRotation(diff),
             Time.deltaTime * m_turnSpeed);
         diff = transform.InverseTransformDirection(diff);
-        diff = diff.normalized;
         diff.x = 0f;
+        diff = diff.normalized;
         diff = transform.TransformDirection(diff);
-        diff += transform.forward; //make it faster going forward
-        transform.position += diff * Time.deltaTime * m_flightSpeed;
+        // diff += transform.forward; //make it faster going forward
+        transform.position += diff * m_flightSpeed * Time.deltaTime;
         if (Physics.Raycast(transform.position, Vector3.down, 20f, m_playerLayer)) {
             m_poopImage.Poop();
             nextState = GetComponent<CrowLand>();
