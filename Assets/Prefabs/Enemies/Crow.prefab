@@ -189,8 +189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 884cb5e5490baf44b8e294a5b5055a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_flightSpeed: 5
-  m_turnSpeed: 10
+  m_playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  m_flightSpeed: 12
+  m_turnSpeed: 5
 --- !u!114 &114436409991276952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -216,7 +219,7 @@ MonoBehaviour:
   m_landingZonesLayer:
     serializedVersion: 2
     m_Bits: 32768
-  m_flightSpeed: 18
+  m_flightSpeed: 12
   m_turnSpeed: 30
   m_landingRadius: 150
 --- !u!114 &114536975175338598

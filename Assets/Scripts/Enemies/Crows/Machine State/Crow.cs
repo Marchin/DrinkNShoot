@@ -16,10 +16,10 @@ public class Crow : MonoBehaviour {
     private void Awake() {
         m_hasToPoop = false;
         m_collider = GetComponent<BoxCollider>();
-        m_playerPos = FindObjectOfType<DrunkCamera>().transform.position;
     }
 
     private void OnEnable() {
+        m_playerPos = FindObjectOfType<DrunkCamera>().transform.position;
         SetStateActive(GetComponent<CrowMovement>(), false);
         SetStateActive(GetComponent<CrowLand>(), false);
         SetStateActive(GetComponent<CrowFlip>(), false);
