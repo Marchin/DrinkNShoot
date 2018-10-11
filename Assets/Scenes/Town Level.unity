@@ -9135,6 +9135,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114261857304258724, guid: 9c61c9ac601a4d9449757c75742e65d7,
+        type: 2}
+      propertyPath: m_poopInterval
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c61c9ac601a4d9449757c75742e65d7, type: 2}
   m_IsPrefabAsset: 0

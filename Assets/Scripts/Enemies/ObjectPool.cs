@@ -45,6 +45,18 @@ public class ObjectPool : MonoBehaviour {
 		return (requested != null);
 	}
 
+	public bool RequestActive(out GameObject requested) {
+		requested = null;
+		int randomOffset = Random.Range(0, m_list.Count);
+		for (int i = 0; i < m_list.Count; i++) {
+			if (m_list[(i + randomOffset) % m_list.Count].activeInHierarchy) {
+				requested = m_list[(i + randomOffset) % m_list.Count];
+				break;
+			}
+		}
+		return (requested != null);
+	}
+
 	public void DisableAll() {
 		foreach (GameObject go in m_list) {
 			if (go.activeInHierarchy) {

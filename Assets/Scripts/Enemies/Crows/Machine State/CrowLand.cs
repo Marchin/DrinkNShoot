@@ -12,7 +12,7 @@ public class CrowLand : MonoBehaviour, IState {
 	Vector3 m_targetPosition;
 	Quaternion m_targetRotation;
 	Vector3 m_direction;
-	const float m_NEGLEGIBLE = 0.01f;
+	const float m_NEGLIGIBLE = 0.01f;
 	float m_footOffset;
 	bool m_rotCalculated;
 	float m_targetY;
@@ -31,7 +31,7 @@ public class CrowLand : MonoBehaviour, IState {
 	}
 
 	public void StateUpdate(out IState nextState) {
-		if (Vector3.Distance(transform.position, m_targetPosition) > m_NEGLEGIBLE) {
+		if (Vector3.Distance(transform.position, m_targetPosition) > m_NEGLIGIBLE) {
 			if (Vector3.Distance(transform.position, m_targetPosition) < 5f) {
 				transform.position = Vector3.Lerp(
 					transform.position, m_targetPosition, 1.5f * Time.deltaTime);
@@ -70,7 +70,7 @@ public class CrowLand : MonoBehaviour, IState {
 			}
 			transform.rotation = m_targetRotation;
 		}
-		if (Vector3.Distance(transform.eulerAngles, m_targetRotation.eulerAngles) > m_NEGLEGIBLE) {
+		if (Vector3.Distance(transform.eulerAngles, m_targetRotation.eulerAngles) > m_NEGLIGIBLE) {
 			transform.rotation = Quaternion.RotateTowards(
 				transform.rotation, m_targetRotation, m_turnSpeed * Time.deltaTime);
 		} else {

@@ -4,20 +4,26 @@
 [RequireComponent(typeof(CrowLand))]
 [RequireComponent(typeof(CrowMovement))]
 [RequireComponent(typeof(CrowFlip))]
+[RequireComponent(typeof(CrowFly))]
 public class Crow : MonoBehaviour {
     BoxCollider[] m_landingZones;
     BoxCollider m_collider;
+    Vector3 m_playerPos;
     IState m_currState;
     IState m_nextState;
+    bool m_hasToPoop;
 
     private void Awake() {
+        m_hasToPoop = false;
         m_collider = GetComponent<BoxCollider>();
+        m_playerPos = FindObjectOfType<DrunkCamera>().transform.position;
     }
 
     private void OnEnable() {
         SetStateActive(GetComponent<CrowMovement>(), false);
         SetStateActive(GetComponent<CrowLand>(), false);
         SetStateActive(GetComponent<CrowFlip>(), false);
+        SetStateActive(GetComponent<CrowFly>(), false);
     }
 
     public void Init() {
@@ -28,6 +34,10 @@ public class Crow : MonoBehaviour {
     private void Update() {
         if (m_currState != null) {
             m_currState.StateUpdate(out m_nextState);
+        }
+        if (m_hasToPoop) {
+            m_nextState = GetComponent<CrowFly>();
+            m_hasToPoop = false;
         }
         if (m_nextState != m_currState) {
             SetStateActive(m_currState, false);
@@ -62,5 +72,10 @@ public class Crow : MonoBehaviour {
         offSet = landingZone.transform.TransformDirection(offSet);
         direction = landingZone.transform.forward;
         return (landingZone.bounds.center + offSet);
+    }
+
+    public void Poop() {
+        GetComponent<CrowFly>().SetDestination(m_playerPos + Vector3.up * 3f);
+        m_hasToPoop = true;
     }
 }

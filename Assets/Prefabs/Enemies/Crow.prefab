@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 114887743929369184}
   - component: {fileID: 114536975175338598}
   - component: {fileID: 114535996998199986}
+  - component: {fileID: 114000567635610494}
   m_Layer: 14
   m_Name: Crow
   m_TagString: Untagged
@@ -177,6 +178,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.75, z: 0.8968961}
   m_Center: {x: 0, y: 0.04, z: -0.0715103}
+--- !u!114 &114000567635610494
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1306119874549748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 884cb5e5490baf44b8e294a5b5055a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_flightSpeed: 5
+  m_turnSpeed: 10
 --- !u!114 &114436409991276952
 MonoBehaviour:
   m_ObjectHideFlags: 1

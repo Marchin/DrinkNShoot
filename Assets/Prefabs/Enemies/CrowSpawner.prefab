@@ -261,6 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_spawnInterval: 2
+  m_poopInterval: 20
 --- !u!114 &114517179880367768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -272,6 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d48e1ce2b1a23245b74b10dbd4872fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolType: 0
   m_gameObject: {fileID: 1306119874549748, guid: 66bfa892b68e0e14baf4dabf67e229db,
     type: 2}
   m_size: 10

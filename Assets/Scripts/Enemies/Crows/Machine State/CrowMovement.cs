@@ -6,7 +6,7 @@ public class CrowMovement : MonoBehaviour, IState {
     [SerializeField] float m_distance;
     [SerializeField] float m_speed;
     Vector3 m_targetPosition;
-    const float m_NEGLEGIBLE = 0.01f;
+    const float m_NEGLIGIBLE = 0.01f;
     float m_timer;
     float m_distToFront;
     float m_distToFoot;
@@ -28,7 +28,7 @@ public class CrowMovement : MonoBehaviour, IState {
             Move();
         }
         if (m_moving) {
-            if (Vector3.Distance(transform.position, m_targetPosition) > m_NEGLEGIBLE) {
+            if (Vector3.Distance(transform.position, m_targetPosition) > m_NEGLIGIBLE) {
                 transform.position = Vector3.Lerp(
                     transform.position, m_targetPosition, m_speed * Time.deltaTime);
             } else {
