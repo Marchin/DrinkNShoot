@@ -5,12 +5,19 @@ using UnityEngine;
 [RequireComponent(typeof(ObjectPool))]
 public class CrowSpawner : MonoBehaviour {
 	[SerializeField] float m_spawnInterval = 2f;
+	[SerializeField] float m_poopInterval;
 	BoxCollider[] m_landingZones;
 	ObjectPool m_pool;
 	float m_counter;
+
 	private void Awake() {
 		m_pool = GetComponent<ObjectPool>();
 		m_counter = m_spawnInterval;
+		Invoke("OrderPoop", m_poopInterval);
+	}
+
+	private void OnEnable() {
+		Invoke("OrderPoop", m_poopInterval);
 	}
 
 	void Update() {
@@ -35,5 +42,15 @@ public class CrowSpawner : MonoBehaviour {
 	public void DisableCrows() {
 		m_counter = m_spawnInterval;
 		m_pool.DisableAll();
+	}
+
+	void OrderPoop() {
+		GameObject go;
+		if (m_pool.RequestActive(out go)) {
+			go.GetComponent<Crow>().Poop();
+			Invoke("OrderPoop", m_poopInterval);
+		} else {
+			Invoke("OrderPoop", 0.1f);
+		}
 	}
 }

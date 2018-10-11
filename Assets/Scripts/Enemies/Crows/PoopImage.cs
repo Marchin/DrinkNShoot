@@ -5,7 +5,6 @@ public class PoopImage : MonoBehaviour {
     [SerializeField] float m_maxAlpha = 0.5f;
     [SerializeField] float m_duration;
     [SerializeField] float m_fadeDuration;
-    [SerializeField] float m_interval;
     Image m_image;
     AudioSource m_soundFX;
     float m_fadingRate;
@@ -17,7 +16,6 @@ public class PoopImage : MonoBehaviour {
         m_soundFX = GetComponent<AudioSource>();
         m_fadingRate = m_maxAlpha / m_fadeDuration;
         SetAlpha(0f);
-        Invoke("Poop", Random.Range(0.7f, 1f) * m_interval);
     }
 
     private void Update() {
@@ -40,8 +38,6 @@ public class PoopImage : MonoBehaviour {
         SetAlpha(m_maxAlpha);
         m_soundFX.Play();
         Invoke("StartToFade", m_duration);
-        //PlaceHolder Trigger
-        Invoke("Poop", Random.Range(0.7f, 1f) * m_interval);
     }
 
     void StartToFade() {
