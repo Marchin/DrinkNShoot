@@ -12,11 +12,14 @@ public class DrunkCamera : MonoBehaviour {
     float m_prevRot;
 
     private void Awake() {
-        LevelManager.Instance.OnStartNextStage.AddListener(IncreaseDrunkLevel);
-        m_level = LevelManager.Instance.DifficultyLevel;
         m_currRotation = transform.eulerAngles.z;
         m_prevRot = m_currRotation;
         m_shakenessMult = Random.Range(m_min, 1f);
+    }
+
+    private void Start() {
+        LevelManager.Instance.OnStartNextStage.AddListener(IncreaseDrunkLevel);
+        m_level = LevelManager.Instance.DifficultyLevel;
     }
 
     private void Update() {

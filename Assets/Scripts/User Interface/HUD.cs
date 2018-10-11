@@ -21,11 +21,12 @@ public class HUD : MonoBehaviour
 	[SerializeField] AnimationClip slidingAnimation;
 	[Header("References")]
 	[SerializeField] WeaponHolder weaponHolder;
+	[Header("Other Properties")]
+	[SerializeField] float objectiveBannerDuration = 3.0f;
 	const int CRITICAL_AMMO_LEFT_FRACT = 5;
 	const int CRITICAL_AMMO_IN_GUN_FRAC = 3;
 	const int WARNING_TIME_LEFT = 20;
 	const int CRITICAL_TIME_LEFT = 10;
-	const float OBJECTIVE_BANNER_DURATION = 3.0f;
 	const int SECOND = 1;
 	int criticalAmmoLeft;
 	int criticalAmmoInGun;
@@ -48,6 +49,7 @@ public class HUD : MonoBehaviour
         weaponHolder.EquippedGun.OnReload.AddListener(ChangeAmmoDisplay);
         weaponHolder.EquippedGun.OnReloadFinish.AddListener(ChangeAmmoDisplay);
         weaponHolder.EquippedGun.OnCrosshairScale.AddListener(ScaleCrosshair);
+        weaponHolder.EquippedGun.OnCrosshairColorChange.AddListener(ChangeCrosshairColor);
 		LevelManager.Instance.OnEnemyKill.AddListener(ChangeKillsDisplay);
 		LevelManager.Instance.OnStartNextStage.AddListener(ChangeKillsDisplay);
 
@@ -78,6 +80,11 @@ public class HUD : MonoBehaviour
 
         crosshair.transform.localScale = new Vector2(newScale, newScale);
     }
+
+	void ChangeCrosshairColor()
+	{
+		crosshair.color = weaponHolder.EquippedGun.EnemyOnClearSight ? darkRed : Color.white;
+	}
 
     void ChangeAmmoDisplay()
     {
@@ -148,7 +155,7 @@ public class HUD : MonoBehaviour
 	{
 		if (objectiveBanner.activeInHierarchy && !objectiveBannerWasJustDisabled)
 		{
-			if (objectiveBannerTimer >= OBJECTIVE_BANNER_DURATION)
+			if (objectiveBannerTimer >= objectiveBannerDuration)
 			{
 				objectiveBannerWasJustDisabled = true;
 				objectiveBannerTimer = 0f;

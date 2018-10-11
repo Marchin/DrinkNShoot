@@ -62,6 +62,7 @@ public class Gun : MonoBehaviour
 	[SerializeField] UnityEvent onReloadCancel;
 	[SerializeField] UnityEvent onEmptyGun;
 	[SerializeField] UnityEvent onCrosshairScale;
+	[SerializeField] UnityEvent onCrosshairColorChange;
 
 	// Computing Fields
 	const float BASE_SWAY = 0.003f;
@@ -73,14 +74,15 @@ public class Gun : MonoBehaviour
 	GunState currentState;
 	int shootingLayerMask;
 	int ammoLeft;
-	float lastFireTime = 0;
 	int bulletsInCylinder = 0;
-	float regularSway = 0;
-	float recoilSway = 0;
-	float drunkSway = 0;
-	float crosshairScale = 1;
+	float lastFireTime = 0f;
+	float regularSway = 0f;
+	float recoilSway = 0f;
+	float drunkSway = 0f;
+	float crosshairScale = 1f;
 	int consecutiveShots = 0;
 	bool isIncreasingDrunkSway = true;
+	bool enemyOnClearSight = false;
 
 	void Awake()
 	{
@@ -97,6 +99,7 @@ public class Gun : MonoBehaviour
 	{
 		ComputeDrunkSway();
 		ComputeConsecutiveShots();
+		ComputeShotAccuracyIndicator();
 
 		switch (currentState)
 		{
@@ -226,7 +229,7 @@ public class Gun : MonoBehaviour
                 isIncreasingDrunkSway = true;
         }
 
-        if (crosshairScale != 1 + drunkSway)
+        if (crosshairScale != 1 + drunkSway * CROSSHAIR_SCALE_MULT)
         {
             crosshairScale = Mathf.Lerp(crosshairScale, 1 + drunkSway * CROSSHAIR_SCALE_MULT, INTERPOLATION_PERC);
             onCrosshairScale.Invoke();
@@ -238,6 +241,29 @@ public class Gun : MonoBehaviour
         if (lastFireTime < Time.time - recoilDuration - 1 / fireRate)
             if (consecutiveShots != 0)
                 consecutiveShots = 0;
+	}
+
+	void ComputeShotAccuracyIndicator()
+	{
+		RaycastHit hit;
+
+		if (Physics.Raycast(fpsCamera.position, fpsCamera.forward, out hit, range, shootingLayerMask) && 
+			drunkSway + regularSway < BASE_SWAY * 100)
+		{	
+			if (!enemyOnClearSight)
+			{
+				enemyOnClearSight = true;
+				onCrosshairColorChange.Invoke();
+			}
+		}
+		else
+		{
+			if (enemyOnClearSight)
+			{
+				enemyOnClearSight = false;
+				onCrosshairColorChange.Invoke();
+			}
+		}
 	}
 
 	void StopReloading()
@@ -299,6 +325,11 @@ public class Gun : MonoBehaviour
 	public float CrossshairScale
 	{
 		get { return crosshairScale; }
+	}
+
+	public bool EnemyOnClearSight
+	{
+		get { return enemyOnClearSight; }
 	}
 
 	public AnimationClip ShootAnimation
@@ -373,5 +404,10 @@ public class Gun : MonoBehaviour
 	public UnityEvent OnCrosshairScale
 	{
 		get { return onCrosshairScale; }
+	}
+
+	public UnityEvent OnCrosshairColorChange
+	{
+		get { return onCrosshairColorChange; }
 	}
 }
