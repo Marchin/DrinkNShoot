@@ -64,11 +64,12 @@ public class Gun : MonoBehaviour
 	[SerializeField] UnityEvent onCrosshairScale;
 	[SerializeField] UnityEvent onCrosshairColorChange;
 
-	// Computing Fields
-	const float BASE_SWAY = 0.003f;
-	const float SWAY_APPROX = 0.0001f;
-	const float INTERPOLATION_PERC = 0.1f;
-	const int CROSSHAIR_SCALE_MULT = 20;
+	// // Computing Fields
+	// const float BASE_SWAY = 0.003f;
+	// const float SWAY_APPROX = 0.0001f;
+	// const float INTERPOLATION_PERC = 0.1f;
+	const float MAX_SWAY_ALLOWED = 10f;
+	const float CROSSHAIR_SCALE_MULT = 0.05f;
 	Transform fpsCamera;
 	Coroutine reloadRoutine;
 	GunState currentState;
@@ -76,9 +77,11 @@ public class Gun : MonoBehaviour
 	int ammoLeft;
 	int bulletsInCylinder = 0;
 	float lastFireTime = 0f;
-	float regularSway = 0f;
-	float recoilSway = 0f;
-	float drunkSway = 0f;
+	float drunkSwayPercentage = 100f;
+	// float regularSway = 0f;
+	// float recoilSway = 0f;
+	// float drunkSway = 0f;
+	float timeInterpolation = 0f;
 	float crosshairScale = 1f;
 	int consecutiveShots = 0;
 	bool isIncreasingDrunkSway = true;
@@ -91,8 +94,8 @@ public class Gun : MonoBehaviour
 		bulletsInCylinder = cylinderCapacity;
 		ammoLeft = maxAmmo;
 		shootingLayerMask = LayerMask.GetMask(shootingLayers);
-		regularSway = BASE_SWAY * regularSwayLevel;
-		recoilSway = regularSway + BASE_SWAY * recoilSwayLevel;
+		// regularSway = BASE_SWAY * regularSwayLevel;
+		// recoilSway = regularSway + BASE_SWAY * recoilSwayLevel;
 	}
 
 	void Update()
@@ -140,46 +143,19 @@ public class Gun : MonoBehaviour
 
 	// Private Methods
 	void Shoot()
-	{
-		Vector3 shotSway;
-		float horSway;
-		float verSway;
-		float swayDir;
-
-		if (lastFireTime < Time.time - recoilDuration - 1 / fireRate)
-		{
-			float minSway = -regularSway - drunkSway;
-			float maxSway = regularSway + drunkSway;
-			crosshairScale += regularSway * CROSSHAIR_SCALE_MULT;
-			swayDir = Random.Range(0, 2);
-			horSway = swayDir == 0 ? Random.Range(minSway, -BASE_SWAY) : Random.Range(BASE_SWAY, maxSway);
-			swayDir = Random.Range(0, 2);
-			verSway = swayDir == 0 ? Random.Range(minSway, -BASE_SWAY) : Random.Range(BASE_SWAY, maxSway);
-		}
-		else
-		{
-			consecutiveShots++;
-			float minAddedRecoilSway = -recoilSway - BASE_SWAY * consecutiveShots - drunkSway;
-			float maxAddedRecoilSway = recoilSway + BASE_SWAY * consecutiveShots + drunkSway;
-			crosshairScale += recoilSway * consecutiveShots * CROSSHAIR_SCALE_MULT;
-			swayDir = Random.Range(0, 2);
-			horSway = swayDir == 0 ? Random.Range(minAddedRecoilSway, -regularSway) : Random.Range(regularSway, maxAddedRecoilSway);
-			swayDir = Random.Range(0, 2);
-			verSway = swayDir == 0 ? Random.Range(minAddedRecoilSway, -regularSway): Random.Range(regularSway, maxAddedRecoilSway);
-		}
-		
+	{	
+		consecutiveShots++;
+		crosshairScale += recoilSwayLevel * 0.1f * consecutiveShots;
 		OnCrosshairScale.Invoke();
 
-		shotSway = new Vector3(horSway, verSway, 0);
 		lastFireTime = Time.time;
 		bulletsInCylinder--;
 
-		Debug.DrawRay(fpsCamera.position, (fpsCamera.forward + shotSway) * range, Color.red, 3);
+		Debug.DrawRay(fpsCamera.position, fpsCamera.forward * range, Color.red, 3);
 		
 		RaycastHit hit;
 
-		if (Physics.Raycast(fpsCamera.position, (fpsCamera.forward + shotSway).normalized, 
-			out hit, range, shootingLayerMask))
+		if (Physics.Raycast(fpsCamera.position, fpsCamera.forward, out hit, range, shootingLayerMask) && enemyOnClearSight)
 		{
 			Life targetLife = hit.transform.GetComponent<Life>();
 			Rigidbody targetRigidbody = hit.transform.GetComponent<Rigidbody>();
@@ -216,24 +192,38 @@ public class Gun : MonoBehaviour
 
     void ComputeDrunkSway()
     {
-        if (isIncreasingDrunkSway)
-        {
-            drunkSway = Mathf.Lerp(drunkSway, regularSway * LevelManager.Instance.DifficultyLevel, INTERPOLATION_PERC);
-            if (drunkSway >= regularSway * LevelManager.Instance.DifficultyLevel - SWAY_APPROX)
-                isIncreasingDrunkSway = false;
-        }
-        else
-        {
-            drunkSway = Mathf.Lerp(drunkSway, 0, INTERPOLATION_PERC);
-            if (drunkSway <= SWAY_APPROX)
-                isIncreasingDrunkSway = true;
-        }
+		Debug.Log(drunkSwayPercentage + recoilSwayLevel * consecutiveShots);
+        
+		float previousCrosshairScale = crosshairScale;
 
-        if (crosshairScale != 1 + drunkSway * CROSSHAIR_SCALE_MULT)
-        {
-            crosshairScale = Mathf.Lerp(crosshairScale, 1 + drunkSway * CROSSHAIR_SCALE_MULT, INTERPOLATION_PERC);
-            onCrosshairScale.Invoke();
-        }
+		if (consecutiveShots == 0)
+		{
+			if (isIncreasingDrunkSway)
+			{
+				drunkSwayPercentage = Mathf.Lerp(0, LevelManager.Instance.DifficultyLevel * 10f, timeInterpolation);
+				crosshairScale = Mathf.Lerp(1, 1 + drunkSwayPercentage * CROSSHAIR_SCALE_MULT, timeInterpolation);
+				timeInterpolation += Time.deltaTime;
+				if (timeInterpolation >= 1f)
+				{
+					timeInterpolation = 0f;
+					isIncreasingDrunkSway = false;
+				}
+			}
+			else
+			{
+				drunkSwayPercentage = Mathf.Lerp(LevelManager.Instance.DifficultyLevel * 10f, 0, timeInterpolation);
+				crosshairScale = Mathf.Lerp(1 + drunkSwayPercentage * CROSSHAIR_SCALE_MULT, 1, timeInterpolation);
+				timeInterpolation += Time.deltaTime;
+				if (timeInterpolation >= 1f)
+				{
+					timeInterpolation = 0f;
+					isIncreasingDrunkSway = true;
+				}
+			}		
+		}
+		
+		if (crosshairScale != previousCrosshairScale)
+			onCrosshairScale.Invoke();
     }
 
 	void ComputeConsecutiveShots()
@@ -247,8 +237,33 @@ public class Gun : MonoBehaviour
 	{
 		RaycastHit hit;
 
-		if (Physics.Raycast(fpsCamera.position, fpsCamera.forward, out hit, range, shootingLayerMask) && 
-			drunkSway + regularSway < BASE_SWAY * 100)
+		// float horSway;
+		// float verSway;
+		// float swayDir;
+
+		// if (consecutiveShots == 0)
+		// {
+		// 	float minSway = -regularSway - drunkSway;
+		// 	float maxSway = regularSway + drunkSway;
+		// 	swayDir = Random.Range(0, 2);
+		// 	horSway = swayDir == 0 ? Random.Range(minSway, -BASE_SWAY) : Random.Range(BASE_SWAY, maxSway);
+		// 	swayDir = Random.Range(0, 2);
+		// 	verSway = swayDir == 0 ? Random.Range(minSway, -BASE_SWAY) : Random.Range(BASE_SWAY, maxSway);
+		// }
+		// else
+		// {
+		// 	float minAddedRecoilSway = -recoilSway - BASE_SWAY * consecutiveShots - drunkSway;
+		// 	float maxAddedRecoilSway = recoilSway + BASE_SWAY * consecutiveShots + drunkSway;
+		// 	swayDir = Random.Range(0, 2);
+		// 	horSway = swayDir == 0 ? Random.Range(minAddedRecoilSway, -regularSway) : Random.Range(regularSway, maxAddedRecoilSway);
+		// 	swayDir = Random.Range(0, 2);
+		// 	verSway = swayDir == 0 ? Random.Range(minAddedRecoilSway, -regularSway): Random.Range(regularSway, maxAddedRecoilSway);
+		// }
+
+		// shotSway = new Vector3(horSway, verSway, 0);
+
+		if (Physics.Raycast(fpsCamera.position, fpsCamera.forward, out hit, range, shootingLayerMask) &&
+			drunkSwayPercentage + recoilSwayLevel * consecutiveShots < MAX_SWAY_ALLOWED)
 		{	
 			if (!enemyOnClearSight)
 			{

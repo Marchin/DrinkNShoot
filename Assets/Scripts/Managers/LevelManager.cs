@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] GameObject tutorialUI;
 	[Header("Level Properties")]
 	[SerializeField] [Range(20, 600)] float initialCompletionTime;
-	[SerializeField] [Range(0, 25)] int startDifficultyLevel;
+	[SerializeField] [Range(0, 10)] int startDifficultyLevel;
 	[SerializeField] [Range(1, 200)] int startRequiredKills;
 	[SerializeField] bool tutorialEnabled = true;
 	[Header("Sounds")]
