@@ -4,18 +4,21 @@ using UnityEngine;
 using UnityEngine.Animations;
 
 [RequireComponent(typeof(Animator))]
-public class PlayerAnimation : MonoBehaviour {
+public class PlayerAnimation : MonoBehaviour
+{
 	[SerializeField] AnimatorOverrideController animatorOverrideController;
 	[SerializeField] AnimationClip[] handgunAnimations;
 	Animator animator;
 	WeaponHolder weaponHolder;
 
-	void Awake() {
+	void Awake()
+	{
 		animator = GetComponent<Animator>();
 		weaponHolder = GetComponentInChildren<WeaponHolder>();
 	}
 
-	void Start() {
+	void Start() 
+	{
 		ChangeGunAnimations();
 
 		weaponHolder.EquippedGun.OnBackToIdle.AddListener(ResetTriggers);
@@ -25,29 +28,35 @@ public class PlayerAnimation : MonoBehaviour {
 		weaponHolder.EquippedGun.OnReloadFinish.AddListener(HasFinishedReloading);
 	}
 
-	void ResetTriggers() {
+	void ResetTriggers() 
+	{
 		foreach (AnimatorControllerParameter parameter in animator.parameters)
-			if (parameter.type == AnimatorControllerParameterType.Trigger)
+			if (parameter.type == AnimatorControllerParameterType.Trigger && parameter.name != "Has Finished Reloading")
 				animator.ResetTrigger(parameter.name);
 	}
 
-	void HasShot() {
+	void HasShot() 
+	{
 		animator.SetTrigger("Has Shot");
 	}
 
-	void HasStartedReloading() {
+	void HasStartedReloading() 
+	{
 		animator.SetTrigger("Has Started Reloading");
 	}
 
-	void HasReloaded() {
+	void HasReloaded() 
+	{
 		animator.SetTrigger("Has Reloaded");
 	}
 
-	void HasFinishedReloading() {
+	void HasFinishedReloading() 
+	{
 		animator.SetTrigger("Has Finished Reloading");
 	}
 
-	void ChangeGunAnimations() {
+	void ChangeGunAnimations() 
+	{
 		animator.runtimeAnimatorController = animatorOverrideController;
 
 		animatorOverrideController["DEFAULT IDLE"] = handgunAnimations[0];

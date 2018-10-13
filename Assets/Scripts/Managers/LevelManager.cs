@@ -182,6 +182,7 @@ public class LevelManager : MonoBehaviour
 		completionTime += TIME_INCREASE;
 		requiredKills += KILLS_INCREASE * currentStageIndex ;
 		difficultyLevel++;
+		playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().EquippedGun.DrunkCrosshairSpeed++;
 		targetsKilledInStage = 0;
 		timeLeft = completionTime;
 		onStartNextStage.Invoke();

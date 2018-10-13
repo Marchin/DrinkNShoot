@@ -21,7 +21,7 @@ public class InputPC : IInput
 
 	public bool GetReloadButton()
 	{
-		return Input.GetButton("Reload");
+		return Input.GetButtonDown("Reload");
 	}
 
 	public bool GetPauseButton()

@@ -50,6 +50,7 @@ public class HUD : MonoBehaviour
         weaponHolder.EquippedGun.OnReloadFinish.AddListener(ChangeAmmoDisplay);
         weaponHolder.EquippedGun.OnCrosshairScale.AddListener(ScaleCrosshair);
         weaponHolder.EquippedGun.OnCrosshairColorChange.AddListener(ChangeCrosshairColor);
+        weaponHolder.EquippedGun.OnCrosshairMove.AddListener(MoveCrosshair);
 		LevelManager.Instance.OnEnemyKill.AddListener(ChangeKillsDisplay);
 		LevelManager.Instance.OnStartNextStage.AddListener(ChangeKillsDisplay);
 
@@ -84,6 +85,11 @@ public class HUD : MonoBehaviour
 	void ChangeCrosshairColor()
 	{
 		crosshair.color = weaponHolder.EquippedGun.EnemyOnClearSight ? darkRed : Color.white;
+	}
+
+	void MoveCrosshair()
+	{
+		crosshair.transform.position = weaponHolder.EquippedGun.CrosshairPosition;
 	}
 
     void ChangeAmmoDisplay()
