@@ -4438,9 +4438,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9074f6a694bc5e4c835009f8f724acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 1
-  m_shakeness: 1
-  m_variance: 0.3
 --- !u!114 &114396731287243974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4470,9 +4467,8 @@ MonoBehaviour:
   impactForce: 700
   maxAmmo: 100
   cylinderCapacity: 5
-  regularSwayLevel: 3
   recoilSwayLevel: 5
-  recoilDuration: 1.2
+  recoilDuration: 0.3
   shootAnimation: {fileID: 7400000, guid: c46403b8112abf843be484799196e714, type: 2}
   reloadStartAnimation: {fileID: 7400000, guid: 9c08178dbfeed7740807b034e4391053,
     type: 2}
@@ -4485,6 +4481,11 @@ MonoBehaviour:
   shootingLayers:
   - Shootables
   - Crows
+  onBackToIdle:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   onShot:
     m_PersistentCalls:
       m_Calls: []
@@ -4516,6 +4517,11 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onCrosshairScale:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onCrosshairColorChange:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
