@@ -31,7 +31,7 @@ public class PlayerAnimation : MonoBehaviour
 	void ResetTriggers() 
 	{
 		foreach (AnimatorControllerParameter parameter in animator.parameters)
-			if (parameter.type == AnimatorControllerParameterType.Trigger && parameter.name != "Has Finished Reloading")
+			if (parameter.type == AnimatorControllerParameterType.Trigger)
 				animator.ResetTrigger(parameter.name);
 	}
 
@@ -60,9 +60,9 @@ public class PlayerAnimation : MonoBehaviour
 		animator.runtimeAnimatorController = animatorOverrideController;
 
 		animatorOverrideController["DEFAULT IDLE"] = handgunAnimations[0];
-		animatorOverrideController["DEFAULT SHOOTING"] = weaponHolder.EquippedGun.ShootAnimation;
-		animatorOverrideController["DEFAULT RELOADING START"] = weaponHolder.EquippedGun.ReloadStartAnimation;
-		animatorOverrideController["DEFAULT RELOADING"] = weaponHolder.EquippedGun.ReloadAnimation;
-		animatorOverrideController["DEFAULT RELOADING FINISH"] = weaponHolder.EquippedGun.ReloadFinishAnimation;
+		animatorOverrideController["DEFAULT SHOOT"] = weaponHolder.EquippedGun.ShootAnimation;
+		animatorOverrideController["DEFAULT RELOAD START"] = weaponHolder.EquippedGun.ReloadStartAnimation;
+		animatorOverrideController["DEFAULT RELOAD"] = weaponHolder.EquippedGun.ReloadAnimation;
+		animatorOverrideController["DEFAULT RELOAD FINISH"] = weaponHolder.EquippedGun.ReloadFinishAnimation;
 	}
 }

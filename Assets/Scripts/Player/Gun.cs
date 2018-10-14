@@ -133,7 +133,7 @@ public class Gun : MonoBehaviour
 			
 			case GunState.Shooting:
 				if (Time.time - lastFireTime >= recoilDuration)
-					currentState = GunState.Idle;
+					ReturnToIdle();
 				break;
 			
 			case GunState.Reloading:
@@ -194,8 +194,7 @@ public class Gun : MonoBehaviour
 
 		onReloadFinish.Invoke();
 		yield return new WaitForSeconds(reloadFinishAnimation.length);
-		currentState = GunState.Idle;
-		onBackToIdle.Invoke();
+		ReturnToIdle();
 	}
 
 	void MoveCrosshairAround()
@@ -299,10 +298,10 @@ public class Gun : MonoBehaviour
 		reloadRoutine = null;
 		onReloadCancel.Invoke();
 		onReloadFinish.Invoke();
-		Invoke("ReEnableShooting", reloadFinishAnimation.length);
+		Invoke("ReturnToIdle", reloadFinishAnimation.length);
 	}
 
-	void ReEnableShooting()
+	void ReturnToIdle()
 	{
 		currentState = GunState.Idle;
 		onBackToIdle.Invoke();
