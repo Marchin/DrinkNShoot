@@ -84,7 +84,7 @@ public class HUD : MonoBehaviour
 
 	void ChangeCrosshairColor()
 	{
-		crosshair.color = weaponHolder.EquippedGun.EnemyOnClearSight ? darkRed : Color.white;
+		crosshair.color = weaponHolder.EquippedGun.TargetOnClearSight ? darkRed : Color.white;
 	}
 
 	void MoveCrosshair()

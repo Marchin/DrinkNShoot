@@ -49,16 +49,15 @@ public class LevelManager : MonoBehaviour
 	{
 		enemySpawnPoints = new List<Transform>();
 		currentStageIndex = 0;
-	}
-
-	void Start()
-	{
 		foreach (Transform spawnPoint in crowSpawner.transform)
 			if (spawnPoint.gameObject.activeInHierarchy && spawnPoint.GetComponent<CrowTrigger>())
 				enemySpawnPoints.Add(spawnPoint);
 		maxStageIndex = enemySpawnPoints.Count - 1;
-		
 		currentSpawnPoint = enemySpawnPoints[currentStageIndex].GetComponent<CrowTrigger>();
+	}
+
+	void Start()
+	{
 		endLevelMenu = FindObjectOfType<EndLevelMenu>();
 		hud = FindObjectOfType<HUD>();
 

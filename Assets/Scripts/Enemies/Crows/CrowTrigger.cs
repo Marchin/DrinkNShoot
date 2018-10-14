@@ -3,11 +3,11 @@
 public class CrowTrigger : MonoBehaviour {
 	[Header("Stage Properties")]
 	[SerializeField] [Range(1, 50)]
-	int requiredKills;
+	int m_requiredKills;
 	[SerializeField] [Range(0, 10)]
-	int difficultyLevel;
+	int m_difficultyLevel;
 	[SerializeField] [Range(0, 600)]
-	float completionTime;
+	float m_completionTime;
 	[SerializeField] GameObject m_stage;
 	BoxCollider[] m_landingZones;
 	CrowSpawner m_crowSpawner;
@@ -24,20 +24,19 @@ public class CrowTrigger : MonoBehaviour {
 
 	public int RequiredKills {
 		get {
-			return requiredKills;
+			return m_requiredKills;
 		}
 	}
 
 	public int DifficultyLevel {
 		get {
-			return difficultyLevel;
+			return m_difficultyLevel;
 		}
 	}
 
 	public float CompletionTime {
 		get {
-			return completionTime;
+			return m_completionTime;
 		}
 	}
-
 }

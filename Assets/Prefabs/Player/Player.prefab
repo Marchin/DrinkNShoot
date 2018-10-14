@@ -4468,7 +4468,8 @@ MonoBehaviour:
   maxAmmo: 100
   cylinderCapacity: 5
   recoilSwayLevel: 5
-  recoilDuration: 0.3
+  shootingLayers:
+  - Crows
   shootAnimation: {fileID: 7400000, guid: c46403b8112abf843be484799196e714, type: 2}
   reloadStartAnimation: {fileID: 7400000, guid: 9c08178dbfeed7740807b034e4391053,
     type: 2}
@@ -4478,9 +4479,6 @@ MonoBehaviour:
   shootSound: {fileID: 82105514996615990}
   reloadSound: {fileID: 82578978219281134}
   emptyGunSound: {fileID: 82183907266056016}
-  shootingLayers:
-  - Shootables
-  - Crows
   onBackToIdle:
     m_PersistentCalls:
       m_Calls: []
@@ -4522,6 +4520,11 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onCrosshairColorChange:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onCrosshairMove:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,

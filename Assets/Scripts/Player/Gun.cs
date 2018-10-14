@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class Gun : MonoBehaviour
 {
+	// Enumerators
 	public enum GunType
 	{
 		Handgun
@@ -14,7 +15,7 @@ public class Gun : MonoBehaviour
 	{
 		Idle, Shooting, Reloading
 	}
-
+	// Serialized Fields
 	[Header("Gun Stats")]
 	[SerializeField] [Tooltip("Type of gun.")]
 	GunType gunType;
@@ -30,6 +31,9 @@ public class Gun : MonoBehaviour
 	int cylinderCapacity;
 	[SerializeField] [Range(1, 10)] [Tooltip("Gun sway after being fired; affects accuracy.")]
 	float recoilSwayLevel;
+	[Header("Shooting Layers")] 
+	[SerializeField] [Tooltip("The names of the layers that the gun can shoot to.")]
+	List<string> shootingLayers;
 	[Header("Gun Animations")]
 	[SerializeField] [Tooltip("The 'shoot' animation associated to the gun.")]
 	AnimationClip shootAnimation;
@@ -46,9 +50,6 @@ public class Gun : MonoBehaviour
 	AudioSource reloadSound;
 	[SerializeField] [Tooltip("The sound the gun makes when it is fired while being empty.")]
 	AudioSource emptyGunSound;
-	[Header("Layers Masks")]
-	[SerializeField] [Tooltip("The name of layers that contain the possibe shooting targets.")]
-	string[] shootingLayers;
 	[Header("Events")]
 	[SerializeField] UnityEvent onBackToIdle;
 	[SerializeField] UnityEvent onShot;
@@ -60,18 +61,17 @@ public class Gun : MonoBehaviour
 	[SerializeField] UnityEvent onCrosshairScale;
 	[SerializeField] UnityEvent onCrosshairColorChange;
 	[SerializeField] UnityEvent onCrosshairMove;
-
-	// // Computing Fields
+	// Constants
 	const float DRUNK_SWAY_MULT = 10f;
 	const float RECOIL_SWAY_MULT = 0.5f;
 	const float MAX_SWAY_ALLOWED = 10f;
 	const float CROSSHAIR_SCALE_MULT = 0.05f;
 	const float MAX_DRUNK_CROSSHAIR_SPEED = 7f;
+	// Computing Fields
 	Camera fpsCamera;
 	Coroutine reloadRoutine;
 	GunState currentState;
 	Vector3 crosshairPosition;
-	int shootingLayerMask;
 	int ammoLeft;
 	int bulletsInCylinder = 0;
 	float lastFireTime = 0f;
@@ -85,11 +85,13 @@ public class Gun : MonoBehaviour
 	float crosshairScaleBeforeShot = 1f;
 	float crosshairScaleAfterShot = 1f;
 	bool isIncreasingDrunkSway = true;
-	bool enemyOnClearSight = false;
+	bool targetOnClearSight = false;
 	float drunkCrosshairRadius = 25f;
 	float drunkCrosshairAngle = 0f;
 	float drunkCrosshairSpeed = 0f;
+	int shootingLayerMask = 0;
 
+	// Unity Methods
 	void Awake()
 	{
 		fpsCamera = GetComponentInParent<Camera>();
@@ -98,7 +100,7 @@ public class Gun : MonoBehaviour
 		bulletsInCylinder = cylinderCapacity;
 		ammoLeft = maxAmmo;
 		recoilDuration = 1f / fireRate;
-		shootingLayerMask = LayerMask.GetMask(shootingLayers);
+		shootingLayerMask = ~LayerMask.GetMask("CrowTriggers", "LandingZones");
 	}
 
 	void Update()
@@ -163,7 +165,7 @@ public class Gun : MonoBehaviour
 		
 		Debug.DrawRay(fpsCamera.transform.position, direction * range, Color.red, 3);
 
-		if (Physics.Raycast(fpsCamera.transform.position, direction, out hit, range, shootingLayerMask) && enemyOnClearSight)
+		if (Physics.Raycast(fpsCamera.transform.position, direction, out hit, range, shootingLayerMask) && targetOnClearSight)
 		{
 			Life targetLife = hit.transform.GetComponent<Life>();
 			Rigidbody targetRigidbody = hit.transform.GetComponent<Rigidbody>();
@@ -273,20 +275,21 @@ public class Gun : MonoBehaviour
 	{
 		Vector3 direction = (fpsCamera.ScreenToWorldPoint(crosshairPosition) - fpsCamera.transform.position).normalized;
 		RaycastHit hit;
-		if (Physics.Raycast(fpsCamera.transform.position, direction, out hit, range, shootingLayerMask) &&
+
+        if (Physics.Raycast(fpsCamera.transform.position, direction, out hit, range, shootingLayerMask) &&
 			drunkSwayPercentage + recoilSwayLevel * consecutiveShots < MAX_SWAY_ALLOWED)
-		{	
-			if (!enemyOnClearSight)
+		{
+            if (!targetOnClearSight && shootingLayers.Contains(LayerMask.LayerToName(hit.transform.gameObject.layer)))
 			{
-				enemyOnClearSight = true;
+				targetOnClearSight = true;
 				onCrosshairColorChange.Invoke();
 			}
 		}
 		else
 		{
-			if (enemyOnClearSight)
+			if (targetOnClearSight)
 			{
-				enemyOnClearSight = false;
+				targetOnClearSight = false;
 				onCrosshairColorChange.Invoke();
 			}
 		}
@@ -357,9 +360,9 @@ public class Gun : MonoBehaviour
 		get { return crosshairScale; }
 	}
 
-	public bool EnemyOnClearSight
+	public bool TargetOnClearSight
 	{
-		get { return enemyOnClearSight; }
+		get { return targetOnClearSight; }
 	}
 
 	public float DrunkCrosshairSpeed
@@ -446,6 +449,7 @@ public class Gun : MonoBehaviour
 	{
 		get { return onCrosshairColorChange; }
 	}
+	
 	public UnityEvent OnCrosshairMove
 	{
 		get { return onCrosshairMove; }

@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 114517179880367768}
   - component: {fileID: 114261857304258724}
   m_Layer: 0
-  m_Name: CrowSpawner
+  m_Name: Town Level - CrowSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ Transform:
   m_GameObject: {fileID: 1832900540190574}
   m_LocalRotation: {x: -0, y: -0, z: -1.6370903e-11, w: 1}
   m_LocalPosition: {x: -0.48, y: -0.06, z: 23.86}
-  m_LocalScale: {x: 0.9999999, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4267023890869834}
   m_RootOrder: 2
@@ -163,7 +163,7 @@ Transform:
   m_GameObject: {fileID: 1526654343901394}
   m_LocalRotation: {x: 0.000743283, y: -0.44582433, z: -0.0034345028, w: 0.8951136}
   m_LocalPosition: {x: -2.54, y: -0.11, z: 32.33}
-  m_LocalScale: {x: 0.9999999, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4267023890869834}
   m_RootOrder: 3
@@ -204,7 +204,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 1.5, z: 1}
+  m_Size: {x: 2.5, y: 1.5, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65710796246551324
 BoxCollider:
@@ -216,7 +216,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 1.5, z: 1}
+  m_Size: {x: 2.5, y: 1.5, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65750440642745736
 BoxCollider:
@@ -228,8 +228,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 1.5, z: 4.5}
-  m_Center: {x: 1.2392282, y: 0, z: -0.80328184}
+  m_Size: {x: 2.5, y: 1.5, z: 4}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65879512580720618
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -240,7 +240,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 1.5, z: 1}
+  m_Size: {x: 2.5, y: 1.5, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114006832488659626
 MonoBehaviour:
@@ -253,9 +253,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredKills: 18
-  difficultyLevel: 4
-  completionTime: 90
+  m_requiredKills: 18
+  m_difficultyLevel: 4
+  m_completionTime: 90
   m_stage: {fileID: 0}
 --- !u!114 &114074142597568652
 MonoBehaviour:
@@ -268,9 +268,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredKills: 12
-  difficultyLevel: 2
-  completionTime: 60
+  m_requiredKills: 12
+  m_difficultyLevel: 2
+  m_completionTime: 60
   m_stage: {fileID: 0}
 --- !u!114 &114141254075659796
 MonoBehaviour:
@@ -283,9 +283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredKills: 5
-  difficultyLevel: 0
-  completionTime: 30
+  m_requiredKills: 5
+  m_difficultyLevel: 0
+  m_completionTime: 30
   m_stage: {fileID: 0}
 --- !u!114 &114261857304258724
 MonoBehaviour:
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredKills: 20
-  difficultyLevel: 6
-  completionTime: 120
+  m_requiredKills: 20
+  m_difficultyLevel: 6
+  m_completionTime: 120
   m_stage: {fileID: 0}
