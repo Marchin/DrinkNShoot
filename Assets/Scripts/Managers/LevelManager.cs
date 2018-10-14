@@ -17,9 +17,7 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] GameObject hudUI;
 	[SerializeField] GameObject tutorialUI;
 	[Header("Level Properties")]
-	[SerializeField] [Range(20, 600)] float initialCompletionTime;
-	[SerializeField] [Range(0, 10)] int startDifficultyLevel;
-	[SerializeField] [Range(1, 200)] int startRequiredKills;
+	[SerializeField] int cashEarnedPerKill = 5;
 	[SerializeField] bool tutorialEnabled = true;
 	[Header("Sounds")]
 	[SerializeField] AudioSource completeLevelSound;
@@ -31,18 +29,13 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] UnityEvent onFirstEmptyGun;
 	[SerializeField] UnityEvent onClearFirstStage;
 	List<Transform> enemySpawnPoints;
+	CrowTrigger currentSpawnPoint;
 	EndLevelMenu endLevelMenu;
 	HUD hud;
 	const float QUIT_DELAY = 0.5f;
-	const int KILLS_INCREASE = 3;
-	const int TIME_INCREASE = 15;
-	const int CASH_PER_KILL = 5;
 	static LevelManager instance;
 	int currentStageIndex;
 	int maxStageIndex;
-	float completionTime;
-	int difficultyLevel;
-	int requiredKills;
 	bool gameOver = false;
 	float timeLeft = 0;
 	int targetsKilledInStage = 0;
@@ -55,10 +48,6 @@ public class LevelManager : MonoBehaviour
 	void Awake()
 	{
 		enemySpawnPoints = new List<Transform>();
-		completionTime = initialCompletionTime;
-		timeLeft = completionTime;
-		difficultyLevel = startDifficultyLevel;
-		requiredKills = startRequiredKills;
 		currentStageIndex = 0;
 	}
 
@@ -68,9 +57,12 @@ public class LevelManager : MonoBehaviour
 			if (spawnPoint.gameObject.activeInHierarchy && spawnPoint.GetComponent<CrowTrigger>())
 				enemySpawnPoints.Add(spawnPoint);
 		maxStageIndex = enemySpawnPoints.Count - 1;
-
+		
+		currentSpawnPoint = enemySpawnPoints[currentStageIndex].GetComponent<CrowTrigger>();
 		endLevelMenu = FindObjectOfType<EndLevelMenu>();
 		hud = FindObjectOfType<HUD>();
+
+		timeLeft = currentSpawnPoint.CompletionTime;
 
 		if (tutorialEnabled)
 		{
@@ -87,7 +79,7 @@ public class LevelManager : MonoBehaviour
 
 			if (timeLeft <= 0)
 			{
-				if (targetsKilledInStage >= requiredKills)
+				if (targetsKilledInStage >= currentSpawnPoint.RequiredKills)
 					CompleteStage();
 				else
 					FailLevel();
@@ -106,11 +98,13 @@ public class LevelManager : MonoBehaviour
 		Time.timeScale = 0;
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
+		
 		totalKills += targetsKilledInStage;
-		cashEarnedInStage = targetsKilledInStage * CASH_PER_KILL;
+		cashEarnedInStage = targetsKilledInStage * cashEarnedPerKill;
 		totalIncome += cashEarnedInStage;
 		PlayerManager.Instance.Currency += cashEarnedInStage;
 		PlayerManager.Instance.TotalKills += targetsKilledInStage;
+		
 		endLevelMenu.ChangeEndScreenText(cashEarnedInStage, totalIncome, targetsKilledInStage, totalKills);
 		hud.ChangeCurrencyDisplay(totalIncome);
 		completeLevelSound.Play();
@@ -175,16 +169,15 @@ public class LevelManager : MonoBehaviour
 			onClearFirstStage.Invoke();
 		crowSpawner.DisableCrows();
 		crowSpawner.enabled = false;
+		
 		gameOver = false;
 		inShootingStage = false;
 		currentStageIndex++;
 		playersWagon.destination = enemySpawnPoints[currentStageIndex].position;
-		completionTime += TIME_INCREASE;
-		requiredKills += KILLS_INCREASE * currentStageIndex ;
-		difficultyLevel++;
+		currentSpawnPoint = enemySpawnPoints[currentStageIndex].GetComponent<CrowTrigger>();
 		playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().EquippedGun.DrunkCrosshairSpeed++;
 		targetsKilledInStage = 0;
-		timeLeft = completionTime;
+		timeLeft = currentSpawnPoint.CompletionTime;
 		onStartNextStage.Invoke();
 	}
 
@@ -247,16 +240,16 @@ public class LevelManager : MonoBehaviour
 
 	public int DifficultyLevel
 	{
-		get { return difficultyLevel; }
+		get { return currentSpawnPoint.DifficultyLevel; }
 	}
 
-	public int TargetsKilled
+	public int TargetsKilledInStage
 	{
 		get { return targetsKilledInStage; }
 	}
 
 	public int RequiredKills
 	{
-		get { return requiredKills; }
+		get { return currentSpawnPoint.RequiredKills; }
 	}
 }

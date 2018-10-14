@@ -112,7 +112,7 @@ public class HUD : MonoBehaviour
 
 	void ChangeKillsDisplay()
 	{
-		int targetsKilled =  LevelManager.Instance.TargetsKilled;
+		int targetsKilled =  LevelManager.Instance.TargetsKilledInStage;
 		int requiredKills = LevelManager.Instance.RequiredKills;
 
 		if (targetsKilled < requiredKills)
