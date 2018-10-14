@@ -9,26 +9,26 @@ public class Life : MonoBehaviour
 	[SerializeField] float deathLength;
 	[SerializeField] UnityEvent onDeath;
 	ParticleSystem featherExplosion;
-	MeshRenderer meshRenderer;
+	SkinnedMeshRenderer skinnedMeshRenderer;
 	int totalHitPoints;
 
 	private void Awake() 
 	{
 		featherExplosion = GetComponentInChildren<ParticleSystem>();
-		meshRenderer = GetComponentInChildren<MeshRenderer>();
+		skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 		totalHitPoints = hitPoints;	
 	}
 
 	private void OnEnable() 
 	{
 		featherExplosion.Stop();
-		meshRenderer.enabled = true;
+		skinnedMeshRenderer.enabled = true;
 		hitPoints = totalHitPoints;
 	}
 
 	void Die()
 	{
-		meshRenderer.enabled = false;
+		skinnedMeshRenderer.enabled = false;
 		Invoke("Disable", deathLength);
 	}
 	

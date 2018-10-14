@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(CrowLand))]
 [RequireComponent(typeof(CrowMovement))]
 [RequireComponent(typeof(CrowFlip))]
 public class Crow : MonoBehaviour {
+    [SerializeField] UnityEvent onLand;
+    [SerializeField] UnityEvent onFly;
     BoxCollider[] m_landingZones;
     BoxCollider m_collider;
     IState m_currState;
@@ -32,7 +35,11 @@ public class Crow : MonoBehaviour {
         if (m_nextState != m_currState) {
             SetStateActive(m_currState, false);
             SetStateActive(m_nextState, true);
-            m_currState = m_nextState;
+            m_currState = m_nextState; 
+            if ((Object)m_currState == GetComponent<CrowMovement>())
+                onLand.Invoke();
+            if ((Object)m_currState == GetComponent<CrowLand>())
+                onFly.Invoke();
         }
     }
 
@@ -62,5 +69,16 @@ public class Crow : MonoBehaviour {
         offSet = landingZone.transform.TransformDirection(offSet);
         direction = landingZone.transform.forward;
         return (landingZone.bounds.center + offSet);
+    }
+
+    public UnityEvent OnLand {
+        get {
+            return onLand;
+        }
+    }
+    public UnityEvent OnFly {
+        get {
+            return onFly;
+        }
     }
 }
