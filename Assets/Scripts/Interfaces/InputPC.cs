@@ -16,7 +16,7 @@ public class InputPC : IInput
 
 	public bool GetFireButton()
 	{
-		return Input.GetButtonDown("Fire1");
+		return Input.GetButtonDown("Fire");
 	}
 
 	public bool GetReloadButton()
