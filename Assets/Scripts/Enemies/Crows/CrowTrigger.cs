@@ -39,4 +39,10 @@ public class CrowTrigger : MonoBehaviour {
 			return m_completionTime;
 		}
 	}
+
+	public Vector3 StagePosition {
+		get { 
+			return m_stage.transform.position;
+		}
+	}
 }

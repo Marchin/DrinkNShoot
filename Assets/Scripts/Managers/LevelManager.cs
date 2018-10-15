@@ -28,6 +28,7 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] UnityEvent onStartNextStage;
 	[SerializeField] UnityEvent onFirstEmptyGun;
 	[SerializeField] UnityEvent onClearFirstStage;
+	[SerializeField] UnityEvent onShootingStageEnter;
 	List<Transform> enemySpawnPoints;
 	CrowTrigger currentSpawnPoint;
 	EndLevelMenu endLevelMenu;
@@ -184,6 +185,7 @@ public class LevelManager : MonoBehaviour
 	{
 		crowSpawner.enabled = true;
 		inShootingStage = true;
+		onShootingStageEnter.Invoke();
 	}
 
 	public static LevelManager Instance
@@ -227,6 +229,11 @@ public class LevelManager : MonoBehaviour
 		get { return onClearFirstStage; }
 	}
 
+	public UnityEvent OnShootingStageEnter
+	{
+		get { return onShootingStageEnter; }
+	}
+
 	public bool GameOver
 	{
 		get { return gameOver; }
@@ -250,5 +257,10 @@ public class LevelManager : MonoBehaviour
 	public int RequiredKills
 	{
 		get { return currentSpawnPoint.RequiredKills; }
+	}
+
+	public Vector3 CurrentStagePosition
+	{
+		get { return currentSpawnPoint.StagePosition; }
 	}
 }
