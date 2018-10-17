@@ -981,8 +981,11 @@ MonoBehaviour:
   m_landingZonesLayer:
     serializedVersion: 2
     m_Bits: 32768
+  m_buildingsLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   m_flightSpeed: 12
-  m_turnSpeed: 30
+  m_turnSpeed: 135
   m_landingRadius: 150
 --- !u!114 &114536975175338598
 MonoBehaviour:
