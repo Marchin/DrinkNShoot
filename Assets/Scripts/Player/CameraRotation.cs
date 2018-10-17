@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraRotation : MonoBehaviour {
+public class CameraRotation : MonoBehaviour 
+{
 	[SerializeField] float rotationSpeed;
 	[SerializeField] float horizontalRange;
 	[SerializeField] float verticalRange;
