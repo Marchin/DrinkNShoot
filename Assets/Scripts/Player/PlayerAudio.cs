@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerAudio : MonoBehaviour 
 {
+	[SerializeField] AudioSource drinkingSound;
+	[SerializeField] AudioSource burpingSound;
 	WeaponHolder weaponHolder;
 
 	void Awake()
@@ -33,14 +35,23 @@ public class PlayerAudio : MonoBehaviour
 	{
 		CancelInvoke("PlayReloadSound");
 	}
-
 	void PlayReloadSound()
 	{
 		weaponHolder.EquippedGun.ReloadSound.Play();
 	}
-
 	void PlayEmptyGunSound()
 	{
 		weaponHolder.EquippedGun.EmptyGunSound.Play();
+	}
+
+	// Animation Events Methods
+	public void PlayDrinkingSound()
+	{
+		drinkingSound.Play();
+	}
+
+	public void PlayBurpingSound()
+	{
+		burpingSound.Play();
 	}
 }
