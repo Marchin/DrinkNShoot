@@ -9,6 +9,7 @@ public class Crow : MonoBehaviour {
     BoxCollider[] m_landingZones;
     BoxCollider m_collider;
     Vector3 m_playerPos;
+    AudioSource m_screamSound;
     IState m_currState;
     IState m_nextState;
     bool m_hasToPoop;
@@ -16,6 +17,7 @@ public class Crow : MonoBehaviour {
     private void Awake() {
         m_hasToPoop = false;
         m_collider = GetComponent<BoxCollider>();
+        m_screamSound = GetComponent<AudioSource>();
     }
 
     private void OnEnable() {
@@ -76,6 +78,7 @@ public class Crow : MonoBehaviour {
 
     public void Poop() {
         GetComponent<CrowFly>().SetDestination(m_playerPos + Vector3.up * 3f);
+        m_screamSound.Play();
         m_hasToPoop = true;
     }
 }

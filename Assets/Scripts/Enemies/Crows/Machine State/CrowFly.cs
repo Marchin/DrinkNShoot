@@ -6,7 +6,6 @@ public class CrowFly : MonoBehaviour, IState {
     [SerializeField] float m_turnSpeed;
     PoopImage m_poopImage;
     Vector3 m_destination;
-    float m_negligible = 0.1f;
 
     private void Awake() {
         m_poopImage = FindObjectOfType<PoopImage>();
@@ -17,12 +16,13 @@ public class CrowFly : MonoBehaviour, IState {
         transform.rotation = Quaternion.Lerp(transform.rotation,
             Quaternion.LookRotation(diff),
             Time.deltaTime * m_turnSpeed);
-        diff = transform.InverseTransformDirection(diff);
-        diff.x = 0f;
-        diff = diff.normalized;
-        diff = transform.TransformDirection(diff);
+        // diff = transform.InverseTransformDirection(diff);
+        // diff.x = 0f;
+        // diff.z = Mathf.Abs(diff.z);
+        // diff = transform.TransformDirection(diff);
+        // diff = diff.normalized;
         // diff += transform.forward; //make it faster going forward
-        transform.position += diff * m_flightSpeed * Time.deltaTime;
+        transform.position += transform.forward * m_flightSpeed * Time.deltaTime;
         if (Physics.Raycast(transform.position, Vector3.down, 20f, m_playerLayer)) {
             m_poopImage.Poop();
             nextState = GetComponent<CrowLand>();

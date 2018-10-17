@@ -52,7 +52,7 @@ public class CrowMovement : MonoBehaviour, IState {
         Debug.DrawRay(transform.position + targetOffset, -transform.up, Color.green, 1f);
         RaycastHit hit;
         bool wasHit = Physics.Raycast(transform.position + targetOffset, -transform.up,
-            out hit, m_distToFoot, m_landingZonesLayer);
+            out hit, m_distToFoot + 0.5f, m_landingZonesLayer);
         if (wasHit) {
             m_targetPosition = transform.position + transform.forward * distanceVariation;
             m_moving = true;
