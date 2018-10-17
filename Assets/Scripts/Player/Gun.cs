@@ -32,8 +32,10 @@ public class Gun : MonoBehaviour
 	[SerializeField] [Range(1, 10)] [Tooltip("Gun sway after being fired; affects accuracy.")]
 	float recoilSwayLevel;
 	[Header("Shooting Layers")] 
-	[SerializeField] [Tooltip("The names of the layers that the gun can shoot to.")]
+	[SerializeField] [Tooltip("The names of the layers that the gun can make damage to.")]
 	List<string> shootingLayers;
+	[SerializeField] [Tooltip("The names of the layers the gun will ignore when using raycasts.")]
+	string[] layersToIgnore;
 	[Header("Gun Animations")]
 	[SerializeField] [Tooltip("The 'shoot' animation associated to the gun.")]
 	AnimationClip shootAnimation;
@@ -100,7 +102,12 @@ public class Gun : MonoBehaviour
 		bulletsInCylinder = cylinderCapacity;
 		ammoLeft = maxAmmo;
 		recoilDuration = 1f / fireRate;
-		shootingLayerMask = ~LayerMask.GetMask("CrowTriggers", "LandingZones");
+		shootingLayerMask = ~LayerMask.GetMask(layersToIgnore);
+	}
+
+	void Start()
+	{
+		LevelManager.Instance.OnStartNextStage.AddListener(StopReloading);
 	}
 
 	void Update()
@@ -139,7 +146,7 @@ public class Gun : MonoBehaviour
 				break;
 			
 			case GunState.Reloading:
-				if (InputManager.Instance.GetFireButton() && reloadRoutine != null)
+				if (InputManager.Instance.GetFireButton())
 					StopReloading();
 				break;
 			default:
@@ -297,11 +304,14 @@ public class Gun : MonoBehaviour
 
 	void StopReloading()
 	{
-		StopCoroutine(reloadRoutine);
-		reloadRoutine = null;
-		onReloadCancel.Invoke();
-		onReloadFinish.Invoke();
-		Invoke("ReturnToIdle", reloadFinishAnimation.length);
+		if (reloadRoutine != null)
+		{
+			StopCoroutine(reloadRoutine);
+			reloadRoutine = null;
+			onReloadCancel.Invoke();
+			onReloadFinish.Invoke();
+			Invoke("ReturnToIdle", reloadFinishAnimation.length);
+		}
 	}
 
 	void ReturnToIdle()

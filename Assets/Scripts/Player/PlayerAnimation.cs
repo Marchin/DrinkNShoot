@@ -10,6 +10,7 @@ public class PlayerAnimation : MonoBehaviour
 	[SerializeField] AnimationClip[] handgunAnimations;
 	Animator animator;
 	WeaponHolder weaponHolder;
+	const float SIPPING_DELAY = 0.75f;
 
 	void Awake()
 	{
@@ -22,10 +23,12 @@ public class PlayerAnimation : MonoBehaviour
 		ChangeGunAnimations();
 
 		weaponHolder.EquippedGun.OnBackToIdle.AddListener(ResetTriggers);
-		weaponHolder.EquippedGun.OnShot.AddListener(HasShot);
-		weaponHolder.EquippedGun.OnReloadStart.AddListener(HasStartedReloading);
-		weaponHolder.EquippedGun.OnReload.AddListener(HasReloaded);
-		weaponHolder.EquippedGun.OnReloadFinish.AddListener(HasFinishedReloading);
+		weaponHolder.EquippedGun.OnShot.AddListener(ShootAnimation);
+		weaponHolder.EquippedGun.OnReloadStart.AddListener(ReloadStartAnimation);
+		weaponHolder.EquippedGun.OnReload.AddListener(ReloadAnimation);
+		weaponHolder.EquippedGun.OnReloadFinish.AddListener(FinishReloadingAnimation);
+
+		LevelManager.Instance.OnStartNextStage.AddListener(InvokeSipTaking);
 	}
 
 	void ResetTriggers() 
@@ -35,24 +38,34 @@ public class PlayerAnimation : MonoBehaviour
 				animator.ResetTrigger(parameter.name);
 	}
 
-	void HasShot() 
+	void ShootAnimation() 
 	{
 		animator.SetTrigger("Has Shot");
 	}
 
-	void HasStartedReloading() 
+	void ReloadStartAnimation() 
 	{
 		animator.SetTrigger("Has Started Reloading");
 	}
 
-	void HasReloaded() 
+	void ReloadAnimation() 
 	{
 		animator.SetTrigger("Has Reloaded");
 	}
 
-	void HasFinishedReloading() 
+	void FinishReloadingAnimation() 
 	{
 		animator.SetTrigger("Has Finished Reloading");
+	}
+
+	void InvokeSipTaking()
+	{
+		Invoke("TakeASip", SIPPING_DELAY);
+	}
+
+	void TakeASip()
+	{
+		animator.SetTrigger("Has Taken a Sip");
 	}
 
 	void ChangeGunAnimations() 
