@@ -98,8 +98,9 @@ public class CrowLand : MonoBehaviour, IState {
 			transform.rotation = m_targetRotation;
 		}
 		if (Vector3.Distance(transform.eulerAngles, m_targetRotation.eulerAngles) > m_NEGLIGIBLE) {
+			float avoidingBuild = (buildHit.collider != null) ? 2f : 1f;
 			transform.rotation = Quaternion.RotateTowards(
-				transform.rotation, m_targetRotation, m_turnSpeed * Time.deltaTime);
+				transform.rotation, m_targetRotation, m_turnSpeed * avoidingBuild * Time.deltaTime);
 		} else {
 			transform.rotation = m_targetRotation;
 		}
