@@ -13,7 +13,6 @@ public class CrowSpawner : MonoBehaviour {
 	private void Awake() {
 		m_pool = GetComponent<ObjectPool>();
 		m_counter = m_spawnInterval;
-		Invoke("OrderPoop", m_poopInterval);
 	}
 
 	private void OnEnable() {
@@ -42,6 +41,7 @@ public class CrowSpawner : MonoBehaviour {
 
 	public void DisableCrows() {
 		m_counter = m_spawnInterval;
+		CancelInvoke();
 		m_pool.DisableAll();
 	}
 
