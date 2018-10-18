@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 114536975175338598}
   - component: {fileID: 114535996998199986}
   - component: {fileID: 114000567635610494}
+  - component: {fileID: 82278626888627614}
   m_Layer: 14
   m_Name: Crow
   m_TagString: Untagged
@@ -985,7 +986,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   m_flightSpeed: 12
-  m_turnSpeed: 135
+  m_turnSpeed: 140
   m_landingRadius: 150
 --- !u!114 &114536975175338598
 MonoBehaviour:

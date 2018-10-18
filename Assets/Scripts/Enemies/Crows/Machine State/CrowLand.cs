@@ -44,10 +44,19 @@ public class CrowLand : MonoBehaviour, IState {
 					m_targetPosition.y = m_targetY;
 				}
 				transform.position = Vector3.Lerp(
-					transform.position, m_targetPosition, 2f * Time.deltaTime);
+					transform.position, m_targetPosition, 2.25f * Time.deltaTime);
 			} else if (IsToCrash(landingHit, buildHit)) {
 				Vector3 diff = m_targetPosition - transform.position;
 				Vector3 projection = diff - buildHit.normal * Vector3.Dot(diff, buildHit.normal);
+				diff = transform.InverseTransformDirection(diff);
+				diff.x = 0f;
+				diff.z = Mathf.Abs(diff.z);
+				diff = transform.TransformDirection(diff);
+				diff = diff.normalized;
+				if (Vector3.SignedAngle(transform.forward, projection, Vector3.up) > 90f) {
+					projection.x *= -1f;
+					projection.z *= -1f;
+				}
 				m_targetRotation = Quaternion.LookRotation(projection);
 				transform.position += transform.forward * 0.5f * m_flightSpeed * Time.deltaTime;
 				m_rotCalculated = false;
@@ -58,11 +67,6 @@ public class CrowLand : MonoBehaviour, IState {
 				diff.z = Mathf.Abs(diff.z);
 				diff = transform.TransformDirection(diff);
 				diff = diff.normalized;
-				Vector3 diff2 = diff;
-				diff2.y = 0f;
-				if (Vector3.Angle(diff2, transform.forward) == 90f) {
-					diff = transform.forward;
-				}
 				transform.position += diff * m_flightSpeed * Time.deltaTime;
 				if (!m_rotCalculated) {
 					m_targetRotation = Quaternion.LookRotation(m_targetPosition - transform.position);
@@ -73,7 +77,6 @@ public class CrowLand : MonoBehaviour, IState {
 					if (buildHit.collider == null || landingHit.distance < buildHit.distance) {
 						// Debug.DrawRay(transform.position, Vector3.down, Color.magenta, 10f);
 						if (!m_rotCalculated) {
-							Vector3 diff2 = m_targetPosition - transform.position;
 							if (Vector3.Angle(transform.forward, m_direction) > 90f) {
 								m_direction = -m_direction;
 							}
@@ -92,9 +95,7 @@ public class CrowLand : MonoBehaviour, IState {
 				}
 			}
 		} else {
-			if (m_targetPosition.y == m_targetY) {
-				transform.position = m_targetPosition;
-			}
+			transform.position = m_targetPosition;
 			transform.rotation = m_targetRotation;
 		}
 		if (Vector3.Distance(transform.eulerAngles, m_targetRotation.eulerAngles) > m_NEGLIGIBLE) {
@@ -107,7 +108,6 @@ public class CrowLand : MonoBehaviour, IState {
 		if ((transform.position == m_targetPosition) &&
 			(transform.rotation == m_targetRotation)) {
 
-			m_turnSpeed *= 0.5f;
 			CancelInvoke();
 			nextState = GetComponent<CrowMovement>();
 		} else {
