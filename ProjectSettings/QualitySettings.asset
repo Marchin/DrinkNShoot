@@ -42,6 +42,9 @@ QualitySettings:
     excludedTargetPlatforms:
     - Android
     - Standalone
+    - iPhone
+    - Windows Store Apps
+    - WebGL
   - serializedVersion: 2
     name: Low
     pixelLightCount: 0
