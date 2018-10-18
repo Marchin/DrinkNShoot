@@ -95,6 +95,16 @@ public class CrowLand : MonoBehaviour, IState {
 				}
 			}
 		} else {
+			if (!m_rotCalculated) { //landing but landingHit failed
+				if (Vector3.Angle(transform.forward, m_direction) > 90f) {
+					m_direction = -m_direction;
+				}
+				RaycastHit hit;
+				if (Physics.Raycast(transform.position, Vector3.down, out hit, 2f, m_landingZonesLayer)){
+					m_targetRotation = Quaternion.LookRotation(m_direction, hit.normal);
+				}
+			}
+			transform.rotation = m_targetRotation;
 			transform.position = m_targetPosition;
 			transform.rotation = m_targetRotation;
 		}
