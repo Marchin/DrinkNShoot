@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 	[SerializeField] GameObject pauseMenuUI;
 	[SerializeField] GameObject hudUI;
 	[SerializeField] UnityEvent onPauseToggle;
+	
 	static bool isPaused;
 
 	void Start()
@@ -28,8 +29,7 @@ public class PauseMenu : MonoBehaviour
 
 	public void Pause()
 	{
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
+		GameManager.Instance.ShowCursor();
 		Time.timeScale = 0;
 		pauseMenuUI.SetActive(true);
 		hudUI.SetActive(false);
@@ -39,8 +39,7 @@ public class PauseMenu : MonoBehaviour
 
 	public void Resume()
 	{
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
+		GameManager.Instance.HideCursor();
 		Time.timeScale = 1;
 		pauseMenuUI.SetActive(false);
 		hudUI.SetActive(true);

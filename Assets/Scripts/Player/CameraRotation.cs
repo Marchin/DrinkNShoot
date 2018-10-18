@@ -7,6 +7,7 @@ public class CameraRotation : MonoBehaviour
 	[SerializeField] float rotationSpeed;
 	[SerializeField] float horizontalRange;
 	[SerializeField] float verticalRange;
+	
 	Transform fpsCamera;
 	float horizontalAngle = 0f;
 	float verticalAngle = 0f;
@@ -15,7 +16,7 @@ public class CameraRotation : MonoBehaviour
 	
 	void Awake()
 	{
-		Cursor.lockState = CursorLockMode.Locked;
+		GameManager.Instance.HideCursor();
 		fpsCamera = GetComponentInChildren<Camera>().transform;
 		horizontalAngle = transform.localEulerAngles.y;
 	}

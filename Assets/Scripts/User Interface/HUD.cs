@@ -13,30 +13,36 @@ public class HUD : MonoBehaviour
 	[SerializeField] TextMeshProUGUI timerText;
 	[SerializeField] TextMeshProUGUI currencyText;
 	[SerializeField] GameObject objectiveBanner;
+	
 	[Header("Audio Sources")]
 	[SerializeField] AudioSource slideInBannerSound;
 	[SerializeField] AudioSource slideOutBannerSound;
 	[SerializeField] AudioSource clockTickSound;
+	
 	[Header("Animations")]
 	[SerializeField] AnimationClip slidingAnimation;
+	
 	[Header("References")]
 	[SerializeField] WeaponHolder weaponHolder;
+	
 	[Header("Other Properties")]
 	[SerializeField] float objectiveBannerDuration = 3.0f;
+	
 	const int CRITICAL_AMMO_LEFT_FRACT = 5;
 	const int CRITICAL_AMMO_IN_GUN_FRAC = 3;
 	const int WARNING_TIME_LEFT = 20;
 	const int CRITICAL_TIME_LEFT = 10;
 	const int SECOND = 1;
+	
+	Animator objectiveBannerAnimator;
+	Color darkGreen;
+	Color darkRed;
+	Color yellow;
 	int criticalAmmoLeft;
 	int criticalAmmoInGun;
 	float objectiveBannerTimer;
 	float clockTickTimer;
 	bool objectiveBannerWasJustDisabled;
-	Animator objectiveBannerAnimator;
-	Color darkGreen;
-	Color darkRed;
-	Color yellow;
 
 	void Awake()
 	{

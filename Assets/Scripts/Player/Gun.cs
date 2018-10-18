@@ -15,6 +15,7 @@ public class Gun : MonoBehaviour
 	{
 		Idle, Shooting, Reloading
 	}
+	
 	// Serialized Fields
 	[Header("Gun Stats")]
 	[SerializeField] [Tooltip("Type of gun.")]
@@ -31,11 +32,13 @@ public class Gun : MonoBehaviour
 	int cylinderCapacity;
 	[SerializeField] [Range(1, 10)] [Tooltip("Gun sway after being fired; affects accuracy.")]
 	float recoilSwayLevel;
+	
 	[Header("Shooting Layers")] 
 	[SerializeField] [Tooltip("The names of the layers that the gun can make damage to.")]
 	List<string> shootingLayers;
 	[SerializeField] [Tooltip("The names of the layers the gun will ignore when using raycasts.")]
 	string[] layersToIgnore;
+	
 	[Header("Gun Animations")]
 	[SerializeField] [Tooltip("The 'shoot' animation associated to the gun.")]
 	AnimationClip shootAnimation;
@@ -45,6 +48,7 @@ public class Gun : MonoBehaviour
 	AnimationClip reloadAnimation;
 	[SerializeField] [Tooltip("The 'finish reloading' animation associated to the gun.")]
 	AnimationClip reloadFinishAnimation;
+	
 	[Header("Gun Audio Sources")]
 	[SerializeField] [Tooltip("The'shoot' sound associated to the gun.")]
 	AudioSource shootSound;
@@ -52,6 +56,7 @@ public class Gun : MonoBehaviour
 	AudioSource reloadSound;
 	[SerializeField] [Tooltip("The sound the gun makes when it is fired while being empty.")]
 	AudioSource emptyGunSound;
+	
 	[Header("Events")]
 	[SerializeField] UnityEvent onBackToIdle;
 	[SerializeField] UnityEvent onShot;
@@ -63,12 +68,14 @@ public class Gun : MonoBehaviour
 	[SerializeField] UnityEvent onCrosshairScale;
 	[SerializeField] UnityEvent onCrosshairColorChange;
 	[SerializeField] UnityEvent onCrosshairMove;
+	
 	// Constants
 	const float DRUNK_SWAY_MULT = 10f;
 	const float RECOIL_SWAY_MULT = 0.5f;
 	const float MAX_SWAY_ALLOWED = 10f;
 	const float CROSSHAIR_SCALE_MULT = 0.05f;
 	const float MAX_DRUNK_CROSSHAIR_SPEED = 7f;
+	
 	// Computing Fields
 	Camera fpsCamera;
 	Coroutine reloadRoutine;
@@ -335,7 +342,7 @@ public class Gun : MonoBehaviour
 		return bulletsInCylinder == 0;
 	}
 
-	// Public Methods
+	// Getters & Setters
 	public GunType TypeOfGun
 	{
 		get { return gunType; }

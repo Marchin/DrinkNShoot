@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-	static GameManager instance;
 	[SerializeField] SettingsMenu.GfxSetting currentGfxSetting = SettingsMenu.GfxSetting.Wild;
 	[SerializeField] float currentSfxVolume = 0.75f;
+	
+	static GameManager instance;
 
 	void Awake()
 	{
@@ -20,6 +21,18 @@ public class GameManager : MonoBehaviour
 	void Start()
 	{
 		QualitySettings.SetQualityLevel((int)currentGfxSetting);
+	}
+
+	public void HideCursor()
+	{
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+	}
+
+	public void ShowCursor()
+	{
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
 	}
 
 	public static GameManager Instance

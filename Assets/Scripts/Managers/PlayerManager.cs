@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class PlayerManager : MonoBehaviour
 {
 	static PlayerManager instance;
+	
 	CameraRotation cameraRotation;
 	DrunkCamera drunkCamera;
 	Gun equippedGun;

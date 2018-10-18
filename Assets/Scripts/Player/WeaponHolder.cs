@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponHolder : MonoBehaviour 
 {
 	[SerializeField] Gun.GunType initialGun;
+	
 	Gun equippedGun;
 	Gun.GunType equippedGunType;
 

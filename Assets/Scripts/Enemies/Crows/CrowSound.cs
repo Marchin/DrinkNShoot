@@ -7,8 +7,10 @@ public class CrowSound : MonoBehaviour
 {
 	[SerializeField] AudioSource[] crowSounds;
 	[SerializeField] [Range(0, 100)]
-	float makeSoundProbability = 45f;
+	
 	static bool crowMakingSound = false;
+	
+	float makeSoundProbability = 45f;
 
 	void PlayRandomCrowSound()
 	{

@@ -10,18 +10,22 @@ public class LevelManager : MonoBehaviour
 	[Header("Entities References")]
 	[SerializeField] NavMeshAgent playersWagon;
 	[SerializeField] CrowSpawner crowSpawner;
+	
 	[Header("UI References")]
 	[SerializeField] GameObject completeLevelUI;
 	[SerializeField] GameObject completeStageUI;
 	[SerializeField] GameObject failLevelUI;
 	[SerializeField] GameObject hudUI;
 	[SerializeField] GameObject tutorialUI;
+	
 	[Header("Level Properties")]
 	[SerializeField] int cashEarnedPerKill = 5;
 	[SerializeField] bool tutorialEnabled = true;
+	
 	[Header("Sounds")]
 	[SerializeField] AudioSource completeLevelSound;
 	[SerializeField] AudioSource failLevelSound;
+	
 	[Header("Events")]
 	[SerializeField] UnityEvent onEnemyKill;
 	[SerializeField] UnityEvent onGameOver;
@@ -29,12 +33,15 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] UnityEvent onFirstEmptyGun;
 	[SerializeField] UnityEvent onClearFirstStage;
 	[SerializeField] UnityEvent onShootingStageEnter;
+	
+	const float QUIT_DELAY = 0.5f;
+	
+	static LevelManager instance;
+
 	List<Transform> enemySpawnPoints;
 	CrowTrigger currentSpawnPoint;
 	EndLevelMenu endLevelMenu;
 	HUD hud;
-	const float QUIT_DELAY = 0.5f;
-	static LevelManager instance;
 	int currentStageIndex;
 	int maxStageIndex;
 	bool gameOver = false;
@@ -96,8 +103,7 @@ public class LevelManager : MonoBehaviour
 			completeLevelUI.SetActive(true);
 		hudUI.SetActive(false);
 		Time.timeScale = 0;
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
+		GameManager.Instance.ShowCursor();
 		
 		totalKills += targetsKilledInStage;
 		cashEarnedInStage = targetsKilledInStage * cashEarnedPerKill;
@@ -117,8 +123,7 @@ public class LevelManager : MonoBehaviour
         failLevelUI.SetActive(true);
         hudUI.SetActive(false);
 		Time.timeScale = 0;
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
+		GameManager.Instance.ShowCursor();
 		failLevelSound.Play();
 		onGameOver.Invoke();
 	}
@@ -173,6 +178,7 @@ public class LevelManager : MonoBehaviour
 		gameOver = false;
 		inShootingStage = false;
 		currentStageIndex++;
+		
 		playersWagon.destination = enemySpawnPoints[currentStageIndex].position;
 		currentSpawnPoint = enemySpawnPoints[currentStageIndex].GetComponent<CrowTrigger>();
 		playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().EquippedGun.DrunkCrosshairSpeed++;

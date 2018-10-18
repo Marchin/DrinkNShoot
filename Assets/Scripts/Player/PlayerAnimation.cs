@@ -8,9 +8,11 @@ public class PlayerAnimation : MonoBehaviour
 {
 	[SerializeField] AnimatorOverrideController animatorOverrideController;
 	[SerializeField] AnimationClip[] handgunAnimations;
+	
+	const float SIPPING_DELAY = 0.75f;
+	
 	Animator animator;
 	WeaponHolder weaponHolder;
-	const float SIPPING_DELAY = 0.75f;
 
 	void Awake()
 	{

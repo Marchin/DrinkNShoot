@@ -16,14 +16,14 @@ public class EndLevelMenu : MonoBehaviour
 	public void Restart()
 	{
 		Time.timeScale = 1;
+		GameManager.Instance.HideCursor();
 		LevelManager.Instance.RestartLevel();
 	}
 
 	public void PlayNextStage()
 	{
 		Time.timeScale = 1;
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
+		GameManager.Instance.HideCursor();
 		onContinue.Invoke();
 		LevelManager.Instance.MoveToNextStage();
 	}

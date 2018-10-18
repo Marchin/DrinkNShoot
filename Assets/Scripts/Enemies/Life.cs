@@ -8,6 +8,7 @@ public class Life : MonoBehaviour
 	[SerializeField] int hitPoints;
 	[SerializeField] float deathLength;
 	[SerializeField] UnityEvent onDeath;
+	
 	ParticleSystem featherExplosion;
 	SkinnedMeshRenderer skinnedMeshRenderer;
 	int totalHitPoints;

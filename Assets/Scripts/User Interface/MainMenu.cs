@@ -8,15 +8,16 @@ using TMPro;
 public class MainMenu : MonoBehaviour
 {
 	[SerializeField] TextMeshProUGUI appVersionText;
+	
 	const float QUIT_DELAY = 0.5f;
-    bool playRequested;
+    
+	bool playRequested;
 
 	void Start()
 	{
+		GameManager.Instance.ShowCursor();
         playRequested = false;
         StartCoroutine("LoadAsyncScene");
-        Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
 		appVersionText.text = "Application Version: " + Application.version;
 	}
 
@@ -27,10 +28,8 @@ public class MainMenu : MonoBehaviour
 
 	public void Play()
 	{
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
+		GameManager.Instance.HideCursor();
         playRequested = true;
-		//SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
 
 	public void Exit()
@@ -42,7 +41,6 @@ public class MainMenu : MonoBehaviour
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Town Level");
         asyncLoad.allowSceneActivation = false;
-        // Wait until the asynchronous scene fully loads
         while (!asyncLoad.isDone)
         {
             if (playRequested)

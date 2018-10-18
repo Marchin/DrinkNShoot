@@ -5,6 +5,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour 
 {
 	static InputManager instance;
+	
 	IInput input;
 
 	void Awake()

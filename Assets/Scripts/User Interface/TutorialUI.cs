@@ -20,7 +20,9 @@ public class TutorialUI : MonoBehaviour
 	[SerializeField] AnimationClip slidingAnimation;
 	[SerializeField] AudioSource slideInSound;
 	[SerializeField] AudioSource slideOutSound;
+	
 	const float NEGLIGIBLE_DIFF = 1.5f;
+	
 	BannerType activeBannerType;
 	BannerType followingBannerType;
 	Animator bannerAnimator;

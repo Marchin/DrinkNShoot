@@ -6,6 +6,7 @@ public class PlayerAudio : MonoBehaviour
 {
 	[SerializeField] AudioSource drinkingSound;
 	[SerializeField] AudioSource burpingSound;
+	
 	WeaponHolder weaponHolder;
 
 	void Awake()

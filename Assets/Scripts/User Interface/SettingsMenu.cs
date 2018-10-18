@@ -16,13 +16,16 @@ public class SettingsMenu : MonoBehaviour
 	[SerializeField] TextMeshProUGUI gfxText;
 	[SerializeField] GameObject decreaseGfxButton;
 	[SerializeField] GameObject increaseGfxButton;
+	
 	[Header("Audio Settings")]
 	[SerializeField] AudioMixer sfxMixer;
 	[SerializeField] Slider sfxSlider;
-	GfxSetting currentGfxSetting;
+	
 	const string VERT_HIG_STR = "Very High";
 	const string VERY_LOW_STR = "Very Low";
 	const float MIXER_MULT = 12f;
+	
+	GfxSetting currentGfxSetting;
 
 	void Start()
 	{
