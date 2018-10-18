@@ -1,18 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
 	[SerializeField] SettingsMenu.GfxSetting currentGfxSetting = SettingsMenu.GfxSetting.Wild;
 	[SerializeField] float currentSfxVolume = 0.75f;
+	[SerializeField] AnimationClip fadeOutAnimation;
 	
 	static GameManager instance;
+
+	Animator animator;
+	int nextSceneToLoad = 0;
 
 	void Awake()
 	{
 		if (Instance == this)
+		{
+			animator = GetComponent<Animator>();
 			DontDestroyOnLoad(gameObject);
+		}
 		else
 			Destroy(gameObject);
 
@@ -21,6 +29,22 @@ public class GameManager : MonoBehaviour
 	void Start()
 	{
 		QualitySettings.SetQualityLevel((int)currentGfxSetting);
+	}
+
+	void LoadNextScene()
+	{
+		StartCoroutine("LoadNextSceneAsynchronously");
+	}
+
+	IEnumerator LoadNextSceneAsynchronously()
+	{
+		AsyncOperation operation = SceneManager.LoadSceneAsync(nextSceneToLoad);
+		
+		while (!operation.isDone)
+			yield return null;
+		
+		nextSceneToLoad = 0;
+		animator.SetTrigger("Fade In");
 	}
 
 	public void HideCursor()
@@ -33,6 +57,18 @@ public class GameManager : MonoBehaviour
 	{
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
+	}
+
+	public void FadeToScene(int sceneIndex)
+	{
+		nextSceneToLoad = sceneIndex;
+		animator.SetTrigger("Fade Out");
+		Invoke("LoadNextScene", fadeOutAnimation.length);
+	}
+
+	public void QuitApplication()
+	{
+		Application.Quit();
 	}
 
 	public static GameManager Instance

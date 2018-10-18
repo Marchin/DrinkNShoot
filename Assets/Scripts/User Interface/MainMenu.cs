@@ -8,8 +8,6 @@ using TMPro;
 public class MainMenu : MonoBehaviour
 {
 	[SerializeField] TextMeshProUGUI appVersionText;
-	
-	const float QUIT_DELAY = 0.5f;
     
 	bool playRequested;
 
@@ -21,10 +19,6 @@ public class MainMenu : MonoBehaviour
 		appVersionText.text = "Application Version: " + Application.version;
 	}
 
-	void QuitApplication()
-	{
-		Application.Quit();
-	}
 
 	public void Play()
 	{
@@ -32,9 +26,9 @@ public class MainMenu : MonoBehaviour
         playRequested = true;
 	}
 
-	public void Exit()
+	public void Quit()
 	{
-		Invoke("QuitApplication", QUIT_DELAY);
+		GameManager.Instance.QuitApplication();
 	}
 
     IEnumerator LoadAsyncScene()

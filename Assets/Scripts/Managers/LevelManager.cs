@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] UnityEvent onClearFirstStage;
 	[SerializeField] UnityEvent onShootingStageEnter;
 	
-	const float QUIT_DELAY = 0.5f;
+	// const float QUIT_DELAY = 0.5f;
 	
 	static LevelManager instance;
 
@@ -134,14 +134,14 @@ public class LevelManager : MonoBehaviour
 		onEnemyKill.Invoke();
 	}
 
-	void Restart()
+	public void RestartLevel()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		GameManager.Instance.FadeToScene(SceneManager.GetActiveScene().buildIndex);
 	}
 
-	void Quit()
+	public void QuitLevel()
 	{
-		SceneManager.LoadScene("Main Menu");
+		GameManager.Instance.FadeToScene(0);
 	}
 
 	void FirstEmptyGunNotice()
@@ -153,15 +153,15 @@ public class LevelManager : MonoBehaviour
 		}
 	}
 
-	public void RestartLevel()
-	{
-		Invoke("Restart", QUIT_DELAY);
-	}
+	// public void RestartLevel()
+	// {
+	// 	Invoke("Restart", QUIT_DELAY);
+	// }
 
-	public void QuitLevel()
-	{
-		Invoke("Quit", QUIT_DELAY);
-	}
+	// public void QuitLevel()
+	// {
+	// 	Invoke("Quit", QUIT_DELAY);
+	// }
 
 	public void AddEnemyLife(Life enemyLife)
 	{
