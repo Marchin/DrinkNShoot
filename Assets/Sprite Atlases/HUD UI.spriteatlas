@@ -30,16 +30,19 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: c8707a273a287c5488889124d6585302, type: 3}
+    - {fileID: 102900000, guid: 670b7ea902a97834bad9ff98a84166e2, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 81968682a2e52d54a8531b948d8f63ef, type: 3}
   - {fileID: 21300000, guid: 80e42934954ce0546b4833f345984438, type: 3}
+  - {fileID: 21300000, guid: 7e7eb8f9e7c8ac54e92ca4acd342ca40, type: 3}
   - {fileID: 21300000, guid: 475cdc2c1a7aba447bc0d02bef52584b, type: 3}
   - {fileID: 21300000, guid: 322355fc78295024d90cad7e1aa3aa68, type: 3}
   m_PackedSpriteNamesToIndex:
   - Crosshair
   - Crows
+  - Crow's Poop
   - Timer
   - Ammo
   m_Tag: HUD UI
