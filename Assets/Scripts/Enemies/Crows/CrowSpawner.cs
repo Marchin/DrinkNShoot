@@ -19,11 +19,7 @@ public class CrowSpawner : MonoBehaviour {
 	private void OnEnable() {
 		Invoke("OrderPoop", m_poopInterval);
 	}
-
-	private void OnEnable() {
-		Invoke("OrderPoop", m_poopInterval);
-	}
-
+	
 	void Update() {
 		if (m_counter <= 0f) {
 			GameObject go;
