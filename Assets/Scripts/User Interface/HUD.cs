@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 
 public class HUD : MonoBehaviour 
 {
 	[Header("HUD Elements")]
 	[SerializeField] Image crosshair;
-	[SerializeField] TextMeshProUGUI ammoText;
-	[SerializeField] TextMeshProUGUI crowsText;
-	[SerializeField] TextMeshProUGUI timerText;
-	[SerializeField] TextMeshProUGUI currencyText;
+	[SerializeField] GameObject ammoHUD;
+	[SerializeField] GameObject crowHUD;
+	[SerializeField] GameObject timerHUD;
+	[SerializeField] GameObject currencyHUD;
 	[SerializeField] GameObject objectiveBanner;
 	
 	[Header("Audio Sources")]
@@ -28,48 +29,56 @@ public class HUD : MonoBehaviour
 	[Header("Other Properties")]
 	[SerializeField] float objectiveBannerDuration = 3.0f;
 	
-	const int CRITICAL_AMMO_LEFT_FRACT = 5;
-	const int CRITICAL_AMMO_IN_GUN_FRAC = 3;
-	const int WARNING_TIME_LEFT = 20;
+	const int CRITICAL_AMMO_IN_GUN = 1;
 	const int CRITICAL_TIME_LEFT = 10;
 	const int SECOND = 1;
-	
+
+    TextMeshProUGUI ammoText;
+    TextMeshProUGUI crowsText;
+    TextMeshProUGUI timerText;
+    TextMeshProUGUI currencyText;
 	Animator objectiveBannerAnimator;
+	Animator ammoHUDAnimator;
+	Animator crowHUDAnimator;
+	Animator timerHUDAnimator;
 	Color darkGreen;
 	Color darkRed;
 	Color yellow;
-	int criticalAmmoLeft;
-	int criticalAmmoInGun;
 	float objectiveBannerTimer;
 	float clockTickTimer;
 	bool objectiveBannerWasJustDisabled;
 
 	void Awake()
 	{
+		ammoText = ammoHUD.GetComponentInChildren<TextMeshProUGUI>();
+		crowsText = crowHUD.GetComponentInChildren<TextMeshProUGUI>();
+		timerText = timerHUD.GetComponentInChildren<TextMeshProUGUI>();
+		currencyText = currencyHUD.GetComponentInChildren<TextMeshProUGUI>();
+
+		ammoHUDAnimator = ammoHUD.GetComponent<Animator>();
+		crowHUDAnimator = crowHUD.GetComponent<Animator>();
+		timerHUDAnimator = timerHUD.GetComponent<Animator>();
 		objectiveBannerAnimator = objectiveBanner.GetComponent<Animator>();
 	}
 
     void Start()
     {
         weaponHolder.EquippedGun.OnShot.AddListener(ChangeAmmoDisplay);
-        weaponHolder.EquippedGun.OnReload.AddListener(ChangeAmmoDisplay);
-        weaponHolder.EquippedGun.OnReloadFinish.AddListener(ChangeAmmoDisplay);
+        weaponHolder.EquippedGun.OnIncreaseBulletCount.AddListener(ChangeAmmoDisplay);
+        weaponHolder.EquippedGun.OnEmptyGun.AddListener(PopAmmoHUD);
         weaponHolder.EquippedGun.OnCrosshairScale.AddListener(ScaleCrosshair);
         weaponHolder.EquippedGun.OnCrosshairColorChange.AddListener(ChangeCrosshairColor);
         weaponHolder.EquippedGun.OnCrosshairMove.AddListener(MoveCrosshair);
+		
 		LevelManager.Instance.OnEnemyKill.AddListener(ChangeKillsDisplay);
 		LevelManager.Instance.OnStartNextStage.AddListener(ChangeKillsDisplay);
-
-		criticalAmmoLeft = weaponHolder.EquippedGun.MaxAmmo / CRITICAL_AMMO_LEFT_FRACT ;
-		criticalAmmoInGun = weaponHolder.EquippedGun.CylinderCapacity / CRITICAL_AMMO_IN_GUN_FRAC;
 
 		objectiveBannerTimer = 0f;
 		objectiveBannerWasJustDisabled = false;
 		clockTickTimer = 0f;
 
-		darkGreen = new Color(0.1f, 0.5f, 0.1f);
+		darkGreen = new Color(0f, 0.3f, 0f);
 		darkRed = new Color(0.5f, 0.1f, 0.1f);
-		yellow = new Color(0.8f, 0.6f, 0.1f);
 
 		ChangeAmmoDisplay();
 		ChangeKillsDisplay();
@@ -103,15 +112,14 @@ public class HUD : MonoBehaviour
         int bulletsInCylinder = weaponHolder.EquippedGun.BulletsInCylinder;
         int ammoLeft = weaponHolder.EquippedGun.AmmoLeft;
 
-		if (ammoLeft <= criticalAmmoLeft)
-			ammoText.color = darkRed;
-		else
+		if (bulletsInCylinder <= CRITICAL_AMMO_IN_GUN)
 		{
-			if (bulletsInCylinder <= criticalAmmoInGun)
-				ammoText.color = yellow;
-			else
-				ammoText.color = Color.white;
+			if (bulletsInCylinder == 0)
+				ammoHUDAnimator.SetTrigger("Has to Pop");
+			ammoText.color = darkRed;
 		}
+		else
+			ammoText.color = Color.white;
 
         ammoText.text = bulletsInCylinder.ToString() + "/" + ammoLeft.ToString();
     }
@@ -132,6 +140,7 @@ public class HUD : MonoBehaviour
 			crowsText.color = darkGreen;
 			if (targetsKilled == requiredKills)
 			{
+				crowHUDAnimator.SetTrigger("Has to Pop");
 				objectiveBanner.SetActive(true);
 				objectiveBannerAnimator.SetTrigger("Start");
 				slideInBannerSound.Play();
@@ -150,17 +159,13 @@ public class HUD : MonoBehaviour
 			clockTickTimer += Time.deltaTime;
 			if (clockTickTimer >= SECOND)
 			{
+				timerHUDAnimator.SetTrigger("Has to Pop");
 				clockTickTimer = 0f;
 				clockTickSound.Play();
 			}
 		}
 		else
-		{
-			if (timeLeft <= WARNING_TIME_LEFT)
-				timerText.color = yellow;
-			else
-				timerText.color = Color.white;
-		}
+			timerText.color = Color.white;
 	}
 
 	void ComputeObjectiveBannerDisplay()
@@ -178,6 +183,11 @@ public class HUD : MonoBehaviour
 			else
 				objectiveBannerTimer += Time.deltaTime;
 		}
+	}
+
+	void PopAmmoHUD()
+	{
+		ammoHUDAnimator.SetTrigger("Has to Pop");
 	}
 
 	void DisableBanner()

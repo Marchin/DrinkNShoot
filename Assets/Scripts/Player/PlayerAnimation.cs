@@ -8,6 +8,7 @@ public class PlayerAnimation : MonoBehaviour
 {
 	[SerializeField] AnimatorOverrideController animatorOverrideController;
 	[SerializeField] AnimationClip[] handgunAnimations;
+	[SerializeField] AnimationClip sippingAnimation;
 	
 	const float SIPPING_DELAY = 0.75f;
 	
@@ -62,12 +63,19 @@ public class PlayerAnimation : MonoBehaviour
 
 	void InvokeSipTaking()
 	{
+		PlayerManager.Instance.DisablePlayerComponent(weaponHolder.EquippedGun);
 		Invoke("TakeASip", SIPPING_DELAY);
 	}
 
 	void TakeASip()
 	{
 		animator.SetTrigger("Has Taken a Sip");
+		Invoke("ReEnableGunComponent", sippingAnimation.length);
+	}
+
+	void ReEnableGunComponent()
+	{
+		PlayerManager.Instance.EnablePlayerComponent(weaponHolder.EquippedGun);
 	}
 
 	void ChangeGunAnimations() 

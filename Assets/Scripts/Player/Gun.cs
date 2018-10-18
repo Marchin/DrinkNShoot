@@ -64,6 +64,7 @@ public class Gun : MonoBehaviour
 	[SerializeField] UnityEvent onReload;
 	[SerializeField] UnityEvent onReloadFinish;
 	[SerializeField] UnityEvent onReloadCancel;
+	[SerializeField] UnityEvent onIncreaseBulletCount;
 	[SerializeField] UnityEvent onEmptyGun;
 	[SerializeField] UnityEvent onCrosshairScale;
 	[SerializeField] UnityEvent onCrosshairColorChange;
@@ -206,6 +207,7 @@ public class Gun : MonoBehaviour
 			yield return new WaitForSeconds(reloadAnimation.length);
 			bulletsInCylinder++;
 			ammoLeft--;
+			onIncreaseBulletCount.Invoke();
         }
 
 		onReloadFinish.Invoke();
@@ -450,6 +452,11 @@ public class Gun : MonoBehaviour
 	public UnityEvent OnReloadCancel
 	{
 		get { return onReloadCancel; }
+	}
+
+	public UnityEvent OnIncreaseBulletCount
+	{
+		get { return onIncreaseBulletCount; }
 	}
 
 	public UnityEvent OnEmptyGun

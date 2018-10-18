@@ -51,6 +51,18 @@ public class PlayerManager : MonoBehaviour
 		playerAnimator.enabled = !playerAnimator.enabled;
 	}
 
+	public void DisablePlayerComponent(MonoBehaviour component)
+	{
+		if (component)
+			component.enabled = false;
+	}
+
+	public void EnablePlayerComponent(MonoBehaviour component)
+	{
+		if (component)
+			component.enabled = true;
+	}
+
 	public static PlayerManager Instance
 	{
 		get 

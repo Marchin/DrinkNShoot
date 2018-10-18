@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224761261327666204}
   - component: {fileID: 222844519333586552}
   - component: {fileID: 114217608400187450}
+  - component: {fileID: 95802899956792322}
   m_Layer: 5
   m_Name: Crows Panel
   m_TagString: Untagged
@@ -38,6 +39,7 @@ GameObject:
   - component: {fileID: 224394338187529184}
   - component: {fileID: 222076290797496754}
   - component: {fileID: 114212974123413032}
+  - component: {fileID: 95434480636406544}
   m_Layer: 5
   m_Name: Timer Panel
   m_TagString: Untagged
@@ -233,6 +235,7 @@ GameObject:
   - component: {fileID: 224025381154991810}
   - component: {fileID: 222811792526919252}
   - component: {fileID: 114142609629565476}
+  - component: {fileID: 95679739753379788}
   m_Layer: 5
   m_Name: Ammo Panel
   m_TagString: Untagged
@@ -563,6 +566,42 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &95434480636406544
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1066301688206000}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 45aa45cfc6a777c4ba67f19f07302e77, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!95 &95679739753379788
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1883031596066164}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 45aa45cfc6a777c4ba67f19f07302e77, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!95 &95800296771845608
 Animator:
   serializedVersion: 3
@@ -576,6 +615,24 @@ Animator:
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!95 &95802899956792322
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054635692890892}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 45aa45cfc6a777c4ba67f19f07302e77, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -611,10 +668,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crosshair: {fileID: 114095491639063468}
-  ammoText: {fileID: 114516859074933372}
-  crowsText: {fileID: 114731951472430102}
-  timerText: {fileID: 114086549980704884}
-  currencyText: {fileID: 114617950778614812}
+  ammoHUD: {fileID: 1883031596066164}
+  crowHUD: {fileID: 1054635692890892}
+  timerHUD: {fileID: 1066301688206000}
+  currencyHUD: {fileID: 1684551483379884}
   objectiveBanner: {fileID: 1999381130385290}
   slideInBannerSound: {fileID: 82696697532815088}
   slideOutBannerSound: {fileID: 82371341138612864}

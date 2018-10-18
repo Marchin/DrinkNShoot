@@ -39414,22 +39414,32 @@ Prefab:
       propertyPath: weaponHolder
       value: 
       objectReference: {fileID: 1101194381}
-    - target: {fileID: 114617950778614812, guid: f55d09b1ede529f4e8093515d48dcbf3,
+    - target: {fileID: 114516859074933372, guid: f55d09b1ede529f4e8093515d48dcbf3,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114617950778614812, guid: f55d09b1ede529f4e8093515d48dcbf3,
+    - target: {fileID: 114516859074933372, guid: f55d09b1ede529f4e8093515d48dcbf3,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114516859074933372, guid: f55d09b1ede529f4e8093515d48dcbf3,
+    - target: {fileID: 114731951472430102, guid: f55d09b1ede529f4e8093515d48dcbf3,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114516859074933372, guid: f55d09b1ede529f4e8093515d48dcbf3,
+    - target: {fileID: 114731951472430102, guid: f55d09b1ede529f4e8093515d48dcbf3,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617950778614812, guid: f55d09b1ede529f4e8093515d48dcbf3,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617950778614812, guid: f55d09b1ede529f4e8093515d48dcbf3,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -39444,15 +39454,20 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114731951472430102, guid: f55d09b1ede529f4e8093515d48dcbf3,
+    - target: {fileID: 95679739753379788, guid: f55d09b1ede529f4e8093515d48dcbf3,
         type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114731951472430102, guid: f55d09b1ede529f4e8093515d48dcbf3,
+    - target: {fileID: 95434480636406544, guid: f55d09b1ede529f4e8093515d48dcbf3,
         type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95802899956792322, guid: f55d09b1ede529f4e8093515d48dcbf3,
+        type: 2}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f55d09b1ede529f4e8093515d48dcbf3, type: 2}
