@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] GameObject failLevelUI;
 	[SerializeField] GameObject hudUI;
 	[SerializeField] GameObject tutorialUI;
+	[SerializeField] GameObject introTextUI;
 	
 	[Header("Level Properties")]
 	[SerializeField] int cashEarnedPerKill = 5;
@@ -33,8 +34,6 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] UnityEvent onFirstEmptyGun;
 	[SerializeField] UnityEvent onClearFirstStage;
 	[SerializeField] UnityEvent onShootingStageEnter;
-	
-	// const float QUIT_DELAY = 0.5f;
 	
 	static LevelManager instance;
 
@@ -75,6 +74,7 @@ public class LevelManager : MonoBehaviour
 		{
 			playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().EquippedGun.OnEmptyGun.AddListener(FirstEmptyGunNotice);
 			tutorialUI.SetActive(true);
+			introTextUI.SetActive(true);
 		}
 	}
 
@@ -152,16 +152,6 @@ public class LevelManager : MonoBehaviour
 			onFirstEmptyGun.Invoke();
 		}
 	}
-
-	// public void RestartLevel()
-	// {
-	// 	Invoke("Restart", QUIT_DELAY);
-	// }
-
-	// public void QuitLevel()
-	// {
-	// 	Invoke("Quit", QUIT_DELAY);
-	// }
 
 	public void AddEnemyLife(Life enemyLife)
 	{
