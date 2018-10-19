@@ -21,7 +21,6 @@ public class LevelManager : MonoBehaviour
 	
 	[Header("Level Properties")]
 	[SerializeField] int cashEarnedPerKill = 5;
-	[SerializeField] bool tutorialEnabled = true;
 	
 	[Header("Sounds")]
 	[SerializeField] AudioSource completeLevelSound;
@@ -70,11 +69,12 @@ public class LevelManager : MonoBehaviour
 
 		timeLeft = currentSpawnPoint.CompletionTime;
 
-		if (tutorialEnabled)
+		if (GameManager.Instance.TutorialEnabled)
 		{
 			playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().EquippedGun.OnEmptyGun.AddListener(FirstEmptyGunNotice);
 			tutorialUI.SetActive(true);
 			introTextUI.SetActive(true);
+			GameManager.Instance.TutorialEnabled = false;
 		}
 	}
 

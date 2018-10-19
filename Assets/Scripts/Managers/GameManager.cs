@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 	Animator animator;
 	AsyncOperation firstLevelLoadOperation;
 	int nextSceneToLoad = -1;
+	bool tutorialEnabled = true;
 
 	void Awake()
 	{
@@ -118,5 +119,11 @@ public class GameManager : MonoBehaviour
 	{
 		get { return currentSfxVolume; }
 		set { currentSfxVolume = value; }
+	}
+
+	public bool TutorialEnabled
+	{
+		get { return tutorialEnabled; }
+		set { tutorialEnabled = value; }
 	}
 }
