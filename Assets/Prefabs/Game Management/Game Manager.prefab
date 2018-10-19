@@ -86,7 +86,7 @@ Animator:
   m_GameObject: {fileID: 1534752379902662}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 50d3bfcb9971cf24f977509089786238, type: 2}
+  m_Controller: {fileID: 9100000, guid: 93b18d00d670b044a8c036f0e2145217, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -172,6 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentGfxSetting: 4
   currentSfxVolume: 0.75
+  fadeInAnimation: {fileID: 7400000, guid: a3ce902575a092645a4faf8cccf4bed5, type: 2}
   fadeOutAnimation: {fileID: 7400000, guid: bcbcbf78df61aae468e413d5140512f1, type: 2}
 --- !u!222 &222503815414971462
 CanvasRenderer:

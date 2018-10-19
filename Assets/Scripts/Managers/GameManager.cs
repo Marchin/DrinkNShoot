@@ -7,12 +7,14 @@ public class GameManager : MonoBehaviour
 {
 	[SerializeField] SettingsMenu.GfxSetting currentGfxSetting = SettingsMenu.GfxSetting.Wild;
 	[SerializeField] float currentSfxVolume = 0.75f;
+	[SerializeField] AnimationClip fadeInAnimation;
 	[SerializeField] AnimationClip fadeOutAnimation;
 	
 	static GameManager instance;
 
 	Animator animator;
-	int nextSceneToLoad = 0;
+	AsyncOperation firstLevelLoadOperation;
+	int nextSceneToLoad = -1;
 
 	void Awake()
 	{
@@ -31,19 +33,31 @@ public class GameManager : MonoBehaviour
 		QualitySettings.SetQualityLevel((int)currentGfxSetting);
 	}
 
-	void LoadNextScene()
-	{
-		StartCoroutine("LoadNextSceneAsynchronously");
-	}
+	IEnumerator LoadFirstLevelInBackground(MainMenu mainMenu)
+    {
+        firstLevelLoadOperation = SceneManager.LoadSceneAsync(1);
+        firstLevelLoadOperation.allowSceneActivation = false;
 
-	IEnumerator LoadNextSceneAsynchronously()
+        while (!firstLevelLoadOperation.isDone)
+        {
+            if (mainMenu.RequestedPlay)
+				animator.SetTrigger("Fade Out");
+            
+            yield return null;
+        }
+    }
+
+	public void OnFadeOutComplete()
 	{
-		AsyncOperation operation = SceneManager.LoadSceneAsync(nextSceneToLoad);
-		
-		while (!operation.isDone)
-			yield return null;
-		
-		nextSceneToLoad = 0;
+		if (nextSceneToLoad >= 0)
+			SceneManager.LoadScene(nextSceneToLoad);
+		else
+		{
+			animator.ResetTrigger("Fade Out");
+			firstLevelLoadOperation.allowSceneActivation = true;
+		}
+
+		nextSceneToLoad = -1;
 		animator.SetTrigger("Fade In");
 	}
 
@@ -63,7 +77,11 @@ public class GameManager : MonoBehaviour
 	{
 		nextSceneToLoad = sceneIndex;
 		animator.SetTrigger("Fade Out");
-		Invoke("LoadNextScene", fadeOutAnimation.length);
+	}
+
+	public void StartLoadingFirstLevel(MainMenu mainMenu)
+	{
+		StartCoroutine(LoadFirstLevelInBackground(mainMenu));
 	}
 
 	public void QuitApplication()

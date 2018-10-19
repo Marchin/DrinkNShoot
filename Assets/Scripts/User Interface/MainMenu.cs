@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
 	[SerializeField] TextMeshProUGUI appVersionText;
+    [SerializeField] UnityEvent onRequestPlay;
     
-	bool playRequested;
+    const float START_BACKGROUND_LOAD_DELAY = 1.5f;
+
+	bool requestedPlay = false;
 
 	void Start()
 	{
 		GameManager.Instance.ShowCursor();
-        playRequested = false;
-        StartCoroutine("LoadAsyncScene");
+        GameManager.Instance.StartLoadingFirstLevel(this);
 		appVersionText.text = "Application Version: " + Application.version;
 	}
-
 
 	public void Play()
 	{
 		GameManager.Instance.HideCursor();
-        playRequested = true;
+        requestedPlay = true;
 	}
 
 	public void Quit()
@@ -31,17 +33,8 @@ public class MainMenu : MonoBehaviour
 		GameManager.Instance.QuitApplication();
 	}
 
-    IEnumerator LoadAsyncScene()
+    public bool RequestedPlay
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Town Level");
-        asyncLoad.allowSceneActivation = false;
-        while (!asyncLoad.isDone)
-        {
-            if (playRequested)
-            {
-                asyncLoad.allowSceneActivation = true;
-            }
-            yield return null;
-        }
+        get { return requestedPlay; }
     }
 }
