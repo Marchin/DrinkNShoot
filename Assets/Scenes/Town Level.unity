@@ -22127,6 +22127,10 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1094311374390434, guid: f55d09b1ede529f4e8093515d48dcbf3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f55d09b1ede529f4e8093515d48dcbf3, type: 2}
   m_IsPrefabAsset: 0
@@ -35731,7 +35735,6 @@ MonoBehaviour:
   tutorialUI: {fileID: 276616599}
   introTextUI: {fileID: 497685138}
   cashEarnedPerKill: 5
-  tutorialEnabled: 1
   completeLevelSound: {fileID: 1842429581}
   failLevelSound: {fileID: 1842429580}
   onEnemyKill:
