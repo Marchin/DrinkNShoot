@@ -141,6 +141,7 @@ public class LevelManager : MonoBehaviour
 
 	public void QuitLevel()
 	{
+		GameManager.Instance.TutorialEnabled = true;
 		GameManager.Instance.FadeToScene(0);
 	}
 

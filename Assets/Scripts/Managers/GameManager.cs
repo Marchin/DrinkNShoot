@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+	[SerializeField] GameObject loadingScreen;
 	[SerializeField] SettingsMenu.GfxSetting currentGfxSetting = SettingsMenu.GfxSetting.Wild;
 	[SerializeField] float currentSfxVolume = 0.75f;
 	[SerializeField] AnimationClip fadeInAnimation;
 	[SerializeField] AnimationClip fadeOutAnimation;
 	
+	const float MIN_LOAD_TIME = 1.5f;
+
 	static GameManager instance;
 
 	Animator animator;
-	AsyncOperation firstLevelLoadOperation;
+	Slider loadingBarSlider;
 	int nextSceneToLoad = -1;
 	bool tutorialEnabled = true;
 
@@ -32,34 +36,56 @@ public class GameManager : MonoBehaviour
 	void Start()
 	{
 		QualitySettings.SetQualityLevel((int)currentGfxSetting);
+		loadingBarSlider = loadingScreen.GetComponentInChildren<Slider>();
 	}
 
-	IEnumerator LoadFirstLevelInBackground(MainMenu mainMenu)
-    {
-        firstLevelLoadOperation = SceneManager.LoadSceneAsync(1);
-        firstLevelLoadOperation.allowSceneActivation = false;
+	// IEnumerator LoadFirstLevelInBackground(MainMenu mainMenu)
+    // {
+    //     firstLevelLoadOperation = SceneManager.LoadSceneAsync(1);
+    //     firstLevelLoadOperation.allowSceneActivation = false;
 
-        while (!firstLevelLoadOperation.isDone)
-        {
-            if (mainMenu.RequestedPlay)
-				animator.SetTrigger("Fade Out");
+    //     while (!firstLevelLoadOperation.isDone)
+    //     {
+    //         if (mainMenu.RequestedPlay)
+	// 			animator.SetTrigger("Fade Out");
             
-            yield return null;
-        }
-    }
+    //         yield return null;
+    //     }
+    // }
+
+	IEnumerator LoadSceneAsynchronously(int nextSceneToLoad)
+	{
+		if (nextSceneToLoad >= 0)
+		{
+			loadingScreen.SetActive(true);
+
+			float loadTimer = 0f;
+			float maxProgressValue = 0.9f + MIN_LOAD_TIME;
+			AsyncOperation operation = SceneManager.LoadSceneAsync(nextSceneToLoad);
+			operation.allowSceneActivation = false;
+
+			while (!operation.isDone)
+			{
+				float progress = Mathf.Clamp01((operation.progress + loadTimer) / maxProgressValue);
+				loadingBarSlider.value = progress;
+				loadTimer += Time.deltaTime;
+
+				if (progress == 1f && loadTimer >= MIN_LOAD_TIME)		
+					operation.allowSceneActivation = true;
+				
+				yield return null;
+			}
+
+			nextSceneToLoad = -1;
+			
+			loadingScreen.SetActive(false);
+			animator.SetTrigger("Fade In");
+		}
+	}
 
 	public void OnFadeOutComplete()
 	{
-		if (nextSceneToLoad >= 0)
-			SceneManager.LoadScene(nextSceneToLoad);
-		else
-		{
-			animator.ResetTrigger("Fade Out");
-			firstLevelLoadOperation.allowSceneActivation = true;
-		}
-
-		nextSceneToLoad = -1;
-		animator.SetTrigger("Fade In");
+		StartCoroutine(LoadSceneAsynchronously(nextSceneToLoad));
 	}
 
 	public void HideCursor()
@@ -80,10 +106,10 @@ public class GameManager : MonoBehaviour
 		animator.SetTrigger("Fade Out");
 	}
 
-	public void StartLoadingFirstLevel(MainMenu mainMenu)
-	{
-		StartCoroutine(LoadFirstLevelInBackground(mainMenu));
-	}
+	// public void StartLoadingFirstLevel(MainMenu mainMenu)
+	// {
+	// 	StartCoroutine(LoadFirstLevelInBackground(mainMenu));
+	// }
 
 	public void QuitApplication()
 	{

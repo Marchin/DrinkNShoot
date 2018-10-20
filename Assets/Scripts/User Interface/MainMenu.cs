@@ -11,30 +11,21 @@ public class MainMenu : MonoBehaviour
 	[SerializeField] TextMeshProUGUI appVersionText;
     [SerializeField] UnityEvent onRequestPlay;
     
-    const float START_BACKGROUND_LOAD_DELAY = 1.5f;
-
-	bool requestedPlay = false;
 
 	void Start()
 	{
 		GameManager.Instance.ShowCursor();
-        GameManager.Instance.StartLoadingFirstLevel(this);
 		appVersionText.text = "Application Version: " + Application.version;
 	}
 
 	public void Play()
 	{
 		GameManager.Instance.HideCursor();
-        requestedPlay = true;
+        GameManager.Instance.FadeToScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
 
 	public void Quit()
 	{
 		GameManager.Instance.QuitApplication();
 	}
-
-    public bool RequestedPlay
-    {
-        get { return requestedPlay; }
-    }
 }
