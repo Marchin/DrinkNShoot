@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
 
 	Animator animator;
 	Slider loadingBarSlider;
+	TextMeshProUGUI loadingText;
 	int nextSceneToLoad = -1;
 	bool tutorialEnabled = true;
 
@@ -37,21 +39,8 @@ public class GameManager : MonoBehaviour
 	{
 		QualitySettings.SetQualityLevel((int)currentGfxSetting);
 		loadingBarSlider = loadingScreen.GetComponentInChildren<Slider>();
+		loadingText = loadingScreen.GetComponentInChildren<TextMeshProUGUI>();
 	}
-
-	// IEnumerator LoadFirstLevelInBackground(MainMenu mainMenu)
-    // {
-    //     firstLevelLoadOperation = SceneManager.LoadSceneAsync(1);
-    //     firstLevelLoadOperation.allowSceneActivation = false;
-
-    //     while (!firstLevelLoadOperation.isDone)
-    //     {
-    //         if (mainMenu.RequestedPlay)
-	// 			animator.SetTrigger("Fade Out");
-            
-    //         yield return null;
-    //     }
-    // }
 
 	IEnumerator LoadSceneAsynchronously(int nextSceneToLoad)
 	{
@@ -70,18 +59,20 @@ public class GameManager : MonoBehaviour
 			{
 				float progress = Mathf.Clamp01((operation.progress + loadTimer) / maxProgressValue);
 				loadingBarSlider.value = progress;
+				loadingText.text = "Loading: " + (int)(progress * 100) + "%";
 				loadTimer += Time.deltaTime;
 
-				if (progress == 1f && loadTimer >= MIN_LOAD_TIME)		
+				if (progress == 1f)
+				{
+					nextSceneToLoad = -1;
 					operation.allowSceneActivation = true;
+					animator.SetTrigger("Fade In");
+				}
 				
 				yield return null;
 			}
-
-			nextSceneToLoad = -1;
-			
+				
 			loadingScreen.SetActive(false);
-			animator.SetTrigger("Fade In");
 		}
 	}
 
@@ -107,11 +98,6 @@ public class GameManager : MonoBehaviour
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
 	}
-
-	// public void StartLoadingFirstLevel(MainMenu mainMenu)
-	// {
-	// 	StartCoroutine(LoadFirstLevelInBackground(mainMenu));
-	// }
 
 	public void QuitApplication()
 	{
