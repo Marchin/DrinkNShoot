@@ -43,6 +43,7 @@ public class TutorialUI : MonoBehaviour
 		Invoke("EnableInitialBanner", initialBannerDelay);
 		LevelManager.Instance.OnFirstEmptyGun.AddListener(EnableReloadBanner);
 		LevelManager.Instance.OnClearFirstStage.AddListener(EnableDrunkBanner);
+		LevelManager.Instance.OnQuitLevel.AddListener(CancelInvokes);
 	}
 
 	void Update()
@@ -192,5 +193,11 @@ public class TutorialUI : MonoBehaviour
 		}
 		bannerAnimator.SetTrigger("Start");
 		slideInSound.Play();		
+	}
+
+	void CancelInvokes()
+	{
+		if (IsInvoking())
+			CancelInvoke();
 	}
 }

@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
 	[Header("Events")]
 	[SerializeField] UnityEvent onEnemyKill;
 	[SerializeField] UnityEvent onGameOver;
+	[SerializeField] UnityEvent onQuitLevel;
 	[SerializeField] UnityEvent onStartNextStage;
 	[SerializeField] UnityEvent onFirstEmptyGun;
 	[SerializeField] UnityEvent onClearFirstStage;
@@ -138,11 +139,13 @@ public class LevelManager : MonoBehaviour
 
 	public void RestartLevel()
 	{
+		onQuitLevel.Invoke();
 		GameManager.Instance.FadeToScene(SceneManager.GetActiveScene().buildIndex);
 	}
 
 	public void QuitLevel()
 	{
+		onQuitLevel.Invoke();
 		GameManager.Instance.TutorialEnabled = true;
 		GameManager.Instance.FadeToScene(0);
 	}
@@ -214,6 +217,11 @@ public class LevelManager : MonoBehaviour
 	public UnityEvent OnGameOver
 	{
 		get { return onGameOver; }
+	}
+	
+	public UnityEvent OnQuitLevel
+	{
+		get { return onQuitLevel; }
 	}
 
 	public UnityEvent OnStartNextStage

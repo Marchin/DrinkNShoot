@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] AnimationClip fadeInAnimation;
 	[SerializeField] AnimationClip fadeOutAnimation;
 	
-	const float MIN_LOAD_TIME = 1.5f;
+	const float MIN_LOAD_TIME = 1f;
 
 	static GameManager instance;
 
@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 
 	void Start()
 	{
+		SceneManager.sceneLoaded += OnSceneLoaded;
 		QualitySettings.SetQualityLevel((int)currentGfxSetting);
 		loadingBarSlider = loadingScreen.GetComponentInChildren<Slider>();
 		loadingText = loadingScreen.GetComponentInChildren<TextMeshProUGUI>();
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
 			float loadTimer = 0f;
 			float maxProgressValue = 0.9f + MIN_LOAD_TIME;
 			AsyncOperation operation = SceneManager.LoadSceneAsync(nextSceneToLoad);
+			
 			operation.allowSceneActivation = false;
 
 			while (!operation.isDone)
@@ -63,17 +65,18 @@ public class GameManager : MonoBehaviour
 				loadTimer += Time.deltaTime;
 
 				if (progress == 1f)
-				{
-					nextSceneToLoad = -1;
 					operation.allowSceneActivation = true;
-					animator.SetTrigger("Fade In");
-				}
 				
 				yield return null;
-			}
-				
-			loadingScreen.SetActive(false);
+			}	
 		}
+	}
+
+	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		animator.SetTrigger("Fade In");
+		loadingScreen.SetActive(false);
+		nextSceneToLoad = -1;
 	}
 
 	public void FadeToScene(int sceneIndex)
