@@ -104,7 +104,7 @@ public class HUD : MonoBehaviour
 
 	void MoveCrosshair()
 	{
-		crosshair.transform.position = weaponHolder.EquippedGun.CrosshairPosition;
+		crosshair.rectTransform.position = weaponHolder.EquippedGun.CrosshairPosition;
 	}
 
     void ChangeAmmoDisplay()

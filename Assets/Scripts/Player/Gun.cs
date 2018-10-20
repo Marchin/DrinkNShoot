@@ -72,10 +72,10 @@ public class Gun : MonoBehaviour
 	
 	// Constants
 	const float DRUNK_SWAY_MULT = 10f;
-	const float RECOIL_SWAY_MULT = 0.5f;
 	const float MAX_SWAY_ALLOWED = 10f;
 	const float CROSSHAIR_SCALE_MULT = 0.05f;
 	const float MAX_DRUNK_CROSSHAIR_SPEED = 7f;
+	const float MAX_DRUNK_CROSSHAIR_RADIUS = 25f;
 	
 	// Computing Fields
 	Camera fpsCamera;
@@ -96,7 +96,7 @@ public class Gun : MonoBehaviour
 	float crosshairScaleAfterShot = 1f;
 	bool isIncreasingDrunkSway = true;
 	bool targetOnClearSight = false;
-	float drunkCrosshairRadius = 25f;
+	float drunkCrosshairRadius = 0f;
 	float drunkCrosshairAngle = 0f;
 	float drunkCrosshairSpeed = 0f;
 	int shootingLayerMask = 0;
@@ -106,7 +106,7 @@ public class Gun : MonoBehaviour
 	{
 		fpsCamera = GetComponentInParent<Camera>();
 		currentState = GunState.Idle;
-		crosshairPosition = new Vector3(Screen.width / 2f, Screen.height / 2f, 1f);
+		crosshairPosition = new Vector3(Screen.width / 2, Screen.height / 2, 1f);
 		bulletsInCylinder = cylinderCapacity;
 		ammoLeft = maxAmmo;
 		recoilDuration = 1f / fireRate;
@@ -388,6 +388,11 @@ public class Gun : MonoBehaviour
 	{
 		get { return drunkCrosshairSpeed; }
 		set { drunkCrosshairSpeed = value < MAX_DRUNK_CROSSHAIR_SPEED ? value : MAX_DRUNK_CROSSHAIR_SPEED;}
+	}
+	public float DrunkCrosshairRadius
+	{
+		get { return drunkCrosshairRadius; }
+		set { drunkCrosshairRadius = value < MAX_DRUNK_CROSSHAIR_RADIUS ? value : MAX_DRUNK_CROSSHAIR_RADIUS;}
 	}
 
 	public AnimationClip ShootAnimation

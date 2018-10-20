@@ -20,6 +20,8 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] GameObject introTextUI;
 	
 	[Header("Level Properties")]
+	[SerializeField] float stageDrunkSpeedIncrease = 0.75f;
+	[SerializeField] float stageDrunkRadiusIncrease = 10f;
 	[SerializeField] int cashEarnedPerKill = 5;
 	
 	[Header("Sounds")]
@@ -172,7 +174,10 @@ public class LevelManager : MonoBehaviour
 		
 		playersWagon.destination = enemySpawnPoints[currentStageIndex].position;
 		currentSpawnPoint = enemySpawnPoints[currentStageIndex].GetComponent<CrowTrigger>();
-		playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().EquippedGun.DrunkCrosshairSpeed++;
+
+		Gun currentGun = playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().EquippedGun;
+		currentGun.DrunkCrosshairSpeed += stageDrunkSpeedIncrease;
+		currentGun.DrunkCrosshairRadius += stageDrunkRadiusIncrease;;
 		targetsKilledInStage = 0;
 		timeLeft = currentSpawnPoint.CompletionTime;
 		onStartNextStage.Invoke();
