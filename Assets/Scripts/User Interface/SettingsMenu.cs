@@ -9,7 +9,7 @@ public class SettingsMenu : MonoBehaviour
 {
 	public enum GfxSetting
 	{
-		VeryLow, Low, Medium, High, VeryHigh, Wild
+		Low, Medium, High, VeryHigh, Wild
 	}
 
 	[Header("Graphics Settings")]
@@ -21,9 +21,8 @@ public class SettingsMenu : MonoBehaviour
 	[SerializeField] AudioMixer sfxMixer;
 	[SerializeField] Slider sfxSlider;
 	
-	const string VERT_HIG_STR = "Very High";
-	const string VERY_LOW_STR = "Very Low";
-	const float MIXER_MULT = 12f;
+	const string VERY_HIGH_STR = "Very High";
+	const float MIXER_MULT = 20f;
 	
 	GfxSetting currentGfxSetting;
 
@@ -36,21 +35,16 @@ public class SettingsMenu : MonoBehaviour
 
 		if (currentGfxSetting == GfxSetting.Wild)
 			increaseGfxButton.SetActive(false);
-		if (currentGfxSetting == GfxSetting.VeryLow)
+		if (currentGfxSetting == GfxSetting.Low)
 			decreaseGfxButton.SetActive(false);
 	}
 
 	void ChangeGfxText()
 	{
-		if (currentGfxSetting != GfxSetting.VeryHigh && currentGfxSetting != GfxSetting.VeryLow)
+		if (currentGfxSetting != GfxSetting.VeryHigh)
 			gfxText.text = currentGfxSetting.ToString();
 		else
-		{
-			if (currentGfxSetting == GfxSetting.VeryHigh)
-				gfxText.text = VERT_HIG_STR;
-			else
-				gfxText.text = VERY_LOW_STR;
-		}
+			gfxText.text = VERY_HIGH_STR;
 	}
 
 	float GetMixerLevel(AudioMixer audioMixer)
@@ -91,7 +85,7 @@ public class SettingsMenu : MonoBehaviour
 
 	public void DecreaseGraphicsSetting()
 	{
-		if (currentGfxSetting != GfxSetting.VeryLow)
+		if (currentGfxSetting != GfxSetting.Low)
 		{
 			currentGfxSetting--;
 			GameManager.Instance.CurrentGfxSetting = currentGfxSetting;
@@ -101,7 +95,7 @@ public class SettingsMenu : MonoBehaviour
 
 			decreaseGfxButton.GetComponent<Button>().interactable = false;
 
-			if (currentGfxSetting == GfxSetting.VeryLow)
+			if (currentGfxSetting == GfxSetting.Low)
 				decreaseGfxButton.SetActive(false);
 			else
 				if (!increaseGfxButton.activeInHierarchy)
