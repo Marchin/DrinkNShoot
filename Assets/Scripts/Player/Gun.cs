@@ -212,6 +212,7 @@ public class Gun : MonoBehaviour
 
 		onReloadFinish.Invoke();
 		yield return new WaitForSeconds(reloadFinishAnimation.length);
+		reloadRoutine = null;
 		ReturnToIdle();
 	}
 
@@ -325,8 +326,8 @@ public class Gun : MonoBehaviour
 
 	void ReturnToIdle()
 	{
-		currentState = GunState.Idle;
 		onBackToIdle.Invoke();
+		currentState = GunState.Idle;
 	}
 
 	bool CanShoot()

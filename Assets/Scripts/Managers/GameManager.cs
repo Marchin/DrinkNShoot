@@ -57,6 +57,8 @@ public class GameManager : MonoBehaviour
 	{
 		if (nextSceneToLoad >= 0)
 		{
+			HideCursor();
+
 			loadingScreen.SetActive(true);
 
 			float loadTimer = 0f;
@@ -83,6 +85,12 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	public void FadeToScene(int sceneIndex)
+	{
+		nextSceneToLoad = sceneIndex;
+		animator.SetTrigger("Fade Out");
+	}
+
 	public void OnFadeOutComplete()
 	{
 		StartCoroutine(LoadSceneAsynchronously(nextSceneToLoad));
@@ -98,12 +106,6 @@ public class GameManager : MonoBehaviour
 	{
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
-	}
-
-	public void FadeToScene(int sceneIndex)
-	{
-		nextSceneToLoad = sceneIndex;
-		animator.SetTrigger("Fade Out");
 	}
 
 	// public void StartLoadingFirstLevel(MainMenu mainMenu)
