@@ -175,7 +175,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1409839443716776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.64, y: -0, z: -0.01}
+  m_LocalPosition: {x: 0.64, y: -0, z: -0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4267023890869834}
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_requiredKills: 5
   m_difficultyLevel: 0
-  m_completionTime: 30
+  m_completionTime: 45
   m_stage: {fileID: 0}
 --- !u!114 &114261857304258724
 MonoBehaviour:
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_spawnInterval: 2
-  m_poopInterval: 20
+  m_poopInterval: 10
 --- !u!114 &114517179880367768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -314,7 +314,7 @@ MonoBehaviour:
   poolType: 0
   m_gameObject: {fileID: 1306119874549748, guid: 66bfa892b68e0e14baf4dabf67e229db,
     type: 2}
-  m_size: 10
+  m_size: 8
 --- !u!114 &114639216887672170
 MonoBehaviour:
   m_ObjectHideFlags: 1

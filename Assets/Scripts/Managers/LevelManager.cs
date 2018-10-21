@@ -52,7 +52,7 @@ public class LevelManager : MonoBehaviour
 	int cashEarnedInStage = 0;
 	int totalIncome = 0;
 	bool hasNotifiedEmptyGun = false;
-	bool inShootingStage = true;
+	bool inShootingStage = false;
 
 	void Awake()
 	{
@@ -70,6 +70,8 @@ public class LevelManager : MonoBehaviour
 		endLevelMenu = FindObjectOfType<EndLevelMenu>();
 		hud = FindObjectOfType<HUD>();
 
+		crowSpawner.enabled = false;
+		playersWagon.destination = currentSpawnPoint.transform.position;
 		timeLeft = currentSpawnPoint.CompletionTime;
 
 		if (GameManager.Instance.TutorialEnabled)
@@ -272,5 +274,10 @@ public class LevelManager : MonoBehaviour
 	public Vector3 CurrentStagePosition
 	{
 		get { return currentSpawnPoint.StagePosition; }
+	}
+
+	public Vector3 CurrentSpawnPointPosition
+	{
+		get { return currentSpawnPoint.transform.position; }
 	}
 }

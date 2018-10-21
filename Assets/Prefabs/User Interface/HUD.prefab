@@ -82,7 +82,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1221788630518470
 GameObject:
   m_ObjectHideFlags: 1
@@ -806,7 +806,7 @@ MonoBehaviour:
   banner: {fileID: 1081380026897210}
   tutorialText: {fileID: 114630163712686728}
   instructionDisplayDuration: 5
-  initialBannerDelay: 3
+  initialBannerDelay: 2.5
   initialInstructions:
   - Move the mouse to aim.
   - '"Left-click" to shoot.'
@@ -2006,10 +2006,10 @@ RectTransform:
   m_Father: {fileID: 224359419593347096}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.48, y: 0.465}
-  m_AnchorMax: {x: 0.52, y: 0.535}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224896428867475640
 RectTransform:

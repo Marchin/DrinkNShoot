@@ -11,8 +11,8 @@ public class CameraRotation : MonoBehaviour
 	Transform fpsCamera;
 	float horizontalAngle = 0f;
 	float verticalAngle = 0f;
-	float minHorizontalAngle = 0f;
-	float maxHorizontalAngle = 0f;
+	float minHorizontalAngle = -90f;
+	float maxHorizontalAngle = 90f;
 	
 	void Awake()
 	{
@@ -24,7 +24,6 @@ public class CameraRotation : MonoBehaviour
 	void Start()
 	{
 		LevelManager.Instance.OnShootingStageEnter.AddListener(ChangeHorizontalClamping);
-		ChangeHorizontalClamping();
 	}
 
 	void Update()
@@ -44,7 +43,7 @@ public class CameraRotation : MonoBehaviour
 
 	void ChangeHorizontalClamping()
 	{
-		Vector3 targetDir = (LevelManager.Instance.CurrentStagePosition - transform.position).normalized;
+		Vector3 targetDir = (LevelManager.Instance.CurrentStagePosition - LevelManager.Instance.CurrentSpawnPointPosition).normalized;
 		Quaternion targetCentralRotation = Quaternion.LookRotation(targetDir);
 
 		minHorizontalAngle = targetCentralRotation.eulerAngles.y - horizontalRange / 2f;
