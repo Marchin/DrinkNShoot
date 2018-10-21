@@ -18,8 +18,13 @@ public class CrowTrigger : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter(Collider other) {
+		m_stage.SetActive(true);
 		LevelManager.Instance.EnterShootingStage();
 		m_crowSpawner.SetLandingZones(m_landingZones);
+	}
+
+	private void OnTriggerExit() {
+		m_stage.SetActive(false);
 	}
 
 	public int RequiredKills {
