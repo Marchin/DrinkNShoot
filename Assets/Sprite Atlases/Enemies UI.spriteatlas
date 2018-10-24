@@ -5,7 +5,7 @@ SpriteAtlas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: HUD UI
+  m_Name: Enemies UI
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -29,18 +29,18 @@ SpriteAtlas:
       enableTightPacking: 0
     variantMultiplier: 1
     packables:
-    - {fileID: 102900000, guid: c8707a273a287c5488889124d6585302, type: 3}
+    - {fileID: 102900000, guid: 696c075c6dd000b448b7b3f4b677e1a9, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 81968682a2e52d54a8531b948d8f63ef, type: 3}
-  - {fileID: 21300000, guid: 80e42934954ce0546b4833f345984438, type: 3}
-  - {fileID: 21300000, guid: 475cdc2c1a7aba447bc0d02bef52584b, type: 3}
-  - {fileID: 21300000, guid: 322355fc78295024d90cad7e1aa3aa68, type: 3}
+  - {fileID: 21300000, guid: c348aa85e4108254792d957a2d304f07, type: 3}
+  - {fileID: 21300000, guid: df23546669013f44dba5da24672d10ef, type: 3}
+  - {fileID: 21300000, guid: 9d96a7d865c83ae4299c1d2eb0c4cd02, type: 3}
+  - {fileID: 21300000, guid: 6bae306c839fc5c4988aa7b0d0fcb579, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Crosshair
-  - Crows
-  - Timer
-  - Ammo
-  m_Tag: HUD UI
+  - Poop 3
+  - Poop 1
+  - Poop 2
+  - Poop 4
+  m_Tag: Enemies UI
   m_IsVariant: 0

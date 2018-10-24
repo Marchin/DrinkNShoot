@@ -5,7 +5,7 @@ SpriteAtlas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: HUD UI
+  m_Name: How to Play UI
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -29,18 +29,18 @@ SpriteAtlas:
       enableTightPacking: 0
     variantMultiplier: 1
     packables:
-    - {fileID: 102900000, guid: c8707a273a287c5488889124d6585302, type: 3}
+    - {fileID: 102900000, guid: e8ed00522d9e0b94fb35df00444b6a5a, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 81968682a2e52d54a8531b948d8f63ef, type: 3}
-  - {fileID: 21300000, guid: 80e42934954ce0546b4833f345984438, type: 3}
-  - {fileID: 21300000, guid: 475cdc2c1a7aba447bc0d02bef52584b, type: 3}
-  - {fileID: 21300000, guid: 322355fc78295024d90cad7e1aa3aa68, type: 3}
+  - {fileID: 21300000, guid: b258a28741f4e15488ebab8a120c60e3, type: 3}
+  - {fileID: 21300000, guid: 3108645a75e138c47a7781fd07384174, type: 3}
+  - {fileID: 21300000, guid: 93190f5a7e3db8d48b5071be9bfcfd87, type: 3}
+  - {fileID: 21300000, guid: ddc9248e7085c7943b09958520de7dfa, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Crosshair
-  - Crows
-  - Timer
-  - Ammo
-  m_Tag: HUD UI
+  - Reload
+  - Move
+  - Shoot
+  - Escape
+  m_Tag: How to Play UI
   m_IsVariant: 0

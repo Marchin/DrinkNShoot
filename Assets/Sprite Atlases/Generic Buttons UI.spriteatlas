@@ -5,7 +5,7 @@ SpriteAtlas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Menu UI
+  m_Name: Generic Buttons UI
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -30,38 +30,21 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 30ea839578dc4fd4c9a0e2ea84fcf0da, type: 3}
-    - {fileID: 102900000, guid: 5153141b4c6e3fe40adee781379825e6, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: e89c8701440a67a448cc7087c8099a90, type: 3}
-  - {fileID: 21300000, guid: 7167a2b2953104f468ba24358e0a9e24, type: 3}
   - {fileID: 21300000, guid: f63c15245d42a0f4582daab17c3f10c2, type: 3}
-  - {fileID: 21300000, guid: ffda762574e1c3d478502dfca6e29c41, type: 3}
-  - {fileID: 21300000, guid: 8233c266a7708ea43ba2304e3ddbc2b9, type: 3}
-  - {fileID: 21300000, guid: 9a04bb37b821a2c4a92f2966b51ab03d, type: 3}
   - {fileID: 21300000, guid: edeb676741e692e4b80fd6c81c30f3e1, type: 3}
-  - {fileID: 21300000, guid: a7fbeff72758bca46b60047854a6c55c, type: 3}
   - {fileID: 21300000, guid: c98f58f9d072ad0408cfbdbd60681941, type: 3}
-  - {fileID: 21300000, guid: 7e20456ad795429449754c458a10bb67, type: 3}
   - {fileID: 21300000, guid: 35c36f1b6fd2be248b7182727485b440, type: 3}
-  - {fileID: 21300000, guid: f072847c0c317a74faf99546748a388f, type: 3}
   - {fileID: 21300000, guid: db6b78bcff11c9340915396afb30a7a9, type: 3}
   - {fileID: 21300000, guid: e84ca7dc6995b404c89a3e2c646a179c, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Stage Complete - Numbers Panel
-  - Stage Complete - Text Panel
   - Button - Selection (Pressed)
-  - Panel - How To Play
-  - Panel - Menu Title 2
-  - Panel - Wood Text Intro
   - Button - Volume Controller
-  - Panel - Menu Title
   - Button - Navigation
-  - Buttons' Panel
   - Button - Selection
-  - Panel - How to Play 2
   - Button - Navigation (Highligthed)
   - Button - Selection (Highlighted)
-  m_Tag: Menu UI
+  m_Tag: Generic Buttons UI
   m_IsVariant: 0

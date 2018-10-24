@@ -11,14 +11,16 @@ public class CameraRotation : MonoBehaviour
 	Transform fpsCamera;
 	float horizontalAngle = 0f;
 	float verticalAngle = 0f;
-	float minHorizontalAngle = -90f;
-	float maxHorizontalAngle = 90f;
+	float minHorizontalAngle;
+	float maxHorizontalAngle;
 	
 	void Awake()
 	{
 		GameManager.Instance.HideCursor();
 		fpsCamera = GetComponentInChildren<Camera>().transform;
 		horizontalAngle = transform.localEulerAngles.y;
+		minHorizontalAngle = horizontalAngle - horizontalRange / 2f;
+		maxHorizontalAngle = horizontalAngle + horizontalRange / 2f;
 	}
 
 	void Start()
