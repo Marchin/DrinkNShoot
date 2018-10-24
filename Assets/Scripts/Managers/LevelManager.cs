@@ -17,7 +17,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] CrowSpawner crowSpawner;
 
     [Header("UI References")]
-    [SerializeField] GameObject completeLevelUI;
     [SerializeField] GameObject completeStageUI;
     [SerializeField] GameObject failLevelUI;
     [SerializeField] GameObject hudUI;
@@ -111,10 +110,7 @@ public class LevelManager : MonoBehaviour
     void CompleteStage()
     {
         gameOver = true;
-        if (currentStageIndex != maxStageIndex)
-            completeStageUI.SetActive(true);
-        else
-            completeLevelUI.SetActive(true);
+		completeStageUI.SetActive(true);
 
         hudUI.SetActive(false);
         Time.timeScale = 0;
@@ -147,8 +143,12 @@ public class LevelManager : MonoBehaviour
         PlayerManager.Instance.Currency += cashEarnedInStage;
         PlayerManager.Instance.TotalKills += targetsKilledInStage;
 
-        endLevelMenu.ChangeEndScreenText(cashEarnedInStage, totalIncome, targetsKilledInStage, totalKills, stageCompletionTier);
-        hud.ChangeCurrencyDisplay(totalIncome);
+		if (currentStageIndex != maxStageIndex)
+        	endLevelMenu.ChangeEndScreenText(cashEarnedInStage, targetsKilledInStage, stageCompletionTier);
+		else
+			endLevelMenu.ChangeEndScreenText(totalIncome, totalKills, stageCompletionTier, true);
+        
+		hud.ChangeCurrencyDisplay(totalIncome);
         completeLevelSound.Play();
         onGameOver.Invoke();
     }

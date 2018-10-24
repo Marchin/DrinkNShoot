@@ -7,25 +7,39 @@ using TMPro;
 
 public class EndLevelMenu : MonoBehaviour 
 {
-	[SerializeField] UnityEvent onContinue;
-	[SerializeField] TextMeshProUGUI cashEarnedText;
-	[SerializeField] TextMeshProUGUI totalIncomeText;
+	[SerializeField] TextMeshProUGUI titleText;
+	[SerializeField] TextMeshProUGUI cashText;
+	[SerializeField] TextMeshProUGUI cashAmountText;
 	[SerializeField] TextMeshProUGUI killsText;
-	[SerializeField] TextMeshProUGUI totalKillsText;
+	[SerializeField] TextMeshProUGUI killsAmountText;
+	[SerializeField] TextMeshProUGUI firstButtonText;
 	[SerializeField] GameObject bronzeTierUI;
 	[SerializeField] GameObject silverTierUI;
 	[SerializeField] GameObject goldTierUI;
+	[SerializeField] string[] possibleTitles;
+	[SerializeField] string[] possibleCashLegends;
+	[SerializeField] string[] possibleKillsLegends;
+	[SerializeField] string[] possibleButtonNames;
+	[SerializeField] UnityEvent onContinue;
+
+	void Start()
+	{
+		titleText.text = possibleTitles[0];
+		cashText.text = possibleCashLegends[0];
+		killsText.text = possibleKillsLegends[0];
+		firstButtonText.text = possibleButtonNames[0];
+	}
 
 	public void Restart()
 	{
-		Time.timeScale = 1;
+		Time.timeScale = 1f;
 		GameManager.Instance.HideCursor();
 		LevelManager.Instance.RestartLevel();
 	}
 
 	public void PlayNextStage()
 	{
-		Time.timeScale = 1;
+		Time.timeScale = 1f;
 		GameManager.Instance.HideCursor();
 		onContinue.Invoke();
 		LevelManager.Instance.MoveToNextStage();
@@ -33,16 +47,22 @@ public class EndLevelMenu : MonoBehaviour
 
 	public void Quit()
 	{
-		Time.timeScale = 1;
+		Time.timeScale = 1f;
 		LevelManager.Instance.QuitLevel();
 	}
 
-	public void ChangeEndScreenText(int cashEarned, int totalIncome, int kills, int totalKills, LevelManager.StageCompletionTier tier)
+	public void ChangeEndScreenText(int cash, int kills, LevelManager.StageCompletionTier tier, bool levelCompleted = false)
 	{
-        cashEarnedText.text = "$" + cashEarned.ToString();
-        totalIncomeText.text = "$" + totalIncome.ToString();
-        killsText.text = kills.ToString();
-        totalKillsText.text = totalKills.ToString();
+		if (levelCompleted)
+		{
+			titleText.text = possibleTitles[1];
+            cashText.text = possibleCashLegends[1];
+            killsText.text = possibleKillsLegends[1];
+            firstButtonText.text = possibleButtonNames[1];
+		}
+
+        cashAmountText.text = "$" + cash.ToString();
+        killsAmountText.text = kills.ToString();
 
 		Image[] goldImages = goldTierUI.GetComponentsInChildren<Image>(true);		
 		Image[] silverImages = silverTierUI.GetComponentsInChildren<Image>(true);
