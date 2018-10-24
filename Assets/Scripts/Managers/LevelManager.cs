@@ -28,6 +28,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] float stageDrunkSpeedIncrease = 0.75f;
     [SerializeField] float stageDrunkRadiusIncrease = 10f;
     [SerializeField] int cashEarnedPerKill = 5;
+	[SerializeField] int cashEarnedBronze = 100;
+	[SerializeField] int cashEarnedSilver = 150;
+	[SerializeField] int cashEarnedGold = 175;
 
     [Header("Sounds")]
     [SerializeField] AudioSource completeLevelSound;
@@ -117,19 +120,30 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 0;
         GameManager.Instance.ShowCursor();
 
+        cashEarnedInStage = targetsKilledInStage * cashEarnedPerKill;
+
 		if (targetsKilledInStage >= currentSpawnPoint.GoldTierKills)
+		{
 			stageCompletionTier = StageCompletionTier.Gold;
+			cashEarnedInStage += cashEarnedBronze + cashEarnedSilver + cashEarnedGold;
+		}
 		else
 		{
 			if (targetsKilledInStage >= currentSpawnPoint.SilverTierKills)
+			{
 				stageCompletionTier = StageCompletionTier.Silver;
+				cashEarnedInStage += cashEarnedBronze + cashEarnedSilver;
+			}
 			else
+			{
 				stageCompletionTier = StageCompletionTier.Bronze;
+				cashEarnedInStage += cashEarnedBronze;
+			}
 		}
-
-        totalKills += targetsKilledInStage;
-        cashEarnedInStage = targetsKilledInStage * cashEarnedPerKill;
+        
+		totalKills += targetsKilledInStage;
         totalIncome += cashEarnedInStage;
+
         PlayerManager.Instance.Currency += cashEarnedInStage;
         PlayerManager.Instance.TotalKills += targetsKilledInStage;
 
