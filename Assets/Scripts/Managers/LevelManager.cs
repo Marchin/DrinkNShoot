@@ -82,6 +82,8 @@ public class LevelManager : MonoBehaviour
         playersWagon.destination = currentSpawnPoint.transform.position;
         timeLeft = currentSpawnPoint.CompletionTime;
 
+        currentSpawnPoint.EnableStage();
+
         if (GameManager.Instance.TutorialEnabled)
         {
             playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().EquippedGun.OnEmptyGun.AddListener(FirstEmptyGunNotice);
@@ -203,6 +205,7 @@ public class LevelManager : MonoBehaviour
             onClearFirstStage.Invoke();
         crowSpawner.DisableCrows();
         crowSpawner.enabled = false;
+        currentSpawnPoint.DisableStage();
 
         gameOver = false;
         inShootingStage = false;
@@ -210,6 +213,7 @@ public class LevelManager : MonoBehaviour
 
         playersWagon.destination = enemySpawnPoints[currentStageIndex].position;
         currentSpawnPoint = enemySpawnPoints[currentStageIndex].GetComponent<CrowTrigger>();
+        currentSpawnPoint.EnableStage();
 
         Gun currentGun = playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().EquippedGun;
         currentGun.DrunkCrosshairSpeed += stageDrunkSpeedIncrease;

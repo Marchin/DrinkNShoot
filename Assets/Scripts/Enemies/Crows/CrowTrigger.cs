@@ -24,12 +24,15 @@ public class CrowTrigger : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		m_stage.SetActive(true);
 		LevelManager.Instance.EnterShootingStage();
 		m_crowSpawner.SetLandingZones(m_landingZones);
 	}
 
-	private void OnTriggerExit() {
+	public void EnableStage() {
+		m_stage.SetActive(true);
+	}
+
+	public void DisableStage() {
 		m_stage.SetActive(false);
 	}
 
