@@ -253,10 +253,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_stage: {fileID: 0}
   m_requiredKills: 18
   m_difficultyLevel: 4
   m_completionTime: 90
-  m_stage: {fileID: 0}
+  m_goldTierKills: 22
+  m_silverTierKills: 20
 --- !u!114 &114074142597568652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -268,10 +270,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_stage: {fileID: 0}
   m_requiredKills: 12
   m_difficultyLevel: 2
   m_completionTime: 60
-  m_stage: {fileID: 0}
+  m_goldTierKills: 18
+  m_silverTierKills: 15
 --- !u!114 &114141254075659796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -283,10 +287,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_stage: {fileID: 0}
   m_requiredKills: 5
   m_difficultyLevel: 0
   m_completionTime: 45
-  m_stage: {fileID: 0}
+  m_goldTierKills: 10
+  m_silverTierKills: 7
 --- !u!114 &114261857304258724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -326,7 +332,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_stage: {fileID: 0}
   m_requiredKills: 20
   m_difficultyLevel: 6
   m_completionTime: 120
-  m_stage: {fileID: 0}
+  m_goldTierKills: 24
+  m_silverTierKills: 22

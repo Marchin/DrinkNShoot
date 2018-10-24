@@ -7,140 +7,139 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-	[SerializeField] GameObject loadingScreen;
-	[SerializeField] SettingsMenu.GfxSetting currentGfxSetting = SettingsMenu.GfxSetting.Wild;
-	[SerializeField] float currentSfxVolume = 0.75f;
-	[SerializeField] AnimationClip fadeInAnimation;
-	[SerializeField] AnimationClip fadeOutAnimation;
-	
-	const float MIN_LOAD_TIME = 1f;
+    [SerializeField] GameObject loadingScreen;
+    [SerializeField] SettingsMenu.GfxSetting currentGfxSetting = SettingsMenu.GfxSetting.Wild;
+    [SerializeField] float currentSfxVolume = 0.75f;
+    [SerializeField] AnimationClip fadeInAnimation;
+    [SerializeField] AnimationClip fadeOutAnimation;
 
-	static GameManager instance;
+    const float MIN_LOAD_TIME = 1.5f;
 
-	Animator animator;
-	Slider loadingBarSlider;
-	TextMeshProUGUI loadingText;
-	int nextSceneToLoad = -1;
-	bool tutorialEnabled = true;
+    static GameManager instance;
 
-	void Awake()
-	{
-		if (Instance == this)
-		{
-			animator = GetComponent<Animator>();
-			DontDestroyOnLoad(gameObject);
-		}
-		else
-			Destroy(gameObject);
+    Animator animator;
+    Slider loadingBarSlider;
+    TextMeshProUGUI loadingText;
+    int nextSceneToLoad = -1;
+    bool tutorialEnabled = true;
 
-	}
+    void Awake()
+    {
+        if (Instance == this)
+        {
+            animator = GetComponent<Animator>();
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
+    }
 
-	void Start()
-	{
-		SceneManager.sceneLoaded += OnSceneLoaded;
-		QualitySettings.SetQualityLevel((int)currentGfxSetting);
-		loadingBarSlider = loadingScreen.GetComponentInChildren<Slider>();
-		loadingText = loadingScreen.GetComponentInChildren<TextMeshProUGUI>();
-	}
+    void Start()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        QualitySettings.SetQualityLevel((int)currentGfxSetting);
+        loadingBarSlider = loadingScreen.GetComponentInChildren<Slider>();
+        loadingText = loadingScreen.GetComponentInChildren<TextMeshProUGUI>();
+    }
 
-	IEnumerator LoadSceneAsynchronously(int nextSceneToLoad)
-	{
-		if (nextSceneToLoad >= 0)
-		{
-			HideCursor();
+    IEnumerator LoadSceneAsynchronously(int nextSceneToLoad)
+    {
+        if (nextSceneToLoad >= 0)
+        {
+            HideCursor();
 
-			loadingScreen.SetActive(true);
+            loadingScreen.SetActive(true);
 
-			float loadTimer = 0f;
-			float maxProgressValue = 0.9f + MIN_LOAD_TIME;
-			AsyncOperation operation = SceneManager.LoadSceneAsync(nextSceneToLoad);
-			
-			operation.allowSceneActivation = false;
+            float loadTimer = 0f;
+            float maxProgressValue = 0.9f + MIN_LOAD_TIME;
+            AsyncOperation operation = SceneManager.LoadSceneAsync(nextSceneToLoad);
 
-			while (!operation.isDone)
-			{
-				float progress = Mathf.Clamp01((operation.progress + loadTimer) / maxProgressValue);
-				loadingBarSlider.value = progress;
-				loadingText.text = "Loading: " + (int)(progress * 100) + "%";
-				loadTimer += Time.deltaTime;
+            operation.allowSceneActivation = false;
 
-				if (progress == 1f)
-					operation.allowSceneActivation = true;
-				
-				yield return null;
-			}	
-		}
-	}
+            while (!operation.isDone)
+            {
+                float progress = Mathf.Clamp01((operation.progress + loadTimer) / maxProgressValue);
+                loadTimer += Time.deltaTime;
+                loadingBarSlider.value = progress;
+                loadingText.text = "Loading: " + (int)(progress * 100) + "%";
 
-	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-	{
-		animator.SetTrigger("Fade In");
-		loadingScreen.SetActive(false);
-		nextSceneToLoad = -1;
-	}
+                if (progress == 1f)
+                    operation.allowSceneActivation = true;
 
-	public void FadeToScene(int sceneIndex)
-	{
-		nextSceneToLoad = sceneIndex;
-		animator.SetTrigger("Fade Out");
-	}
+                yield return null;
+            }
+        }
+    }
 
-	public void OnFadeOutComplete()
-	{
-		StartCoroutine(LoadSceneAsynchronously(nextSceneToLoad));
-	}
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        animator.SetTrigger("Fade In");
+        loadingScreen.SetActive(false);
+        nextSceneToLoad = -1;
+    }
 
-	public void HideCursor()
-	{
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
-	}
+    public void FadeToScene(int sceneIndex)
+    {
+        nextSceneToLoad = sceneIndex;
+        animator.SetTrigger("Fade Out");
+    }
 
-	public void ShowCursor()
-	{
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
-	}
+    public void OnFadeOutComplete()
+    {
+        StartCoroutine(LoadSceneAsynchronously(nextSceneToLoad));
+    }
 
-	public void QuitApplication()
-	{
-		Application.Quit();
-	}
+    public void HideCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
-	public static GameManager Instance
-	{
-		get
-		{
-			if (!instance)
-			{
-				instance = FindObjectOfType<GameManager>();
+    public void ShowCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 
-				if (!instance)
-				{
-					GameObject gameObj = new GameObject("Game Manager");
-					instance = gameObj.AddComponent<GameManager>();
-				}
-			}
-			
-			return instance;
-		}
-	}
+    public void QuitApplication()
+    {
+        Application.Quit();
+    }
 
-	public SettingsMenu.GfxSetting CurrentGfxSetting
-	{
-		get { return currentGfxSetting; }
-		set { currentGfxSetting = value; }
-	}
+    public static GameManager Instance
+    {
+        get
+        {
+            if (!instance)
+            {
+                instance = FindObjectOfType<GameManager>();
 
-	public float CurrentSfxVolume
-	{
-		get { return currentSfxVolume; }
-		set { currentSfxVolume = value; }
-	}
+                if (!instance)
+                {
+                    GameObject gameObj = new GameObject("Game Manager");
+                    instance = gameObj.AddComponent<GameManager>();
+                }
+            }
 
-	public bool TutorialEnabled
-	{
-		get { return tutorialEnabled; }
-		set { tutorialEnabled = value; }
-	}
+            return instance;
+        }
+    }
+
+    public SettingsMenu.GfxSetting CurrentGfxSetting
+    {
+        get { return currentGfxSetting; }
+        set { currentGfxSetting = value; }
+    }
+
+    public float CurrentSfxVolume
+    {
+        get { return currentSfxVolume; }
+        set { currentSfxVolume = value; }
+    }
+
+    public bool TutorialEnabled
+    {
+        get { return tutorialEnabled; }
+        set { tutorialEnabled = value; }
+    }
 }
