@@ -63,7 +63,7 @@ public class PlayerAnimation : MonoBehaviour
 
 	void InvokeSipTaking()
 	{
-		PlayerManager.Instance.DisablePlayerComponent(weaponHolder.EquippedGun);
+		PlayerManager.Instance.DisablePlayerComponent(PlayerManager.PlayerComponent.GunComp);
 		Invoke("TakeASip", SIPPING_DELAY);
 	}
 
@@ -75,7 +75,7 @@ public class PlayerAnimation : MonoBehaviour
 
 	void ReEnableGunComponent()
 	{
-		PlayerManager.Instance.EnablePlayerComponent(weaponHolder.EquippedGun);
+		PlayerManager.Instance.EnablePlayerComponent(PlayerManager.PlayerComponent.GunComp);
 	}
 
 	void ChangeGunAnimations() 

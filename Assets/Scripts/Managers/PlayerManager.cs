@@ -5,6 +5,13 @@ using UnityEngine.Events;
 
 public class PlayerManager : MonoBehaviour
 {
+	public enum PlayerComponent
+	{
+		CameraRotationComp, DrunkCameraComp, GunComp, AnimatorComp
+	}
+
+	[SerializeField] UnityEvent onGunAvailabilityToggle;
+
 	static PlayerManager instance;
 	
 	CameraRotation cameraRotation;
@@ -49,18 +56,64 @@ public class PlayerManager : MonoBehaviour
 		drunkCamera.enabled = !drunkCamera.enabled;
 		equippedGun.enabled = !equippedGun.enabled;
 		playerAnimator.enabled = !playerAnimator.enabled;
+
+		onGunAvailabilityToggle.Invoke();
 	}
 
-	public void DisablePlayerComponent(MonoBehaviour component)
+	public bool DisablePlayerComponent(PlayerComponent component)
 	{
-		if (component)
-			component.enabled = false;
+		bool wasDisabled = false;
+
+		switch (component)
+		{
+			case PlayerComponent.CameraRotationComp:
+				cameraRotation.enabled = false;
+				wasDisabled = true;
+				break;			
+			case PlayerComponent.DrunkCameraComp:
+				drunkCamera.enabled = false;
+				wasDisabled = true;
+				break;
+			case PlayerComponent.GunComp:
+				equippedGun.enabled = false;
+                wasDisabled = true;
+				onGunAvailabilityToggle.Invoke();
+                break;
+			case PlayerComponent.AnimatorComp:
+				playerAnimator.enabled = false;
+                wasDisabled = true;
+                break;
+		}
+
+		return wasDisabled;
 	}
 
-	public void EnablePlayerComponent(MonoBehaviour component)
+	public bool EnablePlayerComponent(PlayerComponent component)
 	{
-		if (component)
-			component.enabled = true;
+        bool wasEnabled = false;
+
+        switch (component)
+        {
+            case PlayerComponent.CameraRotationComp:
+                cameraRotation.enabled = true;
+                wasEnabled = true;
+                break;
+            case PlayerComponent.DrunkCameraComp:
+                drunkCamera.enabled = true;
+                wasEnabled = true;
+                break;
+            case PlayerComponent.GunComp:
+                equippedGun.enabled = true;
+                wasEnabled = true;
+				onGunAvailabilityToggle.Invoke();
+                break;
+            case PlayerComponent.AnimatorComp:
+                playerAnimator.enabled = true;
+                wasEnabled = true;
+                break;
+        }
+
+        return wasEnabled;
 	}
 
 	public static PlayerManager Instance
@@ -92,5 +145,10 @@ public class PlayerManager : MonoBehaviour
 	{
 		get { return totalKills; }
 		set { totalKills = value; }
+	}
+
+	public UnityEvent OnGunDisabled
+	{
+		get { return onGunAvailabilityToggle; }
 	}
 }

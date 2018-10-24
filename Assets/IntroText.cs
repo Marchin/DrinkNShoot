@@ -12,7 +12,7 @@ public class IntroText : MonoBehaviour
 	{
 		Time.timeScale = 0f;
 		GameManager.Instance.ShowCursor();
-		PlayerManager.Instance.DisablePlayerComponent(FindObjectOfType<WeaponHolder>().EquippedGun);
+		PlayerManager.Instance.DisablePlayerComponent(PlayerManager.PlayerComponent.GunComp);
 		animator = GetComponent<Animator>();
 		pauseMenu = transform.GetComponentInParent<PauseMenu>();
 		pauseMenu.enabled = false;
@@ -21,7 +21,7 @@ public class IntroText : MonoBehaviour
 	void DeactivateObject()
 	{
 		gameObject.SetActive(false);
-		PlayerManager.Instance.EnablePlayerComponent(FindObjectOfType<WeaponHolder>().EquippedGun);
+		PlayerManager.Instance.EnablePlayerComponent(PlayerManager.PlayerComponent.GunComp);
 		pauseMenu.enabled = true;
 	}
 

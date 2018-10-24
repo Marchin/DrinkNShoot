@@ -72,6 +72,7 @@ public class HUD : MonoBehaviour
 		
 		LevelManager.Instance.OnEnemyKill.AddListener(ChangeKillsDisplay);
 		LevelManager.Instance.OnStartNextStage.AddListener(ChangeKillsDisplay);
+		PlayerManager.Instance.OnGunDisabled.AddListener(ToggleCrosshair);
 
 		objectiveBannerTimer = 0f;
 		objectiveBannerWasJustDisabled = false;
@@ -105,6 +106,11 @@ public class HUD : MonoBehaviour
 	void MoveCrosshair()
 	{
 		crosshair.rectTransform.position = weaponHolder.EquippedGun.CrosshairPosition;
+	}
+
+	void ToggleCrosshair()
+	{
+		crosshair.enabled = !crosshair.enabled;
 	}
 
     void ChangeAmmoDisplay()
