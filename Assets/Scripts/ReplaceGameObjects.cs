@@ -193,4 +193,17 @@ public class ReplaceGameObjects : MonoBehaviour
 
         Replace(elements, tomb, prefabName, layerName);
     }
+	
+    [MenuItem("Custom Scripts/Replace Fog")]
+
+    static void PlaceFog()
+    {
+        Transform[] elements = FindObjectsOfType<Transform>();
+        string prefabName = "Fog";
+        string layerName = "Particle Effects";
+
+        GameObject fog = Resources.Load(prefabName, typeof(GameObject)) as GameObject;
+
+        Replace(elements, fog, prefabName, layerName);
+    }
 }
