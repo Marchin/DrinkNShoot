@@ -204,6 +204,6 @@ public class HUD : MonoBehaviour
 
 	public void ChangeCurrencyDisplay(int currency)
 	{
-		currencyText.text = "$" + currency.ToString();
+		currencyText.text = currency.ToString();
 	}
 }
