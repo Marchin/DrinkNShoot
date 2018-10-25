@@ -10,6 +10,7 @@ public class DrunkCamera : MonoBehaviour {
     float m_shakenessMult;
     float m_currRotation;
     float m_prevRot;
+    float m_oscillation;
 
     private void Awake() {
         m_currRotation = transform.eulerAngles.z;
@@ -37,8 +38,8 @@ public class DrunkCamera : MonoBehaviour {
         m_shakeness = deltaShake * m_level + 5f;
 
         Vector3 newRotation = transform.eulerAngles;
-        float oscillation = Mathf.Sin(f: Time.time * m_speed + m_HALF_PI);
-        m_currRotation = (oscillation * m_shakeness * m_shakenessMult);
+        m_oscillation = Mathf.Sin(f: Time.time * m_speed + m_HALF_PI);
+        m_currRotation = (m_oscillation * m_shakeness * m_shakenessMult);
         if (Mathf.Sign(m_prevRot) != Mathf.Sign(m_currRotation)) {
             m_shakenessMult = Random.Range(m_min, 1f);
         }
@@ -51,7 +52,7 @@ public class DrunkCamera : MonoBehaviour {
         m_level = LevelManager.Instance.DifficultyLevel;
     }
 
-    public float GetTrembleSpeed() {
-        return m_currRotation;
+    public float GetTrembleSpeed01() {
+        return Mathf.Abs(m_oscillation);
     }
 }

@@ -15057,6 +15057,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4815439239396028, guid: 5ff10ca5c95eb4e4abc4701499a30524,
     type: 2}
   m_PrefabInternal: {fileID: 870944764}
+--- !u!114 &871898860 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114738178892442202, guid: ee3cf5fc4130bec4bb5af2f35e43dab5,
+    type: 2}
+  m_PrefabInternal: {fileID: 317124795}
+  m_Script: {fileID: 11500000, guid: b9074f6a694bc5e4c835009f8f724acb, type: 3}
 --- !u!1001 &875532963
 Prefab:
   m_ObjectHideFlags: 0
@@ -31943,7 +31949,7 @@ Prefab:
     - target: {fileID: 114691838449221296, guid: 4fc2b6ed93d0ff549809fb98d2ba1a00,
         type: 2}
       propertyPath: deltaBlur
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1180170284915776, guid: 4fc2b6ed93d0ff549809fb98d2ba1a00, type: 2}
       propertyPath: m_IsActive
@@ -31952,6 +31958,16 @@ Prefab:
     - target: {fileID: 1180170284915776, guid: 4fc2b6ed93d0ff549809fb98d2ba1a00, type: 2}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114691838449221296, guid: 4fc2b6ed93d0ff549809fb98d2ba1a00,
+        type: 2}
+      propertyPath: drunkCamera
+      value: 
+      objectReference: {fileID: 871898860}
+    - target: {fileID: 114691838449221296, guid: 4fc2b6ed93d0ff549809fb98d2ba1a00,
+        type: 2}
+      propertyPath: drunkToBlurRation
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fc2b6ed93d0ff549809fb98d2ba1a00, type: 2}
@@ -33821,6 +33837,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc3a81f311a22a47867f136d39d046e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onGunAvailabilityToggle:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1761682145
 GameObject:
   m_ObjectHideFlags: 0

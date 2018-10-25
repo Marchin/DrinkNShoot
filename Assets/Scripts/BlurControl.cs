@@ -3,22 +3,22 @@ using System.Collections;
 
 public class BlurControl : MonoBehaviour {
 	[SerializeField] float deltaBlur;
+	[SerializeField] DrunkCamera drunkCamera;
 	float value; 
 	float targetValue;
 	
 	// Use this for initialization
 	void Awake () {
-		value = 0.0f;
+		value = 0.3f;
 		targetValue = value;
 		transform.GetComponent<Renderer>().material.SetFloat("_blurSizeXY",value);
 		LevelManager.Instance.OnStartNextStage.AddListener(IncrementBlur);
 	}
 
 	private void Update() {
-		if (value != targetValue) {
-			value = Mathf.Lerp(value, targetValue, 0.5f * Time.deltaTime);
-	    	transform.GetComponent<Renderer>().material.SetFloat("_blurSizeXY",value);
-		}
+		float intensity = drunkCamera.GetTrembleSpeed01(); 
+		value = targetValue * intensity * intensity;
+		transform.GetComponent<Renderer>().material.SetFloat("_blurSizeXY",value);
 	}
 
 	public void IncrementBlur() {
