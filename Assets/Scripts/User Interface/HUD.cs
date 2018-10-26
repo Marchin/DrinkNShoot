@@ -116,7 +116,7 @@ public class HUD : MonoBehaviour
     void ChangeAmmoDisplay()
     {
         int bulletsInCylinder = weaponHolder.EquippedGun.BulletsInCylinder;
-        int ammoLeft = weaponHolder.EquippedGun.AmmoLeft;
+        int cylinderCapacity = weaponHolder.EquippedGun.CylinderCapacity;
 
 		if (bulletsInCylinder <= CRITICAL_AMMO_IN_GUN)
 		{
@@ -127,7 +127,7 @@ public class HUD : MonoBehaviour
 		else
 			ammoText.color = Color.white;
 
-        ammoText.text = bulletsInCylinder.ToString() + "/" + ammoLeft.ToString();
+        ammoText.text = bulletsInCylinder.ToString() + "/" + cylinderCapacity.ToString();
     }
 
 	void ChangeKillsDisplay()

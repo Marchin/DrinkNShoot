@@ -26,12 +26,16 @@ public class Gun : MonoBehaviour
 	float range;
 	[SerializeField] [Range(0, 1250)] [Tooltip("Maximum force applied to a shot target.")] 
 	float impactForce;
-	[SerializeField] [Range(0, 1000)] [Tooltip("Maximum amount of ammo that can be carried.")] 
-	int maxAmmo;
 	[SerializeField] [Range(0, 100)] [Tooltip("Amount of bullets that can be inside the gun.")] 
 	int cylinderCapacity;
 	[SerializeField] [Range(1, 10)] [Tooltip("Gun sway after being fired; affects accuracy.")]
 	float recoilSwayLevel;
+
+	[Header("Drunkness Fields")]
+	[SerializeField] [Range(0, 50)] [Tooltip("Maximum radius of the crosshair circular motion.")]
+	float maxCrosshairRadius = 25f;
+	[SerializeField] [Range(1, 10)] [Tooltip("Maximum crosshair movement speed.")]
+	float maxCrosshairSpeed = 7f;
 	
 	[Header("Shooting Layers")] 
 	[SerializeField] [Tooltip("The names of the layers that the gun can make damage to.")]
@@ -74,15 +78,12 @@ public class Gun : MonoBehaviour
 	const float DRUNK_SWAY_MULT = 10f;
 	const float MAX_SWAY_ALLOWED = 10f;
 	const float CROSSHAIR_SCALE_MULT = 0.05f;
-	const float MAX_DRUNK_CROSSHAIR_SPEED = 7f;
-	const float MAX_DRUNK_CROSSHAIR_RADIUS = 25f;
 	
 	// Computing Fields
 	Camera fpsCamera;
 	Coroutine reloadRoutine;
 	GunState currentState;
 	Vector3 crosshairPosition;
-	int ammoLeft;
 	int bulletsInCylinder = 0;
 	float lastFireTime = 0f;
 	float recoilDuration = 0f;
@@ -108,7 +109,6 @@ public class Gun : MonoBehaviour
 		currentState = GunState.Idle;
 		crosshairPosition = new Vector3(Screen.width / 2, Screen.height / 2, 1f);
 		bulletsInCylinder = cylinderCapacity;
-		ammoLeft = maxAmmo;
 		recoilDuration = 1f / fireRate;
 		shootingLayerMask = ~LayerMask.GetMask(layersToIgnore);
 	}
@@ -175,12 +175,13 @@ public class Gun : MonoBehaviour
 		lastFireTime = Time.time;
 		bulletsInCylinder--;
 
+		float hitProbability = targetOnClearSight ? 100f : Random.Range(0f, 100f - drunkSwayPercentage);
 		Vector3 direction = (fpsCamera.ScreenToWorldPoint(crosshairPosition) - fpsCamera.transform.position).normalized;
 		RaycastHit hit;
 		
 		Debug.DrawRay(fpsCamera.transform.position, direction * range, Color.red, 3);
 
-		if (Physics.Raycast(fpsCamera.transform.position, direction, out hit, range, shootingLayerMask) && targetOnClearSight)
+		if (Physics.Raycast(fpsCamera.transform.position, direction, out hit, range, shootingLayerMask) && hitProbability > 50f)
 		{
 			Life targetLife = hit.transform.GetComponent<Life>();
 			Rigidbody targetRigidbody = hit.transform.GetComponent<Rigidbody>();
@@ -206,7 +207,6 @@ public class Gun : MonoBehaviour
 			onReload.Invoke();
 			yield return new WaitForSeconds(reloadAnimation.length);
 			bulletsInCylinder++;
-			ammoLeft--;
 			onIncreaseBulletCount.Invoke();
         }
 
@@ -337,7 +337,7 @@ public class Gun : MonoBehaviour
 
 	bool CanReload()
 	{
-		return ammoLeft > 0 && bulletsInCylinder < cylinderCapacity;
+		return  bulletsInCylinder < cylinderCapacity;
 	}
 
 	bool ShouldPlayEmptyMagSound()
@@ -359,20 +359,10 @@ public class Gun : MonoBehaviour
 	{
 		get { return cylinderCapacity; }
 	}
-	
-	public int MaxAmmo
-	{
-		get { return maxAmmo; }
-	}
 
 	public int BulletsInCylinder
 	{
 		get { return bulletsInCylinder; }
-	}
-
-	public int AmmoLeft
-	{
-		get { return ammoLeft; }
 	}
 
 	public float CrossshairScale
@@ -388,12 +378,12 @@ public class Gun : MonoBehaviour
 	public float DrunkCrosshairSpeed
 	{
 		get { return drunkCrosshairSpeed; }
-		set { drunkCrosshairSpeed = value < MAX_DRUNK_CROSSHAIR_SPEED ? value : MAX_DRUNK_CROSSHAIR_SPEED;}
+		set { drunkCrosshairSpeed = value < maxCrosshairSpeed ? value : maxCrosshairSpeed;}
 	}
 	public float DrunkCrosshairRadius
 	{
 		get { return drunkCrosshairRadius; }
-		set { drunkCrosshairRadius = value < MAX_DRUNK_CROSSHAIR_RADIUS ? value : MAX_DRUNK_CROSSHAIR_RADIUS;}
+		set { drunkCrosshairRadius = value < maxCrosshairRadius ? value : maxCrosshairRadius;}
 	}
 
 	public AnimationClip ShootAnimation
