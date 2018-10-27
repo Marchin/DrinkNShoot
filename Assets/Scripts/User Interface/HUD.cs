@@ -115,8 +115,8 @@ public class HUD : MonoBehaviour
 
     void ChangeAmmoDisplay()
     {
-        int bulletsInCylinder = weaponHolder.EquippedGun.BulletsInCylinder;
-        int cylinderCapacity = weaponHolder.EquippedGun.CylinderCapacity;
+        int bulletsInCylinder = weaponHolder.EquippedGun.BulletsInGun;
+        int cylinderCapacity = weaponHolder.EquippedGun.GunCapacity;
 
 		if (bulletsInCylinder <= CRITICAL_AMMO_IN_GUN)
 		{

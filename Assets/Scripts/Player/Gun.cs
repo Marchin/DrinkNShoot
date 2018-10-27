@@ -20,20 +20,22 @@ public class Gun : MonoBehaviour
 	[Header("Gun Stats")]
 	[SerializeField] [Tooltip("Type of gun.")]
 	GunType gunType;
-	[SerializeField] [Range(0, 12)] [Tooltip("Bullets fired per second.")] 
+	[SerializeField] [Range(1, 100)] [Tooltip("Amount of bullets that can be inside the gun.")] 
+	int gunCapacity;
+	[SerializeField] [Range(0f, 12f)] [Tooltip("Bullets fired per second.")] 
 	float fireRate;
-	[SerializeField] [Range(0, 1000)] [Tooltip("Maximum gun range.")] 
+	[SerializeField] [Range(0f, 1000f)] [Tooltip("Maximum gun range.")] 
 	float range;
-	[SerializeField] [Range(0, 1250)] [Tooltip("Maximum force applied to a shot target.")] 
+	[SerializeField] [Range(0f, 1250f)] [Tooltip("Maximum force applied to a shot target.")] 
 	float impactForce;
-	[SerializeField] [Range(0, 100)] [Tooltip("Amount of bullets that can be inside the gun.")] 
-	int cylinderCapacity;
-	[SerializeField] [Range(1, 10)] [Tooltip("Gun sway after being fired; affects accuracy.")]
+	[SerializeField] [Range(1f, 20f)] [Tooltip("Gun sway after being fired; affects accuracy.")]
 	float recoilSwayLevel;
+	[SerializeField] [Range(0f, 0.5f)] [Tooltip("Number of seconds that the recoil affects the accuracy.")]
+	float recoilDuration;
 
 	[Header("Drunkness Fields")]
-	[SerializeField] [Range(0, 50)] [Tooltip("Maximum radius of the crosshair circular motion.")]
-	float maxCrosshairRadius = 25f;
+	[SerializeField] [Range(0f, 50f)] [Tooltip("Maximum radius of the crosshair circular motion.")]
+	float maxCrosshairRadius = 30f;
 	[SerializeField] [Range(1, 10)] [Tooltip("Maximum crosshair movement speed.")]
 	float maxCrosshairSpeed = 7f;
 	
@@ -84,15 +86,16 @@ public class Gun : MonoBehaviour
 	Coroutine reloadRoutine;
 	GunState currentState;
 	Vector3 crosshairPosition;
-	int bulletsInCylinder = 0;
+	int bulletsInGun = 0;
 	float lastFireTime = 0f;
-	float recoilDuration = 0f;
+	float timeToShootSingleBullet = 0f;
 	float drunkSwayPercentage = 0f;
 	float drunkSwayInterpTime = 0f;
 	float crosshairScaleInterpTime = 0f;
 	float crosshairScaleAtShotInterpTime = 0f;
 	float crosshairScale = 1f;
 	int consecutiveShots = 0;
+	int consecutiveShotsAtShot = 0;
 	float crosshairScaleBeforeShot = 1f;
 	float crosshairScaleAfterShot = 1f;
 	bool isIncreasingDrunkSway = true;
@@ -108,8 +111,9 @@ public class Gun : MonoBehaviour
 		fpsCamera = GetComponentInParent<Camera>();
 		currentState = GunState.Idle;
 		crosshairPosition = new Vector3(Screen.width / 2, Screen.height / 2, 1f);
-		bulletsInCylinder = cylinderCapacity;
-		recoilDuration = 1f / fireRate;
+		bulletsInGun = gunCapacity;
+		timeToShootSingleBullet = 1f / fireRate;
+		recoilDuration += timeToShootSingleBullet;
 		shootingLayerMask = ~LayerMask.GetMask(layersToIgnore);
 	}
 
@@ -149,7 +153,7 @@ public class Gun : MonoBehaviour
 				break;
 			
 			case GunState.Shooting:
-				if (Time.time - lastFireTime >= recoilDuration)
+				if (Time.time - lastFireTime >= timeToShootSingleBullet)
 					ReturnToIdle();
 				break;
 			
@@ -166,6 +170,7 @@ public class Gun : MonoBehaviour
 	void Shoot()
 	{	
 		consecutiveShots++;
+		consecutiveShotsAtShot = consecutiveShots;
 		crosshairScaleBeforeShot = crosshairScale;
 		crosshairScale += recoilSwayLevel * consecutiveShots * CROSSHAIR_SCALE_MULT;
 		crosshairScaleAfterShot = crosshairScale;
@@ -173,7 +178,7 @@ public class Gun : MonoBehaviour
 		OnCrosshairScale.Invoke();
 
 		lastFireTime = Time.time;
-		bulletsInCylinder--;
+		bulletsInGun--;
 
 		float hitProbability = targetOnClearSight ? 100f : Random.Range(0f, 100f - drunkSwayPercentage);
 		Vector3 direction = (fpsCamera.ScreenToWorldPoint(crosshairPosition) - fpsCamera.transform.position).normalized;
@@ -202,11 +207,11 @@ public class Gun : MonoBehaviour
 		onReloadStart.Invoke();
 		yield return new WaitForSeconds(reloadStartAnimation.length);
 
-		for (int i = bulletsInCylinder; i < cylinderCapacity; i++)
+		for (int i = bulletsInGun; i < gunCapacity; i++)
 		{
 			onReload.Invoke();
 			yield return new WaitForSeconds(reloadAnimation.length);
-			bulletsInCylinder++;
+			bulletsInGun++;
 			onIncreaseBulletCount.Invoke();
         }
 
@@ -234,48 +239,32 @@ public class Gun : MonoBehaviour
     {   
 		float previousCrosshairScale = crosshairScale;
 
-		if (isIncreasingDrunkSway)
+		if (consecutiveShots == 0)
 		{
-			drunkSwayPercentage = Mathf.Lerp(0f, LevelManager.Instance.DifficultyLevel * DRUNK_SWAY_MULT, drunkSwayInterpTime);
-			drunkSwayInterpTime += Time.deltaTime;
-			if (consecutiveShots == 0)
+			if (isIncreasingDrunkSway)
+			{
+				drunkSwayPercentage = Mathf.Lerp(0f, LevelManager.Instance.DifficultyLevel * DRUNK_SWAY_MULT, drunkSwayInterpTime);
 				crosshairScale = Mathf.Lerp(1f, 1f + drunkSwayPercentage * CROSSHAIR_SCALE_MULT, crosshairScaleInterpTime);
+			}
 			else
 			{
-				crosshairScale = Mathf.Lerp(crosshairScaleAfterShot, crosshairScaleBeforeShot, crosshairScaleAtShotInterpTime);
-				crosshairScaleAtShotInterpTime += Time.deltaTime / recoilDuration;
-				if (crosshairScaleAtShotInterpTime >= 1f)
-					crosshairScaleAtShotInterpTime = 0f;
+                drunkSwayPercentage = Mathf.Lerp(LevelManager.Instance.DifficultyLevel * DRUNK_SWAY_MULT, 0f, drunkSwayInterpTime);
+                crosshairScale = Mathf.Lerp(1f + drunkSwayPercentage * CROSSHAIR_SCALE_MULT, 1f, crosshairScaleInterpTime);
 			}
+			drunkSwayInterpTime += Time.deltaTime;
 			crosshairScaleInterpTime += Time.deltaTime;
 			if (drunkSwayInterpTime >= 1f)
 			{
 				drunkSwayInterpTime = 0f;
 				crosshairScaleInterpTime = 0f;
-				isIncreasingDrunkSway = false;
+				isIncreasingDrunkSway = !isIncreasingDrunkSway;
 			}
 		}
 		else
 		{
-			drunkSwayPercentage = Mathf.Lerp(LevelManager.Instance.DifficultyLevel * DRUNK_SWAY_MULT, 0f, drunkSwayInterpTime);
-			drunkSwayInterpTime += Time.deltaTime;
-			if (consecutiveShots == 0)
-				crosshairScale = Mathf.Lerp(1f + drunkSwayPercentage * CROSSHAIR_SCALE_MULT, 1f, crosshairScaleInterpTime);
-			else
-			{
-				crosshairScale = Mathf.Lerp(crosshairScaleAfterShot, crosshairScaleBeforeShot, crosshairScaleAtShotInterpTime);
-				crosshairScaleAtShotInterpTime += Time.deltaTime / recoilDuration;
-				if (crosshairScaleAtShotInterpTime >= 1f)
-					crosshairScaleAtShotInterpTime = 0f;
-			}
-			crosshairScaleInterpTime += Time.deltaTime;
-			if (drunkSwayInterpTime >= 1f)
-			{
-				drunkSwayInterpTime = 0f;
-				crosshairScaleInterpTime = 0f;
-				isIncreasingDrunkSway = true;
-			}
-		}		
+			crosshairScale = Mathf.Lerp(crosshairScaleAfterShot, crosshairScaleBeforeShot, crosshairScaleAtShotInterpTime);
+			crosshairScaleAtShotInterpTime += Time.deltaTime / (recoilDuration * consecutiveShotsAtShot);
+        }	
 		
 		if (crosshairScale != previousCrosshairScale)
 			onCrosshairScale.Invoke();
@@ -283,7 +272,7 @@ public class Gun : MonoBehaviour
 
 	void CheckConsecutiveShots()
 	{
-        if (lastFireTime < Time.time - recoilDuration)
+        if (lastFireTime < Time.time - timeToShootSingleBullet)
             if (consecutiveShots != 0)
                 consecutiveShots = 0;
 	}
@@ -332,17 +321,17 @@ public class Gun : MonoBehaviour
 
 	bool CanShoot()
 	{
-		return Time.time - lastFireTime >= 1 / fireRate && bulletsInCylinder > 0;
+		return Time.time - lastFireTime >= 1 / fireRate && bulletsInGun > 0;
 	}
 
 	bool CanReload()
 	{
-		return  bulletsInCylinder < cylinderCapacity;
+		return  bulletsInGun < gunCapacity;
 	}
 
 	bool ShouldPlayEmptyMagSound()
 	{
-		return bulletsInCylinder == 0;
+		return bulletsInGun == 0;
 	}
 
 	// Getters & Setters
@@ -355,14 +344,14 @@ public class Gun : MonoBehaviour
 	{
 		get { return crosshairPosition; }
 	}
-	public int CylinderCapacity
+	public int GunCapacity
 	{
-		get { return cylinderCapacity; }
+		get { return gunCapacity; }
 	}
 
-	public int BulletsInCylinder
+	public int BulletsInGun
 	{
-		get { return bulletsInCylinder; }
+		get { return bulletsInGun; }
 	}
 
 	public float CrossshairScale

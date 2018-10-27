@@ -217,7 +217,7 @@ public class LevelManager : MonoBehaviour
 
         Gun currentGun = playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().EquippedGun;
         currentGun.DrunkCrosshairSpeed += stageDrunkSpeedIncrease;
-        currentGun.DrunkCrosshairRadius += stageDrunkRadiusIncrease; ;
+        currentGun.DrunkCrosshairRadius += stageDrunkRadiusIncrease;
         targetsKilledInStage = 0;
         timeLeft = currentSpawnPoint.CompletionTime;
         onStartNextStage.Invoke();
