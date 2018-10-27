@@ -44,6 +44,10 @@ public class Gun : MonoBehaviour
 	List<string> shootingLayers;
 	[SerializeField] [Tooltip("The names of the layers the gun will ignore when using raycasts.")]
 	string[] layersToIgnore;
+
+	[Header("Bullet Objects")]
+	[SerializeField] [Tooltip("The bullet game objects inside the gun.")]
+	GameObject[] bullets;
 	
 	[Header("Gun Animations")]
 	[SerializeField] [Tooltip("The 'shoot' animation associated to the gun.")]
@@ -179,6 +183,7 @@ public class Gun : MonoBehaviour
 
 		lastFireTime = Time.time;
 		bulletsInGun--;
+		bullets[bulletsInGun].SetActive(false);
 
 		float hitProbability = targetOnClearSight ? 100f : Random.Range(0f, 100f - drunkSwayPercentage);
 		Vector3 direction = (fpsCamera.ScreenToWorldPoint(crosshairPosition) - fpsCamera.transform.position).normalized;
@@ -211,6 +216,7 @@ public class Gun : MonoBehaviour
 		{
 			onReload.Invoke();
 			yield return new WaitForSeconds(reloadAnimation.length);
+			bullets[bulletsInGun].SetActive(true);
 			bulletsInGun++;
 			onIncreaseBulletCount.Invoke();
         }

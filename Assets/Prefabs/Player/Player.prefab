@@ -8780,7 +8780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunType: 0
-  gunCapacity: 6
+  gunCapacity: 5
   fireRate: 1.5
   range: 100
   impactForce: 700
@@ -8794,6 +8794,12 @@ MonoBehaviour:
   - LandingZones
   - CrowTriggers
   - Ignore Raycast
+  bullets:
+  - {fileID: 1711222419196634}
+  - {fileID: 1487715720467232}
+  - {fileID: 1137489345975368}
+  - {fileID: 1037626863436840}
+  - {fileID: 1124453330167262}
   shootAnimation: {fileID: 7400000, guid: c46403b8112abf843be484799196e714, type: 2}
   reloadStartAnimation: {fileID: 7400000, guid: 9c08178dbfeed7740807b034e4391053,
     type: 2}
