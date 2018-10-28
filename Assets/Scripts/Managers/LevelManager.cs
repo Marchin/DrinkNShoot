@@ -101,7 +101,7 @@ public class LevelManager : MonoBehaviour
 
             if (timeLeft <= 0)
             {
-                if (targetsKilledInStage >= currentSpawnPoint.RequiredKills)
+                if (targetsKilledInStage >= currentSpawnPoint.BronzeTierKills)
                     CompleteStage();
                 else
                     FailLevel();
@@ -206,8 +206,6 @@ public class LevelManager : MonoBehaviour
         crowSpawner.DisableCrows();
         crowSpawner.enabled = false;
         currentSpawnPoint.DisableStage();
-
-        playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().SetEquippedGunType(Gun.GunType.Handgun);
         
         gameInStandBy = false;
         inShootingStage = false;
@@ -308,9 +306,30 @@ public class LevelManager : MonoBehaviour
         get { return targetsKilledInStage; }
     }
 
-    public int RequiredKills
+    public int MinimumRequiredKills
     {
-        get { return currentSpawnPoint.RequiredKills; }
+        get { return currentSpawnPoint.BronzeTierKills; }
+    }
+
+    public int MaximumRequiredKills
+    {
+        get { return currentSpawnPoint.GoldTierKills; }
+    }
+
+    public int RequiredKillsForNextTier
+    {
+        get
+        { 
+            int requiredKills = currentSpawnPoint.BronzeTierKills;
+
+            if (targetsKilledInStage > currentSpawnPoint.SilverTierKills)
+                requiredKills = currentSpawnPoint.GoldTierKills;
+            else
+                if (targetsKilledInStage > currentSpawnPoint.BronzeTierKills)
+                    requiredKills = currentSpawnPoint.SilverTierKills;
+
+            return requiredKills;
+        }
     }
 
     public Vector3 CurrentStagePosition

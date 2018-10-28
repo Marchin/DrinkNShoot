@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 114790117387921392}
   - component: {fileID: 95123479208231708}
   m_Layer: 5
-  m_Name: Stage Objective Panel
+  m_Name: Rank Completion Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -785,7 +785,7 @@ MonoBehaviour:
   crowHUD: {fileID: 1054635692890892}
   timerHUD: {fileID: 1066301688206000}
   currencyHUD: {fileID: 1684551483379884}
-  objectiveBanner: {fileID: 1976254516884138}
+  rankBanner: {fileID: 1976254516884138}
   slideInBannerSound: {fileID: 82696697532815088}
   slideOutBannerSound: {fileID: 82371341138612864}
   clockTickSound: {fileID: 82919947627887660}

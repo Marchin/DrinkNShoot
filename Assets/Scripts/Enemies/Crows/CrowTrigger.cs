@@ -3,24 +3,23 @@
 public class CrowTrigger : MonoBehaviour {
 	[Header("Stage Properties")]
 	[SerializeField] GameObject m_stage;
-	[SerializeField] [Range(1, 50)]
-	int m_requiredKills;
 	[SerializeField] [Range(0, 10)]
 	int m_difficultyLevel;
-	[SerializeField] [Range(0, 600)]
+	[SerializeField] [Range(0f, 600f)]
 	float m_completionTime;
 	[SerializeField] [Range(1, 50)]
-	int m_goldTierKills;
+	int m_bronzeTierKills;
 	[SerializeField] [Range(1, 50)]
 	int m_silverTierKills;
-	int m_bronzeTierKills;
+	[SerializeField] [Range(1, 50)]
+	int m_goldTierKills;
+	
 	BoxCollider[] m_landingZones;
 	CrowSpawner m_crowSpawner;
 
 	private void Awake() {
 		m_landingZones = m_stage.GetComponentsInChildren<BoxCollider>();
 		m_crowSpawner = GetComponentInParent<CrowSpawner>();
-		m_bronzeTierKills = m_requiredKills;
 	}
 
 	private void OnTriggerEnter(Collider other) {
@@ -34,12 +33,6 @@ public class CrowTrigger : MonoBehaviour {
 
 	public void DisableStage() {
 		m_stage.SetActive(false);
-	}
-
-	public int RequiredKills {
-		get {
-			return m_requiredKills;
-		}
 	}
 
 	public int BronzeTierKills {

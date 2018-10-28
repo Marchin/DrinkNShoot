@@ -13,7 +13,7 @@ public class HUD : MonoBehaviour
 	[SerializeField] GameObject crowHUD;
 	[SerializeField] GameObject timerHUD;
 	[SerializeField] GameObject currencyHUD;
-	[SerializeField] GameObject objectiveBanner;
+	[SerializeField] GameObject rankBanner;
 	
 	[Header("Audio Sources")]
 	[SerializeField] AudioSource slideInBannerSound;
@@ -37,7 +37,8 @@ public class HUD : MonoBehaviour
     TextMeshProUGUI crowsText;
     TextMeshProUGUI timerText;
     TextMeshProUGUI currencyText;
-	Animator objectiveBannerAnimator;
+	TextMeshProUGUI rankBannerText;
+	Animator rankBannerAnimator;
 	Animator ammoHUDAnimator;
 	Animator crowHUDAnimator;
 	Animator timerHUDAnimator;
@@ -54,11 +55,12 @@ public class HUD : MonoBehaviour
 		crowsText = crowHUD.GetComponentInChildren<TextMeshProUGUI>();
 		timerText = timerHUD.GetComponentInChildren<TextMeshProUGUI>();
 		currencyText = currencyHUD.GetComponentInChildren<TextMeshProUGUI>();
+		rankBannerText = rankBanner.GetComponentInChildren<TextMeshProUGUI>();
 
 		ammoHUDAnimator = ammoHUD.GetComponent<Animator>();
 		crowHUDAnimator = crowHUD.GetComponent<Animator>();
 		timerHUDAnimator = timerHUD.GetComponent<Animator>();
-		objectiveBannerAnimator = objectiveBanner.GetComponent<Animator>();
+		rankBannerAnimator = rankBanner.GetComponent<Animator>();
 	}
 
     void Start()
@@ -84,7 +86,7 @@ public class HUD : MonoBehaviour
 	void Update()
 	{
 		ChangeTimerDisplay();
-		ComputeObjectiveBannerDisplay();
+		ComputeRankBannerDisplay();
 	}
 
     void ScaleCrosshair()
@@ -128,25 +130,31 @@ public class HUD : MonoBehaviour
 
 	void ChangeKillsDisplay()
 	{
-		int targetsKilled =  LevelManager.Instance.TargetsKilledInStage;
-		int requiredKills = LevelManager.Instance.RequiredKills;
+		int targetsKilled = LevelManager.Instance.TargetsKilledInStage;
+		int minimumRequiredKills = LevelManager.Instance.MinimumRequiredKills;
+		int maximumRequiredKills = LevelManager.Instance.MaximumRequiredKills;
+		int requiredKillsForNextTier = LevelManager.Instance.RequiredKillsForNextTier;
 
-		if (targetsKilled < requiredKills)
+		crowsText.text = targetsKilled < maximumRequiredKills ? targetsKilled.ToString() + "/" + requiredKillsForNextTier.ToString() :
+																targetsKilled.ToString();
+
+		crowsText.color = targetsKilled >= minimumRequiredKills ? darkGreen : Color.white;
+		
+		if (targetsKilled == requiredKillsForNextTier)
 		{
-			crowsText.text = targetsKilled.ToString() + "/" + requiredKills.ToString();
-			crowsText.color = Color.white;
-		}
-		else
-		{
-			crowsText.text = targetsKilled.ToString();
-			crowsText.color = darkGreen;
-			if (targetsKilled == requiredKills)
+			crowHUDAnimator.SetTrigger("Has to Pop");
+			if (targetsKilled == minimumRequiredKills)
+				rankBannerText.text = "Bronze Rank Achieved!";
+			else
 			{
-				crowHUDAnimator.SetTrigger("Has to Pop");
-				objectiveBanner.SetActive(true);
-				objectiveBannerAnimator.SetTrigger("Start");
-				slideInBannerSound.Play();
+				if (targetsKilled == maximumRequiredKills)
+					rankBannerText.text = "Gold Rank Achieved!";
+				else
+					rankBannerText.text = "Silver Rank Achieved!";
 			}
+			rankBanner.SetActive(true);
+			rankBannerAnimator.SetTrigger("Start");
+			slideInBannerSound.Play();
 		}
 	}
 
@@ -170,15 +178,15 @@ public class HUD : MonoBehaviour
 			timerText.color = Color.white;
 	}
 
-	void ComputeObjectiveBannerDisplay()
+	void ComputeRankBannerDisplay()
 	{
-		if (objectiveBanner.activeInHierarchy && !objectiveBannerWasJustDisabled)
+		if (rankBanner.activeInHierarchy && !objectiveBannerWasJustDisabled)
 		{
 			if (objectiveBannerTimer >= objectiveBannerDuration)
 			{
 				objectiveBannerWasJustDisabled = true;
 				objectiveBannerTimer = 0f;
-				objectiveBannerAnimator.SetTrigger("Exit");
+				rankBannerAnimator.SetTrigger("Exit");
 				slideOutBannerSound.Play();
 				Invoke("DisableRankBanner", slidingAnimation.length);
 			}
@@ -195,7 +203,7 @@ public class HUD : MonoBehaviour
 	void DisableRankBanner()
 	{
 		objectiveBannerWasJustDisabled = false;
-		objectiveBanner.SetActive(false);
+		rankBanner.SetActive(false);
 	}
 
 	void ChangeWeaponInDisplay()

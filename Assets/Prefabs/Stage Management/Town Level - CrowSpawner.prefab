@@ -254,11 +254,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_stage: {fileID: 0}
-  m_requiredKills: 18
   m_difficultyLevel: 4
   m_completionTime: 90
-  m_goldTierKills: 22
+  m_bronzeTierKills: 18
   m_silverTierKills: 20
+  m_goldTierKills: 22
 --- !u!114 &114074142597568652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -271,11 +271,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_stage: {fileID: 0}
-  m_requiredKills: 12
   m_difficultyLevel: 2
   m_completionTime: 60
-  m_goldTierKills: 18
+  m_bronzeTierKills: 12
   m_silverTierKills: 15
+  m_goldTierKills: 18
 --- !u!114 &114141254075659796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -288,11 +288,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_stage: {fileID: 0}
-  m_requiredKills: 5
   m_difficultyLevel: 0
   m_completionTime: 45
-  m_goldTierKills: 10
+  m_bronzeTierKills: 5
   m_silverTierKills: 7
+  m_goldTierKills: 10
 --- !u!114 &114261857304258724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -333,8 +333,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_stage: {fileID: 0}
-  m_requiredKills: 20
   m_difficultyLevel: 6
   m_completionTime: 120
-  m_goldTierKills: 24
+  m_bronzeTierKills: 20
   m_silverTierKills: 22
+  m_goldTierKills: 24
