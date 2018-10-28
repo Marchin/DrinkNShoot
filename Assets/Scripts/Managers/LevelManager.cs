@@ -217,13 +217,17 @@ public class LevelManager : MonoBehaviour
         currentSpawnPoint = enemySpawnPoints[currentStageIndex].GetComponent<CrowTrigger>();
         currentSpawnPoint.EnableStage();
 
-        Gun currentGun = playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().EquippedGun;
-        currentGun.DrunkCrosshairSpeed += stageDrunkSpeedIncrease;
-        currentGun.DrunkCrosshairRadius += stageDrunkRadiusIncrease;
+        Gun[] currentGuns = playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().GetComponentsInChildren<Gun>();
+
+        foreach (Gun gun in currentGuns)
+        {
+            gun.DrunkCrosshairSpeed += stageDrunkSpeedIncrease;
+            gun.DrunkCrosshairRadius += stageDrunkRadiusIncrease;
+        }
+        
         targetsKilledInStage = 0;
         timeLeft = currentSpawnPoint.CompletionTime;
-        onStartNextStage.Invoke();
-        
+        onStartNextStage.Invoke();       
     }
 
     public void EnterShootingStage()

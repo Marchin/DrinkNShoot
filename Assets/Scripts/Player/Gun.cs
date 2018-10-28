@@ -11,7 +11,7 @@ public class Gun : MonoBehaviour
 		Handgun, Rifle
 	}
 
-	enum GunState
+	public enum GunState
 	{
 		Idle, Shooting, Reloading
 	}
@@ -348,6 +348,11 @@ public class Gun : MonoBehaviour
 	public GunType TypeOfGun
 	{
 		get { return gunType; }
+	}
+
+	public GunState CurrentState
+	{
+		get { return currentState; }
 	}
 
 	public Vector3 CrosshairPosition

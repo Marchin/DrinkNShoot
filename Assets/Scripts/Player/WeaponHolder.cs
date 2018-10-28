@@ -27,7 +27,7 @@ public class WeaponHolder : MonoBehaviour
 
 	void Update()
 	{
-		if (!isSwappingWeapon)
+		if (CanSwapWeapon())
 		{
 			if (InputManager.Instance.GetSwapWeaponAxis() > 0f)
 			{
@@ -80,6 +80,11 @@ public class WeaponHolder : MonoBehaviour
 		if (equippedGunType != previousGunType)
 			SetEquippedGun();
 		isSwappingWeapon = false;
+	}
+
+	bool CanSwapWeapon()
+	{
+		return !isSwappingWeapon && equippedGun.CurrentState == Gun.GunState.Idle; 
 	}
 
 	public void SetEquippedGunType(Gun.GunType gunType)
