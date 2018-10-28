@@ -180,7 +180,7 @@ public class HUD : MonoBehaviour
 				objectiveBannerTimer = 0f;
 				objectiveBannerAnimator.SetTrigger("Exit");
 				slideOutBannerSound.Play();
-				Invoke("DisableBanner", slidingAnimation.length);
+				Invoke("DisableRankBanner", slidingAnimation.length);
 			}
 			else
 				objectiveBannerTimer += Time.deltaTime;

@@ -53,7 +53,7 @@ public class LevelManager : MonoBehaviour
 	StageCompletionTier stageCompletionTier;
     int currentStageIndex;
     int maxStageIndex;
-    bool gameOver = false;
+    bool gameInStandBy = false;
     float timeLeft = 0;
     int targetsKilledInStage = 0;
     int totalKills = 0;
@@ -95,7 +95,7 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        if (!gameOver && !PauseMenu.IsPaused && inShootingStage)
+        if (!gameInStandBy && !PauseMenu.IsPaused && inShootingStage)
         {
             timeLeft -= Time.deltaTime;
 
@@ -111,12 +111,14 @@ public class LevelManager : MonoBehaviour
 
     void CompleteStage()
     {
-        gameOver = true;
+        gameInStandBy = true;
 		completeStageUI.SetActive(true);
 
         hudUI.SetActive(false);
         Time.timeScale = 0;
         GameManager.Instance.ShowCursor();
+
+        playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().SetEquippedGunType(Gun.GunType.Handgun);
 
         cashEarnedInStage = targetsKilledInStage * cashEarnedPerKill;
 
@@ -157,7 +159,7 @@ public class LevelManager : MonoBehaviour
 
     void FailLevel()
     {
-        gameOver = true;
+        gameInStandBy = true;
         failLevelUI.SetActive(true);
         hudUI.SetActive(false);
         Time.timeScale = 0;
@@ -207,7 +209,7 @@ public class LevelManager : MonoBehaviour
         crowSpawner.enabled = false;
         currentSpawnPoint.DisableStage();
 
-        gameOver = false;
+        gameInStandBy = false;
         inShootingStage = false;
         currentStageIndex++;
 
@@ -281,9 +283,9 @@ public class LevelManager : MonoBehaviour
         get { return onShootingStageEnter; }
     }
 
-    public bool GameOver
+    public bool GameInStandBy
     {
-        get { return gameOver; }
+        get { return gameInStandBy; }
     }
 
     public float TimeLeft

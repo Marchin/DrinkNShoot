@@ -56501,6 +56501,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114746849701707620, guid: ee3cf5fc4130bec4bb5af2f35e43dab5,
+        type: 2}
+      propertyPath: scrollWheelSensitivity
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee3cf5fc4130bec4bb5af2f35e43dab5, type: 2}
   m_IsPrefabAsset: 0

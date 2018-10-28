@@ -16,6 +16,8 @@ public class WeaponHolder : MonoBehaviour
 	
 	Gun equippedGun;
 	Gun.GunType equippedGunType;
+	bool isSwappingWeapon;
+
 
 	void Awake()
 	{
@@ -25,15 +27,18 @@ public class WeaponHolder : MonoBehaviour
 
 	void Update()
 	{
-		if (InputManager.Instance.GetSwapWeaponAxis() > 0f)
+		if (!isSwappingWeapon)
 		{
-			StartCoroutine(SwapWeapon(ScrollWheelDir.Up));
-			onWeaponSwapStart.Invoke();
-		}
-		if (InputManager.Instance.GetSwapWeaponAxis() < 0f)
-		{
-			StartCoroutine(SwapWeapon(ScrollWheelDir.Down));
-			onWeaponSwapStart.Invoke();
+			if (InputManager.Instance.GetSwapWeaponAxis() > 0f)
+			{
+				StartCoroutine(SwapWeapon(ScrollWheelDir.Up));
+				onWeaponSwapStart.Invoke();
+			}
+			if (InputManager.Instance.GetSwapWeaponAxis() < 0f)
+			{
+				StartCoroutine(SwapWeapon(ScrollWheelDir.Down));
+				onWeaponSwapStart.Invoke();
+			}
 		}
 	}
 	
@@ -52,6 +57,7 @@ public class WeaponHolder : MonoBehaviour
 
 	IEnumerator SwapWeapon(ScrollWheelDir direction)
 	{
+		isSwappingWeapon = true;
 		yield return new WaitForSeconds(0.2f);
 
 		Gun.GunType previousGunType = equippedGun.TypeOfGun;
@@ -61,18 +67,25 @@ public class WeaponHolder : MonoBehaviour
 			if ((int)equippedGunType < transform.childCount - 1)
 				equippedGunType++;
 			else
-				equippedGunType = Gun.GunType.Rifle;
+				equippedGunType = 0;
 		}
 		else
 		{
 			if ((int)equippedGunType > 0)
 				equippedGunType--;
 			else
-				equippedGunType = Gun.GunType.Handgun;
+				equippedGunType = (Gun.GunType)transform.childCount - 1;
 		}
 
 		if (equippedGunType != previousGunType)
 			SetEquippedGun();
+		isSwappingWeapon = false;
+	}
+
+	public void SetEquippedGunType(Gun.GunType gunType)
+	{
+		equippedGunType = gunType;
+		SetEquippedGun();
 	}
 
 	public Gun EquippedGun
