@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
 	public enum PlayerComponent
 	{
-		CameraRotationComp, DrunkCameraComp, GunComp, AnimatorComp
+		CameraRotationComp, DrunkCameraComp, GunComp, WeaponHolderComp, AnimatorComp
 	}
 
 	[SerializeField] UnityEvent onGunAvailabilityToggle;
@@ -16,7 +16,7 @@ public class PlayerManager : MonoBehaviour
 	
 	CameraRotation cameraRotation;
 	DrunkCamera drunkCamera;
-	Gun equippedGun;
+	WeaponHolder weaponHolder;
 	Animator playerAnimator; 
 	int currency;
 	int totalKills;
@@ -42,7 +42,7 @@ public class PlayerManager : MonoBehaviour
 	{
         cameraRotation = FindObjectOfType<CameraRotation>();
         drunkCamera = FindObjectOfType<DrunkCamera>();
-        equippedGun = FindObjectOfType<WeaponHolder>().EquippedGun;
+        weaponHolder = FindObjectOfType<WeaponHolder>();
         playerAnimator = cameraRotation.gameObject.GetComponentInChildren<Animator>();
 		
 		FindObjectOfType<PauseMenu>().OnPauseToggle.AddListener(TogglePlayerAvailability);
@@ -54,7 +54,8 @@ public class PlayerManager : MonoBehaviour
 	{
 		cameraRotation.enabled = !cameraRotation.enabled;
 		drunkCamera.enabled = !drunkCamera.enabled;
-		equippedGun.enabled = !equippedGun.enabled;
+		weaponHolder.enabled = !weaponHolder.enabled;
+		weaponHolder.EquippedGun.enabled = !weaponHolder.EquippedGun.enabled;
 		playerAnimator.enabled = !playerAnimator.enabled;
 
 		onGunAvailabilityToggle.Invoke();
@@ -75,9 +76,13 @@ public class PlayerManager : MonoBehaviour
 				wasDisabled = true;
 				break;
 			case PlayerComponent.GunComp:
-				equippedGun.enabled = false;
+				weaponHolder.EquippedGun.enabled = false;
                 wasDisabled = true;
 				onGunAvailabilityToggle.Invoke();
+                break;
+			case PlayerComponent.WeaponHolderComp:
+				weaponHolder.enabled = false;
+                wasDisabled = true;
                 break;
 			case PlayerComponent.AnimatorComp:
 				playerAnimator.enabled = false;
@@ -103,9 +108,13 @@ public class PlayerManager : MonoBehaviour
                 wasEnabled = true;
                 break;
             case PlayerComponent.GunComp:
-                equippedGun.enabled = true;
+                weaponHolder.EquippedGun.enabled = true;
                 wasEnabled = true;
 				onGunAvailabilityToggle.Invoke();
+                break;
+            case PlayerComponent.WeaponHolderComp:
+                weaponHolder.enabled = true;
+                wasEnabled = true;
                 break;
             case PlayerComponent.AnimatorComp:
                 playerAnimator.enabled = true;

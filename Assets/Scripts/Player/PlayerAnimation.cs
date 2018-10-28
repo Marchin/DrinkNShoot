@@ -8,7 +8,9 @@ public class PlayerAnimation : MonoBehaviour
 {
 	[SerializeField] AnimatorOverrideController animatorOverrideController;
 	[SerializeField] AnimationClip[] handgunAnimations;
+	[SerializeField] AnimationClip[] rifleAnimations;
 	[SerializeField] AnimationClip sippingAnimation;
+	[SerializeField] Avatar[] possibleAvatars;
 	
 	const float SIPPING_DELAY = 0.75f;
 	
@@ -24,13 +26,7 @@ public class PlayerAnimation : MonoBehaviour
 	void Start() 
 	{
 		ChangeGunAnimations();
-
-		weaponHolder.EquippedGun.OnBackToIdle.AddListener(ResetTriggers);
-		weaponHolder.EquippedGun.OnShot.AddListener(ShootAnimation);
-		weaponHolder.EquippedGun.OnReloadStart.AddListener(ReloadStartAnimation);
-		weaponHolder.EquippedGun.OnReload.AddListener(ReloadAnimation);
-		weaponHolder.EquippedGun.OnReloadFinish.AddListener(FinishReloadingAnimation);
-
+		weaponHolder.OnWeaponSwap.AddListener(ChangeGunAnimations);	
 		LevelManager.Instance.OnStartNextStage.AddListener(InvokeSipTaking);
 	}
 
@@ -80,12 +76,21 @@ public class PlayerAnimation : MonoBehaviour
 
 	void ChangeGunAnimations() 
 	{
+		Gun currentGun = weaponHolder.EquippedGun;
+		
 		animator.runtimeAnimatorController = animatorOverrideController;
+		animator.avatar = possibleAvatars[(int)currentGun.TypeOfGun];
 
-		animatorOverrideController["DEFAULT IDLE"] = handgunAnimations[0];
-		animatorOverrideController["DEFAULT SHOOT"] = weaponHolder.EquippedGun.ShootAnimation;
-		animatorOverrideController["DEFAULT RELOAD START"] = weaponHolder.EquippedGun.ReloadStartAnimation;
-		animatorOverrideController["DEFAULT RELOAD"] = weaponHolder.EquippedGun.ReloadAnimation;
-		animatorOverrideController["DEFAULT RELOAD FINISH"] = weaponHolder.EquippedGun.ReloadFinishAnimation;
+		animatorOverrideController["DEFAULT IDLE"] = currentGun.TypeOfGun == Gun.GunType.Handgun ? handgunAnimations[0] : rifleAnimations[0];
+		animatorOverrideController["DEFAULT SHOOT"] = currentGun.ShootAnimation;
+		animatorOverrideController["DEFAULT RELOAD START"] = currentGun.ReloadStartAnimation;
+		animatorOverrideController["DEFAULT RELOAD"] = currentGun.ReloadAnimation;
+		animatorOverrideController["DEFAULT RELOAD FINISH"] = currentGun.ReloadFinishAnimation;
+
+        currentGun.OnBackToIdle.AddListener(ResetTriggers);
+        currentGun.OnShot.AddListener(ShootAnimation);
+        currentGun.OnReloadStart.AddListener(ReloadStartAnimation);
+        currentGun.OnReload.AddListener(ReloadAnimation);
+        currentGun.OnReloadFinish.AddListener(FinishReloadingAnimation);
 	}
 }

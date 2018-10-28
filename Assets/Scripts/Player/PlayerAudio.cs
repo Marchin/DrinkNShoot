@@ -16,10 +16,8 @@ public class PlayerAudio : MonoBehaviour
 
 	void Start()
 	{
-		weaponHolder.EquippedGun.OnShot.AddListener(PlayShootSound);
-		weaponHolder.EquippedGun.OnReload.AddListener(InvokeReloadSound);
-		weaponHolder.EquippedGun.OnEmptyGun.AddListener(PlayEmptyGunSound);
-		weaponHolder.EquippedGun.OnReloadCancel.AddListener(CancelInvokeReloadSound);
+		ChangeGunSounds();
+		weaponHolder.OnWeaponSwap.AddListener(ChangeGunSounds);
 	}
 
 	void PlayShootSound()
@@ -43,6 +41,14 @@ public class PlayerAudio : MonoBehaviour
 	void PlayEmptyGunSound()
 	{
 		weaponHolder.EquippedGun.EmptyGunSound.Play();
+	}
+
+	void ChangeGunSounds()
+	{
+        weaponHolder.EquippedGun.OnShot.AddListener(PlayShootSound);
+        weaponHolder.EquippedGun.OnReload.AddListener(InvokeReloadSound);
+        weaponHolder.EquippedGun.OnEmptyGun.AddListener(PlayEmptyGunSound);
+        weaponHolder.EquippedGun.OnReloadCancel.AddListener(CancelInvokeReloadSound);
 	}
 
 	// Animation Events Methods

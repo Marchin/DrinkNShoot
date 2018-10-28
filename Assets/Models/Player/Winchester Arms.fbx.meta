@@ -1,0 +1,457 @@
+fileFormatVersion: 2
+guid: b689620be37f0b84fbeca82e9ec285d0
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: joint1
+    100002: joint10
+    100004: joint11
+    100006: joint12
+    100008: joint13
+    100010: joint14
+    100012: joint15
+    100014: joint16
+    100016: joint17
+    100018: joint18
+    100020: joint19
+    100022: joint2
+    100024: joint20
+    100026: joint21
+    100028: joint22
+    100030: joint23
+    100032: joint24
+    100034: joint25
+    100036: joint26
+    100038: joint27
+    100040: joint28
+    100042: joint29
+    100044: joint3
+    100046: joint30
+    100048: joint31
+    100050: joint32
+    100052: joint33
+    100054: joint34
+    100056: joint35
+    100058: joint36
+    100060: joint37
+    100062: joint38
+    100064: joint39
+    100066: joint4
+    100068: joint40
+    100070: joint41
+    100072: joint42
+    100074: joint5
+    100076: joint6
+    100078: joint7
+    100080: joint8
+    100082: joint9
+    100084: Loading_Ammo
+    100086: Loading_Port
+    100088: polySurface6
+    100090: polySurface7
+    100092: Reload
+    100094: Reload 1
+    100096: Revolver:Group32313
+    100098: Revolver:pCube12
+    100100: Revolver:pCube5
+    100102: Revolver:pCube6
+    100104: Revolver:pCylinder29
+    100106: Revolver:pCylinder36
+    100108: Revolver:pCylinder38
+    100110: Revolver:pCylinder39
+    100112: Revolver:pCylinder40
+    100114: Revolver:pCylinder40 1
+    100116: Revolver:pCylinder40 2
+    100118: Revolver:pCylinder40 3
+    100120: Revolver:pCylinder40 4
+    100122: Revolver:pCylinder41
+    100124: Revolver:pCylinder41 1
+    100126: Revolver:pCylinder42
+    100128: Revolver:pCylinder43
+    100130: Revolver:pCylinder44
+    100132: Revolver:pCylinder45
+    100134: Revolver:pCylinder46
+    100136: Revolver:pCylinder47
+    100138: Revolver:pCylinder48
+    100140: Revolver:PolySphere1:Group32313
+    100142: Revolver:polySurface1
+    100144: Revolver:polySurface2
+    100146: Revolver:polySurface3
+    100148: Revolver:polySurface4
+    100150: Revolver:polySurface5
+    100152: Revolver:polySurface5 1
+    100154: Revolver:polySurface6
+    100156: Revolver:transform1
+    100158: Revolver:transform10
+    100160: Revolver:transform11
+    100162: Revolver:transform12
+    100164: Revolver:transform13
+    100166: Revolver:transform14
+    100168: Revolver:transform15
+    100170: Revolver:transform16
+    100172: Revolver:transform17
+    100174: Revolver:transform18
+    100176: Revolver:transform19
+    100178: Revolver:transform2
+    100180: Revolver:transform20
+    100182: Revolver:transform21
+    100184: Revolver:transform22
+    100186: Revolver:transform23
+    100188: Revolver:transform24
+    100190: Revolver:transform25
+    100192: Revolver:transform26
+    100194: Revolver:transform27
+    100196: Revolver:transform28
+    100198: Revolver:transform3
+    100200: Revolver:transform4
+    100202: Revolver:transform5
+    100204: Revolver:transform6
+    100206: Revolver:transform7
+    100208: Revolver:transform8
+    100210: Revolver:transform9
+    100212: Right_Hand
+    100214: Stock
+    100216: Stock1
+    100218: Stock2
+    100220: transform1
+    100222: transform2
+    100224: Trigger
+    100226: Trigger 1
+    100228: Trigger_2
+    100230: Trigger_2 1
+    100232: Trigger_Guard
+    100234: Trigger_Guard 1
+    100236: //RootNode
+    400000: joint1
+    400002: joint10
+    400004: joint11
+    400006: joint12
+    400008: joint13
+    400010: joint14
+    400012: joint15
+    400014: joint16
+    400016: joint17
+    400018: joint18
+    400020: joint19
+    400022: joint2
+    400024: joint20
+    400026: joint21
+    400028: joint22
+    400030: joint23
+    400032: joint24
+    400034: joint25
+    400036: joint26
+    400038: joint27
+    400040: joint28
+    400042: joint29
+    400044: joint3
+    400046: joint30
+    400048: joint31
+    400050: joint32
+    400052: joint33
+    400054: joint34
+    400056: joint35
+    400058: joint36
+    400060: joint37
+    400062: joint38
+    400064: joint39
+    400066: joint4
+    400068: joint40
+    400070: joint41
+    400072: joint42
+    400074: joint5
+    400076: joint6
+    400078: joint7
+    400080: joint8
+    400082: joint9
+    400084: Loading_Ammo
+    400086: Loading_Port
+    400088: polySurface6
+    400090: polySurface7
+    400092: Reload
+    400094: Reload 1
+    400096: Revolver:Group32313
+    400098: Revolver:pCube12
+    400100: Revolver:pCube5
+    400102: Revolver:pCube6
+    400104: Revolver:pCylinder29
+    400106: Revolver:pCylinder36
+    400108: Revolver:pCylinder38
+    400110: Revolver:pCylinder39
+    400112: Revolver:pCylinder40
+    400114: Revolver:pCylinder40 1
+    400116: Revolver:pCylinder40 2
+    400118: Revolver:pCylinder40 3
+    400120: Revolver:pCylinder40 4
+    400122: Revolver:pCylinder41
+    400124: Revolver:pCylinder41 1
+    400126: Revolver:pCylinder42
+    400128: Revolver:pCylinder43
+    400130: Revolver:pCylinder44
+    400132: Revolver:pCylinder45
+    400134: Revolver:pCylinder46
+    400136: Revolver:pCylinder47
+    400138: Revolver:pCylinder48
+    400140: Revolver:PolySphere1:Group32313
+    400142: Revolver:polySurface1
+    400144: Revolver:polySurface2
+    400146: Revolver:polySurface3
+    400148: Revolver:polySurface4
+    400150: Revolver:polySurface5
+    400152: Revolver:polySurface5 1
+    400154: Revolver:polySurface6
+    400156: Revolver:transform1
+    400158: Revolver:transform10
+    400160: Revolver:transform11
+    400162: Revolver:transform12
+    400164: Revolver:transform13
+    400166: Revolver:transform14
+    400168: Revolver:transform15
+    400170: Revolver:transform16
+    400172: Revolver:transform17
+    400174: Revolver:transform18
+    400176: Revolver:transform19
+    400178: Revolver:transform2
+    400180: Revolver:transform20
+    400182: Revolver:transform21
+    400184: Revolver:transform22
+    400186: Revolver:transform23
+    400188: Revolver:transform24
+    400190: Revolver:transform25
+    400192: Revolver:transform26
+    400194: Revolver:transform27
+    400196: Revolver:transform28
+    400198: Revolver:transform3
+    400200: Revolver:transform4
+    400202: Revolver:transform5
+    400204: Revolver:transform6
+    400206: Revolver:transform7
+    400208: Revolver:transform8
+    400210: Revolver:transform9
+    400212: Right_Hand
+    400214: Stock
+    400216: Stock1
+    400218: Stock2
+    400220: transform1
+    400222: transform2
+    400224: Trigger
+    400226: Trigger 1
+    400228: Trigger_2
+    400230: Trigger_2 1
+    400232: Trigger_Guard
+    400234: Trigger_Guard 1
+    400236: //RootNode
+    2100000: Wood
+    2100002: Metal
+    2100004: Revolver_Mano
+    2100006: Revolver_Mano2
+    2100008: Revolver_Revolver_Metal
+    2300000: Loading_Ammo
+    2300002: Reload
+    2300004: Reload 1
+    2300006: Stock1
+    2300008: Stock2
+    2300010: Trigger
+    2300012: Trigger 1
+    2300014: Trigger_2
+    2300016: Trigger_2 1
+    2300018: Trigger_Guard
+    2300020: Trigger_Guard 1
+    3300000: Loading_Ammo
+    3300002: Reload
+    3300004: Reload 1
+    3300006: Stock1
+    3300008: Stock2
+    3300010: Trigger
+    3300012: Trigger 1
+    3300014: Trigger_2
+    3300016: Trigger_2 1
+    3300018: Trigger_Guard
+    3300020: Trigger_Guard 1
+    4300000: Stock1
+    4300002: Trigger_2
+    4300004: Trigger
+    4300006: Trigger_Guard
+    4300008: Reload
+    4300010: polySurface7
+    4300012: polySurface6
+    4300014: Loading_Ammo
+    4300016: Stock2
+    4300018: Trigger_2
+    4300020: Trigger
+    4300022: Trigger_Guard
+    4300024: Reload
+    7400000: Winchester Idle
+    7400002: Winchester Shooting
+    7400004: Winchester Reload
+    7400006: Rifle Idle
+    9500000: //RootNode
+    13700000: polySurface6
+    13700002: polySurface7
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Winchester Shooting
+      takeName: Take 001
+      firstFrame: 31
+      lastFrame: 45
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Winchester Reload
+      takeName: Take 001
+      firstFrame: 46
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Rifle Idle
+      takeName: Take 001
+      firstFrame: 68
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.2
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.002
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

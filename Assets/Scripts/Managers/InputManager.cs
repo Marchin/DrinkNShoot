@@ -44,6 +44,11 @@ public class InputManager : MonoBehaviour
         return input.GetPauseButton();
     }
 
+	public float GetSwapWeaponAxis()
+    {
+        return input.GetSwapWeaponAxis();
+    }
+
 	public static InputManager Instance
 	{
 		get

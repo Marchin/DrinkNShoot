@@ -9,4 +9,5 @@ interface IInput
 	bool GetFireButton();
 	bool GetReloadButton();
 	bool GetPauseButton();
+	float GetSwapWeaponAxis();
 }

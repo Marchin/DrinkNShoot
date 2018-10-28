@@ -8,7 +8,7 @@ public class Gun : MonoBehaviour
 	// Enumerators
 	public enum GunType
 	{
-		Handgun
+		Handgun, Rifle
 	}
 
 	enum GunState
@@ -183,7 +183,8 @@ public class Gun : MonoBehaviour
 
 		lastFireTime = Time.time;
 		bulletsInGun--;
-		bullets[bulletsInGun].SetActive(false);
+		if (bullets.GetLength(0) > 0)
+			bullets[bulletsInGun].SetActive(false);
 
 		float hitProbability = targetOnClearSight ? 100f : Random.Range(0f, 100f - drunkSwayPercentage);
 		Vector3 direction = (fpsCamera.ScreenToWorldPoint(crosshairPosition) - fpsCamera.transform.position).normalized;
@@ -216,7 +217,8 @@ public class Gun : MonoBehaviour
 		{
 			onReload.Invoke();
 			yield return new WaitForSeconds(reloadAnimation.length);
-			bullets[bulletsInGun].SetActive(true);
+			if (bullets.GetLength(0) > 0)
+				bullets[bulletsInGun].SetActive(true);
 			bulletsInGun++;
 			onIncreaseBulletCount.Invoke();
         }
