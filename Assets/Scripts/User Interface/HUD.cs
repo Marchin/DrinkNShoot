@@ -63,13 +63,9 @@ public class HUD : MonoBehaviour
 
     void Start()
     {
-        weaponHolder.EquippedGun.OnShot.AddListener(ChangeAmmoDisplay);
-        weaponHolder.EquippedGun.OnIncreaseBulletCount.AddListener(ChangeAmmoDisplay);
-        weaponHolder.EquippedGun.OnEmptyGun.AddListener(PopAmmoHUD);
-        weaponHolder.EquippedGun.OnCrosshairScale.AddListener(ScaleCrosshair);
-        weaponHolder.EquippedGun.OnCrosshairColorChange.AddListener(ChangeCrosshairColor);
-        weaponHolder.EquippedGun.OnCrosshairMove.AddListener(MoveCrosshair);
+		ChangeWeaponInDisplay();
 		
+		weaponHolder.OnWeaponSwap.AddListener(ChangeWeaponInDisplay);
 		LevelManager.Instance.OnEnemyKill.AddListener(ChangeKillsDisplay);
 		LevelManager.Instance.OnStartNextStage.AddListener(ChangeKillsDisplay);
 		PlayerManager.Instance.OnGunDisabled.AddListener(ToggleCrosshair);
@@ -196,14 +192,27 @@ public class HUD : MonoBehaviour
 		ammoHUDAnimator.SetTrigger("Has to Pop");
 	}
 
-	void DisableBanner()
+	void DisableRankBanner()
 	{
 		objectiveBannerWasJustDisabled = false;
 		objectiveBanner.SetActive(false);
+	}
+
+	void ChangeWeaponInDisplay()
+	{
+        weaponHolder.EquippedGun.OnShot.AddListener(ChangeAmmoDisplay);
+        weaponHolder.EquippedGun.OnIncreaseBulletCount.AddListener(ChangeAmmoDisplay);
+        weaponHolder.EquippedGun.OnEmptyGun.AddListener(PopAmmoHUD);
+        weaponHolder.EquippedGun.OnCrosshairScale.AddListener(ScaleCrosshair);
+        weaponHolder.EquippedGun.OnCrosshairColorChange.AddListener(ChangeCrosshairColor);
+        weaponHolder.EquippedGun.OnCrosshairMove.AddListener(MoveCrosshair);
+
+		ChangeAmmoDisplay();
 	}
 
 	public void ChangeCurrencyDisplay(int currency)
 	{
 		currencyText.text = currency.ToString();
 	}
+
 }
