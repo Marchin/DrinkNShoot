@@ -207,6 +207,7 @@ public class HUD : MonoBehaviour
         weaponHolder.EquippedGun.OnCrosshairColorChange.AddListener(ChangeCrosshairColor);
         weaponHolder.EquippedGun.OnCrosshairMove.AddListener(MoveCrosshair);
 
+		ChangeCrosshairColor();
 		ChangeAmmoDisplay();
 	}
 

@@ -58,7 +58,7 @@ public class WeaponHolder : MonoBehaviour
 	IEnumerator SwapWeapon(ScrollWheelDir direction)
 	{
 		isSwappingWeapon = true;
-		yield return new WaitForSeconds(0.2f);
+		yield return new WaitForSeconds(equippedGun.SwapWeaponAnimation.length);
 
 		Gun.GunType previousGunType = equippedGun.TypeOfGun;
 

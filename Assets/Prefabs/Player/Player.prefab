@@ -1188,7 +1188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1179478620743650
 GameObject:
   m_ObjectHideFlags: 1
@@ -4013,7 +4013,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1712560252252140
 GameObject:
   m_ObjectHideFlags: 1
@@ -12518,7 +12518,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1015485352503310}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: b689620be37f0b84fbeca82e9ec285d0, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 9cfbe69c9d935d047bcc811685f00812, type: 3}
   m_Controller: {fileID: 9100000, guid: b40c1614319d9384399a8ba09a7472b0, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -12618,6 +12618,7 @@ MonoBehaviour:
   reloadAnimation: {fileID: 7400000, guid: 04fd28b82a87ee64d994b5553aa36f1a, type: 2}
   reloadFinishAnimation: {fileID: 7400000, guid: 5442af4e760ea824f92e103864f6a98c,
     type: 2}
+  swapWeaponAnimation: {fileID: 7400000, guid: ec0ca054d5899084a8bc76248be656e3, type: 2}
   shootSound: {fileID: 82208964876559930}
   reloadSound: {fileID: 82182103574395036}
   emptyGunSound: {fileID: 82893362546778016}
@@ -12717,11 +12718,12 @@ MonoBehaviour:
   - Ignore Raycast
   bullets: []
   shootAnimation: {fileID: 7400000, guid: 2e9a03678564c9f49bb15404e366dd05, type: 2}
-  reloadStartAnimation: {fileID: 7400000, guid: 61059031900116048bfad5e63d67d198,
+  reloadStartAnimation: {fileID: 7400000, guid: c5c6a0ff9497b1c45ba4e5b8fb17e8d5,
     type: 2}
   reloadAnimation: {fileID: 7400000, guid: 34e3d1b546fdf3940b02c77adf9193ef, type: 2}
-  reloadFinishAnimation: {fileID: 7400000, guid: f65cfc4e0e0e55c4486b689ce853159e,
+  reloadFinishAnimation: {fileID: 7400000, guid: aea85083ce81ffa4696eb7676bc8af48,
     type: 2}
+  swapWeaponAnimation: {fileID: 7400000, guid: 2177bbe61e0b67d4cab05e77fecac36f, type: 2}
   shootSound: {fileID: 82340001131660776}
   reloadSound: {fileID: 82485774113288384}
   emptyGunSound: {fileID: 82568205796954106}

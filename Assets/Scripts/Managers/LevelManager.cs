@@ -118,8 +118,6 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 0;
         GameManager.Instance.ShowCursor();
 
-        playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().SetEquippedGunType(Gun.GunType.Handgun);
-
         cashEarnedInStage = targetsKilledInStage * cashEarnedPerKill;
 
 		if (targetsKilledInStage >= currentSpawnPoint.GoldTierKills)
@@ -209,6 +207,8 @@ public class LevelManager : MonoBehaviour
         crowSpawner.enabled = false;
         currentSpawnPoint.DisableStage();
 
+        playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().SetEquippedGunType(Gun.GunType.Handgun);
+        
         gameInStandBy = false;
         inShootingStage = false;
         currentStageIndex++;
@@ -223,6 +223,7 @@ public class LevelManager : MonoBehaviour
         targetsKilledInStage = 0;
         timeLeft = currentSpawnPoint.CompletionTime;
         onStartNextStage.Invoke();
+        
     }
 
     public void EnterShootingStage()

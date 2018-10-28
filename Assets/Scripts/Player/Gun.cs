@@ -58,6 +58,8 @@ public class Gun : MonoBehaviour
 	AnimationClip reloadAnimation;
 	[SerializeField] [Tooltip("The 'finish reloading' animation associated to the gun.")]
 	AnimationClip reloadFinishAnimation;
+	[SerializeField] [Tooltip("The 'swap weapon' animation associated to the gun.")]
+	AnimationClip swapWeaponAnimation;
 	
 	[Header("Gun Audio Sources")]
 	[SerializeField] [Tooltip("The'shoot' sound associated to the gun.")]
@@ -401,6 +403,11 @@ public class Gun : MonoBehaviour
 	public AnimationClip ReloadFinishAnimation
 	{
 		get { return reloadFinishAnimation;}
+	}
+	
+	public AnimationClip SwapWeaponAnimation
+	{
+		get { return swapWeaponAnimation;}
 	}
 
 	public AudioSource ShootSound
