@@ -332,6 +332,21 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public int CashEarnedBronze
+    {
+        get { return cashEarnedBronze; }
+    }
+
+    public int CashEarnedSilver
+    {
+        get { return cashEarnedSilver; }
+    }
+
+    public int CashEarnedGold
+    {
+        get { return cashEarnedGold; }
+    }
+
     public Vector3 CurrentStagePosition
     {
         get { return currentSpawnPoint.StagePosition; }

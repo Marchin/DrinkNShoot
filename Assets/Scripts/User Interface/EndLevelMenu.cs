@@ -22,12 +22,22 @@ public class EndLevelMenu : MonoBehaviour
 	[SerializeField] string[] possibleButtonNames;
 	[SerializeField] UnityEvent onContinue;
 
+	TextMeshProUGUI[] cashBonusesTexts = {null, null, null};
+
 	void Start()
 	{
 		titleText.text = possibleTitles[0];
 		cashText.text = possibleCashLegends[0];
 		killsText.text = possibleKillsLegends[0];
 		firstButtonText.text = possibleButtonNames[0];
+
+        cashBonusesTexts[0] = bronzeTierUI.GetComponentInChildren<TextMeshProUGUI>();
+        cashBonusesTexts[1] = silverTierUI.GetComponentInChildren<TextMeshProUGUI>();
+        cashBonusesTexts[2] = goldTierUI.GetComponentInChildren<TextMeshProUGUI>();
+
+        cashBonusesTexts[0].text = "+ $" + LevelManager.Instance.CashEarnedBronze.ToString();
+        cashBonusesTexts[1].text = "+ $" + LevelManager.Instance.CashEarnedSilver.ToString();
+        cashBonusesTexts[2].text = "+ $" + LevelManager.Instance.CashEarnedGold.ToString();
 	}
 
 	public void Restart()
@@ -88,6 +98,7 @@ public class EndLevelMenu : MonoBehaviour
                 foreach (Image image in goldImages)
                     if (image.gameObject.name != goldTierUI.name)
                         image.gameObject.SetActive(image.gameObject.name == "Failed");
+				cashBonusesTexts[2].gameObject.SetActive(false);
 				break;
 
 			case LevelManager.StageCompletionTier.Bronze:
@@ -97,8 +108,10 @@ public class EndLevelMenu : MonoBehaviour
                         image.gameObject.SetActive(image.gameObject.name == "Failed");	
                 foreach (Image image in silverImages)
                     if (image.gameObject.name != silverTierUI.name)
-                        image.gameObject.SetActive(image.gameObject.name == "Failed");	
-				break;
+                        image.gameObject.SetActive(image.gameObject.name == "Failed");
+                cashBonusesTexts[1].gameObject.SetActive(false);
+                cashBonusesTexts[2].gameObject.SetActive(false);
+                break;
 		}
 	}
 

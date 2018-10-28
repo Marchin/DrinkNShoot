@@ -22360,7 +22360,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: bf94c8d03c3f9c8449e641af0e3e8c73, type: 2}
+      objectReference: {fileID: 9100000, guid: 50d3bfcb9971cf24f977509089786238, type: 2}
     - target: {fileID: 114342443950794414, guid: 2f1e565f7abd4c44293373e0379f4481,
         type: 2}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -22456,12 +22456,42 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114867949196142396, guid: 2f1e565f7abd4c44293373e0379f4481,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867949196142396, guid: 2f1e565f7abd4c44293373e0379f4481,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114257640462300456, guid: 2f1e565f7abd4c44293373e0379f4481,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114257640462300456, guid: 2f1e565f7abd4c44293373e0379f4481,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114137833036230398, guid: 2f1e565f7abd4c44293373e0379f4481,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114137833036230398, guid: 2f1e565f7abd4c44293373e0379f4481,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114103376672517690, guid: 2f1e565f7abd4c44293373e0379f4481,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114103376672517690, guid: 2f1e565f7abd4c44293373e0379f4481,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -27342,7 +27372,7 @@ Transform:
   m_PrefabInternal: {fileID: 1824985052}
 --- !u!114 &1113465396 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114137833036230398, guid: 2f1e565f7abd4c44293373e0379f4481,
+  m_CorrespondingSourceObject: {fileID: 114103376672517690, guid: 2f1e565f7abd4c44293373e0379f4481,
     type: 2}
   m_PrefabInternal: {fileID: 894781432}
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -34346,7 +34376,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: bf94c8d03c3f9c8449e641af0e3e8c73, type: 2}
+      objectReference: {fileID: 9100000, guid: 50d3bfcb9971cf24f977509089786238, type: 2}
     - target: {fileID: 114126336577654992, guid: b0fd4e7bb7350df4d886b21d31b473da,
         type: 2}
       propertyPath: m_havePropertiesChanged
@@ -38353,7 +38383,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: bf94c8d03c3f9c8449e641af0e3e8c73, type: 2}
+      objectReference: {fileID: 9100000, guid: 50d3bfcb9971cf24f977509089786238, type: 2}
     - target: {fileID: 114248837149794226, guid: e85ffdbb5b9b019489560d3ce4ef29eb,
         type: 2}
       propertyPath: m_havePropertiesChanged
