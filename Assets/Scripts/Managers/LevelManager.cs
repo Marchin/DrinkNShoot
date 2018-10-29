@@ -215,7 +215,7 @@ public class LevelManager : MonoBehaviour
         currentSpawnPoint = enemySpawnPoints[currentStageIndex].GetComponent<CrowTrigger>();
         currentSpawnPoint.EnableStage();
 
-        Gun[] currentGuns = playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().GetComponentsInChildren<Gun>();
+        Gun[] currentGuns = playersWagon.gameObject.GetComponentInChildren<WeaponHolder>(true).GetComponentsInChildren<Gun>();
 
         foreach (Gun gun in currentGuns)
         {

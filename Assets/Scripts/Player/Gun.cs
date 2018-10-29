@@ -131,7 +131,7 @@ public class Gun : MonoBehaviour
 	void Update()
 	{
 		MoveCrosshairAround();
-		ScaleCrosshairAccordingToDrukness();
+		ScaleCrosshairAccordingToDrukenness();
 		CheckConsecutiveShots();
 		IndicateShotAccuracy();
 
@@ -245,7 +245,7 @@ public class Gun : MonoBehaviour
 			onCrosshairMove.Invoke();
 	}
 
-    void ScaleCrosshairAccordingToDrukness()
+    void ScaleCrosshairAccordingToDrukenness()
     {   
 		float previousCrosshairScale = crosshairScale;
 
