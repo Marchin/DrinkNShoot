@@ -140,7 +140,7 @@ public class HUD : MonoBehaviour
 
 		crowsText.color = targetsKilled >= minimumRequiredKills ? darkGreen : Color.white;
 		
-		if (targetsKilled == requiredKillsForNextTier)
+		if (targetsKilled + 1 == requiredKillsForNextTier + 1)
 		{
 			crowHUDAnimator.SetTrigger("Has to Pop");
 			if (targetsKilled == minimumRequiredKills)

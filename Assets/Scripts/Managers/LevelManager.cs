@@ -322,10 +322,10 @@ public class LevelManager : MonoBehaviour
         { 
             int requiredKills = currentSpawnPoint.BronzeTierKills;
 
-            if (targetsKilledInStage > currentSpawnPoint.SilverTierKills)
+            if (targetsKilledInStage >= currentSpawnPoint.SilverTierKills)
                 requiredKills = currentSpawnPoint.GoldTierKills;
             else
-                if (targetsKilledInStage > currentSpawnPoint.BronzeTierKills)
+                if (targetsKilledInStage >= currentSpawnPoint.BronzeTierKills)
                     requiredKills = currentSpawnPoint.SilverTierKills;
 
             return requiredKills;
