@@ -5,10 +5,10 @@ using UnityEngine;
 public class StoreManager : MonoBehaviour
 {
 	[Header("Items")]
-	[SerializeField] Gun[] guns;
+	[SerializeField] Gun[] gunsComponentsPrefabs;
 	[SerializeField] int[] gunsPrices;
 	
-	Dictionary<Gun, int> gunsPricesDict = new Dictionary<Gun, int>();
+	Dictionary<Gun, int> gunsStock = new Dictionary<Gun, int>();
 	
 	static StoreManager instance;
 
@@ -23,20 +23,33 @@ public class StoreManager : MonoBehaviour
 	void Start()
 	{
 		int i = 0;
-		foreach (Gun gun in guns)
+		foreach (Gun gun in gunsComponentsPrefabs)
 		{
-			gunsPricesDict[gun] = gunsPrices[i];
+			gunsStock[gun] = gunsPrices[i];
 			i++;
 		}
 	}
 
-	public void PurchaseGun(Gun gun)
+	public bool PurchaseGun(string gunName)
 	{
-		if (!PlayerManager.Instance.HasGun(gun) && PlayerManager.Instance.Currency >= gunsPricesDict[gun])
+		bool wasPurchased = false;
+
+		foreach (Gun gun in gunsStock.Keys)
 		{
-			PlayerManager.Instance.Currency -= gunsPricesDict[gun];
-			PlayerManager.Instance.AddGun(gun);
+			if (gun.GunName == gunName)
+			{
+				if (!PlayerManager.Instance.HasGun(gun) && PlayerManager.Instance.Currency >= gunsStock[gun])
+				{
+					wasPurchased = true;
+					PlayerManager.Instance.Currency -= gunsStock[gun];
+					PlayerManager.Instance.AddGun(gun);
+				}
+
+				break;
+			}
 		}
+
+		return wasPurchased;
 	}
 
 	public static StoreManager Instance

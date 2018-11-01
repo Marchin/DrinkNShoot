@@ -20,6 +20,8 @@ public class Gun : MonoBehaviour
 	[Header("Gun Stats")]
 	[SerializeField] [Tooltip("Type of gun.")]
 	GunType gunType;
+	[SerializeField] [Tooltip("Name of the gun.")]
+	string gunName;
 	[SerializeField] [Range(1, 100)] [Tooltip("Amount of bullets that can be inside the gun.")] 
 	int gunCapacity;
 	[SerializeField] [Range(0f, 12f)] [Tooltip("Bullets fired per second.")] 
@@ -348,6 +350,11 @@ public class Gun : MonoBehaviour
 	public GunType TypeOfGun
 	{
 		get { return gunType; }
+	}
+
+	public string GunName
+	{
+		get { return gunName; }
 	}
 
 	public GunState CurrentState
