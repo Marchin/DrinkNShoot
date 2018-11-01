@@ -10,11 +10,12 @@ public class PlayerManager : MonoBehaviour
 		CameraRotationComp, DrunkCameraComp, GunComp, WeaponHolderComp, AnimatorComp
 	}
 
-	[SerializeField] List<Gun> guns;
+	[SerializeField] GameObject weaponHolderPrefab; 
 	[SerializeField] UnityEvent onGunAvailabilityToggle;
 
 	static PlayerManager instance;
 	
+	List<Gun> activeGuns;
 	CameraRotation cameraRotation;
 	DrunkCamera drunkCamera;
 	WeaponHolder weaponHolder;
@@ -28,6 +29,21 @@ public class PlayerManager : MonoBehaviour
 			DontDestroyOnLoad(gameObject);
 		else
 			Destroy(gameObject);
+	}
+
+	void Start()
+	{	
+		activeGuns = new List<Gun>();
+
+		foreach (Transform gunObject in weaponHolderPrefab.transform)
+		{
+			if (gunObject.gameObject.activeSelf)
+			{
+				Gun gun = gunObject.GetComponent<Gun>();
+				if (gun)
+					activeGuns.Add(gun);
+			}
+		}
 	}
 
 	void TogglePlayerAvailability()
@@ -138,19 +154,19 @@ public class PlayerManager : MonoBehaviour
 
 	public void AddGun(Gun gun)
 	{
-		guns.Add(gun);
+		activeGuns.Add(gun);
 	}
 
 	public bool HasGun(Gun gun)
 	{
-		return guns.Contains(gun);
+		return activeGuns.Contains(gun);
 	}
 
 	public bool HasGunOfType(Gun.GunType type)
 	{
 		bool hasGunOfType = false;
 
-		foreach (Gun gun in guns)
+		foreach (Gun gun in activeGuns)
 			if (gun.TypeOfGun == type)
 			{
 				hasGunOfType = true;

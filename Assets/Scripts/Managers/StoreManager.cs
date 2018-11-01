@@ -22,7 +22,6 @@ public class StoreManager : MonoBehaviour
 
 	void Start()
 	{
-		GameManager.Instance.ShowCursor();
 		int i = 0;
 		foreach (Gun gun in guns)
 		{
