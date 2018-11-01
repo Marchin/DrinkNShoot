@@ -10,11 +10,7 @@ public class PlayerManager : MonoBehaviour
 		CameraRotationComp, DrunkCameraComp, GunComp, WeaponHolderComp, AnimatorComp
 	}
 
-	public enum Item
-	{
-		Revolver, Winchester, SnakeOil, Bait
-	}
-
+	[SerializeField] List<Gun> guns;
 	[SerializeField] UnityEvent onGunAvailabilityToggle;
 
 	static PlayerManager instance;
@@ -23,7 +19,6 @@ public class PlayerManager : MonoBehaviour
 	DrunkCamera drunkCamera;
 	WeaponHolder weaponHolder;
 	Animator playerAnimator;
-	List<Item> equippedItems;
 	int currency;
 	int totalKills;
 
@@ -31,29 +26,8 @@ public class PlayerManager : MonoBehaviour
 	{
 		if (Instance == this)
 			DontDestroyOnLoad(gameObject);
-	}
-
-	void Start()
-	{
-		if (Instance == this)
-		{
-			SetLevelReferences();
-			equippedItems.Add(Item.Revolver);
-		}
 		else
 			Destroy(gameObject);
-	}
-
-	void SetLevelReferences()
-	{
-        cameraRotation = FindObjectOfType<CameraRotation>();
-        drunkCamera = FindObjectOfType<DrunkCamera>();
-        weaponHolder = FindObjectOfType<WeaponHolder>();
-        playerAnimator = cameraRotation.gameObject.GetComponentInChildren<Animator>();
-		
-		FindObjectOfType<PauseMenu>().OnPauseToggle.AddListener(TogglePlayerAvailability);
-		FindObjectOfType<EndLevelMenu>().OnContinue.AddListener(TogglePlayerAvailability);
-        LevelManager.Instance.OnGameOver.AddListener(TogglePlayerAvailability);
 	}
 
 	void TogglePlayerAvailability()
@@ -66,6 +40,18 @@ public class PlayerManager : MonoBehaviour
 
 		onGunAvailabilityToggle.Invoke();
 	}
+
+    public void SetComponentReferencesForLevel()
+    {
+        cameraRotation = FindObjectOfType<CameraRotation>();
+        drunkCamera = FindObjectOfType<DrunkCamera>();
+        weaponHolder = FindObjectOfType<WeaponHolder>();
+        playerAnimator = cameraRotation.gameObject.GetComponentInChildren<Animator>();
+
+        FindObjectOfType<PauseMenu>().OnPauseToggle.AddListener(TogglePlayerAvailability);
+        FindObjectOfType<EndLevelMenu>().OnContinue.AddListener(TogglePlayerAvailability);
+        LevelManager.Instance.OnGameOver.AddListener(TogglePlayerAvailability);
+    }
 
 	public bool DisablePlayerComponent(PlayerComponent component)
 	{
@@ -150,14 +136,28 @@ public class PlayerManager : MonoBehaviour
 		}
 	}
 
-	public void AddItem(Item item)
+	public void AddGun(Gun gun)
 	{
-		equippedItems.Add(item);
+		guns.Add(gun);
 	}
 
-	public bool HasItem(Item item)
+	public bool HasGun(Gun gun)
 	{
-		return equippedItems.Contains(item);
+		return guns.Contains(gun);
+	}
+
+	public bool HasGunOfType(Gun.GunType type)
+	{
+		bool hasGunOfType = false;
+
+		foreach (Gun gun in guns)
+			if (gun.TypeOfGun == type)
+			{
+				hasGunOfType = true;
+				break;
+			}
+
+		return hasGunOfType;
 	}
 
 	public int Currency

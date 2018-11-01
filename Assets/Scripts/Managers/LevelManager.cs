@@ -75,6 +75,8 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        PlayerManager.Instance.SetComponentReferencesForLevel();
+
         endLevelMenu = FindObjectOfType<EndLevelMenu>();
         hud = FindObjectOfType<HUD>();
 
