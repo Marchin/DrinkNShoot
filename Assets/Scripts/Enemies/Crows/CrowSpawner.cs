@@ -49,8 +49,10 @@ public class CrowSpawner : MonoBehaviour {
 		GameObject go;
 		if (m_pool.RequestActive(out go)) {
 			go.GetComponent<Crow>().Poop();
+			CancelInvoke();
 			Invoke("OrderPoop", m_poopInterval);
 		} else {
+			CancelInvoke();
 			Invoke("OrderPoop", 0.1f);
 		}
 	}
