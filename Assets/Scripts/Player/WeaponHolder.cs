@@ -84,7 +84,7 @@ public class WeaponHolder : MonoBehaviour
 
 	bool CanSwapWeapon()
 	{
-		return !isSwappingWeapon && equippedGun.CurrentState == Gun.GunState.Idle; 
+		return !isSwappingWeapon && equippedGun.CurrentState == Gun.GunState.Idle;
 	}
 
 	public void SetEquippedGunType(Gun.GunType gunType)

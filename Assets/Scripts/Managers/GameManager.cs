@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
 
     public string GetLevelSceneName(int level)
     {
-        return levelScenes[level + 1];
+        return levelScenes[level - 1];
     }
 
     public static GameManager Instance
