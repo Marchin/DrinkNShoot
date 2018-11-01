@@ -9,7 +9,6 @@ using TMPro;
 public class MainMenu : MonoBehaviour
 {
 	[SerializeField] TextMeshProUGUI appVersionText;
-    [SerializeField] UnityEvent onRequestPlay;
     
 
 	void Start()
@@ -21,7 +20,12 @@ public class MainMenu : MonoBehaviour
 	public void Play()
 	{
 		GameManager.Instance.HideCursor();
-        GameManager.Instance.FadeToScene(SceneManager.GetActiveScene().buildIndex + 1);
+        GameManager.Instance.FadeToScene(GameManager.Instance.GetLevelSceneName(1));
+	}
+
+	public void EnterStore()
+	{
+		GameManager.Instance.FadeToScene(GameManager.Instance.StoreScene);
 	}
 
 	public void Quit()

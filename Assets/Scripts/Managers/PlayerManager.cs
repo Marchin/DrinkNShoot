@@ -10,6 +10,11 @@ public class PlayerManager : MonoBehaviour
 		CameraRotationComp, DrunkCameraComp, GunComp, WeaponHolderComp, AnimatorComp
 	}
 
+	public enum Item
+	{
+		Revolver, Winchester, SnakeOil, Bait
+	}
+
 	[SerializeField] UnityEvent onGunAvailabilityToggle;
 
 	static PlayerManager instance;
@@ -17,7 +22,8 @@ public class PlayerManager : MonoBehaviour
 	CameraRotation cameraRotation;
 	DrunkCamera drunkCamera;
 	WeaponHolder weaponHolder;
-	Animator playerAnimator; 
+	Animator playerAnimator;
+	List<Item> equippedItems;
 	int currency;
 	int totalKills;
 
@@ -30,12 +36,12 @@ public class PlayerManager : MonoBehaviour
 	void Start()
 	{
 		if (Instance == this)
-			SetLevelReferences();
-		else
 		{
-			Instance.SetLevelReferences();
-			Destroy(gameObject);
+			SetLevelReferences();
+			equippedItems.Add(Item.Revolver);
 		}
+		else
+			Destroy(gameObject);
 	}
 
 	void SetLevelReferences()
@@ -142,6 +148,16 @@ public class PlayerManager : MonoBehaviour
 			
 			return instance;
 		}
+	}
+
+	public void AddItem(Item item)
+	{
+		equippedItems.Add(item);
+	}
+
+	public bool HasItem(Item item)
+	{
+		return equippedItems.Contains(item);
 	}
 
 	public int Currency
