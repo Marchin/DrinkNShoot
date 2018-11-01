@@ -6,8 +6,15 @@ using TMPro;
 
 public class StoreMenu : MonoBehaviour
 {
+	enum ItemOnSale
+	{
+		Winchester
+	}
+
 	[SerializeField] TextMeshProUGUI currencyText;
-	[SerializeField] Button purchaseButton;
+	[SerializeField] TextMeshProUGUI itemPurchasingText;
+	[SerializeField] Button[] gunPurchaseButtons;
+	[SerializeField] string[] purchasingPanelTexts;
 
 	void Start()
 	{
@@ -17,21 +24,25 @@ public class StoreMenu : MonoBehaviour
 
 	public void PurchaseItem(string itemName)
 	{
-		
 		bool wasPurchased = false;
+		int purchasedItemIndex = -1;
 
 		switch (itemName)
 		{
 			case "Winchester":
 				wasPurchased = StoreManager.Instance.PurchaseGun(itemName);
+				purchasedItemIndex = (int)ItemOnSale.Winchester;
 				break;
 		}
 
 		if (wasPurchased)
 		{
 			currencyText.text = PlayerManager.Instance.Currency.ToString();
-			purchaseButton.interactable = false;
+			gunPurchaseButtons[purchasedItemIndex].interactable = false;
+			itemPurchasingText.text = purchasingPanelTexts[0];
 		}
+		else
+			itemPurchasingText.text = purchasingPanelTexts[1];
 	}
 
 	public void QuitStore()

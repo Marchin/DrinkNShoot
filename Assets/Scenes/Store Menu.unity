@@ -262,22 +262,32 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114935607620868306, guid: 0d58015a623b8e149ac32b6c3ac6f795,
+    - target: {fileID: 114658826851523520, guid: 0d58015a623b8e149ac32b6c3ac6f795,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114935607620868306, guid: 0d58015a623b8e149ac32b6c3ac6f795,
+    - target: {fileID: 114658826851523520, guid: 0d58015a623b8e149ac32b6c3ac6f795,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114307467300810488, guid: 0d58015a623b8e149ac32b6c3ac6f795,
+    - target: {fileID: 114999688333851972, guid: 0d58015a623b8e149ac32b6c3ac6f795,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114307467300810488, guid: 0d58015a623b8e149ac32b6c3ac6f795,
+    - target: {fileID: 114999688333851972, guid: 0d58015a623b8e149ac32b6c3ac6f795,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114935607620868306, guid: 0d58015a623b8e149ac32b6c3ac6f795,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114935607620868306, guid: 0d58015a623b8e149ac32b6c3ac6f795,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -292,30 +302,29 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114658826851523520, guid: 0d58015a623b8e149ac32b6c3ac6f795,
+    - target: {fileID: 114307467300810488, guid: 0d58015a623b8e149ac32b6c3ac6f795,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114658826851523520, guid: 0d58015a623b8e149ac32b6c3ac6f795,
+    - target: {fileID: 114307467300810488, guid: 0d58015a623b8e149ac32b6c3ac6f795,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114695067788455208, guid: 0d58015a623b8e149ac32b6c3ac6f795,
+    - target: {fileID: 114667070045601220, guid: 0d58015a623b8e149ac32b6c3ac6f795,
         type: 2}
-      propertyPath: purchaseButton
-      value: 
-      objectReference: {fileID: 281339288}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114667070045601220, guid: 0d58015a623b8e149ac32b6c3ac6f795,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d58015a623b8e149ac32b6c3ac6f795, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &281339288 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114294011000016114, guid: 0d58015a623b8e149ac32b6c3ac6f795,
-    type: 2}
-  m_PrefabInternal: {fileID: 239075982}
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &374856293
 GameObject:
   m_ObjectHideFlags: 0
