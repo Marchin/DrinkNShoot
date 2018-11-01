@@ -5,11 +5,6 @@ using UnityEngine.Events;
 
 public class WeaponHolder : MonoBehaviour 
 {
-	enum ScrollWheelDir
-	{
-		Up, Down
-	}
-
 	[SerializeField] Gun.GunType initialGun;
 	[SerializeField] UnityEvent onWeaponSwapStart;
 	[SerializeField] UnityEvent onWeaponSwap;
@@ -30,15 +25,7 @@ public class WeaponHolder : MonoBehaviour
 		if (CanSwapWeapon())
 		{
 			if (InputManager.Instance.GetSwapWeaponAxis() > 0f)
-			{
-				StartCoroutine(SwapWeapon(ScrollWheelDir.Up));
-				onWeaponSwapStart.Invoke();
-			}
-			if (InputManager.Instance.GetSwapWeaponAxis() < 0f)
-			{
-				StartCoroutine(SwapWeapon(ScrollWheelDir.Down));
-				onWeaponSwapStart.Invoke();
-			}
+				StartCoroutine(SwapWeapon());
 		}
 	}
 	
@@ -55,31 +42,27 @@ public class WeaponHolder : MonoBehaviour
 		onWeaponSwap.Invoke();
 	}
 
-	IEnumerator SwapWeapon(ScrollWheelDir direction)
+	IEnumerator SwapWeapon()
 	{
-		isSwappingWeapon = true;
-		yield return new WaitForSeconds(equippedGun.SwapWeaponAnimation.length);
-
 		Gun.GunType previousGunType = equippedGun.TypeOfGun;
 
-		if (direction == ScrollWheelDir.Up)
+		if ((int)equippedGunType < transform.childCount - 1)
 		{
-			if ((int)equippedGunType < transform.childCount - 1)
-				equippedGunType++;
-			else
-				equippedGunType = 0;
+			for (int i = 1; i <= transform.childCount - 1; i++)
+				if (PlayerManager.Instance.HasGunOfType(equippedGunType + i))
+					equippedGunType += i;
 		}
 		else
-		{
-			if ((int)equippedGunType > 0)
-				equippedGunType--;
-			else
-				equippedGunType = (Gun.GunType)transform.childCount - 1;
-		}
+			equippedGunType = Gun.GunType.Handgun;
 
 		if (equippedGunType != previousGunType)
+		{
+			isSwappingWeapon = true;
+			onWeaponSwapStart.Invoke();
+			yield return new WaitForSeconds(equippedGun.SwapWeaponAnimation.length);
 			SetEquippedGun();
-		isSwappingWeapon = false;
+			isSwappingWeapon = false;
+		}
 	}
 
 	bool CanSwapWeapon()
