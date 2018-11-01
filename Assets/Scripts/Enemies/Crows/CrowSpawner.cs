@@ -7,6 +7,7 @@ public class CrowSpawner : MonoBehaviour {
 	[SerializeField] float m_spawnInterval = 2f;
 	[SerializeField] float m_poopInterval;
 	BoxCollider[] m_landingZones;
+	sbyte[] m_LZOccupation;
 	ObjectPool m_pool;
 	float m_counter;
 
@@ -25,7 +26,6 @@ public class CrowSpawner : MonoBehaviour {
 			if (m_pool.Request(out go)) {
 				go.transform.position = new Vector3(180f, 80f, 150f);
 				Crow crow = go.GetComponent<Crow>();
-				crow.SetLandingZones(m_landingZones);
 				go.GetComponent<CrowLand>().SetRotationToDestination();
 				crow.Init();
 				m_counter = m_spawnInterval;
@@ -37,6 +37,10 @@ public class CrowSpawner : MonoBehaviour {
 
 	public void SetLandingZones(BoxCollider[] landingZones) {
 		m_landingZones = landingZones;
+		m_LZOccupation = new sbyte[m_landingZones.Length];
+		for (sbyte i = 0;  i < m_LZOccupation.Length ; i++) {
+			m_LZOccupation[i] = 0;
+		}
 	}
 
 	public void DisableCrows() {
@@ -55,5 +59,26 @@ public class CrowSpawner : MonoBehaviour {
 			CancelInvoke();
 			Invoke("OrderPoop", 0.1f);
 		}
+	}
+	
+
+    public BoxCollider PickOneOfLessOccupiedLZ(out int indexLZ) {
+		int leastBy2 = Random.Range(0, m_LZOccupation.Length);
+		for (int i = 1; i < m_LZOccupation.Length; i++) {
+			if (m_LZOccupation[i % m_LZOccupation.Length] - m_LZOccupation[leastBy2]<= -2) {
+				leastBy2 = i % m_LZOccupation.Length;
+			}
+		}
+		m_LZOccupation[leastBy2]++;
+		print(m_LZOccupation[leastBy2] + " in " +  leastBy2);
+		indexLZ = leastBy2;
+        return m_landingZones[leastBy2];
+    }
+
+	public void FreeLZ(ref int indexLZ) {
+		if (indexLZ >= 0) { 
+			m_LZOccupation[indexLZ]--;
+		}
+        indexLZ = -1;
 	}
 }

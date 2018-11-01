@@ -15,8 +15,8 @@ public class CrowLand : MonoBehaviour, IState {
 	Vector3 m_direction;
 	const float m_NEGLIGIBLE = 0.01f;
 	float m_footOffset;
-	bool m_rotCalculated;
 	float m_targetY;
+	bool m_rotCalculated;
 
 	private void Awake() {
 		m_crow = GetComponent<Crow>();
