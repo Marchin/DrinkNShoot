@@ -7,9 +7,17 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Game Properties")]
     [SerializeField] GameObject loadingScreen;
     [SerializeField] SettingsMenu.GfxSetting currentGfxSetting = SettingsMenu.GfxSetting.Wild;
     [SerializeField] float currentSfxVolume = 0.75f;
+
+    [Header("Scene Names")]
+    [SerializeField] string mainMenuScene;
+    [SerializeField] string storeScene;
+    [SerializeField] string[] levelScenes;
+
+    [Header("Animations")]
     [SerializeField] AnimationClip fadeInAnimation;
     [SerializeField] AnimationClip fadeOutAnimation;
 
@@ -20,7 +28,7 @@ public class GameManager : MonoBehaviour
     Animator animator;
     Slider loadingBarSlider;
     TextMeshProUGUI loadingText;
-    int nextSceneToLoad = -1;
+    string nextSceneToLoad;
     bool tutorialEnabled = true;
 
     void Awake()
@@ -42,9 +50,9 @@ public class GameManager : MonoBehaviour
         loadingText = loadingScreen.GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    IEnumerator LoadSceneAsynchronously(int nextSceneToLoad)
+    IEnumerator LoadSceneAsynchronously(string nextSceneToLoad)
     {
-        if (nextSceneToLoad >= 0)
+        if (nextSceneToLoad != null)
         {
             HideCursor();
 
@@ -75,12 +83,12 @@ public class GameManager : MonoBehaviour
     {
         animator.SetTrigger("Fade In");
         loadingScreen.SetActive(false);
-        nextSceneToLoad = -1;
+        nextSceneToLoad = null;
     }
 
-    public void FadeToScene(int sceneIndex)
+    public void FadeToScene(string sceneName)
     {
-        nextSceneToLoad = sceneIndex;
+        nextSceneToLoad = sceneName;
         animator.SetTrigger("Fade Out");
     }
 
@@ -104,6 +112,11 @@ public class GameManager : MonoBehaviour
     public void QuitApplication()
     {
         Application.Quit();
+    }
+
+    public string GetLevelSceneName(int level)
+    {
+        return levelScenes[level + 1];
     }
 
     public static GameManager Instance
@@ -136,6 +149,17 @@ public class GameManager : MonoBehaviour
         get { return currentSfxVolume; }
         set { currentSfxVolume = value; }
     }
+
+    public string MainMenuScene
+    {
+        get { return mainMenuScene; }
+    }
+
+    public string StoreScene
+    {
+        get { return storeScene; }
+    }
+
 
     public bool TutorialEnabled
     {

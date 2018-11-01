@@ -175,14 +175,14 @@ public class LevelManager : MonoBehaviour
     public void RestartLevel()
     {
         onQuitLevel.Invoke();
-        GameManager.Instance.FadeToScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.Instance.FadeToScene(SceneManager.GetActiveScene().name);
     }
 
     public void QuitLevel()
     {
         onQuitLevel.Invoke();
         GameManager.Instance.TutorialEnabled = true;
-        GameManager.Instance.FadeToScene(0);
+        GameManager.Instance.FadeToScene(GameManager.Instance.MainMenuScene);
     }
 
     void FirstEmptyGunNotice()

@@ -616,6 +616,10 @@ MonoBehaviour:
   loadingScreen: {fileID: 1879414338393738}
   currentGfxSetting: 4
   currentSfxVolume: 0.75
+  mainMenuScene: Main Menu
+  storeScene: Store Menu
+  levelScenes:
+  - Town Level - Day
   fadeInAnimation: {fileID: 7400000, guid: a3ce902575a092645a4faf8cccf4bed5, type: 2}
   fadeOutAnimation: {fileID: 7400000, guid: bcbcbf78df61aae468e413d5140512f1, type: 2}
 --- !u!222 &222367168961497364
