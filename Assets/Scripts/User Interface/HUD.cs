@@ -70,7 +70,8 @@ public class HUD : MonoBehaviour
 		weaponHolder.OnGunSwap.AddListener(ChangeWeaponInDisplay);
 		LevelManager.Instance.OnEnemyKill.AddListener(ChangeKillsDisplay);
 		LevelManager.Instance.OnStartNextStage.AddListener(ChangeKillsDisplay);
-		PlayerManager.Instance.OnGunDisabled.AddListener(ToggleCrosshair);
+		PlayerManager.Instance.OnGunEnable.AddListener(ToggleCrosshair);
+		PlayerManager.Instance.OnGunDisable.AddListener(ToggleCrosshair);
 
 		objectiveBannerTimer = 0f;
 		objectiveBannerWasJustDisabled = false;

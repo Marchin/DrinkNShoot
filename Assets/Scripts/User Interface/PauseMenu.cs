@@ -7,9 +7,11 @@ public class PauseMenu : MonoBehaviour
 {
 	[SerializeField] GameObject pauseMenuUI;
 	[SerializeField] GameObject hudUI;
-	[SerializeField] UnityEvent onPauseToggle;
+	[SerializeField] UnityEvent onPause;
+	[SerializeField] UnityEvent onResume;
 	
 	static bool isPaused;
+	float timeScaleBeforePause;
 
 	void Start()
 	{
@@ -30,26 +32,27 @@ public class PauseMenu : MonoBehaviour
 	public void Pause()
 	{
 		GameManager.Instance.ShowCursor();
-		Time.timeScale = 0;
+		timeScaleBeforePause = Time.timeScale;
+		Time.timeScale = 0f;
 		pauseMenuUI.SetActive(true);
 		hudUI.SetActive(false);
 		isPaused = true;
-		onPauseToggle.Invoke();
+		onPause.Invoke();
 	}
 
 	public void Resume()
 	{
 		GameManager.Instance.HideCursor();
-		Time.timeScale = 1;
+		Time.timeScale = timeScaleBeforePause;
 		pauseMenuUI.SetActive(false);
 		hudUI.SetActive(true);
 		isPaused = false;
-		onPauseToggle.Invoke();
+		onResume.Invoke();
 	}
 
 	public void Quit()
 	{
-		Time.timeScale = 1;
+		Time.timeScale = 1f;
 		LevelManager.Instance.QuitLevel();
 	}
 	
@@ -58,8 +61,12 @@ public class PauseMenu : MonoBehaviour
 		get { return isPaused;}
 	}
 	
-	public UnityEvent OnPauseToggle
+	public UnityEvent OnPause
 	{
-		get { return onPauseToggle; }
+		get { return onPause; }
+	}
+	public UnityEvent OnResume
+	{
+		get { return onResume; }
 	}
 }

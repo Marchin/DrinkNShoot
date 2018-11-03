@@ -25,26 +25,26 @@ public abstract class Consumable : MonoBehaviour, IItem
 	[SerializeField] UnityEvent onUse;
 	
 	int amount = 3;
-	protected bool isConsuming = false;
+	protected bool isUsing = false;
 
-	void Update()
+	protected virtual void Update()
 	{
-		if (InputManager.Instance.GetSwapItemAxis() < 0f && CanConsume())
-			StartCoroutine(ConsumeItem());
+		if (InputManager.Instance.GetUseItemButton() && CanUse())
+			StartCoroutine(UseItem());
 	}
 
-	IEnumerator ConsumeItem()
+	IEnumerator UseItem()
 	{
-		isConsuming = true;
+		isUsing = true;
 		amount -= 1;
         onUse.Invoke();
         yield return new WaitForSeconds(useAnimation.length);
 		ApplyConsumableEffect();
 	}
 
-	bool CanConsume()
+	bool CanUse()
 	{
-		return !isConsuming && amount > 0;
+		return !isUsing && amount > 0;
 	} 
 
 	protected abstract void ApplyConsumableEffect();
