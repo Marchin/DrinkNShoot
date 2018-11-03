@@ -26,7 +26,8 @@ public class PlayerAnimation : MonoBehaviour
 	void Start() 
 	{
 		ChangeGunAnimations();
-		weaponHolder.OnWeaponSwap.AddListener(ChangeGunAnimations);	
+		weaponHolder.OnGunSwap.AddListener(ChangeGunAnimations);	
+		weaponHolder.OnConsumableSwap.AddListener(ChangeConsumableAnimations);	
 		LevelManager.Instance.OnStartNextStage.AddListener(InvokeSipTaking);
 	}
 
@@ -62,6 +63,11 @@ public class PlayerAnimation : MonoBehaviour
 		animator.SetTrigger("Has Swapped Weapon");
 	}
 
+	void UseItemAnimation()
+	{
+		animator.SetTrigger("Has Used Item");
+	}
+
 	void InvokeSipTaking()
 	{
 		PlayerManager.Instance.DisablePlayerComponent(PlayerManager.PlayerComponent.GunComp);
@@ -91,13 +97,20 @@ public class PlayerAnimation : MonoBehaviour
 		animatorOverrideController["DEFAULT RELOAD START"] = currentGun.ReloadStartAnimation;
 		animatorOverrideController["DEFAULT RELOAD"] = currentGun.ReloadAnimation;
 		animatorOverrideController["DEFAULT RELOAD FINISH"] = currentGun.ReloadFinishAnimation;
-		animatorOverrideController["DEFAULT WEAPON SWAP"] = currentGun.SwapWeaponAnimation;
+		animatorOverrideController["DEFAULT WEAPON SWAP"] = currentGun.SwapGunAnimation;
 
         currentGun.OnBackToIdle.AddListener(ResetTriggers);
         currentGun.OnShot.AddListener(ShootAnimation);
         currentGun.OnReloadStart.AddListener(ReloadStartAnimation);
         currentGun.OnReload.AddListener(ReloadAnimation);
         currentGun.OnReloadFinish.AddListener(FinishReloadingAnimation);
-        weaponHolder.OnWeaponSwapStart.AddListener(SwapWeaponAnimation);
+        weaponHolder.OnGunSwapStart.AddListener(SwapWeaponAnimation);
+	}
+
+	void ChangeConsumableAnimations()
+	{
+		Consumable currentConsumable = weaponHolder.EquippedConsumable;
+        animatorOverrideController["DEFAULT USE ITEM"] = currentConsumable.UseAnimation;
+		currentConsumable.OnUse.AddListener(UseItemAnimation);
 	}
 }

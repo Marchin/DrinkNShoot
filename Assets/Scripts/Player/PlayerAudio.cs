@@ -17,7 +17,8 @@ public class PlayerAudio : MonoBehaviour
 	void Start()
 	{
 		ChangeGunSounds();
-		weaponHolder.OnWeaponSwap.AddListener(ChangeGunSounds);
+		weaponHolder.OnGunSwap.AddListener(ChangeGunSounds);
+		weaponHolder.OnConsumableSwap.AddListener(ChangeConsumableSounds);
 	}
 
 	void PlayShootSound()
@@ -43,12 +44,22 @@ public class PlayerAudio : MonoBehaviour
 		weaponHolder.EquippedGun.EmptyGunSound.Play();
 	}
 
+	void PlayUseItemSound()
+	{
+		weaponHolder.EquippedConsumable.UseSound.Play();
+	}
+
 	void ChangeGunSounds()
 	{
         weaponHolder.EquippedGun.OnShot.AddListener(PlayShootSound);
         weaponHolder.EquippedGun.OnReload.AddListener(InvokeReloadSound);
         weaponHolder.EquippedGun.OnEmptyGun.AddListener(PlayEmptyGunSound);
         weaponHolder.EquippedGun.OnReloadCancel.AddListener(CancelInvokeReloadSound);
+	}
+
+	void ChangeConsumableSounds()
+	{
+		weaponHolder.EquippedConsumable.OnUse.AddListener(PlayUseItemSound);
 	}
 
 	// Animation Events Methods

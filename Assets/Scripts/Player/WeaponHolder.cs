@@ -5,50 +5,73 @@ using UnityEngine.Events;
 
 public class WeaponHolder : MonoBehaviour 
 {
+	[SerializeField] Transform gunHolder;
+	[SerializeField] Transform consumableHolder;
 	[SerializeField] Gun.GunType initialGun;
-	[SerializeField] UnityEvent onWeaponSwapStart;
-	[SerializeField] UnityEvent onWeaponSwap;
+	[SerializeField] UnityEvent onGunSwapStart;
+	[SerializeField] UnityEvent onGunSwap;
+	[SerializeField] UnityEvent onConsumableSwap;
 	
 	Gun equippedGun;
+	Consumable equippedConsumable;
 	Gun.GunType equippedGunType;
-	bool isSwappingWeapon;
-
+	int equippedConsumableIndex;
+	bool isSwappingGun;
 
 	void Awake()
 	{
 		equippedGunType = initialGun;
+		equippedConsumableIndex = 0;
 		SetEquippedGun();
+		SetEquippedConsumable();
 	}
 
 	void Update()
 	{
+		Debug.Log(equippedConsumable.GetName());
+
 		if (CanSwapWeapon())
 		{
-			if (InputManager.Instance.GetSwapWeaponAxis() > 0f)
-				StartCoroutine(SwapWeapon());
+			if (InputManager.Instance.GetSwapItemAxis() > 0f)
+				StartCoroutine(SwapGun());
+			if (InputManager.Instance.GetSwapItemAxis() < 0f)
+				SwapConsumable();
 		}
 	}
 	
 	void SetEquippedGun()
 	{
 		int i = 0;
-		foreach (Transform gun in transform)
+		foreach (Transform gun in gunHolder)
 		{
 			gun.gameObject.SetActive(i == (int)equippedGunType);
 			if (i == (int)equippedGunType)
 				equippedGun = gun.GetComponent<Gun>();
 			i++;
 		}
-		onWeaponSwap.Invoke();
+		onGunSwap.Invoke();
 	}
 
-	IEnumerator SwapWeapon()
+	void SetEquippedConsumable()
 	{
-		Gun.GunType previousGunType = equippedGun.TypeOfGun;
-
-		if ((int)equippedGunType < transform.childCount - 1)
+		int i = 0;
+		foreach (Transform consumable in consumableHolder)
 		{
-			for (int i = 1; i <= transform.childCount - 1; i++)
+			consumable.gameObject.SetActive(i == equippedConsumableIndex);
+			if (i == equippedConsumableIndex)
+				equippedConsumable = consumable.GetComponent<Consumable>();
+			i++;
+		}
+		onConsumableSwap.Invoke();
+	}
+
+	IEnumerator SwapGun()
+	{
+		Gun.GunType previousGunType = equippedGunType;
+
+		if ((int)equippedGunType < gunHolder.childCount - 1)
+		{
+			for (int i = 1; i <= gunHolder.childCount - 1; i++)
 				if (PlayerManager.Instance.HasGunOfType(equippedGunType + i))
 					equippedGunType += i;
 		}
@@ -57,37 +80,74 @@ public class WeaponHolder : MonoBehaviour
 
 		if (equippedGunType != previousGunType)
 		{
-			isSwappingWeapon = true;
-			onWeaponSwapStart.Invoke();
-			yield return new WaitForSeconds(equippedGun.SwapWeaponAnimation.length);
+			isSwappingGun = true;
+			onGunSwapStart.Invoke();
+			yield return new WaitForSeconds(equippedGun.SwapGunAnimation.length);
 			SetEquippedGun();
-			isSwappingWeapon = false;
+			isSwappingGun = false;
 		}
 	}
 
+    void SwapConsumable()
+    {
+        int previousConsumableIndex = equippedConsumableIndex;
+
+        if (equippedConsumableIndex < consumableHolder.childCount - 1)
+        {
+            for (int i = 1; i <= consumableHolder.childCount - 1; i++)
+			{
+				Consumable consumable = consumableHolder.GetChild(equippedConsumableIndex + i).GetComponent<Consumable>();
+                if (consumable.GetAmount() > 0)
+                    equippedConsumableIndex += i;
+			}
+        }
+        else
+        {
+            for (int i = consumableHolder.childCount -1; i >= 1; i--)
+            {
+                Consumable consumable = consumableHolder.GetChild(equippedConsumableIndex - i).GetComponent<Consumable>();
+                if (consumable.GetAmount() > 0)
+                    equippedConsumableIndex -= i;
+            }
+		}
+
+        if (equippedConsumableIndex != previousConsumableIndex)
+            SetEquippedConsumable();
+    }
+
 	bool CanSwapWeapon()
 	{
-		return !isSwappingWeapon && equippedGun.CurrentState == Gun.GunState.Idle;
+		return !isSwappingGun && equippedGun.CurrentState == Gun.GunState.Idle;
 	}
 
-	public void SetEquippedGunType(Gun.GunType gunType)
-	{
-		equippedGunType = gunType;
-		SetEquippedGun();
-	}
+	// public void SetEquippedGunType(Gun.GunType gunType)
+	// {
+	// 	equippedGunType = gunType;
+	// 	SetEquippedGun();
+	// }
 
 	public Gun EquippedGun
 	{
 		get { return equippedGun; }
 	}
 
-	public UnityEvent OnWeaponSwapStart
+	public Consumable EquippedConsumable
 	{
-		get { return onWeaponSwapStart; }
+		get { return equippedConsumable; }
 	}
 
-	public UnityEvent OnWeaponSwap
+	public UnityEvent OnGunSwapStart
 	{
-		get { return onWeaponSwap; }
+		get { return onGunSwapStart; }
+	}
+
+	public UnityEvent OnGunSwap
+	{
+		get { return onGunSwap; }
+	}
+
+	public UnityEvent OnConsumableSwap
+	{
+		get { return onConsumableSwap; }
 	}
 }

@@ -67,7 +67,7 @@ public class HUD : MonoBehaviour
     {
 		ChangeWeaponInDisplay();
 		
-		weaponHolder.OnWeaponSwap.AddListener(ChangeWeaponInDisplay);
+		weaponHolder.OnGunSwap.AddListener(ChangeWeaponInDisplay);
 		LevelManager.Instance.OnEnemyKill.AddListener(ChangeKillsDisplay);
 		LevelManager.Instance.OnStartNextStage.AddListener(ChangeKillsDisplay);
 		PlayerManager.Instance.OnGunDisabled.AddListener(ToggleCrosshair);

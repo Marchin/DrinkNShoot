@@ -19,7 +19,7 @@ public class DrunkCamera : MonoBehaviour {
     }
 
     private void Start() {
-        LevelManager.Instance.OnStartNextStage.AddListener(IncreaseDrunkLevel);
+        LevelManager.Instance.OnStartNextStage.AddListener(ChangeDrunkLevel);
         m_level = LevelManager.Instance.DifficultyLevel;
     }
 
@@ -48,7 +48,7 @@ public class DrunkCamera : MonoBehaviour {
         transform.eulerAngles = newRotation;
     }
 
-    private void IncreaseDrunkLevel() {
+    private void ChangeDrunkLevel() {
         m_level = LevelManager.Instance.DifficultyLevel;
     }
 
