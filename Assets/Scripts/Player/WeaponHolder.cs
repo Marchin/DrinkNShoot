@@ -28,8 +28,6 @@ public class WeaponHolder : MonoBehaviour
 
 	void Update()
 	{
-		Debug.Log(equippedConsumable.GetName());
-
 		if (CanSwapWeapon())
 		{
 			if (InputManager.Instance.GetSwapItemAxis() > 0f)
@@ -82,7 +80,7 @@ public class WeaponHolder : MonoBehaviour
 		{
 			isSwappingGun = true;
 			onGunSwapStart.Invoke();
-			yield return new WaitForSeconds(equippedGun.SwapGunAnimation.length);
+			yield return new WaitForSecondsRealtime(equippedGun.SwapGunAnimation.length);
 			SetEquippedGun();
 			isSwappingGun = false;
 		}
@@ -117,14 +115,8 @@ public class WeaponHolder : MonoBehaviour
 
 	bool CanSwapWeapon()
 	{
-		return !isSwappingGun && equippedGun.CurrentState == Gun.GunState.Idle;
+		return !isSwappingGun && equippedGun.CurrentState == Gun.GunState.Idle && Time.timeScale == 0f;
 	}
-
-	// public void SetEquippedGunType(Gun.GunType gunType)
-	// {
-	// 	equippedGunType = gunType;
-	// 	SetEquippedGun();
-	// }
 
 	public Gun EquippedGun
 	{

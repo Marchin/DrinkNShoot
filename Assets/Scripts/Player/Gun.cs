@@ -161,7 +161,7 @@ public class Gun : MonoBehaviour, IItem
 				break;
 			
 			case GunState.Shooting:
-				if (Time.time - lastFireTime >= timeToShootSingleBullet)
+				if (Time.unscaledTime - lastFireTime >= timeToShootSingleBullet)
 					ReturnToIdle();
 				break;
 			
@@ -185,7 +185,7 @@ public class Gun : MonoBehaviour, IItem
 		crosshairScaleAtShotInterpTime = 0f;
 		OnCrosshairScale.Invoke();
 
-		lastFireTime = Time.time;
+		lastFireTime = Time.unscaledTime;
 		bulletsInGun--;
 		if (bullets.GetLength(0) > 0)
 			bullets[bulletsInGun].SetActive(false);
@@ -239,7 +239,7 @@ public class Gun : MonoBehaviour, IItem
 
 		crosshairPosition.x = Screen.width / 2 + Mathf.Cos(drunkCrosshairAngle) * drunkCrosshairRadius;
 		crosshairPosition.y = Screen.height / 2 + Mathf.Sin(drunkCrosshairAngle) * drunkCrosshairRadius;
-		drunkCrosshairAngle += drunkCrosshairSpeed * Time.deltaTime;
+		drunkCrosshairAngle += drunkCrosshairSpeed * Time.unscaledDeltaTime;
 		if (drunkCrosshairAngle >= 2 * Mathf.PI)
 			drunkCrosshairAngle -= 2 * Mathf.PI;
 		
@@ -263,8 +263,8 @@ public class Gun : MonoBehaviour, IItem
                 drunkSwayPercentage = Mathf.Lerp(LevelManager.Instance.DifficultyLevel * DRUNK_SWAY_MULT, 0f, drunkSwayInterpTime);
                 crosshairScale = Mathf.Lerp(1f + drunkSwayPercentage * CROSSHAIR_SCALE_MULT, 1f, crosshairScaleInterpTime);
 			}
-			drunkSwayInterpTime += Time.deltaTime;
-			crosshairScaleInterpTime += Time.deltaTime;
+			drunkSwayInterpTime += Time.unscaledDeltaTime;
+			crosshairScaleInterpTime += Time.unscaledDeltaTime;
 			if (drunkSwayInterpTime >= 1f)
 			{
 				drunkSwayInterpTime = 0f;
@@ -275,7 +275,7 @@ public class Gun : MonoBehaviour, IItem
 		else
 		{
 			crosshairScale = Mathf.Lerp(crosshairScaleAfterShot, crosshairScaleBeforeShot, crosshairScaleAtShotInterpTime);
-			crosshairScaleAtShotInterpTime += Time.deltaTime / (recoilDuration * consecutiveShotsAtShot);
+			crosshairScaleAtShotInterpTime += Time.unscaledDeltaTime / (recoilDuration * consecutiveShotsAtShot);
         }	
 		
 		if (crosshairScale != previousCrosshairScale)
@@ -284,7 +284,7 @@ public class Gun : MonoBehaviour, IItem
 
 	void CheckConsecutiveShots()
 	{
-        if (lastFireTime < Time.time - timeToShootSingleBullet)
+        if (lastFireTime < Time.unscaledTime - timeToShootSingleBullet)
             if (consecutiveShots != 0)
                 consecutiveShots = 0;
 	}
@@ -333,12 +333,12 @@ public class Gun : MonoBehaviour, IItem
 
 	bool CanShoot()
 	{
-		return Time.time - lastFireTime >= 1 / fireRate && bulletsInGun > 0;
+		return Time.unscaledTime - lastFireTime >= 1 / fireRate && bulletsInGun > 0;
 	}
 
 	bool CanReload()
 	{
-		return  bulletsInGun < gunCapacity;
+		return  bulletsInGun < gunCapacity && Time.timeScale == 1f;
 	}
 
 	bool ShouldPlayEmptyMagSound()

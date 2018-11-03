@@ -3,22 +3,25 @@ using UnityEngine;
 
 public class SnakeOil : Consumable 
 {
-	[SerializeField] float deadEyeDuration = 4f;
-	[SerializeField] float transitionDuration = 0.5f;
+	[Header("Snake Oil Properties")]
+	[SerializeField] float deadEyeDuration = 10f;
+	[SerializeField] float transitionDuration = 1f;
 	[SerializeField] float deadEyeFactor = 0.1f;
 
-	float deadEyeTimer;
-	float previousFixedDeltaTime;
+	float deadEyeTimer = 0f;
+	float previousFixedDeltaTime = 0f;
 	
-	void Update()
+	protected override void Update()
 	{
-		if (isConsuming)
+		base.Update();
+
+		if (isUsing)
 		{
 			deadEyeTimer += Time.unscaledDeltaTime;
-			if (deadEyeTimer >= deadEyeDuration)
+			if (HasToStopEffect())		
 			{
 				deadEyeTimer = 0f;
-				isConsuming = false;
+				isUsing = false;
 				StartCoroutine(GoBackToNormalTime());
 			}
 		}
@@ -32,15 +35,21 @@ public class SnakeOil : Consumable
 		Time.fixedDeltaTime *= deadEyeFactor;
 	}
 
+	bool HasToStopEffect()
+	{
+		return (deadEyeTimer >= deadEyeDuration || PlayerManager.Instance.CurrentGun.BulletsInGun == 0);
+	}
+
 	IEnumerator GoBackToNormalTime()
 	{
 		while (Time.timeScale < 1f)
 		{
-			Time.timeScale += Mathf.Clamp01((1f / transitionDuration) * Time.unscaledDeltaTime);
+			Time.timeScale += (1f / transitionDuration) * Time.unscaledDeltaTime;
 			
 			yield return null;
 		}
 		
+		Time.timeScale = 1f;
 		Time.fixedDeltaTime = previousFixedDeltaTime;
 	}
 }

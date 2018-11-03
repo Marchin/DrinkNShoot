@@ -11,7 +11,8 @@ public class PlayerManager : MonoBehaviour
 	}
 
 	[SerializeField] GameObject weaponHolderPrefab; 
-	[SerializeField] UnityEvent onGunAvailabilityToggle;
+	[SerializeField] UnityEvent onGunEnable;
+	[SerializeField] UnityEvent onGunDisable;
 
 	static PlayerManager instance;
 	
@@ -46,15 +47,28 @@ public class PlayerManager : MonoBehaviour
 		}
 	}
 
-	void TogglePlayerAvailability()
+	void EnablePlayer()
 	{
-		cameraRotation.enabled = !cameraRotation.enabled;
-		drunkCamera.enabled = !drunkCamera.enabled;
-		weaponHolder.enabled = !weaponHolder.enabled;
-		weaponHolder.EquippedGun.enabled = !weaponHolder.EquippedGun.enabled;
-		playerAnimator.enabled = !playerAnimator.enabled;
+		cameraRotation.enabled = true;
+		drunkCamera.enabled = true;
+		weaponHolder.enabled = true;
+		weaponHolder.EquippedGun.enabled = true;
+		weaponHolder.EquippedConsumable.enabled = true;
+		playerAnimator.enabled = true;
 
-		onGunAvailabilityToggle.Invoke();
+		onGunEnable.Invoke();
+	}
+
+	void DisablePlayer()
+	{
+		cameraRotation.enabled = false;
+		drunkCamera.enabled = false;
+		weaponHolder.enabled = false ;
+        weaponHolder.EquippedGun.enabled = false;
+		weaponHolder.EquippedConsumable.enabled = false;
+		playerAnimator.enabled = false;
+
+		onGunDisable.Invoke();
 	}
 
     public void SetComponentReferencesForLevel()
@@ -64,9 +78,10 @@ public class PlayerManager : MonoBehaviour
         weaponHolder = FindObjectOfType<WeaponHolder>();
         playerAnimator = cameraRotation.gameObject.GetComponentInChildren<Animator>();
 
-        FindObjectOfType<PauseMenu>().OnPauseToggle.AddListener(TogglePlayerAvailability);
-        FindObjectOfType<EndLevelMenu>().OnContinue.AddListener(TogglePlayerAvailability);
-        LevelManager.Instance.OnGameOver.AddListener(TogglePlayerAvailability);
+        LevelManager.Instance.OnGameOver.AddListener(DisablePlayer);
+        FindObjectOfType<PauseMenu>().OnPause.AddListener(DisablePlayer);
+        FindObjectOfType<PauseMenu>().OnResume.AddListener(EnablePlayer);
+        FindObjectOfType<EndLevelMenu>().OnContinue.AddListener(EnablePlayer);
     }
 
 	public bool DisablePlayerComponent(PlayerComponent component)
@@ -86,7 +101,7 @@ public class PlayerManager : MonoBehaviour
 			case PlayerComponent.GunComp:
 				weaponHolder.EquippedGun.enabled = false;
                 wasDisabled = true;
-				onGunAvailabilityToggle.Invoke();
+				onGunDisable.Invoke();
                 break;
 			case PlayerComponent.WeaponHolderComp:
 				weaponHolder.enabled = false;
@@ -118,7 +133,7 @@ public class PlayerManager : MonoBehaviour
             case PlayerComponent.GunComp:
                 weaponHolder.EquippedGun.enabled = true;
                 wasEnabled = true;
-				onGunAvailabilityToggle.Invoke();
+				onGunEnable.Invoke();
                 break;
             case PlayerComponent.WeaponHolderComp:
                 weaponHolder.enabled = true;
@@ -188,8 +203,18 @@ public class PlayerManager : MonoBehaviour
 		set { totalKills = value; }
 	}
 
-	public UnityEvent OnGunDisabled
+	public Gun CurrentGun
 	{
-		get { return onGunAvailabilityToggle; }
+		get { return weaponHolder.EquippedGun; }
+	}
+
+	public UnityEvent OnGunEnable
+	{
+		get { return onGunEnable; }
+	}
+
+	public UnityEvent OnGunDisable
+	{
+		get { return onGunDisable; }
 	}
 }
