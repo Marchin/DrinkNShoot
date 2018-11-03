@@ -6,9 +6,9 @@ public class StoreManager : MonoBehaviour
 {
 	[Header("Items")]
 	[SerializeField] Gun[] gunsComponentsPrefabs;
-	[SerializeField] int[] gunsPrices;
+	[SerializeField] int[] itemsPrices;
 	
-	Dictionary<Gun, int> gunsStock = new Dictionary<Gun, int>();
+	Dictionary<IItem, int> itemsStock = new Dictionary<IItem, int>();
 	
 	static StoreManager instance;
 
@@ -23,26 +23,35 @@ public class StoreManager : MonoBehaviour
 	void Start()
 	{
 		int i = 0;
-		foreach (Gun gun in gunsComponentsPrefabs)
+		foreach (IItem item in gunsComponentsPrefabs)
 		{
-			gunsStock[gun] = gunsPrices[i];
+			itemsStock[item] = itemsPrices[i];
 			i++;
 		}
 	}
 
-	public bool PurchaseGun(string gunName)
+	public bool PurchaseItem(string itemName)
 	{
 		bool wasPurchased = false;
 
-		foreach (Gun gun in gunsStock.Keys)
+		foreach (IItem item in itemsStock.Keys)
 		{
-			if (gun.GunName == gunName)
+			if (item.GetName() == itemName)
 			{
-				if (!PlayerManager.Instance.HasGun(gun) && PlayerManager.Instance.Currency >= gunsStock[gun])
+				switch (item.GetItemType())
 				{
-					wasPurchased = true;
-					PlayerManager.Instance.Currency -= gunsStock[gun];
-					PlayerManager.Instance.AddGun(gun);
+					case ItemType.Gun:
+						if (!PlayerManager.Instance.HasGun((Gun)item) && PlayerManager.Instance.Currency >= itemsStock[item])
+						{
+							wasPurchased = true;
+							PlayerManager.Instance.Currency -= itemsStock[item];
+							PlayerManager.Instance.AddGun((Gun)item);
+						}
+						break;
+					case ItemType.Consumable:
+						break;
+					case ItemType.Throwable:
+						break;
 				}
 
 				break;

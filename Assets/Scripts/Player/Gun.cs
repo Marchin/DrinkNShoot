@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Gun : MonoBehaviour
+public class Gun : MonoBehaviour, IItem
 {
 	// Enumerators
 	public enum GunType
@@ -346,15 +346,27 @@ public class Gun : MonoBehaviour
 		return bulletsInGun == 0;
 	}
 
+	// Item Interface Methods
+	public string GetName()
+	{
+		return gunName;
+	}
+
+	public int GetAmount()
+	{
+		return 1;
+	}
+
+	public ItemType GetItemType()
+	{
+		return ItemType.Gun;
+	}
+
 	// Getters & Setters
+
 	public GunType TypeOfGun
 	{
 		get { return gunType; }
-	}
-
-	public string GunName
-	{
-		get { return gunName; }
 	}
 
 	public GunState CurrentState
