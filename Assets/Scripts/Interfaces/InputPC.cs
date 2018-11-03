@@ -29,8 +29,13 @@ public class InputPC : IInput
 		return Input.GetButtonDown("Cancel");
 	}
 
-	public float GetSwapWeaponAxis()
+	public float GetSwapItemAxis()
 	{
 		return Input.GetAxis("Mouse Scroll Wheel");
+	}
+
+	public bool GetUseItemButton()
+	{
+		return Input.GetButtonDown("Use Item");
 	}
 }

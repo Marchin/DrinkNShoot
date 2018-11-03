@@ -50,8 +50,6 @@ public class StoreManager : MonoBehaviour
 						break;
 					case ItemType.Consumable:
 						break;
-					case ItemType.Throwable:
-						break;
 				}
 
 				break;

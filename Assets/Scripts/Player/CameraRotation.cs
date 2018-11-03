@@ -30,8 +30,8 @@ public class CameraRotation : MonoBehaviour
 
 	void Update()
 	{
-		float horizontalRotation = InputManager.Instance.GetHorizontalViewAxis() * rotationSpeed * Time.deltaTime;
-		float verticalRotation = InputManager.Instance.GetVerticalViewAxis() * rotationSpeed * Time.deltaTime;
+		float horizontalRotation = InputManager.Instance.GetHorizontalViewAxis() * rotationSpeed * Time.unscaledDeltaTime;
+		float verticalRotation = InputManager.Instance.GetVerticalViewAxis() * rotationSpeed * Time.unscaledDeltaTime;
 
 		horizontalAngle += horizontalRotation;
 		verticalAngle -= verticalRotation;

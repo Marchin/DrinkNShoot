@@ -227,7 +227,7 @@ public class LevelManager : MonoBehaviour
         
         targetsKilledInStage = 0;
         timeLeft = currentSpawnPoint.CompletionTime;
-        onStartNextStage.Invoke();       
+        onStartNextStage.Invoke();    
     }
 
     public void EnterShootingStage()
