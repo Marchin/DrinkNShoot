@@ -8,12 +8,12 @@ public class StoreMenu : MonoBehaviour
 {
 	enum ItemOnSale
 	{
-		Winchester
+		Winchester, SnakeOil, Bait
 	}
 
 	[SerializeField] TextMeshProUGUI currencyText;
 	[SerializeField] TextMeshProUGUI itemPurchasingText;
-	[SerializeField] Button[] gunPurchaseButtons;
+	[SerializeField] Button[] itemPurchaseButtons;
 	[SerializeField] string[] purchasingPanelTexts;
 
 	void Start()
@@ -24,21 +24,26 @@ public class StoreMenu : MonoBehaviour
 
 	public void PurchaseItem(string itemName)
 	{
-		bool wasPurchased = false;
+		bool wasPurchased = StoreManager.Instance.PurchaseItem(itemName);
 		int purchasedItemIndex = -1;
-
-		switch (itemName)
-		{
-			case "Winchester":
-				wasPurchased = StoreManager.Instance.PurchaseGun(itemName);
-				purchasedItemIndex = (int)ItemOnSale.Winchester;
-				break;
-		}
 
 		if (wasPurchased)
 		{
+			switch (itemName)
+			{
+				case "Winchester":
+					purchasedItemIndex = (int)ItemOnSale.Winchester;
+					itemPurchaseButtons[purchasedItemIndex].interactable = false;
+					break;
+				case "Snake Oil":
+					purchasedItemIndex = (int)ItemOnSale.SnakeOil;
+					break;
+				case "Bait":
+					purchasedItemIndex = (int)ItemOnSale.Bait;
+					break;
+			}
+
 			currencyText.text = PlayerManager.Instance.Currency.ToString();
-			gunPurchaseButtons[purchasedItemIndex].interactable = false;
 			itemPurchasingText.text = purchasingPanelTexts[0];
 		}
 		else
