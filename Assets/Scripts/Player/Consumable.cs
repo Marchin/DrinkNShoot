@@ -14,6 +14,8 @@ public abstract class Consumable : MonoBehaviour, IItem
 	string consumableName;
 	[SerializeField] [Tooltip("Type of consumable.")]
 	ConsumableType consumableType;
+	[SerializeField] [Range(1, 5)][Tooltip("Maximum amount than can be carried.")]
+	int maxAmount = 1;
 	
 	[Header("Consumable Animations")]
 	[SerializeField] AnimationClip useAnimation;
@@ -24,9 +26,14 @@ public abstract class Consumable : MonoBehaviour, IItem
 	[Header("Events")]
 	[SerializeField] UnityEvent onUse;
 	
-	int amount = 5;
+	int amount = 0;
 	protected bool isInUse = false;
 	
+	protected virtual void Start()
+	{
+		amount = PlayerManager.Instance.GetItemAmount(this);
+	}
+
 	protected virtual void Update()
 	{
 		if (InputManager.Instance.GetUseItemButton() && CanUse())
@@ -49,6 +56,14 @@ public abstract class Consumable : MonoBehaviour, IItem
 
 	protected abstract void ApplyConsumableEffect();
 
+	public void IncreaseAmount(int amount)
+	{
+		if (this.amount + amount <= maxAmount )
+			this.amount += amount;
+		else
+			this.amount = maxAmount;
+	}
+
 	public string GetName()
 	{
 		return consumableName;
@@ -57,6 +72,11 @@ public abstract class Consumable : MonoBehaviour, IItem
 	public int GetAmount()
 	{
 		return amount;
+	}
+
+	public int GetMaxAmount()
+	{
+		return maxAmount;
 	}
 
 	public ItemType GetItemType()

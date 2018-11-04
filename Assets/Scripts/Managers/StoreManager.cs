@@ -6,6 +6,7 @@ public class StoreManager : MonoBehaviour
 {
 	[Header("Items")]
 	[SerializeField] Gun[] gunsComponentsPrefabs;
+	[SerializeField] Consumable[] consumableComponentsPrefabs;
 	[SerializeField] int[] itemsPrices;
 	
 	Dictionary<IItem, int> itemsStock = new Dictionary<IItem, int>();
@@ -15,19 +16,21 @@ public class StoreManager : MonoBehaviour
 	void Awake()
 	{
 		if (Instance == this)
+		{
 			DontDestroyOnLoad(gameObject);
+            
+			IItem[] itemComponentsPrefabs = new IItem[gunsComponentsPrefabs.GetLength(0) + consumableComponentsPrefabs.GetLength(0)];
+            gunsComponentsPrefabs.CopyTo(itemComponentsPrefabs, 0);
+            consumableComponentsPrefabs.CopyTo(itemComponentsPrefabs, gunsComponentsPrefabs.GetLength(0));
+            int i = 0;
+            foreach (IItem item in itemComponentsPrefabs)
+            {
+                itemsStock[item] = itemsPrices[i];
+                i++;
+            }
+		}
 		else
 			Destroy(gameObject);
-	}
-
-	void Start()
-	{
-		int i = 0;
-		foreach (IItem item in gunsComponentsPrefabs)
-		{
-			itemsStock[item] = itemsPrices[i];
-			i++;
-		}
 	}
 
 	public bool PurchaseItem(string itemName)
@@ -46,9 +49,16 @@ public class StoreManager : MonoBehaviour
 							wasPurchased = true;
 							PlayerManager.Instance.Currency -= itemsStock[item];
 							PlayerManager.Instance.AddGun((Gun)item);
+							itemsStock[item] = -1;
 						}
 						break;
 					case ItemType.Consumable:
+						if (PlayerManager.Instance.GetItemAmount(item) < item.GetMaxAmount() && PlayerManager.Instance.Currency >= itemsStock[item])
+						{
+							wasPurchased = true;
+							PlayerManager.Instance.Currency -= itemsStock[item];
+							PlayerManager.Instance.AddConsumableStock(item.GetName(), 1);
+						}
 						break;
 				}
 
@@ -57,6 +67,11 @@ public class StoreManager : MonoBehaviour
 		}
 
 		return wasPurchased;
+	}
+
+	public Dictionary<IItem, int> ItemsStock
+	{
+		get { return itemsStock; }
 	}
 
 	public static StoreManager Instance

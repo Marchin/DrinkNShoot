@@ -356,6 +356,11 @@ public class Gun : MonoBehaviour, IItem
 	{
 		return 1;
 	}
+	
+	public int GetMaxAmount()
+	{
+		return 1;
+	}
 
 	public ItemType GetItemType()
 	{

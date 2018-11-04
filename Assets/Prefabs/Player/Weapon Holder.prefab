@@ -1347,6 +1347,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1350171940190442
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4284021357623368}
+  - component: {fileID: 114882152207141342}
+  - component: {fileID: 82809652422146786}
+  m_Layer: 9
+  m_Name: Snake Oil
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1351257492160958
 GameObject:
   m_ObjectHideFlags: 1
@@ -1543,23 +1560,6 @@ GameObject:
   - component: {fileID: 4884903537612580}
   m_Layer: 0
   m_Name: Revolver:pCylinder39
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1415030962593750
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4835743771356330}
-  - component: {fileID: 114497967770235988}
-  - component: {fileID: 82853281529716776}
-  m_Layer: 9
-  m_Name: Snake Oil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4383,6 +4383,19 @@ Transform:
   m_Father: {fileID: 4490545951534434}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4284021357623368
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1350171940190442}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4292056469689010}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4288878899856988
 Transform:
   m_ObjectHideFlags: 1
@@ -4420,7 +4433,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4835743771356330}
+  - {fileID: 4284021357623368}
   m_Father: {fileID: 4046087908936626}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6306,19 +6319,6 @@ Transform:
   m_Father: {fileID: 4520337469533758}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4835743771356330
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1415030962593750}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4292056469689010}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4841847701967964
 Transform:
   m_ObjectHideFlags: 1
@@ -8107,12 +8107,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &82853281529716776
+--- !u!82 &82809652422146786
 AudioSource:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1415030962593750}
+  m_GameObject: {fileID: 1350171940190442}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -8487,29 +8487,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114497967770235988
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1415030962593750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a19415b92e8df9439eeb24bb61efad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  consumableName: Snake Oil
-  consumableType: 0
-  useAnimation: {fileID: 7400000, guid: 15f7752e40c4d9e46a46bda3b26d0bda, type: 2}
-  useSound: {fileID: 82853281529716776}
-  onUse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  deadEyeDuration: 4
-  transitionDuration: 0.5
-  deadEyeFactor: 0.1
 --- !u!114 &114661636619279466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8637,6 +8614,30 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114882152207141342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1350171940190442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a19415b92e8df9439eeb24bb61efad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  consumableName: Snake Oil
+  consumableType: 0
+  maxAmount: 1
+  useAnimation: {fileID: 7400000, guid: 15f7752e40c4d9e46a46bda3b26d0bda, type: 2}
+  useSound: {fileID: 82809652422146786}
+  onUse:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  deadEyeDuration: 7
+  transitionDuration: 1
+  deadEyeFactor: 0.1
 --- !u!137 &137001556729402862
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -65,7 +65,6 @@ public class WeaponHolder : MonoBehaviour
 
 	IEnumerator SwapGun()
 	{
-		Debug.Log("Swap Gun");
 		Gun.GunType previousGunType = equippedGunType;
 
 		if ((int)equippedGunType < gunHolder.childCount - 1)
@@ -122,6 +121,11 @@ public class WeaponHolder : MonoBehaviour
 	public Transform GunHolder
 	{
 		get { return gunHolder; }
+	}
+
+	public Transform ConsumableHolder
+	{
+		get { return consumableHolder; }
 	}
 
 	public Gun EquippedGun
