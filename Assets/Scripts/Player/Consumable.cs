@@ -4,16 +4,9 @@ using UnityEngine.Events;
 
 public abstract class Consumable : MonoBehaviour, IItem
 {
-	public enum ConsumableType
-	{
-		Drinkable, Throwable
-	}
-
 	[Header("Consumable Properties")]
 	[SerializeField] [Tooltip("Name of the consumable item.")]
 	string consumableName;
-	[SerializeField] [Tooltip("Type of consumable.")]
-	ConsumableType consumableType;
 	[SerializeField] [Range(1, 5)][Tooltip("Maximum amount than can be carried.")]
 	int maxAmount = 1;
 	
@@ -44,6 +37,7 @@ public abstract class Consumable : MonoBehaviour, IItem
 	{
 		isInUse = true;
 		amount -= 1;
+		PlayerManager.Instance.DecreaseConsumableAmount(this);
         onUse.Invoke();
         yield return new WaitForSeconds(useAnimation.length);
 		ApplyConsumableEffect();
@@ -82,6 +76,12 @@ public abstract class Consumable : MonoBehaviour, IItem
 	public ItemType GetItemType()
 	{
 		return ItemType.Consumable;
+	}
+
+	public void ReduceAmount()
+	{
+		if (amount > 0)
+			amount--;
 	}
 
 	public AnimationClip UseAnimation

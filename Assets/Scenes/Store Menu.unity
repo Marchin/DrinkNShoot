@@ -523,10 +523,25 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114533447919602662, guid: 0d58015a623b8e149ac32b6c3ac6f795,
+        type: 2}
+      propertyPath: m_text
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 114533447919602662, guid: 0d58015a623b8e149ac32b6c3ac6f795,
+        type: 2}
+      propertyPath: m_fontSize
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 114533447919602662, guid: 0d58015a623b8e149ac32b6c3ac6f795,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d58015a623b8e149ac32b6c3ac6f795, type: 2}
   m_IsPrefabAsset: 0
---- !u!1001 &1350018570
+--- !u!1001 &2115005498
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
