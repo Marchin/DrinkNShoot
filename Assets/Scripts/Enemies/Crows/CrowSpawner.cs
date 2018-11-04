@@ -87,4 +87,8 @@ public class CrowSpawner : MonoBehaviour {
 		}
 		indexLZ = -1;
 	}
+
+	public void SetSize(int size) {
+		m_pool.SetSize(size);
+	}
 }
