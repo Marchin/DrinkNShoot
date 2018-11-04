@@ -47,7 +47,7 @@ public class Life : MonoBehaviour
 
 	void Disable()
 	{
-		gameObject.SetActive(false);
+		GetComponent<Crow>().Die();
 	}
 
 	public UnityEvent OnDeath

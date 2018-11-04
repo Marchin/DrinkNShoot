@@ -3,17 +3,18 @@
 public class CrowTrigger : MonoBehaviour {
 	[Header("Stage Properties")]
 	[SerializeField] GameObject m_stage;
-	[SerializeField] [Range(0, 10)]
+	[SerializeField][Range(0, 10)]
 	int m_difficultyLevel;
-	[SerializeField] [Range(0f, 600f)]
+	[SerializeField][Range(0f, 600f)]
 	float m_completionTime;
-	[SerializeField] [Range(1, 50)]
+	[SerializeField][Range(1, 50)]
 	int m_bronzeTierKills;
-	[SerializeField] [Range(1, 50)]
+	[SerializeField][Range(1, 50)]
 	int m_silverTierKills;
-	[SerializeField] [Range(1, 50)]
+	[SerializeField][Range(1, 50)]
 	int m_goldTierKills;
-	
+	[SerializeField] int m_poolSize;
+
 	BoxCollider[] m_landingZones;
 	CrowSpawner m_crowSpawner;
 
@@ -25,6 +26,7 @@ public class CrowTrigger : MonoBehaviour {
 	private void OnTriggerEnter(Collider other) {
 		LevelManager.Instance.EnterShootingStage();
 		m_crowSpawner.SetLandingZones(m_landingZones);
+		m_crowSpawner.SetSize(m_poolSize);
 	}
 
 	public void EnableStage() {
@@ -66,7 +68,7 @@ public class CrowTrigger : MonoBehaviour {
 	}
 
 	public Vector3 StagePosition {
-		get { 
+		get {
 			return m_stage.transform.position;
 		}
 	}
