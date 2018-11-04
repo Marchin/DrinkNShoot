@@ -11,13 +11,13 @@ public class PlayerManager : MonoBehaviour
 	}
 
 	[SerializeField] GameObject weaponHolderPrefab;
-	[SerializeField] string gunHolderName = "Gun Holder";
 	[SerializeField] UnityEvent onGunEnable;
 	[SerializeField] UnityEvent onGunDisable;
 
 	static PlayerManager instance;
 	
 	List<Gun> activeGuns;
+	List<Consumable> activeConsumables;
 	CameraRotation cameraRotation;
 	DrunkCamera drunkCamera;
 	WeaponHolder weaponHolder;
@@ -36,6 +36,7 @@ public class PlayerManager : MonoBehaviour
 	void Start()
 	{	
 		activeGuns = new List<Gun>();
+		activeConsumables = new List<Consumable>();
 
 		foreach (Transform gunObject in weaponHolderPrefab.GetComponent<WeaponHolder>().GunHolder)
 		{
@@ -46,6 +47,14 @@ public class PlayerManager : MonoBehaviour
 					activeGuns.Add(gun);
 			}
 		}
+
+        foreach (Transform consumableObject in weaponHolderPrefab.GetComponent<WeaponHolder>().ConsumableHolder)
+        {
+			Consumable consumable = consumableObject.GetComponent<Consumable>();
+			if (consumable)
+				activeConsumables.Add(consumable);
+        }
+
 	}
 
 	void EnablePlayer()
@@ -173,6 +182,13 @@ public class PlayerManager : MonoBehaviour
 		activeGuns.Add(gun);
 	}
 
+	public void AddConsumableStock(string consumableName, int amount)
+	{
+		foreach (Consumable consumable in activeConsumables)
+			if (consumable.GetName() == consumableName)
+				consumable.IncreaseAmount(amount);
+	}
+
 	public bool HasGun(Gun gun)
 	{
 		return activeGuns.Contains(gun);
@@ -192,6 +208,58 @@ public class PlayerManager : MonoBehaviour
 		return hasGunOfType;
 	}
 
+	public bool HasItem(IItem it)
+	{
+        foreach (IItem item in activeGuns)
+            if (item.GetName() == it.GetName())
+                return true;
+
+        foreach (IItem item in activeConsumables)
+            if (item.GetName() == it.GetName())
+                return true;
+
+		return false;
+	}
+
+	public int GetItemAmount(IItem it)
+	{
+		foreach (IItem item in activeGuns)
+			if (item.GetName() == it.GetName())
+				return item.GetAmount();
+		
+		foreach (IItem item in activeConsumables)
+			if (item.GetName() == it.GetName())
+				return item.GetAmount();
+		
+		return 0;
+	}
+
+	public int GetItemAmount(string itemName)
+	{
+		foreach (IItem item in activeGuns)
+			if (item.GetName() == itemName)
+				return item.GetAmount();
+
+		foreach (IItem item in activeConsumables)
+			if (item.GetName() == itemName)
+				return item.GetAmount();
+		
+		return 0;
+	}
+
+	public int GetItemMaxAmount(string itemName)
+	{
+        foreach (IItem item in activeGuns)
+            if (item.GetName() == itemName)
+                return item.GetMaxAmount();
+
+        foreach (IItem item in activeConsumables)
+            if (item.GetName() == itemName)
+                return item.GetMaxAmount();
+
+        return 0;
+	}
+
 	public int Currency
 	{
 		get { return currency; }
@@ -207,11 +275,6 @@ public class PlayerManager : MonoBehaviour
 	public Gun CurrentGun
 	{
 		get { return weaponHolder.EquippedGun; }
-	}
-
-	public Camera FPSCamera
-	{
-		get { return cameraRotation.gameObject.GetComponentInChildren<Camera>(); }
 	}
 
 	public UnityEvent OnGunEnable

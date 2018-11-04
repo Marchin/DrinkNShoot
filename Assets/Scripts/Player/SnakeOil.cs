@@ -14,6 +14,13 @@ public class SnakeOil : Consumable
 	float previousFixedDeltaTime = 0f;
 	bool isApplyingEffect = false;
 	
+
+	protected override void Start()
+	{
+		base.Start();
+        postProcessingBehaviour = FindObjectOfType<Camera>().GetComponent<PostProcessingBehaviour>();
+    }
+
 	protected override void Update()
 	{
 		base.Update();
@@ -33,8 +40,6 @@ public class SnakeOil : Consumable
 
 	protected override void ApplyConsumableEffect()
 	{
-		PlayerManager.Instance.DisablePlayerComponent(PlayerManager.PlayerComponent.DrunkCameraComp);
-		postProcessingBehaviour = PlayerManager.Instance.FPSCamera.GetComponent<PostProcessingBehaviour>();
 		postProcessingBehaviour.profile.colorGrading.enabled = true;
 		Time.timeScale = deadEyeFactor;
 		previousFixedDeltaTime = Time.fixedDeltaTime;

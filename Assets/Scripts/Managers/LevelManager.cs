@@ -25,7 +25,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("Level Properties")]
     [SerializeField] float stageDrunkSpeedIncrease = 0.75f;
-    [SerializeField] float stageDrunkRadiusIncrease = 10f;
+    [SerializeField] float stageDrunkRadiusIncrease = 12f;
     [SerializeField] int cashEarnedPerKill = 5;
 	[SerializeField] int cashEarnedBronze = 100;
 	[SerializeField] int cashEarnedSilver = 150;
@@ -217,7 +217,7 @@ public class LevelManager : MonoBehaviour
         currentSpawnPoint = enemySpawnPoints[currentStageIndex].GetComponent<CrowTrigger>();
         currentSpawnPoint.EnableStage();
 
-        Gun[] currentGuns = playersWagon.gameObject.GetComponentInChildren<WeaponHolder>(true).GetComponentsInChildren<Gun>();
+        Gun[] currentGuns = playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().GetComponentsInChildren<Gun>(true);
 
         foreach (Gun gun in currentGuns)
         {
