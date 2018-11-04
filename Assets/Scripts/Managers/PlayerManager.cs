@@ -28,33 +28,31 @@ public class PlayerManager : MonoBehaviour
 	void Awake() 
 	{
 		if (Instance == this)
+		{
 			DontDestroyOnLoad(gameObject);
+
+            activeGuns = new List<Gun>();
+            activeConsumables = new List<Consumable>();
+
+            foreach (Transform gunObject in weaponHolderPrefab.GetComponent<WeaponHolder>().GunHolder)
+            {
+                if (gunObject.gameObject.activeSelf)
+                {
+                    Gun gun = gunObject.GetComponent<Gun>();
+                    if (gun)
+                        activeGuns.Add(gun);
+                }
+            }
+
+            foreach (Transform consumableObject in weaponHolderPrefab.GetComponent<WeaponHolder>().ConsumableHolder)
+            {
+                Consumable consumable = consumableObject.GetComponent<Consumable>();
+                if (consumable)
+                    activeConsumables.Add(consumable);
+            }
+		}
 		else
 			Destroy(gameObject);
-	}
-
-	void Start()
-	{	
-		activeGuns = new List<Gun>();
-		activeConsumables = new List<Consumable>();
-
-		foreach (Transform gunObject in weaponHolderPrefab.GetComponent<WeaponHolder>().GunHolder)
-		{
-			if (gunObject.gameObject.activeSelf)
-			{
-				Gun gun = gunObject.GetComponent<Gun>();
-				if (gun)
-					activeGuns.Add(gun);
-			}
-		}
-
-        foreach (Transform consumableObject in weaponHolderPrefab.GetComponent<WeaponHolder>().ConsumableHolder)
-        {
-			Consumable consumable = consumableObject.GetComponent<Consumable>();
-			if (consumable)
-				activeConsumables.Add(consumable);
-        }
-
 	}
 
 	void EnablePlayer()
@@ -63,7 +61,8 @@ public class PlayerManager : MonoBehaviour
 		drunkCamera.enabled = true;
 		weaponHolder.enabled = true;
 		weaponHolder.EquippedGun.enabled = true;
-		weaponHolder.EquippedConsumable.enabled = true;
+		if (weaponHolder.EquippedConsumable)
+			weaponHolder.EquippedConsumable.enabled = true;
 		playerAnimator.enabled = true;
 
 		onGunEnable.Invoke();
@@ -75,7 +74,8 @@ public class PlayerManager : MonoBehaviour
 		drunkCamera.enabled = false;
 		weaponHolder.enabled = false ;
         weaponHolder.EquippedGun.enabled = false;
-		weaponHolder.EquippedConsumable.enabled = false;
+		if (weaponHolder.EquippedConsumable)
+			weaponHolder.EquippedConsumable.enabled = false;
 		playerAnimator.enabled = false;
 
 		onGunDisable.Invoke();

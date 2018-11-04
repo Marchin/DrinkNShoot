@@ -33930,12 +33930,12 @@ Prefab:
       propertyPath: weaponHolder
       value: 
       objectReference: {fileID: 1101194381}
-    - target: {fileID: 114086549980704884, guid: f55d09b1ede529f4e8093515d48dcbf3,
+    - target: {fileID: 114071917407714584, guid: f55d09b1ede529f4e8093515d48dcbf3,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114086549980704884, guid: f55d09b1ede529f4e8093515d48dcbf3,
+    - target: {fileID: 114071917407714584, guid: f55d09b1ede529f4e8093515d48dcbf3,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -33950,12 +33950,22 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114071917407714584, guid: f55d09b1ede529f4e8093515d48dcbf3,
+    - target: {fileID: 114523427088698470, guid: f55d09b1ede529f4e8093515d48dcbf3,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114071917407714584, guid: f55d09b1ede529f4e8093515d48dcbf3,
+    - target: {fileID: 114523427088698470, guid: f55d09b1ede529f4e8093515d48dcbf3,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114086549980704884, guid: f55d09b1ede529f4e8093515d48dcbf3,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114086549980704884, guid: f55d09b1ede529f4e8093515d48dcbf3,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1

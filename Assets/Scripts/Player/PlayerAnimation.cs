@@ -111,7 +111,10 @@ public class PlayerAnimation : MonoBehaviour
 	void ChangeConsumableAnimations()
 	{
 		Consumable currentConsumable = weaponHolder.EquippedConsumable;
-        animatorOverrideController["DEFAULT USE ITEM"] = currentConsumable.UseAnimation;
-		currentConsumable.OnUse.AddListener(UseItemAnimation);
+		if (currentConsumable)
+		{
+			animatorOverrideController["DEFAULT USE ITEM"] = currentConsumable.UseAnimation;
+			currentConsumable.OnUse.AddListener(UseItemAnimation);
+		}
 	}
 }
