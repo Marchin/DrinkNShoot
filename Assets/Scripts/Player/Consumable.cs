@@ -18,6 +18,7 @@ public abstract class Consumable : MonoBehaviour, IItem
 	
 	[Header("Events")]
 	[SerializeField] UnityEvent onUse;
+	[SerializeField] UnityEvent onEmpty;
 	
 	int amount = 0;
 	protected bool isInUse = false;
@@ -36,16 +37,17 @@ public abstract class Consumable : MonoBehaviour, IItem
 	IEnumerator UseItem()
 	{
 		isInUse = true;
-		amount -= 1;
 		PlayerManager.Instance.DecreaseConsumableAmount(this);
         onUse.Invoke();
+		if (PlayerManager.Instance.GetItemAmount(this) == 0)
+			onEmpty.Invoke();
         yield return new WaitForSeconds(useAnimation.length);
 		ApplyConsumableEffect();
 	}
 
 	bool CanUse()
 	{
-		return !isInUse && amount > 0;
+		return !isInUse && PlayerManager.Instance.GetItemAmount(this) > 0;
 	} 
 
 	protected abstract void ApplyConsumableEffect();
@@ -97,5 +99,10 @@ public abstract class Consumable : MonoBehaviour, IItem
 	public UnityEvent OnUse
 	{
 		get { return onUse;}
+	}
+
+	public UnityEvent OnEmpty
+	{
+		get { return onEmpty;}
 	}
 }

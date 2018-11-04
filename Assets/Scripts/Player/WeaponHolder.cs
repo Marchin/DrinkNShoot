@@ -57,7 +57,14 @@ public class WeaponHolder : MonoBehaviour
 		{
 			consumable.gameObject.SetActive(i == equippedConsumableIndex);
 			if (i == equippedConsumableIndex)
-				equippedConsumable = consumable.GetComponent<Consumable>();
+			{
+				Consumable cons = consumable.gameObject.GetComponent<Consumable>();
+				if (PlayerManager.Instance.GetItemAmount(cons) > 0)
+				{
+					equippedConsumable = cons;
+					cons.OnEmpty.AddListener(UnequipConsumable);
+				}
+			}
 			i++;
 		}
 		onConsumableSwap.Invoke();
@@ -112,6 +119,11 @@ public class WeaponHolder : MonoBehaviour
         if (equippedConsumableIndex != previousConsumableIndex)
             SetEquippedConsumable();
     }
+
+	void UnequipConsumable()
+	{
+		equippedConsumable = null;
+	}
 
 	bool CanSwapWeapon()
 	{

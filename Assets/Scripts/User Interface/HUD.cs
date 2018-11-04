@@ -13,6 +13,7 @@ public class HUD : MonoBehaviour
 	[SerializeField] GameObject crowHUD;
 	[SerializeField] GameObject timerHUD;
 	[SerializeField] GameObject currencyHUD;
+	[SerializeField] GameObject consumablesHUD;
 	[SerializeField] GameObject rankBanner;
 	
 	[Header("Audio Sources")]
@@ -27,7 +28,7 @@ public class HUD : MonoBehaviour
 	[SerializeField] WeaponHolder weaponHolder;
 	
 	[Header("Other Properties")]
-	[SerializeField] float objectiveBannerDuration = 3.0f;
+	[SerializeField] float rankBannerDuration = 3f;
 	
 	const int CRITICAL_AMMO_IN_GUN = 1;
 	const int CRITICAL_TIME_LEFT = 10;
@@ -37,11 +38,13 @@ public class HUD : MonoBehaviour
     TextMeshProUGUI crowsText;
     TextMeshProUGUI timerText;
     TextMeshProUGUI currencyText;
+    TextMeshProUGUI consumablesText;
 	TextMeshProUGUI rankBannerText;
 	Animator rankBannerAnimator;
 	Animator ammoHUDAnimator;
 	Animator crowHUDAnimator;
 	Animator timerHUDAnimator;
+	Animator consumablesHUDAnimator;
 	Color darkGreen;
 	Color darkRed;
 	Color yellow;
@@ -55,19 +58,23 @@ public class HUD : MonoBehaviour
 		crowsText = crowHUD.GetComponentInChildren<TextMeshProUGUI>();
 		timerText = timerHUD.GetComponentInChildren<TextMeshProUGUI>();
 		currencyText = currencyHUD.GetComponentInChildren<TextMeshProUGUI>();
+		consumablesText = consumablesHUD.GetComponentInChildren<TextMeshProUGUI>();
 		rankBannerText = rankBanner.GetComponentInChildren<TextMeshProUGUI>();
 
 		ammoHUDAnimator = ammoHUD.GetComponent<Animator>();
 		crowHUDAnimator = crowHUD.GetComponent<Animator>();
 		timerHUDAnimator = timerHUD.GetComponent<Animator>();
+		consumablesHUDAnimator = consumablesHUD.GetComponent<Animator>();
 		rankBannerAnimator = rankBanner.GetComponent<Animator>();
 	}
 
     void Start()
     {
 		ChangeWeaponInDisplay();
+		ChangeConsumableInDisplay();
 		
 		weaponHolder.OnGunSwap.AddListener(ChangeWeaponInDisplay);
+		weaponHolder.OnConsumableSwap.AddListener(ChangeConsumableInDisplay);
 		LevelManager.Instance.OnEnemyKill.AddListener(ChangeKillsDisplay);
 		LevelManager.Instance.OnStartNextStage.AddListener(ChangeKillsDisplay);
 		PlayerManager.Instance.OnGunEnable.AddListener(ToggleCrosshair);
@@ -81,6 +88,8 @@ public class HUD : MonoBehaviour
 		darkRed = new Color(0.5f, 0.1f, 0.1f);
 
 		ChangeAmmoDisplay();
+		if (weaponHolder.EquippedConsumable)
+			ChangeConsumablesDisplay();
 		ChangeKillsDisplay();
     }
 
@@ -127,6 +136,19 @@ public class HUD : MonoBehaviour
 			ammoText.color = Color.white;
 
         ammoText.text = bulletsInCylinder.ToString() + "/" + cylinderCapacity.ToString();
+    }
+
+    void ChangeConsumablesDisplay()
+    {
+        int amount = PlayerManager.Instance.GetItemAmount(weaponHolder.EquippedConsumable.GetName());
+        int maxAmount = PlayerManager.Instance.GetItemMaxAmount(weaponHolder.EquippedConsumable.GetName());
+
+		if (amount == 0)
+			consumablesHUD.SetActive(false);
+		else
+			consumablesText.color = Color.white;
+
+        consumablesText.text = amount.ToString() + "/" + maxAmount.ToString();
     }
 
 	void ChangeKillsDisplay()
@@ -183,7 +205,7 @@ public class HUD : MonoBehaviour
 	{
 		if (rankBanner.activeInHierarchy && !objectiveBannerWasJustDisabled)
 		{
-			if (objectiveBannerTimer >= objectiveBannerDuration)
+			if (objectiveBannerTimer >= rankBannerDuration)
 			{
 				objectiveBannerWasJustDisabled = true;
 				objectiveBannerTimer = 0f;
@@ -218,6 +240,19 @@ public class HUD : MonoBehaviour
 
 		ChangeCrosshairColor();
 		ChangeAmmoDisplay();
+	}
+
+	void ChangeConsumableInDisplay()
+	{
+		if (weaponHolder.EquippedConsumable)
+		{
+			consumablesHUD.SetActive(true);
+			weaponHolder.EquippedConsumable.OnUse.AddListener(ChangeConsumablesDisplay);
+
+			ChangeConsumablesDisplay();
+		}
+		else
+			consumablesHUD.SetActive(false);
 	}
 
 	public void ChangeCurrencyDisplay(int currency)

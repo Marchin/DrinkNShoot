@@ -59,7 +59,8 @@ public class PlayerAudio : MonoBehaviour
 
 	void ChangeConsumableSounds()
 	{
-		weaponHolder.EquippedConsumable.OnUse.AddListener(PlayUseItemSound);
+		if (weaponHolder.EquippedConsumable)
+			weaponHolder.EquippedConsumable.OnUse.AddListener(PlayUseItemSound);
 	}
 
 	// Animation Events Methods
