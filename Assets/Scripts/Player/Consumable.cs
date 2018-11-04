@@ -24,9 +24,9 @@ public abstract class Consumable : MonoBehaviour, IItem
 	[Header("Events")]
 	[SerializeField] UnityEvent onUse;
 	
-	int amount = 3;
-	protected bool isUsing = false;
-
+	int amount = 5;
+	protected bool isInUse = false;
+	
 	protected virtual void Update()
 	{
 		if (InputManager.Instance.GetUseItemButton() && CanUse())
@@ -35,7 +35,7 @@ public abstract class Consumable : MonoBehaviour, IItem
 
 	IEnumerator UseItem()
 	{
-		isUsing = true;
+		isInUse = true;
 		amount -= 1;
         onUse.Invoke();
         yield return new WaitForSeconds(useAnimation.length);
@@ -44,7 +44,7 @@ public abstract class Consumable : MonoBehaviour, IItem
 
 	bool CanUse()
 	{
-		return !isUsing && amount > 0;
+		return !isInUse && amount > 0;
 	} 
 
 	protected abstract void ApplyConsumableEffect();

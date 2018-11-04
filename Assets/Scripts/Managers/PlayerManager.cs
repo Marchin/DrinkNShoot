@@ -10,7 +10,8 @@ public class PlayerManager : MonoBehaviour
 		CameraRotationComp, DrunkCameraComp, GunComp, WeaponHolderComp, AnimatorComp
 	}
 
-	[SerializeField] GameObject weaponHolderPrefab; 
+	[SerializeField] GameObject weaponHolderPrefab;
+	[SerializeField] string gunHolderName = "Gun Holder";
 	[SerializeField] UnityEvent onGunEnable;
 	[SerializeField] UnityEvent onGunDisable;
 
@@ -21,7 +22,7 @@ public class PlayerManager : MonoBehaviour
 	DrunkCamera drunkCamera;
 	WeaponHolder weaponHolder;
 	Animator playerAnimator;
-	int currency;
+	int currency = 1000;
 	int totalKills;
 
 	void Awake() 
@@ -36,7 +37,7 @@ public class PlayerManager : MonoBehaviour
 	{	
 		activeGuns = new List<Gun>();
 
-		foreach (Transform gunObject in weaponHolderPrefab.transform)
+		foreach (Transform gunObject in weaponHolderPrefab.GetComponent<WeaponHolder>().GunHolder)
 		{
 			if (gunObject.gameObject.activeSelf)
 			{
@@ -206,6 +207,11 @@ public class PlayerManager : MonoBehaviour
 	public Gun CurrentGun
 	{
 		get { return weaponHolder.EquippedGun; }
+	}
+
+	public Camera FPSCamera
+	{
+		get { return cameraRotation.gameObject.GetComponentInChildren<Camera>(); }
 	}
 
 	public UnityEvent OnGunEnable
