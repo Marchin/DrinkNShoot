@@ -8,20 +8,26 @@ public class IntroText : MonoBehaviour
 	Animator animator;
 	PauseMenu pauseMenu;
 
+	void Awake()
+	{
+		animator = GetComponent<Animator>();
+		pauseMenu = transform.GetComponentInParent<PauseMenu>();
+		pauseMenu.enabled = false;
+	}
+
 	void Start()
 	{
 		Time.timeScale = 0f;
 		GameManager.Instance.ShowCursor();
 		PlayerManager.Instance.DisablePlayerComponent(PlayerManager.PlayerComponent.GunComp);
-		animator = GetComponent<Animator>();
-		pauseMenu = transform.GetComponentInParent<PauseMenu>();
-		pauseMenu.enabled = false;
+		PlayerManager.Instance.DisablePlayerComponent(PlayerManager.PlayerComponent.CameraRotationComp);
 	}
 
 	void DeactivateObject()
 	{
 		gameObject.SetActive(false);
 		PlayerManager.Instance.EnablePlayerComponent(PlayerManager.PlayerComponent.GunComp);
+		PlayerManager.Instance.EnablePlayerComponent(PlayerManager.PlayerComponent.CameraRotationComp);
 		pauseMenu.enabled = true;
 	}
 
