@@ -25,6 +25,7 @@ public class StoreMenu : MonoBehaviour
 		int i = 0;
 		foreach (IItem item in StoreManager.Instance.ItemsStock.Keys)
 		{
+			itemPrices[i].GetComponentInChildren<TextMeshProUGUI>().text = StoreManager.Instance.ItemsStock[item].ToString();
 			if (PlayerManager.Instance.HasItem(item) && PlayerManager.Instance.GetItemAmount(item) == item.GetMaxAmount())
 			{
 				itemPurchaseButtons[i].interactable = false;

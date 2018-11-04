@@ -8506,7 +8506,7 @@ MonoBehaviour:
   impactForce: 700
   recoilSwayLevel: 12
   recoilDuration: 0.3
-  maxCrosshairRadius: 25
+  maxCrosshairRadius: 35
   maxCrosshairSpeed: 7
   shootingLayers:
   - Crows
@@ -8626,7 +8626,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   consumableName: Snake Oil
-  consumableType: 0
   maxAmount: 1
   useAnimation: {fileID: 7400000, guid: 15f7752e40c4d9e46a46bda3b26d0bda, type: 2}
   useSound: {fileID: 82809652422146786}

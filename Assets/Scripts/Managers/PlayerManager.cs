@@ -260,6 +260,13 @@ public class PlayerManager : MonoBehaviour
         return 0;
 	}
 
+	public void DecreaseConsumableAmount(Consumable cons)
+	{
+		foreach (Consumable consumable in activeConsumables)
+			if (consumable.GetName() == cons.GetName())
+				consumable.ReduceAmount();		
+	}
+
 	public int Currency
 	{
 		get { return currency; }
