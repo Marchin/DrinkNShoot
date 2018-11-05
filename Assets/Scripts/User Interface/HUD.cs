@@ -143,10 +143,14 @@ public class HUD : MonoBehaviour
         int amount = PlayerManager.Instance.GetItemAmount(weaponHolder.EquippedConsumable.GetName());
         int maxAmount = PlayerManager.Instance.GetItemMaxAmount(weaponHolder.EquippedConsumable.GetName());
 
+		
 		if (amount == 0)
 			consumablesHUD.SetActive(false);
 		else
+		{
+			consumablesHUDAnimator.SetTrigger("Has to Pop");
 			consumablesText.color = Color.white;
+		}
 
         consumablesText.text = amount.ToString() + "/" + maxAmount.ToString();
     }
