@@ -6,6 +6,8 @@ public class PlayerAudio : MonoBehaviour
 {
 	[SerializeField] AudioSource drinkingSound;
 	[SerializeField] AudioSource burpingSound;
+	[SerializeField] AudioSource deadEyeEnterSound;
+	[SerializeField] AudioSource deadEyeExitSound;
 	
 	WeaponHolder weaponHolder;
 
@@ -17,6 +19,7 @@ public class PlayerAudio : MonoBehaviour
 	void Start()
 	{
 		ChangeGunSounds();
+		ChangeConsumableSounds();
 		weaponHolder.OnGunSwap.AddListener(ChangeGunSounds);
 		weaponHolder.OnConsumableSwap.AddListener(ChangeConsumableSounds);
 	}
@@ -49,6 +52,11 @@ public class PlayerAudio : MonoBehaviour
 		weaponHolder.EquippedConsumable.UseSound.Play();
 	}
 
+	void PlayDeadEyeExitSound()
+	{
+		deadEyeExitSound.Play();
+	}
+
 	void ChangeGunSounds()
 	{
         weaponHolder.EquippedGun.OnShot.AddListener(PlayShootSound);
@@ -60,7 +68,14 @@ public class PlayerAudio : MonoBehaviour
 	void ChangeConsumableSounds()
 	{
 		if (weaponHolder.EquippedConsumable)
+		{
 			weaponHolder.EquippedConsumable.OnUse.AddListener(PlayUseItemSound);
+			if (weaponHolder.EquippedConsumable.GetName() == "Snake Oil")
+			{
+				SnakeOil snakeOil = (SnakeOil)weaponHolder.EquippedConsumable;
+				snakeOil.OnBackToNormalTime.AddListener(PlayDeadEyeExitSound);
+			}
+		}
 	}
 
 	// Animation Events Methods
@@ -72,5 +87,10 @@ public class PlayerAudio : MonoBehaviour
 	public void PlayBurpingSound()
 	{
 		burpingSound.Play();
+	}
+
+	public void PlayDeadEyeEnterSound()
+	{
+		deadEyeEnterSound.Play();
 	}
 }
