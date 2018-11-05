@@ -48,7 +48,11 @@ public class CameraRotation : MonoBehaviour
 		Vector3 targetDir = (LevelManager.Instance.CurrentStagePosition - LevelManager.Instance.CurrentSpawnPointPosition).normalized;
 		Quaternion targetCentralRotation = Quaternion.LookRotation(targetDir);
 
+		Debug.Log(minHorizontalAngle);
+		Debug.Log(maxHorizontalAngle);
+
 		minHorizontalAngle = targetCentralRotation.eulerAngles.y - horizontalRange / 2f;
 		maxHorizontalAngle = targetCentralRotation.eulerAngles.y + horizontalRange / 2f;
+		Debug.DrawRay(LevelManager.Instance.CurrentSpawnPointPosition, targetDir * 100f, Color.green, 60f);
 	}
 }

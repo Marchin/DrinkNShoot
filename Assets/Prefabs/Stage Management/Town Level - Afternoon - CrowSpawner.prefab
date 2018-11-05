@@ -9,33 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1754954581055320}
+  m_RootGameObject: {fileID: 1695720610406524}
   m_IsPrefabAsset: 1
---- !u!1 &1103665957421818
+--- !u!1 &1042689384950804
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4724348538853222}
-  m_Layer: 0
-  m_Name: Pool of Objects
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1161074249778014
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4441149030020056}
-  - component: {fileID: 65710796246551324}
-  - component: {fileID: 114074142597568652}
+  - component: {fileID: 4986664693553044}
+  - component: {fileID: 65908772247470562}
+  - component: {fileID: 114346128423538650}
   m_Layer: 16
   m_Name: CrowTrigger 2
   m_TagString: Untagged
@@ -43,16 +28,31 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1409839443716776
+--- !u!1 &1344930719134678
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4542539551584676}
-  - component: {fileID: 65750440642745736}
-  - component: {fileID: 114141254075659796}
+  - component: {fileID: 4431937126790960}
+  m_Layer: 0
+  m_Name: Pool of Objects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1433723632740886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4289994372507324}
+  - component: {fileID: 65681113170203732}
+  - component: {fileID: 114812038859022464}
   m_Layer: 16
   m_Name: CrowTrigger 1
   m_TagString: Untagged
@@ -60,16 +60,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1526654343901394
+--- !u!1 &1695720610406524
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4464470636636112}
-  - component: {fileID: 65615692683112902}
-  - component: {fileID: 114639216887672170}
+  - component: {fileID: 4687057465018054}
+  - component: {fileID: 114820652841015664}
+  - component: {fileID: 114268280217793206}
+  m_Layer: 0
+  m_Name: Town Level - Afternoon - CrowSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1894920663852434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4611620189105290}
+  - component: {fileID: 65816470712485430}
+  - component: {fileID: 114009902667825456}
   m_Layer: 16
   m_Name: CrowTrigger 4
   m_TagString: Untagged
@@ -77,33 +94,16 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1754954581055320
+--- !u!1 &1956340567117090
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4267023890869834}
-  - component: {fileID: 114517179880367768}
-  - component: {fileID: 114261857304258724}
-  m_Layer: 0
-  m_Name: Town Level - CrowSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1832900540190574
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4300926715395024}
-  - component: {fileID: 65879512580720618}
-  - component: {fileID: 114006832488659626}
+  - component: {fileID: 4444841325004994}
+  - component: {fileID: 65507323893660098}
+  - component: {fileID: 114534691556309614}
   m_Layer: 16
   m_Name: CrowTrigger 3
   m_TagString: Untagged
@@ -111,179 +111,143 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4267023890869834
+--- !u!4 &4289994372507324
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1754954581055320}
+  m_GameObject: {fileID: 1433723632740886}
+  m_LocalRotation: {x: -0.0038553206, y: 0.004305872, z: -0.00081699464, w: 0.999983}
+  m_LocalPosition: {x: 182.28, y: 0.51, z: 232.72}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4687057465018054}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4431937126790960
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344930719134678}
   m_LocalRotation: {x: -0.0038553206, y: 0.004305872, z: -0.00081699464, w: 0.999983}
   m_LocalPosition: {x: 182.618, y: 1.4729862, z: 236.56062}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4542539551584676}
-  - {fileID: 4441149030020056}
-  - {fileID: 4300926715395024}
-  - {fileID: 4464470636636112}
-  - {fileID: 4724348538853222}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Children: []
+  m_Father: {fileID: 4687057465018054}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4300926715395024
+--- !u!4 &4444841325004994
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1832900540190574}
-  m_LocalRotation: {x: -0, y: -0, z: -1.6370903e-11, w: 1}
-  m_LocalPosition: {x: -0.48, y: -0.06, z: 23.86}
+  m_GameObject: {fileID: 1956340567117090}
+  m_LocalRotation: {x: -0.0033069977, y: -0.7029995, z: 0.0021435346, w: 0.7111795}
+  m_LocalPosition: {x: 170.49, y: 0.77, z: 271.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4267023890869834}
+  m_Father: {fileID: 4687057465018054}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4441149030020056
+  m_LocalEulerAnglesHint: {x: -0.097, y: -89.338005, z: 0.441}
+--- !u!4 &4611620189105290
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1161074249778014}
-  m_LocalRotation: {x: -0, y: -0, z: -1.6370903e-11, w: 1}
-  m_LocalPosition: {x: -0.64, y: -0, z: 16.14}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1894920663852434}
+  m_LocalRotation: {x: -0.0019242435, y: -0.9536626, z: 0.0034392246, w: 0.3008525}
+  m_LocalPosition: {x: 132.6, y: 0.56, z: 247.82}
+  m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000005}
   m_Children: []
-  m_Father: {fileID: 4267023890869834}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4464470636636112
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1526654343901394}
-  m_LocalRotation: {x: 0.000743283, y: -0.44582433, z: -0.0034345028, w: 0.8951136}
-  m_LocalPosition: {x: -2.54, y: -0.11, z: 32.33}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4267023890869834}
+  m_Father: {fileID: 4687057465018054}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -0.09900001, y: -52.952003, z: -0.39000002}
---- !u!4 &4542539551584676
+  m_LocalEulerAnglesHint: {x: 0.31, y: -144.981, z: 0.32900003}
+--- !u!4 &4687057465018054
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1409839443716776}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.64, y: -0, z: -0.01}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4267023890869834}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4724348538853222
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1103665957421818}
+  m_GameObject: {fileID: 1695720610406524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4267023890869834}
-  m_RootOrder: 4
+  m_Children:
+  - {fileID: 4289994372507324}
+  - {fileID: 4986664693553044}
+  - {fileID: 4444841325004994}
+  - {fileID: 4611620189105290}
+  - {fileID: 4431937126790960}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65615692683112902
+--- !u!4 &4986664693553044
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1042689384950804}
+  m_LocalRotation: {x: -0.0038553206, y: 0.004305872, z: -0.00081699464, w: 0.999983}
+  m_LocalPosition: {x: 182.46, y: 0.72, z: 249.32}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4687057465018054}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65507323893660098
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1526654343901394}
+  m_GameObject: {fileID: 1956340567117090}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 1.5, z: 4}
+  m_Size: {x: 2.5, y: 1, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65710796246551324
+--- !u!65 &65681113170203732
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1161074249778014}
+  m_GameObject: {fileID: 1433723632740886}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 1.5, z: 4}
+  m_Size: {x: 2.5, y: 1, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65750440642745736
+--- !u!65 &65816470712485430
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1409839443716776}
+  m_GameObject: {fileID: 1894920663852434}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 1.5, z: 4}
+  m_Size: {x: 2.5, y: 1, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65879512580720618
+--- !u!65 &65908772247470562
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1832900540190574}
+  m_GameObject: {fileID: 1042689384950804}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 1.5, z: 4}
+  m_Size: {x: 2.5, y: 1, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114006832488659626
+--- !u!114 &114009902667825456
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1832900540190574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_stage: {fileID: 0}
-  m_difficultyLevel: 4
-  m_completionTime: 90
-  m_bronzeTierKills: 18
-  m_silverTierKills: 20
-  m_goldTierKills: 22
-  m_poolSize: 10
---- !u!114 &114074142597568652
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1161074249778014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_stage: {fileID: 0}
-  m_difficultyLevel: 2
-  m_completionTime: 60
-  m_bronzeTierKills: 12
-  m_silverTierKills: 15
-  m_goldTierKills: 18
-  m_poolSize: 8
---- !u!114 &114141254075659796
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1409839443716776}
+  m_GameObject: {fileID: 1894920663852434}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
@@ -296,12 +260,13 @@ MonoBehaviour:
   m_silverTierKills: 7
   m_goldTierKills: 10
   m_poolSize: 6
---- !u!114 &114261857304258724
+  playerTag: Player
+--- !u!114 &114268280217793206
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1754954581055320}
+  m_GameObject: {fileID: 1695720610406524}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6bbeadb66324194ba82a435e2e6c3b8, type: 3}
@@ -309,12 +274,69 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_spawnInterval: 2
   m_poopInterval: 10
---- !u!114 &114517179880367768
+--- !u!114 &114346128423538650
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1754954581055320}
+  m_GameObject: {fileID: 1042689384950804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_stage: {fileID: 0}
+  m_difficultyLevel: 0
+  m_completionTime: 45
+  m_bronzeTierKills: 5
+  m_silverTierKills: 7
+  m_goldTierKills: 10
+  m_poolSize: 6
+  playerTag: Player
+--- !u!114 &114534691556309614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1956340567117090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_stage: {fileID: 0}
+  m_difficultyLevel: 0
+  m_completionTime: 45
+  m_bronzeTierKills: 5
+  m_silverTierKills: 7
+  m_goldTierKills: 10
+  m_poolSize: 6
+  playerTag: Player
+--- !u!114 &114812038859022464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1433723632740886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_stage: {fileID: 0}
+  m_difficultyLevel: 0
+  m_completionTime: 45
+  m_bronzeTierKills: 5
+  m_silverTierKills: 7
+  m_goldTierKills: 10
+  m_poolSize: 6
+  playerTag: Player
+--- !u!114 &114820652841015664
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1695720610406524}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d48e1ce2b1a23245b74b10dbd4872fa, type: 3}
@@ -324,21 +346,3 @@ MonoBehaviour:
   m_gameObject: {fileID: 1306119874549748, guid: 66bfa892b68e0e14baf4dabf67e229db,
     type: 2}
   m_size: 8
---- !u!114 &114639216887672170
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1526654343901394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_stage: {fileID: 0}
-  m_difficultyLevel: 6
-  m_completionTime: 120
-  m_bronzeTierKills: 20
-  m_silverTierKills: 22
-  m_goldTierKills: 24
-  m_poolSize: 12

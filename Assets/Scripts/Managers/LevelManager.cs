@@ -30,6 +30,8 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] int cashEarnedBronze = 100;
 	[SerializeField] int cashEarnedSilver = 150;
 	[SerializeField] int cashEarnedGold = 175;
+	[SerializeField] bool showIntroText;
+	[SerializeField] bool showTutorial;
 
     [Header("Sounds")]
     [SerializeField] AudioSource completeLevelSound;
@@ -86,11 +88,12 @@ public class LevelManager : MonoBehaviour
 
         currentSpawnPoint.EnableStage();
 
-        if (GameManager.Instance.TutorialEnabled)
+        if (showTutorial && GameManager.Instance.TutorialEnabled)
         {
             playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().EquippedGun.OnEmptyGun.AddListener(FirstEmptyGunNotice);
             tutorialUI.SetActive(true);
-            introTextUI.SetActive(true);
+            if (showIntroText)
+                introTextUI.SetActive(true);
             GameManager.Instance.TutorialEnabled = false;
         }
     }

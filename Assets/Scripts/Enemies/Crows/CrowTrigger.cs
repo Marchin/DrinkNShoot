@@ -14,6 +14,7 @@ public class CrowTrigger : MonoBehaviour {
 	[SerializeField][Range(1, 50)]
 	int m_goldTierKills;
 	[SerializeField] int m_poolSize;
+	[SerializeField] string playerTag = "Player";
 
 	BoxCollider[] m_landingZones;
 	CrowSpawner m_crowSpawner;
@@ -24,9 +25,11 @@ public class CrowTrigger : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		LevelManager.Instance.EnterShootingStage();
-		m_crowSpawner.SetLandingZones(m_landingZones);
-		m_crowSpawner.SetSize(m_poolSize);
+		if (other.gameObject.CompareTag(playerTag)) {
+			LevelManager.Instance.EnterShootingStage();
+			m_crowSpawner.SetLandingZones(m_landingZones);
+			m_crowSpawner.SetSize(m_poolSize);
+		}
 	}
 
 	public void EnableStage() {
