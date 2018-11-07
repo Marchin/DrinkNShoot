@@ -136,7 +136,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1832900540190574}
   m_LocalRotation: {x: -0, y: -0, z: -1.6370903e-11, w: 1}
-  m_LocalPosition: {x: -0.48, y: -0.06, z: 23.86}
+  m_LocalPosition: {x: -0.4800052, y: -0.059999987, z: 23.859991}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4267023890869834}
@@ -149,7 +149,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1161074249778014}
   m_LocalRotation: {x: -0, y: -0, z: -1.6370903e-11, w: 1}
-  m_LocalPosition: {x: -0.64, y: -0, z: 16.14}
+  m_LocalPosition: {x: -0.6400024, y: 0, z: 16.139996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4267023890869834}
@@ -161,8 +161,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1526654343901394}
-  m_LocalRotation: {x: 0.000743283, y: -0.44582433, z: -0.0034345028, w: 0.8951136}
-  m_LocalPosition: {x: -2.54, y: -0.11, z: 32.33}
+  m_LocalRotation: {x: 0.0007432832, y: -0.44582433, z: -0.0034345023, w: 0.8951136}
+  m_LocalPosition: {x: -2.5399976, y: -0.10999994, z: 32.329994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4267023890869834}
@@ -174,8 +174,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1409839443716776}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.64, y: -0, z: -0.01}
+  m_LocalRotation: {x: -0, y: -0, z: -1.6370903e-11, w: 1}
+  m_LocalPosition: {x: 0.6400033, y: 0, z: -0.009996179}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4267023890869834}
@@ -260,6 +260,7 @@ MonoBehaviour:
   m_silverTierKills: 20
   m_goldTierKills: 22
   m_poolSize: 10
+  playerTag: Player
 --- !u!114 &114074142597568652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -278,6 +279,7 @@ MonoBehaviour:
   m_silverTierKills: 15
   m_goldTierKills: 18
   m_poolSize: 8
+  playerTag: Player
 --- !u!114 &114141254075659796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -296,6 +298,7 @@ MonoBehaviour:
   m_silverTierKills: 7
   m_goldTierKills: 10
   m_poolSize: 6
+  playerTag: Player
 --- !u!114 &114261857304258724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -342,3 +345,4 @@ MonoBehaviour:
   m_silverTierKills: 22
   m_goldTierKills: 24
   m_poolSize: 12
+  playerTag: Player

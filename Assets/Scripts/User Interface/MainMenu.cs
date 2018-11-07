@@ -17,10 +17,10 @@ public class MainMenu : MonoBehaviour
 		appVersionText.text = "Application Version: " + Application.version;
 	}
 
-	public void Play()
+	public void Play(int level)
 	{
 		GameManager.Instance.HideCursor();
-        GameManager.Instance.FadeToScene(GameManager.Instance.GetLevelSceneName(1));
+        GameManager.Instance.FadeToScene(GameManager.Instance.GetLevelSceneName(level));
 	}
 
 	public void EnterStore()

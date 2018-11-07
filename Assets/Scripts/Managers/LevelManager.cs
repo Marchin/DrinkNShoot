@@ -32,6 +32,7 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] int cashEarnedGold = 175;
 	[SerializeField] bool showIntroText;
 	[SerializeField] bool showTutorial;
+	[SerializeField] string nextLevelName;
 
     [Header("Sounds")]
     [SerializeField] AudioSource completeLevelSound;
@@ -359,6 +360,11 @@ public class LevelManager : MonoBehaviour
     public int CashEarnedGold
     {
         get { return cashEarnedGold; }
+    }
+
+    public string NextLevelName
+    {
+        get { return nextLevelName; }
     }
 
     public Vector3 CurrentStagePosition

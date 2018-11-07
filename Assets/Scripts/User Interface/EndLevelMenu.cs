@@ -23,6 +23,7 @@ public class EndLevelMenu : MonoBehaviour
 	[SerializeField] UnityEvent onContinue;
 
 	TextMeshProUGUI[] cashBonusesTexts = {null, null, null};
+	bool lastStageOfLevel = false;
 
 	void Start()
 	{
@@ -40,6 +41,11 @@ public class EndLevelMenu : MonoBehaviour
         cashBonusesTexts[2].text = "+ $" + LevelManager.Instance.CashEarnedGold.ToString();
 	}
 
+	void PlayNextLevel()
+	{
+		GameManager.Instance.FadeToScene(LevelManager.Instance.NextLevelName);
+	}
+
 	public void Restart()
 	{
 		Time.timeScale = 1f;
@@ -50,9 +56,14 @@ public class EndLevelMenu : MonoBehaviour
 	public void PlayNextStage()
 	{
 		Time.timeScale = 1f;
-		GameManager.Instance.HideCursor();
-		onContinue.Invoke();
-		LevelManager.Instance.MoveToNextStage();
+		if (!lastStageOfLevel)
+		{
+			GameManager.Instance.HideCursor();
+			onContinue.Invoke();
+			LevelManager.Instance.MoveToNextStage();
+		}
+		else
+			PlayNextLevel();
 	}
 
 	public void Quit()
@@ -69,6 +80,8 @@ public class EndLevelMenu : MonoBehaviour
             cashText.text = possibleCashLegends[1];
             killsText.text = possibleKillsLegends[1];
             firstButtonText.text = possibleButtonNames[1];
+			
+			lastStageOfLevel = true;
 		}
 
         cashAmountText.text = "$" + cash.ToString();
