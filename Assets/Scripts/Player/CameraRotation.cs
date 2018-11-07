@@ -13,6 +13,7 @@ public class CameraRotation : MonoBehaviour
 	float verticalAngle = 0f;
 	float minHorizontalAngle;
 	float maxHorizontalAngle;
+	bool horizontalRotationClamped = false;
 	
 	void Awake()
 	{
@@ -26,6 +27,7 @@ public class CameraRotation : MonoBehaviour
 	void Start()
 	{
 		LevelManager.Instance.OnShootingStageEnter.AddListener(ChangeHorizontalClamping);
+		LevelManager.Instance.OnStartNextStage.AddListener(UnclampHorizontalRotation);
 	}
 
 	void Update()
@@ -37,7 +39,8 @@ public class CameraRotation : MonoBehaviour
 		verticalAngle -= verticalRotation;
 
 		verticalAngle = Mathf.Clamp(verticalAngle, -verticalRange, verticalRange);
-		horizontalAngle = Mathf.Clamp(horizontalAngle, minHorizontalAngle, maxHorizontalAngle);
+		if (horizontalRotationClamped)
+			horizontalAngle = Mathf.Clamp(horizontalAngle, minHorizontalAngle, maxHorizontalAngle);
 
 		transform.eulerAngles = new Vector3(transform.eulerAngles.x, horizontalAngle, transform.eulerAngles.z);
 		fpsCamera.eulerAngles = new Vector3(verticalAngle, fpsCamera.eulerAngles.y, fpsCamera.eulerAngles.z);
@@ -45,15 +48,18 @@ public class CameraRotation : MonoBehaviour
 
 	void ChangeHorizontalClamping()
 	{
+		horizontalRotationClamped = true;
 		Vector3 targetDir = (LevelManager.Instance.CurrentStagePosition - LevelManager.Instance.CurrentSpawnPointPosition).normalized;
 		Quaternion targetCentralRotation = Quaternion.LookRotation(targetDir);
 
-		Debug.Log(targetCentralRotation.eulerAngles);
-
 		minHorizontalAngle = targetCentralRotation.eulerAngles.y - horizontalRange / 2f;
 		maxHorizontalAngle = targetCentralRotation.eulerAngles.y + horizontalRange / 2f;
-		Debug.DrawRay(LevelManager.Instance.CurrentSpawnPointPosition, targetDir * 100f, Color.green, 60f);
-		Debug.Log(minHorizontalAngle);
-		Debug.Log(maxHorizontalAngle);
+	}
+
+	void UnclampHorizontalRotation()
+	{
+		horizontalRotationClamped = false;
+		minHorizontalAngle = 0f;
+		maxHorizontalAngle = 0f;
 	}
 }

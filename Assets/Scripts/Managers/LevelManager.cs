@@ -24,8 +24,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject introTextUI;
 
     [Header("Level Properties")]
-    [SerializeField] float stageDrunkSpeedIncrease = 0.75f;
-    [SerializeField] float stageDrunkRadiusIncrease = 12f;
+    [SerializeField] float drunkSpeedIncreaseFactor = 0.5f;
+    [SerializeField] float drunkRadiusIncreaseFactor = 0.7f;
     [SerializeField] int cashEarnedPerKill = 5;
 	[SerializeField] int cashEarnedBronze = 100;
 	[SerializeField] int cashEarnedSilver = 150;
@@ -87,6 +87,7 @@ public class LevelManager : MonoBehaviour
         timeLeft = currentSpawnPoint.CompletionTime;
 
         currentSpawnPoint.EnableStage();
+        SetGunsCrosshairRadius();
 
         if (showTutorial && GameManager.Instance.TutorialEnabled)
         {
@@ -199,6 +200,20 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    void SetGunsCrosshairRadius()
+    {
+        Gun[] currentGuns = playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().GetComponentsInChildren<Gun>(true);
+
+        foreach (Gun gun in currentGuns)
+        {
+            gun.DrunkCrosshairSpeed += currentSpawnPoint.DifficultyLevel;
+            gun.DrunkCrosshairRadius += currentSpawnPoint.DifficultyLevel;
+            
+            gun.DrunkCrosshairRadius *= drunkRadiusIncreaseFactor;
+            gun.DrunkCrosshairSpeed *= drunkSpeedIncreaseFactor;
+        }
+    }
+
     public void AddEnemyLife(Life enemyLife)
     {
         enemyLife.OnDeath.AddListener(IncreaseKillCounter);
@@ -220,13 +235,7 @@ public class LevelManager : MonoBehaviour
         currentSpawnPoint = enemySpawnPoints[currentStageIndex].GetComponent<CrowTrigger>();
         currentSpawnPoint.EnableStage();
 
-        Gun[] currentGuns = playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().GetComponentsInChildren<Gun>(true);
-
-        foreach (Gun gun in currentGuns)
-        {
-            gun.DrunkCrosshairSpeed += stageDrunkSpeedIncrease;
-            gun.DrunkCrosshairRadius += stageDrunkRadiusIncrease;
-        }
+        SetGunsCrosshairRadius();
         
         targetsKilledInStage = 0;
         timeLeft = currentSpawnPoint.CompletionTime;

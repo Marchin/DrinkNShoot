@@ -254,12 +254,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_stage: {fileID: 0}
-  m_difficultyLevel: 0
-  m_completionTime: 45
-  m_bronzeTierKills: 5
-  m_silverTierKills: 7
-  m_goldTierKills: 10
-  m_poolSize: 6
+  m_difficultyLevel: 10
+  m_completionTime: 200
+  m_bronzeTierKills: 25
+  m_silverTierKills: 27
+  m_goldTierKills: 30
+  m_poolSize: 15
   playerTag: Player
 --- !u!114 &114268280217793206
 MonoBehaviour:
@@ -286,12 +286,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_stage: {fileID: 0}
-  m_difficultyLevel: 0
-  m_completionTime: 45
-  m_bronzeTierKills: 5
-  m_silverTierKills: 7
-  m_goldTierKills: 10
-  m_poolSize: 6
+  m_difficultyLevel: 6
+  m_completionTime: 120
+  m_bronzeTierKills: 20
+  m_silverTierKills: 23
+  m_goldTierKills: 27
+  m_poolSize: 10
   playerTag: Player
 --- !u!114 &114534691556309614
 MonoBehaviour:
@@ -305,12 +305,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_stage: {fileID: 0}
-  m_difficultyLevel: 0
-  m_completionTime: 45
-  m_bronzeTierKills: 5
-  m_silverTierKills: 7
-  m_goldTierKills: 10
-  m_poolSize: 6
+  m_difficultyLevel: 8
+  m_completionTime: 120
+  m_bronzeTierKills: 22
+  m_silverTierKills: 25
+  m_goldTierKills: 28
+  m_poolSize: 12
   playerTag: Player
 --- !u!114 &114812038859022464
 MonoBehaviour:
@@ -324,12 +324,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_stage: {fileID: 0}
-  m_difficultyLevel: 0
-  m_completionTime: 45
-  m_bronzeTierKills: 5
-  m_silverTierKills: 7
-  m_goldTierKills: 10
-  m_poolSize: 6
+  m_difficultyLevel: 4
+  m_completionTime: 60
+  m_bronzeTierKills: 10
+  m_silverTierKills: 12
+  m_goldTierKills: 15
+  m_poolSize: 7
   playerTag: Player
 --- !u!114 &114820652841015664
 MonoBehaviour:
