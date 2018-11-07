@@ -1,6 +1,6 @@
 public enum ItemType
 {
-    Gun, Consumable
+    Gun, Consumable, Bait
 }
 
 public interface IItem

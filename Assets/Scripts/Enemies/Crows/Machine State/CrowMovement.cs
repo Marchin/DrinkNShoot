@@ -5,6 +5,7 @@ public class CrowMovement : MonoBehaviour, IState {
     [SerializeField] float m_interval;
     [SerializeField] float m_distance;
     [SerializeField] float m_speed;
+    [SerializeField] float m_chaseSpeed;
     Vector3 m_targetPosition;
     const float m_NEGLIGIBLE = 0.01f;
     float m_timer;
@@ -60,4 +61,5 @@ public class CrowMovement : MonoBehaviour, IState {
             m_hasToFlip = true;
         }
     }
+
 }

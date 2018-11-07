@@ -18,12 +18,14 @@ public class Crow : MonoBehaviour {
     IState m_nextState;
     int m_currLZ;
     bool m_hasToPoop;
+    bool m_isChasing;
 
     public UnityEvent OnLand { get { return onLand; } }
     public UnityEvent OnFly { get { return onFly; } }
 
     private void Awake() {
         m_hasToPoop = false;
+        m_isChasing = false;
         m_collider = GetComponent<BoxCollider>();
         m_screamSound = GetComponent<AudioSource>();
         m_crowSpawner = FindObjectOfType<CrowSpawner>();
@@ -51,6 +53,8 @@ public class Crow : MonoBehaviour {
             m_nextState = GetComponent<CrowFly>();
             m_crowSpawner.FreeLZ(ref m_currLZ);
             m_hasToPoop = false;
+        } else if (m_isChasing) {
+            
         }
         if (m_nextState != m_currState) {
             if ((Object)m_nextState == GetComponent<CrowMovement>()) {
@@ -97,5 +101,14 @@ public class Crow : MonoBehaviour {
     public void Die() {
         m_crowSpawner.FreeLZ(ref m_currLZ);
         gameObject.SetActive(false);
+    }
+
+    public void Chase(Vector3 target) {
+        if (m_currState as Object == GetComponent<CrowMovement>()) {
+            m_isChasing = true;
+            if (Vector3.Angle(transform.forward, target - transform.position) > 90f) {
+                m_nextState = GetComponent<CrowFlip>();
+            }
+        }
     }
 }
