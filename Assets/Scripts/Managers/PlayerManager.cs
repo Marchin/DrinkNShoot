@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour
 	DrunkCamera drunkCamera;
 	WeaponHolder weaponHolder;
 	Animator playerAnimator;
-	int currency = 1000;
+	int currency;
 	int totalKills;
 
 	void Awake() 
