@@ -104,6 +104,9 @@ public class EndLevelMenu : MonoBehaviour
 		switch (tier)
 		{
 			case LevelManager.StageCompletionTier.Gold:
+				cashBonusesTexts[0].gameObject.SetActive(true);
+				cashBonusesTexts[1].gameObject.SetActive(true);
+				cashBonusesTexts[2].gameObject.SetActive(true);
 				break;
 
 			case LevelManager.StageCompletionTier.Silver:
@@ -111,6 +114,8 @@ public class EndLevelMenu : MonoBehaviour
                 foreach (Image image in goldImages)
                     if (image.gameObject.name != goldTierUI.name)
                         image.gameObject.SetActive(image.gameObject.name == "Failed");
+				cashBonusesTexts[0].gameObject.SetActive(true);
+				cashBonusesTexts[1].gameObject.SetActive(true);
 				cashBonusesTexts[2].gameObject.SetActive(false);
 				break;
 
@@ -122,6 +127,7 @@ public class EndLevelMenu : MonoBehaviour
                 foreach (Image image in silverImages)
                     if (image.gameObject.name != silverTierUI.name)
                         image.gameObject.SetActive(image.gameObject.name == "Failed");
+                cashBonusesTexts[0].gameObject.SetActive(true);
                 cashBonusesTexts[1].gameObject.SetActive(false);
                 cashBonusesTexts[2].gameObject.SetActive(false);
                 break;
