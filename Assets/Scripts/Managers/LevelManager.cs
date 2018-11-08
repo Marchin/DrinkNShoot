@@ -22,8 +22,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject introTextUI;
 
     [Header("Level Properties")]
-    [SerializeField] float drunkSpeedIncreaseFactor = 0.5f;
-    [SerializeField] float drunkRadiusIncreaseFactor = 0.7f;
+    [SerializeField] float drunkSpeedMultiplier = 0.25f;
+    [SerializeField] float drunkRadiusMultiplier = 10f;
     [SerializeField] int cashEarnedPerKill = 5;
 	[SerializeField] int cashEarnedBronze = 100;
 	[SerializeField] int cashEarnedSilver = 150;
@@ -87,7 +87,7 @@ public class LevelManager : MonoBehaviour
         timeLeft = currentSpawnPoint.CompletionTime;
 
         currentSpawnPoint.EnableStage();
-        SetGunsCrosshairRadius();
+        SetGunsCrosshairsParameters();
 
         if (showTutorial && GameManager.Instance.TutorialEnabled)
         {
@@ -200,17 +200,14 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void SetGunsCrosshairRadius()
+    void SetGunsCrosshairsParameters()
     {
         Gun[] currentGuns = playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().GetComponentsInChildren<Gun>(true);
 
         foreach (Gun gun in currentGuns)
         {
-            gun.DrunkCrosshairSpeed += currentSpawnPoint.DifficultyLevel;
-            gun.DrunkCrosshairRadius += currentSpawnPoint.DifficultyLevel;
-            
-            gun.DrunkCrosshairRadius *= drunkRadiusIncreaseFactor;
-            gun.DrunkCrosshairSpeed *= drunkSpeedIncreaseFactor;
+            gun.DrunkCrosshairSpeed = currentSpawnPoint.DifficultyLevel * drunkSpeedMultiplier;
+            gun.DrunkCrosshairRadius = currentSpawnPoint.DifficultyLevel * drunkRadiusMultiplier;
         }
     }
 
@@ -235,7 +232,7 @@ public class LevelManager : MonoBehaviour
         currentSpawnPoint = enemySpawnPoints[currentStageIndex].GetComponent<CrowTrigger>();
         currentSpawnPoint.EnableStage();
 
-        SetGunsCrosshairRadius();
+        SetGunsCrosshairsParameters();
         
         targetsKilledInStage = 0;
         timeLeft = currentSpawnPoint.CompletionTime;

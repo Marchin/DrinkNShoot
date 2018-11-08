@@ -6587,7 +6587,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1665918096900382}
   m_LocalRotation: {x: -0.0038553206, y: 0.004305872, z: -0.00081699464, w: 0.999983}
-  m_LocalPosition: {x: 181.78, y: 1.42, z: 219.65}
+  m_LocalPosition: {x: 181.84, y: 1.47, z: 226.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4005244034329848}
@@ -10607,14 +10607,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1195755209449224}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.21, y: -0.48, z: 0.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4462441362945260}
   m_Father: {fileID: 4153601513136886}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4938248207503942
 Transform:
   m_ObjectHideFlags: 1
@@ -13295,10 +13295,9 @@ MonoBehaviour:
   fireRate: 1.5
   range: 100
   impactForce: 700
-  recoilSwayLevel: 12
-  recoilDuration: 0.3
-  maxCrosshairRadius: 35
-  maxCrosshairSpeed: 7
+  recoilSway: 15
+  maxCrosshairRadius: 150
+  maxCrosshairSpeed: 10
   shootingLayers:
   - Crows
   layersToIgnore:
@@ -13446,10 +13445,9 @@ MonoBehaviour:
   fireRate: 3
   range: 500
   impactForce: 700
-  recoilSwayLevel: 10
-  recoilDuration: 0.25
-  maxCrosshairRadius: 30
-  maxCrosshairSpeed: 9
+  recoilSway: 10
+  maxCrosshairRadius: 175
+  maxCrosshairSpeed: 8
   shootingLayers:
   - Crows
   layersToIgnore:

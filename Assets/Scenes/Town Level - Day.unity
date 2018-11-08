@@ -53000,22 +53000,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 4935981186457306, guid: ee3cf5fc4130bec4bb5af2f35e43dab5, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4935981186457306, guid: ee3cf5fc4130bec4bb5af2f35e43dab5, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4935981186457306, guid: ee3cf5fc4130bec4bb5af2f35e43dab5, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4935981186457306, guid: ee3cf5fc4130bec4bb5af2f35e43dab5, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee3cf5fc4130bec4bb5af2f35e43dab5, type: 2}
   m_IsPrefabAsset: 0
@@ -53764,14 +53748,15 @@ MonoBehaviour:
   hudUI: {fileID: 1500698464}
   tutorialUI: {fileID: 276616599}
   introTextUI: {fileID: 497685138}
-  drunkSpeedIncreaseFactor: 0.5
-  drunkRadiusIncreaseFactor: 0.7
+  drunkSpeedMultiplier: 0.25
+  drunkRadiusMultiplier: 10
   cashEarnedPerKill: 5
   cashEarnedBronze: 100
   cashEarnedSilver: 150
   cashEarnedGold: 175
   showIntroText: 1
   showTutorial: 1
+  levelName: Town Level - Day
   nextLevelName: Town Level - Afternoon
   completeLevelSound: {fileID: 1842429581}
   failLevelSound: {fileID: 1842429580}
@@ -59600,6 +59585,11 @@ Prefab:
       propertyPath: m_stage
       value: 
       objectReference: {fileID: 1900711311}
+    - target: {fileID: 114141254075659796, guid: 9c61c9ac601a4d9449757c75742e65d7,
+        type: 2}
+      propertyPath: m_difficultyLevel
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c61c9ac601a4d9449757c75742e65d7, type: 2}
   m_IsPrefabAsset: 0

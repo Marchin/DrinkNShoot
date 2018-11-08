@@ -31,15 +31,13 @@ public class Gun : MonoBehaviour, IItem
 	[SerializeField] [Range(0f, 1250f)] [Tooltip("Maximum force applied to a shot target.")] 
 	float impactForce;
 	[SerializeField] [Range(1f, 20f)] [Tooltip("Gun sway after being fired; affects accuracy.")]
-	float recoilSwayLevel;
-	[SerializeField] [Range(0f, 0.5f)] [Tooltip("Number of seconds that the recoil affects the accuracy.")]
-	float recoilDuration;
+	float recoilSway;
 
 	[Header("Drunkness Fields")]
-	[SerializeField] [Range(0f, 50f)] [Tooltip("Maximum radius of the crosshair circular motion.")]
-	float maxCrosshairRadius = 30f;
-	[SerializeField] [Range(1, 10)] [Tooltip("Maximum crosshair movement speed.")]
-	float maxCrosshairSpeed = 7f;
+	[SerializeField] [Range(0f, 200f)] [Tooltip("Maximum radius of the crosshair circular motion.")]
+	float maxCrosshairRadius;
+	[SerializeField] [Range(1, 100)] [Tooltip("Maximum crosshair movement speed.")]
+	float maxCrosshairSpeed;
 	
 	[Header("Shooting Layers")] 
 	[SerializeField] [Tooltip("The names of the layers that the gun can make damage to.")]
@@ -85,9 +83,9 @@ public class Gun : MonoBehaviour, IItem
 	[SerializeField] UnityEvent onCrosshairMove;
 	
 	// Constants
-	const float DRUNK_SWAY_MULT = 10f;
-	const float MAX_SWAY_ALLOWED = 10f;
-	const float CROSSHAIR_SCALE_MULT = 0.05f;
+	const float DRUNK_SWAY_MULT = 5f;
+	const float MAX_SWAY_ALLOWED = 5f;
+	const float CROSSHAIR_SCALE_MULT = 0.025f;
 	
 	// Computing Fields
 	Camera fpsCamera;
@@ -97,7 +95,7 @@ public class Gun : MonoBehaviour, IItem
 	int bulletsInGun = 0;
 	float lastFireTime = 0f;
 	float timeToShootSingleBullet = 0f;
-	float drunkSwayPercentage = 0f;
+	float drunkSway = 0f;
 	float drunkSwayInterpTime = 0f;
 	float crosshairScaleInterpTime = 0f;
 	float crosshairScaleAtShotInterpTime = 0f;
@@ -111,6 +109,7 @@ public class Gun : MonoBehaviour, IItem
 	float drunkCrosshairRadius = 0f;
 	float drunkCrosshairAngle = 0f;
 	float drunkCrosshairSpeed = 0f;
+	bool crosshairOnLeftSide = true;
 	int shootingLayerMask = 0;
 
 	// Unity Methods
@@ -121,7 +120,6 @@ public class Gun : MonoBehaviour, IItem
 		crosshairPosition = new Vector3(Screen.width / 2, Screen.height / 2, 1f);
 		bulletsInGun = gunCapacity;
 		timeToShootSingleBullet = 1f / fireRate;
-		recoilDuration += timeToShootSingleBullet;
 		shootingLayerMask = ~LayerMask.GetMask(layersToIgnore);
 	}
 
@@ -132,6 +130,7 @@ public class Gun : MonoBehaviour, IItem
 
 	void Update()
 	{
+		Debug.Log(drunkSway);
 		MoveCrosshairAround();
 		ScaleCrosshairAccordingToDrukenness();
 		CheckConsecutiveShots();
@@ -180,7 +179,7 @@ public class Gun : MonoBehaviour, IItem
 		consecutiveShots++;
 		consecutiveShotsAtShot = consecutiveShots;
 		crosshairScaleBeforeShot = crosshairScale;
-		crosshairScale += recoilSwayLevel * consecutiveShots * CROSSHAIR_SCALE_MULT;
+		crosshairScale += recoilSway * consecutiveShots * CROSSHAIR_SCALE_MULT;
 		crosshairScaleAfterShot = crosshairScale;
 		crosshairScaleAtShotInterpTime = 0f;
 		OnCrosshairScale.Invoke();
@@ -190,7 +189,7 @@ public class Gun : MonoBehaviour, IItem
 		if (bullets.GetLength(0) > 0)
 			bullets[bulletsInGun].SetActive(false);
 
-		float hitProbability = targetOnClearSight ? 100f : Random.Range(0f, 100f - drunkSwayPercentage);
+		float hitProbability = targetOnClearSight ? 100f : Random.Range(0f, 100f - drunkSway);
 		Vector3 direction = (fpsCamera.ScreenToWorldPoint(crosshairPosition) - fpsCamera.transform.position).normalized;
 		RaycastHit hit;
 		
@@ -237,11 +236,15 @@ public class Gun : MonoBehaviour, IItem
 	{
 		Vector3 previousCrosshairPosition = crosshairPosition;
 
-		crosshairPosition.x = Screen.width / 2 + Mathf.Cos(drunkCrosshairAngle) * drunkCrosshairRadius;
+		crosshairPosition.x = crosshairOnLeftSide ? Screen.width / 2 + (Mathf.Cos(drunkCrosshairAngle) - 1) * drunkCrosshairRadius :
+													Screen.width / 2 + (-Mathf.Cos(drunkCrosshairAngle) + 1) * drunkCrosshairRadius;
 		crosshairPosition.y = Screen.height / 2 + Mathf.Sin(drunkCrosshairAngle) * drunkCrosshairRadius;
-		drunkCrosshairAngle += drunkCrosshairSpeed * Time.unscaledDeltaTime;
+		drunkCrosshairAngle += drunkCrosshairSpeed * Time.deltaTime;
 		if (drunkCrosshairAngle >= 2 * Mathf.PI)
+		{
 			drunkCrosshairAngle -= 2 * Mathf.PI;
+			crosshairOnLeftSide = !crosshairOnLeftSide;
+		}
 		
 		if (crosshairPosition != previousCrosshairPosition)
 			onCrosshairMove.Invoke();
@@ -255,16 +258,16 @@ public class Gun : MonoBehaviour, IItem
 		{
 			if (isIncreasingDrunkSway)
 			{
-				drunkSwayPercentage = Mathf.Lerp(0f, LevelManager.Instance.DifficultyLevel * DRUNK_SWAY_MULT, drunkSwayInterpTime);
-				crosshairScale = Mathf.Lerp(1f, 1f + drunkSwayPercentage * CROSSHAIR_SCALE_MULT, crosshairScaleInterpTime);
+				drunkSway = Mathf.Lerp(0f, LevelManager.Instance.DifficultyLevel * DRUNK_SWAY_MULT, drunkSwayInterpTime);
+				crosshairScale = Mathf.Lerp(1f, 1f + drunkSway * CROSSHAIR_SCALE_MULT, crosshairScaleInterpTime);
 			}
 			else
 			{
-                drunkSwayPercentage = Mathf.Lerp(LevelManager.Instance.DifficultyLevel * DRUNK_SWAY_MULT, 0f, drunkSwayInterpTime);
-                crosshairScale = Mathf.Lerp(1f + drunkSwayPercentage * CROSSHAIR_SCALE_MULT, 1f, crosshairScaleInterpTime);
+                drunkSway = Mathf.Lerp(LevelManager.Instance.DifficultyLevel * DRUNK_SWAY_MULT, 0f, drunkSwayInterpTime);
+                crosshairScale = Mathf.Lerp(1f + drunkSway * CROSSHAIR_SCALE_MULT, 1f, crosshairScaleInterpTime);
 			}
-			drunkSwayInterpTime += Time.unscaledDeltaTime;
-			crosshairScaleInterpTime += Time.unscaledDeltaTime;
+			drunkSwayInterpTime += Time.deltaTime;
+			crosshairScaleInterpTime += Time.deltaTime;
 			if (drunkSwayInterpTime >= 1f)
 			{
 				drunkSwayInterpTime = 0f;
@@ -275,7 +278,7 @@ public class Gun : MonoBehaviour, IItem
 		else
 		{
 			crosshairScale = Mathf.Lerp(crosshairScaleAfterShot, crosshairScaleBeforeShot, crosshairScaleAtShotInterpTime);
-			crosshairScaleAtShotInterpTime += Time.unscaledDeltaTime / (recoilDuration * consecutiveShotsAtShot);
+			crosshairScaleAtShotInterpTime += Time.deltaTime / (timeToShootSingleBullet * consecutiveShotsAtShot);
         }	
 		
 		if (crosshairScale != previousCrosshairScale)
@@ -295,7 +298,7 @@ public class Gun : MonoBehaviour, IItem
 		RaycastHit hit;
 
         if (Physics.Raycast(fpsCamera.transform.position, direction, out hit, range, shootingLayerMask) &&
-			drunkSwayPercentage + recoilSwayLevel * consecutiveShots < MAX_SWAY_ALLOWED)
+			drunkSway + recoilSway * consecutiveShots < MAX_SWAY_ALLOWED)
 		{
             if (!targetOnClearSight && shootingLayers.Contains(LayerMask.LayerToName(hit.transform.gameObject.layer)))
 			{
