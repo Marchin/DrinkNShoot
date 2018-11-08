@@ -96,24 +96,14 @@ public class WeaponHolder : MonoBehaviour
     void SwapConsumable()
     {
         int previousConsumableIndex = equippedConsumableIndex;
+		int totalConsumables = consumableHolder.childCount;
 
-        if (equippedConsumableIndex < consumableHolder.childCount - 1)
-        {
-            for (int i = 1; i <= consumableHolder.childCount - 1; i++)
-			{
-				Consumable consumable = consumableHolder.GetChild(equippedConsumableIndex + i).GetComponent<Consumable>();
-                if (consumable.GetAmount() > 0)
-                    equippedConsumableIndex += i;
-			}
-        }
-        else
-        {
-            for (int i = consumableHolder.childCount -1; i >= 1; i--)
-            {
-                Consumable consumable = consumableHolder.GetChild(equippedConsumableIndex - i).GetComponent<Consumable>();
-                if (consumable.GetAmount() > 0)
-                    equippedConsumableIndex -= i;
-            }
+		for (int i = 1; i < totalConsumables; i++)
+		{
+			Consumable consumable = consumableHolder.GetChild((equippedConsumableIndex + i) % totalConsumables).GetComponent<Consumable>();
+			if (PlayerManager.Instance.GetItemAmount(consumable) > 0)
+				equippedConsumableIndex += i;
+				equippedConsumableIndex %= totalConsumables;
 		}
 
         if (equippedConsumableIndex != previousConsumableIndex)
