@@ -8,18 +8,17 @@ public class BaitItem : Consumable
     [SerializeField] float range;
     GameObject bait;
     Camera fpsCamera;
-    Gun gun;
 
     private void Awake() 
     {
-        fpsCamera = GetComponent<Camera>();
-        gun = GetComponent<Gun>();
+        fpsCamera = GetComponentInParent<Camera>();
         bait = Instantiate(baitPrefab, transform.position, Quaternion.identity);
         bait.SetActive(false);
     }
 
     protected override void ApplyConsumableEffect()
     {
+        Gun gun = FindObjectOfType<Gun>();
 		Vector3 direction = (fpsCamera.ScreenToWorldPoint(gun.CrosshairPosition)
          - fpsCamera.transform.position).normalized;
 		RaycastHit hit;
@@ -29,7 +28,7 @@ public class BaitItem : Consumable
         }
         else 
         {
-            Vector3 destination = transform.position + Vector3.forward * range;
+            Vector3 destination = transform.position + transform.forward * range;
             bait.GetComponent<Bait>().SetPath(transform.position, destination);
         }
         bait.SetActive(true);

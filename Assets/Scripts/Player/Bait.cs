@@ -19,13 +19,13 @@ public class Bait : MonoBehaviour {
     
     private void Update() {
         Vector3 newPos = Vector3.Lerp(transform.position, 
-            m_destination, Time.deltaTime * m_accu);
+            m_destination, m_accu);
         newPos.y = m_a*m_accu*m_accu + m_c;
-        m_accu += m_rate;
+        m_accu += m_rate * Time.deltaTime;
         transform.position = newPos;
         if (m_accu >= 1f) {
             Collider[] crows = Physics.OverlapSphere(transform.position, m_radius, m_crowsLayer);
-
+            enabled = false;
         }
     }
 
