@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.AI;
-using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -32,6 +30,7 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] int cashEarnedGold = 175;
 	[SerializeField] bool showIntroText;
 	[SerializeField] bool showTutorial;
+	[SerializeField] string levelName;
 	[SerializeField] string nextLevelName;
 
     [Header("Sounds")]
@@ -182,7 +181,7 @@ public class LevelManager : MonoBehaviour
     public void RestartLevel()
     {
         onQuitLevel.Invoke();
-        GameManager.Instance.FadeToScene(SceneManager.GetActiveScene().name);
+        GameManager.Instance.FadeToScene(levelName);
     }
 
     public void QuitLevel()

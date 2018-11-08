@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerAudio : MonoBehaviour 
 {
 	[SerializeField] AudioSource drinkingSound;

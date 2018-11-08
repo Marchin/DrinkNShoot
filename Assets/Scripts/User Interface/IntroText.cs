@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class IntroText : MonoBehaviour
 {
 	[SerializeField] AnimationClip fadeOutAnimation;
+	
 	Animator animator;
 	PauseMenu pauseMenu;
 

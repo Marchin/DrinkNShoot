@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InputManager : MonoBehaviour 
 {
@@ -26,14 +24,17 @@ public class InputManager : MonoBehaviour
     {
         return input.GetHorizontalViewAxis();
     }
+
     public float GetVerticalViewAxis()
     {
         return input.GetVerticalViewAxis();
     }
+
     public bool GetFireButton()
     {
         return input.GetFireButton();
     }
+
     public bool GetReloadButton()
     {
         return input.GetReloadButton();
