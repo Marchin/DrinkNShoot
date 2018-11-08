@@ -30,7 +30,7 @@ public class Gun : MonoBehaviour, IItem
 	float range;
 	[SerializeField] [Range(0f, 1250f)] [Tooltip("Maximum force applied to a shot target.")] 
 	float impactForce;
-	[SerializeField] [Range(1f, 20f)] [Tooltip("Gun sway after being fired; affects accuracy.")]
+	[SerializeField] [Range(1f, 100f)] [Tooltip("Gun sway after being fired; affects accuracy.")]
 	float recoilSway;
 
 	[Header("Drunkness Fields")]
@@ -84,8 +84,9 @@ public class Gun : MonoBehaviour, IItem
 	
 	// Constants
 	const float DRUNK_SWAY_MULT = 5f;
-	const float MAX_SWAY_ALLOWED = 5f;
+	const float MAX_SWAY_ALLOWED = 10f;
 	const float CROSSHAIR_SCALE_MULT = 0.025f;
+	const float CROSSHAIR_PAR_VAR_RANGE_MULT = 0.15f;
 	
 	// Computing Fields
 	Camera fpsCamera;
@@ -130,7 +131,6 @@ public class Gun : MonoBehaviour, IItem
 
 	void Update()
 	{
-		Debug.Log(drunkSway);
 		MoveCrosshairAround();
 		ScaleCrosshairAccordingToDrukenness();
 		CheckConsecutiveShots();
@@ -242,8 +242,13 @@ public class Gun : MonoBehaviour, IItem
 		drunkCrosshairAngle += drunkCrosshairSpeed * Time.deltaTime;
 		if (drunkCrosshairAngle >= 2 * Mathf.PI)
 		{
+			float radiusVariation = drunkCrosshairRadius * CROSSHAIR_PAR_VAR_RANGE_MULT;
+			float speedVariation = drunkCrosshairSpeed * CROSSHAIR_PAR_VAR_RANGE_MULT;
+
 			drunkCrosshairAngle -= 2 * Mathf.PI;
 			crosshairOnLeftSide = !crosshairOnLeftSide;
+			drunkCrosshairRadius += Random.Range(-radiusVariation, radiusVariation);
+			drunkCrosshairSpeed += Random.Range(-speedVariation, speedVariation);
 		}
 		
 		if (crosshairPosition != previousCrosshairPosition)
