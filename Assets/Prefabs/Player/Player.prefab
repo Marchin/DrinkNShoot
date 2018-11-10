@@ -13371,7 +13371,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1551605338873302}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9074f6a694bc5e4c835009f8f724acb, type: 3}
   m_Name: 
@@ -13414,6 +13414,7 @@ MonoBehaviour:
   - LandingZones
   - CrowTriggers
   - Ignore Raycast
+  - Particle Effects
   bullets: []
   shootAnimation: {fileID: 7400000, guid: 2e9a03678564c9f49bb15404e366dd05, type: 2}
   reloadStartAnimation: {fileID: 7400000, guid: c5c6a0ff9497b1c45ba4e5b8fb17e8d5,
@@ -13449,6 +13450,7 @@ MonoBehaviour:
   - LandingZones
   - CrowTriggers
   - Ignore Raycast
+  - Particle Effects
   bullets:
   - {fileID: 1358401137881864}
   - {fileID: 1722904674430354}

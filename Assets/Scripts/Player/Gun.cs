@@ -262,7 +262,7 @@ public class Gun : MonoBehaviour, IItem
 	{
 		return consecutiveShots > 0;
 	}
-	
+
 	public float GetRecoil()
 	{
 		return recoilSwayLevel * consecutiveShots;

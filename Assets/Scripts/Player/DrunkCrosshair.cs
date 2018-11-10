@@ -131,9 +131,9 @@ public class DrunkCrosshair : MonoBehaviour
     {
 		GameObject target = gun.ObjectOnSight();
 
-        if (target != null && drunkSway + gun.GetRecoil() < maxSwayAllowed)
+        if (target != null && drunkSway + gun.GetRecoil() < maxSwayAllowed && gun.CanShootAtObject(target))
         {
-            if (!targetOnClearSight && gun.CanShootAtObject(target))
+            if (!targetOnClearSight)
             {
                 targetOnClearSight = true;
                 onColorChange.Invoke();
