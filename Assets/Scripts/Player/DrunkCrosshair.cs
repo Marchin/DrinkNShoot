@@ -7,15 +7,16 @@ public class DrunkCrosshair : MonoBehaviour
     [Header("Drunkness Fields")]
     [SerializeField] [Range(0f, 200f)] [Tooltip("Maximum radius of the crosshair circular motion.")]
     float maxRadius;
-    [SerializeField] [Range(1, 100)] [Tooltip("Maximum crosshair movement speed.")]
+    [SerializeField] [Range(1f, 100f)] [Tooltip("Maximum crosshair movement speed.")]
     float maxSpeed;
+    [SerializeField] [Range(10f, 100f)] [Tooltip("Maximum sway level allowed to guarantee a shot success.")]
+	float maxSwayAllowed = 10f;
 
-    public UnityEvent OnScale;
-    public UnityEvent OnColorChange;
-    public UnityEvent OnMove;
+    UnityEvent onScale;
+    UnityEvent onColorChange;
+    UnityEvent onMove;
 
     const float DRUNK_SWAY_MULT = 5f;
-    const float MAX_SWAY_ALLOWED = 10f;
     const float SCALE_MULT = 0.025f;
     const float PAR_VAR_RANGE_MULT = 0.15f;
 	
@@ -38,15 +39,19 @@ public class DrunkCrosshair : MonoBehaviour
 
 	void Awake()
 	{
-		OnScale = new UnityEvent();
-		OnColorChange = new UnityEvent();
-		OnMove = new UnityEvent();
+		onScale = new UnityEvent();
+		onColorChange = new UnityEvent();
+		onMove = new UnityEvent();
 		
 		position = new Vector3(Screen.width / 2, Screen.height / 2, 1f);
 		
 		gun = GetComponent<Gun>();
-		gun.OnShot.AddListener(ScaleAtShot);     
     }
+
+	void Start()
+	{
+		gun.OnShot.AddListener(ScaleAtShot);
+	}
 
 	void Update()
 	{
@@ -58,10 +63,10 @@ public class DrunkCrosshair : MonoBehaviour
 	void ScaleAtShot()
 	{
         scaleBeforeShot = scale;
-        scale += gun.RecoilSwayLevel * gun.ConsecutiveShots * SCALE_MULT;
+        scale += gun.GetRecoil() * SCALE_MULT;
         scaleAfterShot = scale;
         scaleAtShotInterpTime = 0f;
-        OnScale.Invoke();
+        onScale.Invoke();
 	}
 
     void MoveAround()
@@ -84,14 +89,14 @@ public class DrunkCrosshair : MonoBehaviour
         }
 
         if (position != previousCrosshairPosition)
-            OnMove.Invoke();
+            onMove.Invoke();
     }
 
     void ScaleAccordingToDrukenness()
     {
         float previousScale = scale;
 
-        if (gun.ConsecutiveShots == 0)
+        if (!gun.HasFiredConsecutively())
         {
             if (isIncreasingDrunkSway)
             {
@@ -115,23 +120,23 @@ public class DrunkCrosshair : MonoBehaviour
         else
         {
             scale = Mathf.Lerp(scaleAfterShot, scaleBeforeShot, scaleAtShotInterpTime);
-            scaleAtShotInterpTime += Time.deltaTime / (gun.TimeToShootSingleBullet * gun.ConsecutiveShotsAtShot);
+            scaleAtShotInterpTime += Time.deltaTime / gun.GetRecoilDuration();
         }
 
         if (scale != previousScale)
-            OnScale.Invoke();
+            onScale.Invoke();
     }
 
     void IndicateShotAccuracy()
     {
 		GameObject target = gun.ObjectOnSight();
 
-        if (target != null && drunkSway + gun.RecoilSwayLevel * gun.ConsecutiveShots < MAX_SWAY_ALLOWED)
+        if (target != null && drunkSway + gun.GetRecoil() < maxSwayAllowed)
         {
             if (!targetOnClearSight && gun.CanShootAtObject(target))
             {
                 targetOnClearSight = true;
-                OnColorChange.Invoke();
+                onColorChange.Invoke();
             }
         }
         else
@@ -139,7 +144,7 @@ public class DrunkCrosshair : MonoBehaviour
             if (targetOnClearSight)
             {
                 targetOnClearSight = false;
-                OnColorChange.Invoke();
+                onColorChange.Invoke();
             }
         }
     }
@@ -174,5 +179,20 @@ public class DrunkCrosshair : MonoBehaviour
     {
         get { return radius; }
         set { radius = value < maxRadius ? value : maxRadius; }
+	}
+
+	public UnityEvent OnScale
+	{
+		get { return onScale; }
+	}
+
+	public UnityEvent OnColorChange
+	{
+		get { return onColorChange; }
+	}
+
+	public UnityEvent OnMove
+	{
+		get { return onMove; }
 	}
 }

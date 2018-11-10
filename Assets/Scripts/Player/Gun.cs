@@ -63,16 +63,6 @@ public class Gun : MonoBehaviour, IItem
 	[SerializeField] [Tooltip("The sound the gun makes when it is fired while being empty.")]
 	AudioSource emptyGunSound;
 	
-	[Header("Events")]
-	[SerializeField] UnityEvent onBackToIdle;
-	[SerializeField] UnityEvent onShot;
-	[SerializeField] UnityEvent onReloadStart;
-	[SerializeField] UnityEvent onReload;
-	[SerializeField] UnityEvent onReloadFinish;
-	[SerializeField] UnityEvent onReloadCancel;
-	[SerializeField] UnityEvent onIncreaseBulletCount;
-	[SerializeField] UnityEvent onEmptyGun;
-	
 	// Computing Fields
 	Camera fpsCamera;
 	Coroutine reloadRoutine;
@@ -84,9 +74,28 @@ public class Gun : MonoBehaviour, IItem
 	int consecutiveShotsAtShot = 0;
 	int shootingLayerMask = 0;
 
+	// Events
+    UnityEvent onBackToIdle;
+    UnityEvent onShot;
+    UnityEvent onReloadStart;
+    UnityEvent onReload;
+    UnityEvent onReloadFinish;
+    UnityEvent onReloadCancel;
+    UnityEvent onIncreaseBulletCount;
+    UnityEvent onEmptyGun;
+
 	// Unity Methods
 	void Awake()
 	{
+        onBackToIdle = new UnityEvent();
+        onShot = new UnityEvent();
+        onReloadStart = new UnityEvent();
+        onReload = new UnityEvent();
+        onReloadFinish = new UnityEvent();
+        onReloadCancel = new UnityEvent();
+        onIncreaseBulletCount = new UnityEvent();
+        onEmptyGun = new UnityEvent();
+
 		fpsCamera = GetComponentInParent<Camera>();
 		currentState = GunState.Idle;
 		bulletsInGun = gunCapacity;
@@ -249,6 +258,22 @@ public class Gun : MonoBehaviour, IItem
 		return shootingLayers.Contains(LayerMask.LayerToName(target.layer));
 	}
 
+	public bool HasFiredConsecutively()
+	{
+		return consecutiveShots > 0;
+	}
+	
+	public float GetRecoil()
+	{
+		return recoilSwayLevel * consecutiveShots;
+	}
+
+	public float GetRecoilDuration()
+	{
+		return timeToShootSingleBullet * consecutiveShotsAtShot;
+	}
+
+
 	// Item Interface Methods
 	public string GetName()
 	{
@@ -290,26 +315,6 @@ public class Gun : MonoBehaviour, IItem
 	public int BulletsInGun
 	{
 		get { return bulletsInGun; }
-	}
-
-	public float RecoilSwayLevel
-	{
-		get { return recoilSwayLevel; }
-	}
-
-	public int ConsecutiveShots
-	{
-		get { return consecutiveShots; }
-	}
-
-	public int ConsecutiveShotsAtShot
-	{
-		get { return consecutiveShotsAtShot; }
-	}
-
-	public float TimeToShootSingleBullet
-	{
-		get { return timeToShootSingleBullet; }
 	}
 
 	public AnimationClip ShootAnimation
