@@ -1785,7 +1785,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4958191035526200, guid: c929692529d03b3449025a1c20888751, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c929692529d03b3449025a1c20888751, type: 2}
@@ -9177,7 +9177,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4979337310912932, guid: a9f0eee962b6c8041a741d7dd3fd5ab5, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9f0eee962b6c8041a741d7dd3fd5ab5, type: 2}
@@ -25548,6 +25548,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4371689569484632, guid: 008f596a7514be94e85594a0199b630e,
     type: 2}
   m_PrefabInternal: {fileID: 977204930}
+--- !u!114 &977799087 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114574620902843172, guid: ee3cf5fc4130bec4bb5af2f35e43dab5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1820737539}
+  m_Script: {fileID: 11500000, guid: 37c300d41be826e4b8023d773b1249c8, type: 3}
 --- !u!1001 &981632456
 Prefab:
   m_ObjectHideFlags: 0
@@ -29159,12 +29165,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4062146829713982, guid: ba236bffe61f400489e60bdce8bacbe8,
     type: 2}
   m_PrefabInternal: {fileID: 1100055942}
---- !u!114 &1101194381 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114999324618736056, guid: ee3cf5fc4130bec4bb5af2f35e43dab5,
-    type: 2}
-  m_PrefabInternal: {fileID: 1820737539}
-  m_Script: {fileID: 11500000, guid: 37c300d41be826e4b8023d773b1249c8, type: 3}
 --- !u!1001 &1102747453
 Prefab:
   m_ObjectHideFlags: 0
@@ -33872,7 +33872,7 @@ Prefab:
         type: 2}
       propertyPath: weaponHolder
       value: 
-      objectReference: {fileID: 1101194381}
+      objectReference: {fileID: 977799087}
     - target: {fileID: 114071917407714584, guid: f55d09b1ede529f4e8093515d48dcbf3,
         type: 2}
       propertyPath: m_havePropertiesChanged
@@ -43145,6 +43145,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4018250652091540, guid: 7a3026251dbea4249b83a868d74270c3, type: 2}
       propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1591888395185268, guid: 7a3026251dbea4249b83a868d74270c3, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -53818,8 +53822,8 @@ MonoBehaviour:
   hudUI: {fileID: 1500698464}
   tutorialUI: {fileID: 276616599}
   introTextUI: {fileID: 497685138}
-  drunkSpeedIncreaseFactor: 0.5
-  drunkRadiusIncreaseFactor: 0.7
+  drunkSpeedMultiplier: 0.25
+  drunkRadiusMultiplier: 10
   cashEarnedPerKill: 5
   cashEarnedBronze: 120
   cashEarnedSilver: 170

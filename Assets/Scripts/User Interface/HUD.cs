@@ -21,16 +21,13 @@ public class HUD : MonoBehaviour
 	[Header("Animations")]
 	[SerializeField] AnimationClip slidingAnimation;
 	
-	[Header("References")]
-	[SerializeField] WeaponHolder weaponHolder;
-	
 	[Header("Other Properties")]
 	[SerializeField] float rankBannerDuration = 3f;
 	
 	const int CRITICAL_AMMO_IN_GUN = 1;
 	const int CRITICAL_TIME_LEFT = 10;
-	const int SECOND = 1;
 
+	WeaponHolder weaponHolder;
     TextMeshProUGUI ammoText;
     TextMeshProUGUI crowsText;
     TextMeshProUGUI timerText;
@@ -67,6 +64,8 @@ public class HUD : MonoBehaviour
 
     void Start()
     {
+		weaponHolder = FindObjectOfType<WeaponHolder>();
+		
 		ChangeWeaponInDisplay();
 		ChangeConsumableInDisplay();
 		
@@ -98,19 +97,19 @@ public class HUD : MonoBehaviour
 
     void ScaleCrosshair()
     {
-        float newScale = weaponHolder.EquippedGun.CrossshairScale;
+        float newScaleValue = DrunkCrosshair.Scale;
 
-        crosshair.transform.localScale = new Vector2(newScale, newScale);
+        crosshair.transform.localScale = new Vector2(newScaleValue, newScaleValue);
     }
 
 	void ChangeCrosshairColor()
 	{
-		crosshair.color = weaponHolder.EquippedGun.TargetOnClearSight ? darkRed : Color.white;
+		crosshair.color = DrunkCrosshair.TargetOnClearSight ? darkRed : Color.white;
 	}
 
 	void MoveCrosshair()
 	{
-		crosshair.rectTransform.position = weaponHolder.EquippedGun.CrosshairPosition;
+		crosshair.rectTransform.position = DrunkCrosshair.Position;
 	}
 
 	void ToggleCrosshair()
@@ -191,7 +190,7 @@ public class HUD : MonoBehaviour
 		{
 			timerText.color = darkRed;
 			clockTickTimer += Time.deltaTime;
-			if (clockTickTimer >= SECOND)
+			if (clockTickTimer >= 1f)
 			{
 				timerHUDAnimator.SetTrigger("Has to Pop");
 				clockTickTimer = 0f;
@@ -235,9 +234,9 @@ public class HUD : MonoBehaviour
         weaponHolder.EquippedGun.OnShot.AddListener(ChangeAmmoDisplay);
         weaponHolder.EquippedGun.OnIncreaseBulletCount.AddListener(ChangeAmmoDisplay);
         weaponHolder.EquippedGun.OnEmptyGun.AddListener(PopAmmoHUD);
-        weaponHolder.EquippedGun.OnCrosshairScale.AddListener(ScaleCrosshair);
-        weaponHolder.EquippedGun.OnCrosshairColorChange.AddListener(ChangeCrosshairColor);
-        weaponHolder.EquippedGun.OnCrosshairMove.AddListener(MoveCrosshair);
+        weaponHolder.CurrentCrosshair.OnScale.AddListener(ScaleCrosshair);
+        weaponHolder.CurrentCrosshair.OnColorChange.AddListener(ChangeCrosshairColor);
+        weaponHolder.CurrentCrosshair.OnMove.AddListener(MoveCrosshair);
 
 		ChangeCrosshairColor();
 		ChangeAmmoDisplay();
@@ -260,5 +259,4 @@ public class HUD : MonoBehaviour
 	{
 		currencyText.text = currency.ToString();
 	}
-
 }

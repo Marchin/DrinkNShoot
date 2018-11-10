@@ -202,12 +202,12 @@ public class LevelManager : MonoBehaviour
 
     void SetGunsCrosshairsParameters()
     {
-        Gun[] currentGuns = playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().GetComponentsInChildren<Gun>(true);
+        DrunkCrosshair[] crosshairs = playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().GetComponentsInChildren<DrunkCrosshair>(true);
 
-        foreach (Gun gun in currentGuns)
+        foreach (DrunkCrosshair crosshair in crosshairs)
         {
-            gun.DrunkCrosshairSpeed = currentSpawnPoint.DifficultyLevel * drunkSpeedMultiplier;
-            gun.DrunkCrosshairRadius = currentSpawnPoint.DifficultyLevel * drunkRadiusMultiplier;
+            crosshair.Speed = currentSpawnPoint.DifficultyLevel * drunkSpeedMultiplier;
+            crosshair.Radius = currentSpawnPoint.DifficultyLevel * drunkRadiusMultiplier;
         }
     }
 

@@ -14,6 +14,7 @@ public class WeaponHolder : MonoBehaviour
 	Gun equippedGun;
 	Consumable equippedConsumable;
 	Gun.GunType equippedGunType;
+	DrunkCrosshair currentCrosshair;
 	int equippedConsumableIndex;
 	bool isSwappingGun = false;
 
@@ -43,7 +44,10 @@ public class WeaponHolder : MonoBehaviour
 		{
 			gun.gameObject.SetActive(i == (int)equippedGunType);
 			if (i == (int)equippedGunType)
+			{
 				equippedGun = gun.GetComponent<Gun>();
+				currentCrosshair = gun.GetComponent<DrunkCrosshair>();
+			}
 			i++;
 		}
 		onGunSwap.Invoke();
@@ -147,6 +151,11 @@ public class WeaponHolder : MonoBehaviour
 	public Consumable EquippedConsumable
 	{
 		get { return equippedConsumable; }
+	}
+
+	public DrunkCrosshair CurrentCrosshair
+	{
+		get { return currentCrosshair; }
 	}
 
 	public UnityEvent OnGunSwapStart
