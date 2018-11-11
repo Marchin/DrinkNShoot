@@ -49443,41 +49443,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 114812038859022464, guid: 5d106aeca9d19164a8155b01142122ee,
-        type: 2}
-      propertyPath: m_stage
-      value: 
-      objectReference: {fileID: 1867055564}
-    - target: {fileID: 114346128423538650, guid: 5d106aeca9d19164a8155b01142122ee,
-        type: 2}
-      propertyPath: m_stage
-      value: 
-      objectReference: {fileID: 1242410781}
-    - target: {fileID: 114534691556309614, guid: 5d106aeca9d19164a8155b01142122ee,
-        type: 2}
-      propertyPath: m_stage
-      value: 
-      objectReference: {fileID: 1805171588}
     - target: {fileID: 114009902667825456, guid: 5d106aeca9d19164a8155b01142122ee,
         type: 2}
       propertyPath: m_stage
       value: 
       objectReference: {fileID: 785158163}
-    - target: {fileID: 114009902667825456, guid: 5d106aeca9d19164a8155b01142122ee,
+    - target: {fileID: 114534691556309614, guid: 5d106aeca9d19164a8155b01142122ee,
         type: 2}
-      propertyPath: m_goldTierKills
-      value: 42
-      objectReference: {fileID: 0}
-    - target: {fileID: 114009902667825456, guid: 5d106aeca9d19164a8155b01142122ee,
+      propertyPath: m_stage
+      value: 
+      objectReference: {fileID: 1805171588}
+    - target: {fileID: 114346128423538650, guid: 5d106aeca9d19164a8155b01142122ee,
         type: 2}
-      propertyPath: m_silverTierKills
-      value: 38
-      objectReference: {fileID: 0}
-    - target: {fileID: 114009902667825456, guid: 5d106aeca9d19164a8155b01142122ee,
+      propertyPath: m_stage
+      value: 
+      objectReference: {fileID: 1242410781}
+    - target: {fileID: 114812038859022464, guid: 5d106aeca9d19164a8155b01142122ee,
         type: 2}
-      propertyPath: m_bronzeTierKills
-      value: 35
-      objectReference: {fileID: 0}
+      propertyPath: m_stage
+      value: 
+      objectReference: {fileID: 1867055564}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d106aeca9d19164a8155b01142122ee, type: 2}
   m_IsPrefabAsset: 0

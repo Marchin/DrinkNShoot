@@ -33,8 +33,10 @@ public class DrunkCrosshair : MonoBehaviour
     float scaleBeforeShot = 1f;
     float scaleAfterShot = 1f;
     bool isIncreasingDrunkSway = true;
-    float radius = 0f;
+    float baseRadius = 0f;
+	float radius = 0f;
     float angle = 0f;
+    float baseSpeed = 0f;
     float speed = 0f;
     bool onLeftSide = true;
 
@@ -75,18 +77,18 @@ public class DrunkCrosshair : MonoBehaviour
     {
         Vector3 previousPosition = position;
 
-        position.x = onLeftSide ? Screen.width / 2 + (Mathf.Cos(angle) - 1) * radius : Screen.width / 2 + (-Mathf.Cos(angle) + 1) * radius;
-        position.y = Screen.height / 2 + Mathf.Sin(angle) * radius;
-        angle += speed * Time.deltaTime;
+        position.x = onLeftSide ? Screen.width / 2 + (Mathf.Cos(angle) - 1) * baseRadius : Screen.width / 2 + (-Mathf.Cos(angle) + 1) * baseRadius;
+        position.y = Screen.height / 2 + Mathf.Sin(angle) * baseRadius;
+        angle += baseSpeed * Time.deltaTime;
         if (angle >= 2 * Mathf.PI)
         {
-            float radiusVariation = radius * PAR_VAR_RANGE_MULT;
-            float speedVariation = speed * PAR_VAR_RANGE_MULT;
+            float radiusVariation = baseRadius * PAR_VAR_RANGE_MULT;
+            float speedVariation = baseSpeed * PAR_VAR_RANGE_MULT;
 
             angle -= 2 * Mathf.PI;
             onLeftSide = !onLeftSide;
-            radius += Random.Range(-radiusVariation, radiusVariation);
-            speed += Random.Range(-speedVariation, speedVariation);
+            radius = baseRadius + Random.Range(-radiusVariation, radiusVariation);
+            speed = baseSpeed + Random.Range(-speedVariation, speedVariation);
         }
 
         if (position != previousPosition)
@@ -178,16 +180,16 @@ public class DrunkCrosshair : MonoBehaviour
         get { return targetOnClearSight; }
     }
 
-    public float Speed
+    public float BaseSpeed
     {
-        get { return speed; }
-        set { speed = value < maxSpeed ? value : maxSpeed; }
+        get { return baseSpeed; }
+        set { baseSpeed = value < maxSpeed ? value : maxSpeed; }
     }
 
-    public float Radius
+    public float BaseRadius
     {
-        get { return radius; }
-        set { radius = value < maxRadius ? value : maxRadius; }
+        get { return baseRadius; }
+        set { baseRadius = value < maxRadius ? value : maxRadius; }
 	}
 
 	public UnityEvent OnScale

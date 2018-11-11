@@ -206,8 +206,8 @@ public class LevelManager : MonoBehaviour
 
         foreach (DrunkCrosshair crosshair in crosshairs)
         {
-            crosshair.Speed = currentSpawnPoint.DifficultyLevel * drunkSpeedMultiplier;
-            crosshair.Radius = currentSpawnPoint.DifficultyLevel * drunkRadiusMultiplier;
+            crosshair.BaseSpeed = currentSpawnPoint.DifficultyLevel * drunkSpeedMultiplier;
+            crosshair.BaseRadius = currentSpawnPoint.DifficultyLevel * drunkRadiusMultiplier;
         }
     }
 
