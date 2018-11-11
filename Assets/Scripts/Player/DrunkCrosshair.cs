@@ -26,6 +26,7 @@ public class DrunkCrosshair : MonoBehaviour
     static float scale = 1f;
 
 	Gun gun;
+	Camera fpsCamera;
     float drunkSwayInterpTime = 0f;
     float scaleInterpTime = 0f;
     float scaleAtShotInterpTime = 0f;
@@ -46,6 +47,7 @@ public class DrunkCrosshair : MonoBehaviour
 		position = new Vector3(Screen.width / 2, Screen.height / 2, 1f);
 		
 		gun = GetComponent<Gun>();
+		fpsCamera = GetComponentInParent<Camera>();
     }
 
 	void Start()
@@ -71,10 +73,9 @@ public class DrunkCrosshair : MonoBehaviour
 
     void MoveAround()
     {
-        Vector3 previousCrosshairPosition = position;
+        Vector3 previousPosition = position;
 
-        position.x = onLeftSide ? Screen.width / 2 + (Mathf.Cos(angle) - 1) * radius :
-                                                    Screen.width / 2 + (-Mathf.Cos(angle) + 1) * radius;
+        position.x = onLeftSide ? Screen.width / 2 + (Mathf.Cos(angle) - 1) * radius : Screen.width / 2 + (-Mathf.Cos(angle) + 1) * radius;
         position.y = Screen.height / 2 + Mathf.Sin(angle) * radius;
         angle += speed * Time.deltaTime;
         if (angle >= 2 * Mathf.PI)
@@ -88,8 +89,16 @@ public class DrunkCrosshair : MonoBehaviour
             speed += Random.Range(-speedVariation, speedVariation);
         }
 
-        if (position != previousCrosshairPosition)
+        if (position != previousPosition)
+		{
+			Vector3 targetDirection = (fpsCamera.ScreenToWorldPoint(position) - transform.position).normalized;
+			Quaternion targetRotation = Quaternion.FromToRotation(-transform.right, targetDirection);
+			transform.LookAt(fpsCamera.ScreenToWorldPoint(position));
+			transform.Rotate(0f, 90f, 0f);
+			Debug.DrawRay(transform.position, -transform.right * 100f, Color.blue, 0.1f);
+			Debug.DrawRay(transform.position, targetDirection * 100f, Color.green, 0.1f);
             onMove.Invoke();
+		}
     }
 
     void ScaleAccordingToDrukenness()
