@@ -9,7 +9,6 @@ public class SnakeOil : Consumable
 	[SerializeField] float deadEyeDuration = 10f;
 	[SerializeField] float deadEyeFactor = 0.1f;
 	[SerializeField] AudioClip deadEyeExitSound;
-	[SerializeField] UnityEvent onBackToNormalTime;
 
 	PostProcessingBehaviour postProcessingBehaviour;
 	float deadEyeTimer = 0f;
@@ -17,8 +16,11 @@ public class SnakeOil : Consumable
     float transitionDuration = 1f;
 	bool isApplyingEffect = false;
 	
+	UnityEvent onBackToNormalTime;
+
 	void Awake()
 	{
+		onBackToNormalTime = new UnityEvent();
 		transitionDuration = deadEyeExitSound.length;
 	}
 

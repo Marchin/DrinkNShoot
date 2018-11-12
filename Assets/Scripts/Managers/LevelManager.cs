@@ -37,15 +37,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] AudioSource completeLevelSound;
     [SerializeField] AudioSource failLevelSound;
 
-    [Header("Events")]
-    [SerializeField] UnityEvent onEnemyKill;
-    [SerializeField] UnityEvent onGameOver;
-    [SerializeField] UnityEvent onQuitLevel;
-    [SerializeField] UnityEvent onStartNextStage;
-    [SerializeField] UnityEvent onFirstEmptyGun;
-    [SerializeField] UnityEvent onClearFirstStage;
-    [SerializeField] UnityEvent onShootingStageEnter;
-
     static LevelManager instance;
 
     List<Transform> enemySpawnPoints;
@@ -64,13 +55,30 @@ public class LevelManager : MonoBehaviour
     bool hasNotifiedEmptyGun = false;
     bool inShootingStage = false;
 
+    // Events
+    UnityEvent onEnemyKill;
+    UnityEvent onGameOver;
+    UnityEvent onQuitLevel;
+    UnityEvent onStartNextStage;
+    UnityEvent onFirstEmptyGun;
+    UnityEvent onClearFirstStage;
+    UnityEvent onShootingStageEnter;
+
     void Awake()
     {
-        enemySpawnPoints = new List<Transform>();
+        onEnemyKill = new UnityEvent();
+        onGameOver = new UnityEvent();
+        onQuitLevel = new UnityEvent();
+        onStartNextStage = new UnityEvent();
+        onFirstEmptyGun = new UnityEvent();
+        onClearFirstStage = new UnityEvent();
+        onShootingStageEnter = new UnityEvent();
+        
+        enemySpawnPoints = new List<Transform>();    
         currentStageIndex = 0;
         foreach (Transform spawnPoint in crowSpawner.transform)
             if (spawnPoint.gameObject.activeInHierarchy && spawnPoint.GetComponent<CrowTrigger>())
-                enemySpawnPoints.Add(spawnPoint);
+                enemySpawnPoints.Add(spawnPoint);  
         maxStageIndex = enemySpawnPoints.Count - 1;
         currentSpawnPoint = enemySpawnPoints[currentStageIndex].GetComponent<CrowTrigger>();
     }

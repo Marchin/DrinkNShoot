@@ -5,16 +5,21 @@ public class PauseMenu : MonoBehaviour
 {
 	[SerializeField] GameObject pauseMenuUI;
 	[SerializeField] GameObject hudUI;
-	[SerializeField] UnityEvent onPause;
-	[SerializeField] UnityEvent onResume;
 	
 	static bool isPaused;
 	float timeScaleBeforePause;
 
-	void Start()
+
+    UnityEvent onPause;
+    UnityEvent onResume;
+
+	void Awake()
 	{
+		onPause = new UnityEvent();
+		onResume = new UnityEvent();
+        
 		isPaused = false;
-	}
+    }
 
 	void Update()
 	{

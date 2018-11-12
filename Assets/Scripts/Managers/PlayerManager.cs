@@ -10,8 +10,6 @@ public class PlayerManager : MonoBehaviour
 	}
 
 	[SerializeField] GameObject weaponHolderPrefab;
-	[SerializeField] UnityEvent onGunEnable;
-	[SerializeField] UnityEvent onGunDisable;
 
 	static PlayerManager instance;
 	
@@ -24,11 +22,17 @@ public class PlayerManager : MonoBehaviour
 	int currency = 1000;
 	int totalKills;
 
+    UnityEvent onGunEnable;
+    UnityEvent onGunDisable;
+
 	void Awake() 
 	{
 		if (Instance == this)
 		{
 			DontDestroyOnLoad(gameObject);
+
+			onGunEnable = new UnityEvent();
+			onGunDisable = new UnityEvent();
 
             activeGuns = new List<Gun>();
             activeConsumables = new List<Consumable>();

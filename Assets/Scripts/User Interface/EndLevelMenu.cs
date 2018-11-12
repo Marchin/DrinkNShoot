@@ -18,13 +18,16 @@ public class EndLevelMenu : MonoBehaviour
 	[SerializeField] string[] possibleCashLegends;
 	[SerializeField] string[] possibleKillsLegends;
 	[SerializeField] string[] possibleButtonNames;
-	[SerializeField] UnityEvent onContinue;
 
 	TextMeshProUGUI[] cashBonusesTexts = {null, null, null};
 	bool lastStageOfLevel = false;
 
+	UnityEvent onContinue;
+	
 	void Start()
 	{
+		onContinue = new UnityEvent();
+
 		titleText.text = possibleTitles[0];
 		cashText.text = possibleCashLegends[0];
 		killsText.text = possibleKillsLegends[0];

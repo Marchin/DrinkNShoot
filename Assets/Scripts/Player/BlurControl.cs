@@ -10,6 +10,9 @@ public class BlurControl : MonoBehaviour {
 		value = 0.3f;
 		targetValue = value;
 		transform.GetComponent<Renderer>().material.SetFloat("_blurSizeXY",value);
+	}
+
+	void Start() {
 		LevelManager.Instance.OnStartNextStage.AddListener(IncrementBlur);
 	}
 

@@ -12,19 +12,18 @@ public class DrunkCrosshair : MonoBehaviour
     [SerializeField] [Range(10f, 100f)] [Tooltip("Maximum sway level allowed to guarantee a shot success.")]
 	float maxSwayAllowed = 10f;
 
-    UnityEvent onScale;
-    UnityEvent onColorChange;
-    UnityEvent onMove;
-
+    // Constants
     const float DRUNK_SWAY_MULT = 5f;
     const float SCALE_MULT = 0.025f;
     const float PAR_VAR_RANGE_MULT = 0.15f;
 	
+    // Static Fields
 	static Vector3 position;
 	static bool targetOnClearSight = false;
     static float drunkSway = 0f;
     static float scale = 1f;
 
+    // Computing Fields
 	Gun gun;
 	Camera fpsCamera;
     float drunkSwayInterpTime = 0f;
@@ -40,6 +39,12 @@ public class DrunkCrosshair : MonoBehaviour
     float speed = 0f;
     bool onLeftSide = true;
 
+    // Events
+    UnityEvent onScale;
+    UnityEvent onColorChange;
+    UnityEvent onMove;
+
+    // Unity Methods
 	void Awake()
 	{
 		onScale = new UnityEvent();
@@ -64,6 +69,7 @@ public class DrunkCrosshair : MonoBehaviour
         IndicateShotAccuracy();
 	}
 
+    // Private Methods
 	void ScaleAtShot()
 	{
         scaleBeforeShot = scale;
@@ -77,9 +83,9 @@ public class DrunkCrosshair : MonoBehaviour
     {
         Vector3 previousPosition = position;
 
-        position.x = onLeftSide ? Screen.width / 2 + (Mathf.Cos(angle) - 1) * baseRadius : Screen.width / 2 + (-Mathf.Cos(angle) + 1) * baseRadius;
-        position.y = Screen.height / 2 + Mathf.Sin(angle) * baseRadius;
-        angle += baseSpeed * Time.deltaTime;
+        position.x = onLeftSide ? Screen.width / 2 + (Mathf.Cos(angle) - 1) * radius : Screen.width / 2 + (-Mathf.Cos(angle) + 1) * radius;
+        position.y = Screen.height / 2 + Mathf.Sin(angle) * radius;
+        angle += speed * Time.deltaTime;
         if (angle >= 2 * Mathf.PI)
         {
             float radiusVariation = baseRadius * PAR_VAR_RANGE_MULT;
@@ -93,12 +99,8 @@ public class DrunkCrosshair : MonoBehaviour
 
         if (position != previousPosition)
 		{
-			Vector3 targetDirection = (fpsCamera.ScreenToWorldPoint(position) - transform.position).normalized;
-			Quaternion targetRotation = Quaternion.FromToRotation(-transform.right, targetDirection);
 			transform.LookAt(fpsCamera.ScreenToWorldPoint(position));
-			transform.Rotate(0f, 90f, 0f);
-			Debug.DrawRay(transform.position, -transform.right * 100f, Color.blue, 0.1f);
-			Debug.DrawRay(transform.position, targetDirection * 100f, Color.green, 0.1f);
+			transform.Rotate(0f, 90f, 0f); // Consider changing the model's forward to avoid doing this.
             onMove.Invoke();
 		}
     }
@@ -160,11 +162,13 @@ public class DrunkCrosshair : MonoBehaviour
         }
     }
 
+    // Public Methods
 	public static float GetHitProbability()
 	{
 		return (targetOnClearSight ? 100f : Random.Range(0f, 100f - drunkSway));
 	}
 
+    // Getters & Setters
 	public static Vector3 Position
 	{
 		get { return position; }
@@ -183,13 +187,13 @@ public class DrunkCrosshair : MonoBehaviour
     public float BaseSpeed
     {
         get { return baseSpeed; }
-        set { baseSpeed = value < maxSpeed ? value : maxSpeed; }
+        set{ baseSpeed = speed =  value < maxSpeed ? value : maxSpeed; }
     }
 
     public float BaseRadius
     {
         get { return baseRadius; }
-        set { baseRadius = value < maxRadius ? value : maxRadius; }
+        set { baseRadius = radius = value < maxRadius ? value : maxRadius; }
 	}
 
 	public UnityEvent OnScale

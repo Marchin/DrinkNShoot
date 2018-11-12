@@ -8,13 +8,18 @@ public class TutorialUI : MonoBehaviour
 		None, Initial, Reload, Drunk
 	}
 
+	[Header("Banner References")]
 	[SerializeField] GameObject banner;
 	[SerializeField] TextMeshProUGUI tutorialText;
+
+	[Header("Banner Properties")]
 	[SerializeField] float instructionDisplayDuration = 5f;
 	[SerializeField] float initialBannerDelay = 3f;
 	[SerializeField] string[] initialInstructions;
 	[SerializeField] string[] reloadInstructions;
 	[SerializeField] string[] drunkInstructions;
+
+	[Header("Banner Animations")]
 	[SerializeField] AnimationClip slidingAnimation;
 	[SerializeField] AudioSource slideInSound;
 	[SerializeField] AudioSource slideOutSound;

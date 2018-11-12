@@ -17,7 +17,7 @@ public class InputManager : MonoBehaviour
 			#endif
 		}
 		else
-			Debug.Log("An Input Manager already exists in the scene; avoid duplicates.", gameObject);
+			Destroy(gameObject);
 	}
 
     public float GetHorizontalViewAxis()

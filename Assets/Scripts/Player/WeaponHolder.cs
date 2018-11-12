@@ -7,9 +7,6 @@ public class WeaponHolder : MonoBehaviour
 	[SerializeField] Transform gunHolder;
 	[SerializeField] Transform consumableHolder;
 	[SerializeField] Gun.GunType initialGun;
-	[SerializeField] UnityEvent onGunSwapStart;
-	[SerializeField] UnityEvent onGunSwap;
-	[SerializeField] UnityEvent onConsumableSwap;
 	
 	Gun equippedGun;
 	Consumable equippedConsumable;
@@ -18,8 +15,16 @@ public class WeaponHolder : MonoBehaviour
 	int equippedConsumableIndex;
 	bool isSwappingGun = false;
 
+    UnityEvent onGunSwapStart;
+    UnityEvent onGunSwap;
+    UnityEvent onConsumableSwap;
+
 	void Awake()
 	{
+		onGunSwapStart = new UnityEvent();
+		onGunSwap = new UnityEvent();
+		onConsumableSwap = new UnityEvent();
+
 		equippedGunType = initialGun;
 		equippedConsumableIndex = 0;
 		SetEquippedGun();

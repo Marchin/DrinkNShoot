@@ -15,14 +15,19 @@ public abstract class Consumable : MonoBehaviour, IItem
 	
 	[Header("Consumable Sounds")]
 	[SerializeField] AudioSource useSound;
-	
-	[Header("Events")]
-	[SerializeField] UnityEvent onUse;
-	[SerializeField] UnityEvent onEmpty;
-	
+
 	int amount = 0;
 	protected bool isInUse = false;
 	
+	UnityEvent onUse;
+	UnityEvent onEmpty;
+	
+	void Awake()
+	{
+		onUse = new UnityEvent();
+		onEmpty = new UnityEvent();
+	}
+
 	protected virtual void Start()
 	{
 		amount = PlayerManager.Instance.GetItemAmount(this);
