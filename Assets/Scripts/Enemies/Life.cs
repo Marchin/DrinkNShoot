@@ -7,20 +7,22 @@ public class Life : MonoBehaviour
 {
 	[SerializeField] int hitPoints;
 	[SerializeField] float deathLength;
-	[SerializeField] UnityEvent onDeath;
 	
 	ParticleSystem featherExplosion;
 	SkinnedMeshRenderer skinnedMeshRenderer;
 	int totalHitPoints;
 
-	private void Awake() 
+	UnityEvent onDeath;
+	
+	void Awake() 
 	{
+		onDeath = new UnityEvent();
 		featherExplosion = GetComponentInChildren<ParticleSystem>();
 		skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 		totalHitPoints = hitPoints;	
 	}
 
-	private void OnEnable() 
+	void OnEnable() 
 	{
 		featherExplosion.Stop();
 		skinnedMeshRenderer.enabled = true;

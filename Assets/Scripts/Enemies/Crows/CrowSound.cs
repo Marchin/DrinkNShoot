@@ -6,11 +6,24 @@ using UnityEngine;
 public class CrowSound : MonoBehaviour
 {
 	[SerializeField] AudioSource[] crowSounds;
-	[SerializeField] [Range(0, 100)]
+	[SerializeField] AudioSource attackSound;
+
+	[SerializeField] [Range(0f, 100f)]
+	float makeSoundProbability = 45f;
 	
 	static bool crowMakingSound = false;
 	
-	float makeSoundProbability = 45f;
+	Crow crow;
+
+	void Awake()
+	{
+		crow = GetComponentInParent<Crow>();
+	}
+
+	void Start()
+	{
+		crow.OnAttack.AddListener(PlayAttackSound);
+	}
 
 	void PlayRandomCrowSound()
 	{
@@ -21,6 +34,11 @@ public class CrowSound : MonoBehaviour
 			crowSounds[soundIndex].Play();
 			Invoke("NotMakingSound", crowSounds[soundIndex].clip.length);
 		}
+	}
+
+	void PlayAttackSound()
+	{
+		attackSound.Play();
 	}
 
 	void NotMakingSound()

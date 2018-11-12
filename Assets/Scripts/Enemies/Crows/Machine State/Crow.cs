@@ -8,24 +8,29 @@ using UnityEngine.Events;
 [RequireComponent(typeof(CrowFly))]
 
 public class Crow : MonoBehaviour {
-    [SerializeField] UnityEvent onLand;
-    [SerializeField] UnityEvent onFly;
     CrowSpawner m_crowSpawner;
     BoxCollider m_collider;
     Vector3 m_playerPos;
-    AudioSource m_screamSound;
     IState m_currState;
     IState m_nextState;
     int m_currLZ;
     bool m_hasToPoop;
 
+    UnityEvent onLand;
+    UnityEvent onFly;
+    UnityEvent onAttack;
+
     public UnityEvent OnLand { get { return onLand; } }
     public UnityEvent OnFly { get { return onFly; } }
+    public UnityEvent OnAttack { get { return onAttack; } }
 
     private void Awake() {
+        onLand = new UnityEvent(); 
+        onFly = new UnityEvent(); 
+        onAttack = new UnityEvent(); 
+
         m_hasToPoop = false;
         m_collider = GetComponent<BoxCollider>();
-        m_screamSound = GetComponent<AudioSource>();
         m_crowSpawner = FindObjectOfType<CrowSpawner>();
         m_currLZ = -1;
     }
@@ -90,7 +95,7 @@ public class Crow : MonoBehaviour {
 
     public void Poop() {
         GetComponent<CrowFly>().SetDestination(m_playerPos + Vector3.up * 3f);
-        m_screamSound.Play();
+        onAttack.Invoke();
         m_hasToPoop = true;
     }
 
