@@ -7,19 +7,20 @@ public class PauseMenu : MonoBehaviour
 	[SerializeField] GameObject hudUI;
 	[SerializeField] Animator pauseMenuAnimator;
 	[SerializeField] AnimationClip fadeOutAnimation;
+	[SerializeField] AudioClip pauseSound;
 	
 	static bool isPaused;
+	
+	AudioSource audioSource;
 	float timeScaleBeforePause;
 
-    UnityEvent onPause;
-    UnityEvent onResume;
+    UnityEvent onPause = new UnityEvent();
+    UnityEvent onResume = new UnityEvent();
 
 	void Awake()
-	{
-		onPause = new UnityEvent();
-		onResume = new UnityEvent();
-        
+	{   
 		isPaused = false;
+		audioSource = GetComponentInParent<AudioSource>();
     }
 
 	void Update()
@@ -36,6 +37,7 @@ public class PauseMenu : MonoBehaviour
 	public void Pause()
 	{
 		GameManager.Instance.ShowCursor();
+		audioSource.PlayOneShot(pauseSound);
 		timeScaleBeforePause = Time.timeScale;
 		Time.timeScale = 0f;
 		pauseMenuUI.SetActive(true);
