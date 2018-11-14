@@ -28,7 +28,7 @@ public class BaitItem : Consumable
         }
         else 
         {
-            Vector3 destination = transform.position + transform.forward * range;
+            Vector3 destination = transform.position + direction * range;
             bait.GetComponent<Bait>().SetPath(transform.position, destination);
         }
         bait.SetActive(true);

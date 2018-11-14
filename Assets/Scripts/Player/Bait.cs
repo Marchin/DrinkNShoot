@@ -7,8 +7,6 @@ public class Bait : MonoBehaviour {
     [SerializeField] float m_height = 5f;
     Vector3 m_source;
     Vector3 m_destination;
-    float m_a; // quadratic constants to calculate y(z)
-    float m_c; //where y(z) = a*z*z + b*z + c; and b = 0
     float m_rate; // 1/distance
     float m_accu;
 
@@ -18,13 +16,14 @@ public class Bait : MonoBehaviour {
     }
     
     private void Update() {
-        Vector3 newPos = Vector3.Lerp(transform.position, 
+        transform.position  = Vector3.Lerp(transform.position, 
             m_destination, m_accu);
-        newPos.y = m_a*m_accu*m_accu + m_c;
         m_accu += m_rate * Time.deltaTime;
-        transform.position = newPos;
         if (m_accu >= 1f) {
             Collider[] crows = Physics.OverlapSphere(transform.position, m_radius, m_crowsLayer);
+            foreach (Collider crow in crows) {
+                crow.GetComponent<Crow>().Chase(transform.position);
+            }
             enabled = false;
         }
     }
@@ -33,12 +32,15 @@ public class Bait : MonoBehaviour {
         m_source = from;
         m_destination = to;
         transform.position = m_source;
-        enabled = true;
-        m_c = m_height + from.y;
-        m_a = (m_c * to.y) / to.z*to.z;
         Vector3 diff = to - from;
         diff.y = 0f;
-        m_rate = 1f / diff.magnitude;
+        m_rate = m_duration / diff.magnitude;
+        enabled = true;
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.DrawWireSphere(transform.position, m_radius);
+        Gizmos.DrawWireSphere(m_destination, 1f);
     }
 
 }

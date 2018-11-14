@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.12107873, a: 1}
+  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -580,6 +580,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114361722561429592, guid: a9f0eee962b6c8041a741d7dd3fd5ab5,
+        type: 2}
+      propertyPath: weaponHolderPrefab
+      value: 
+      objectReference: {fileID: 1140544801865110, guid: 5d300b936ab522d4da6e458ff59b5886,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9f0eee962b6c8041a741d7dd3fd5ab5, type: 2}
   m_IsPrefabAsset: 0
