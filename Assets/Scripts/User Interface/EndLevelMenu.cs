@@ -5,6 +5,7 @@ using TMPro;
 
 public class EndLevelMenu : MonoBehaviour 
 {
+	[SerializeField] Button continueButton;
 	[SerializeField] TextMeshProUGUI titleText;
 	[SerializeField] TextMeshProUGUI cashText;
 	[SerializeField] TextMeshProUGUI cashAmountText;
@@ -87,14 +88,17 @@ public class EndLevelMenu : MonoBehaviour
 		LevelManager.Instance.QuitLevel();
 	}
 
-	public void ChangeEndScreenText(int cash, int kills, LevelManager.StageCompletionTier tier, bool levelCompleted = false)
+	public void ChangeEndScreenText(int cash, int kills, LevelManager.StageCompletionTier tier, bool levelCompleted = false, bool lastLevel = false)
 	{
 		if (levelCompleted)
 		{
 			titleText.text = possibleTitles[1];
             cashText.text = possibleCashLegends[1];
             killsText.text = possibleKillsLegends[1];
-            firstButtonText.text = possibleButtonNames[1];
+			if (!lastLevel)
+            	firstButtonText.text = possibleButtonNames[1];
+			else
+				continueButton.gameObject.SetActive(false);
 			
 			lastStageOfLevel = true;
 		}

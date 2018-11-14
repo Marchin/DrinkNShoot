@@ -22,17 +22,14 @@ public class PlayerManager : MonoBehaviour
 	int currency = 1000;
 	int totalKills;
 
-    UnityEvent onGunEnable;
-    UnityEvent onGunDisable;
+    UnityEvent onGunEnable = new UnityEvent();
+    UnityEvent onGunDisable = new UnityEvent();
 
 	void Awake() 
 	{
 		if (Instance == this)
 		{
 			DontDestroyOnLoad(gameObject);
-
-			onGunEnable = new UnityEvent();
-			onGunDisable = new UnityEvent();
 
             activeGuns = new List<Gun>();
             activeConsumables = new List<Consumable>();

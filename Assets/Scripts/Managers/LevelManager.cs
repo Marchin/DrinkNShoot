@@ -162,7 +162,7 @@ public class LevelManager : MonoBehaviour
 		if (currentStageIndex != maxStageIndex)
         	endLevelMenu.ChangeEndScreenText(cashEarnedInStage, targetsKilledInStage, stageCompletionTier);
 		else
-			endLevelMenu.ChangeEndScreenText(totalIncome, totalKills, stageCompletionTier, true);
+			endLevelMenu.ChangeEndScreenText(totalIncome, totalKills, stageCompletionTier, true, nextLevelName == "");
         
 		hud.ChangeCurrencyDisplay(totalIncome);
         completeLevelSound.Play();
