@@ -11,6 +11,7 @@ public class EndLevelMenu : MonoBehaviour
 	[SerializeField] TextMeshProUGUI killsText;
 	[SerializeField] TextMeshProUGUI killsAmountText;
 	[SerializeField] TextMeshProUGUI firstButtonText;
+	[SerializeField] GameObject stageCompleteUI;
 	[SerializeField] GameObject bronzeTierUI;
 	[SerializeField] GameObject silverTierUI;
 	[SerializeField] GameObject goldTierUI;
@@ -18,6 +19,10 @@ public class EndLevelMenu : MonoBehaviour
 	[SerializeField] string[] possibleCashLegends;
 	[SerializeField] string[] possibleKillsLegends;
 	[SerializeField] string[] possibleButtonNames;
+    [SerializeField] Animator levelFailedAnimator;
+    [SerializeField] Animator stageCompleteAnimator;
+    [SerializeField] AnimationClip levelFailedFadeOutAnimation;
+    [SerializeField] AnimationClip stageCompleteFadeOutAnimation;
 
 	TextMeshProUGUI[] cashBonusesTexts = {null, null, null};
 	bool lastStageOfLevel = false;
@@ -45,24 +50,35 @@ public class EndLevelMenu : MonoBehaviour
 		GameManager.Instance.FadeToScene(LevelManager.Instance.NextLevelName);
 	}
 
-	public void Restart()
+	void Continue()
 	{
-		Time.timeScale = 1f;
-		GameManager.Instance.HideCursor();
-		LevelManager.Instance.RestartLevel();
+		stageCompleteUI.SetActive(false);
+        GameManager.Instance.HideCursor();
+        onContinue.Invoke();
+        LevelManager.Instance.MoveToNextStage();
+	}
+	
+	void Restart()
+	{
+        GameManager.Instance.HideCursor();
+        LevelManager.Instance.RestartLevel();
+	}
+
+	public void RestartLevel()
+	{
+        Time.timeScale = 1f;
+		levelFailedAnimator.SetTrigger("Fade Out");
+		Invoke("Restart", levelFailedFadeOutAnimation.length);
 	}
 
 	public void PlayNextStage()
 	{
 		Time.timeScale = 1f;
+		stageCompleteAnimator.SetTrigger("Fade Out");
 		if (!lastStageOfLevel)
-		{
-			GameManager.Instance.HideCursor();
-			onContinue.Invoke();
-			LevelManager.Instance.MoveToNextStage();
-		}
+			Invoke("Continue", stageCompleteFadeOutAnimation.length);
 		else
-			PlayNextLevel();
+			Invoke("PlayNextLevel", stageCompleteFadeOutAnimation.length);
 	}
 
 	public void Quit()
