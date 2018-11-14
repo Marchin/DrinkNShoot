@@ -15,16 +15,12 @@ public class WeaponHolder : MonoBehaviour
 	int equippedConsumableIndex;
 	bool isSwappingGun = false;
 
-    UnityEvent onGunSwapStart;
-    UnityEvent onGunSwap;
-    UnityEvent onConsumableSwap;
+    UnityEvent onGunSwapStart = new UnityEvent();
+    UnityEvent onGunSwap = new UnityEvent();
+    UnityEvent onConsumableSwap = new UnityEvent();
 
 	void Awake()
 	{
-		onGunSwapStart = new UnityEvent();
-		onGunSwap = new UnityEvent();
-		onConsumableSwap = new UnityEvent();
-
 		equippedGunType = initialGun;
 		equippedConsumableIndex = 0;
 		SetEquippedGun();

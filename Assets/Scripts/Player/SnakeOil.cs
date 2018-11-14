@@ -16,11 +16,10 @@ public class SnakeOil : Consumable
     float transitionDuration = 1f;
 	bool isApplyingEffect = false;
 	
-	UnityEvent onBackToNormalTime;
+	UnityEvent onBackToNormalTime = new UnityEvent();
 
 	void Awake()
 	{
-		onBackToNormalTime = new UnityEvent();
 		transitionDuration = deadEyeExitSound.length;
 	}
 

@@ -40,17 +40,13 @@ public class DrunkCrosshair : MonoBehaviour
     bool onLeftSide = true;
 
     // Events
-    UnityEvent onScale;
-    UnityEvent onColorChange;
-    UnityEvent onMove;
+    UnityEvent onScale = new UnityEvent();
+    UnityEvent onColorChange = new UnityEvent();
+    UnityEvent onMove = new UnityEvent();
 
     // Unity Methods
 	void Awake()
-	{
-		onScale = new UnityEvent();
-		onColorChange = new UnityEvent();
-		onMove = new UnityEvent();
-		
+	{	
 		position = new Vector3(Screen.width / 2, Screen.height / 2, 1f);
 		
 		gun = GetComponent<Gun>();

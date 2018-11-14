@@ -12,11 +12,10 @@ public class Life : MonoBehaviour
 	SkinnedMeshRenderer skinnedMeshRenderer;
 	int totalHitPoints;
 
-	UnityEvent onDeath;
+	UnityEvent onDeath = new UnityEvent();
 	
 	void Awake() 
 	{
-		onDeath = new UnityEvent();
 		featherExplosion = GetComponentInChildren<ParticleSystem>();
 		skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 		totalHitPoints = hitPoints;	

@@ -5,10 +5,11 @@ public class PauseMenu : MonoBehaviour
 {
 	[SerializeField] GameObject pauseMenuUI;
 	[SerializeField] GameObject hudUI;
+	[SerializeField] Animator pauseMenuAnimator;
+	[SerializeField] AnimationClip fadeOutAnimation;
 	
 	static bool isPaused;
 	float timeScaleBeforePause;
-
 
     UnityEvent onPause;
     UnityEvent onResume;
@@ -47,7 +48,8 @@ public class PauseMenu : MonoBehaviour
 	{
 		GameManager.Instance.HideCursor();
 		Time.timeScale = timeScaleBeforePause;
-		pauseMenuUI.SetActive(false);
+		pauseMenuAnimator.SetTrigger("Fade Out");
+		Invoke("OnFadeOutFinish", fadeOutAnimation.length);
 		hudUI.SetActive(true);
 		isPaused = false;
 		onResume.Invoke();
@@ -57,6 +59,11 @@ public class PauseMenu : MonoBehaviour
 	{
 		Time.timeScale = 1f;
 		LevelManager.Instance.QuitLevel();
+	}
+
+	void OnFadeOutFinish()
+	{
+		pauseMenuUI.SetActive(false);
 	}
 	
 	public static bool IsPaused

@@ -19,14 +19,8 @@ public abstract class Consumable : MonoBehaviour, IItem
 	int amount = 0;
 	protected bool isInUse = false;
 	
-	UnityEvent onUse;
-	UnityEvent onEmpty;
-	
-	void Awake()
-	{
-		onUse = new UnityEvent();
-		onEmpty = new UnityEvent();
-	}
+	UnityEvent onUse = new UnityEvent();
+	UnityEvent onEmpty = new UnityEvent();
 
 	protected virtual void Start()
 	{

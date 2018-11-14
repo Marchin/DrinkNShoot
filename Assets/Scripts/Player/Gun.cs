@@ -75,27 +75,18 @@ public class Gun : MonoBehaviour, IItem
 	int shootingLayerMask = 0;
 
 	// Events
-    UnityEvent onBackToIdle;
-    UnityEvent onShot;
-    UnityEvent onReloadStart;
-    UnityEvent onReload;
-    UnityEvent onReloadFinish;
-    UnityEvent onReloadCancel;
-    UnityEvent onIncreaseBulletCount;
-    UnityEvent onEmptyGun;
+    UnityEvent onBackToIdle = new UnityEvent();
+    UnityEvent onShot = new UnityEvent();
+    UnityEvent onReloadStart = new UnityEvent();
+    UnityEvent onReload = new UnityEvent();
+    UnityEvent onReloadFinish = new UnityEvent();
+    UnityEvent onReloadCancel = new UnityEvent();
+    UnityEvent onIncreaseBulletCount = new UnityEvent();
+    UnityEvent onEmptyGun = new UnityEvent();
 
 	// Unity Methods
 	void Awake()
 	{
-        onBackToIdle = new UnityEvent();
-        onShot = new UnityEvent();
-        onReloadStart = new UnityEvent();
-        onReload = new UnityEvent();
-        onReloadFinish = new UnityEvent();
-        onReloadCancel = new UnityEvent();
-        onIncreaseBulletCount = new UnityEvent();
-        onEmptyGun = new UnityEvent();
-
 		fpsCamera = GetComponentInParent<Camera>();
 		currentState = GunState.Idle;
 		bulletsInGun = gunCapacity;

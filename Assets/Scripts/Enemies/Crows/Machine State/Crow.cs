@@ -16,19 +16,15 @@ public class Crow : MonoBehaviour {
     int m_currLZ;
     bool m_hasToPoop;
 
-    UnityEvent onLand;
-    UnityEvent onFly;
-    UnityEvent onAttack;
+    UnityEvent onLand = new UnityEvent();
+    UnityEvent onFly = new UnityEvent();
+    UnityEvent onAttack = new UnityEvent();
 
     public UnityEvent OnLand { get { return onLand; } }
     public UnityEvent OnFly { get { return onFly; } }
     public UnityEvent OnAttack { get { return onAttack; } }
 
     private void Awake() {
-        onLand = new UnityEvent(); 
-        onFly = new UnityEvent(); 
-        onAttack = new UnityEvent(); 
-
         m_hasToPoop = false;
         m_collider = GetComponent<BoxCollider>();
         m_crowSpawner = FindObjectOfType<CrowSpawner>();

@@ -22,12 +22,10 @@ public class EndLevelMenu : MonoBehaviour
 	TextMeshProUGUI[] cashBonusesTexts = {null, null, null};
 	bool lastStageOfLevel = false;
 
-	UnityEvent onContinue;
+	UnityEvent onContinue = new UnityEvent();
 	
 	void Start()
 	{
-		onContinue = new UnityEvent();
-
 		titleText.text = possibleTitles[0];
 		cashText.text = possibleCashLegends[0];
 		killsText.text = possibleKillsLegends[0];
