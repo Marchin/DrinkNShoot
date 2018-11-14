@@ -104,7 +104,6 @@ GameObject:
   - component: {fileID: 114536975175338598}
   - component: {fileID: 114535996998199986}
   - component: {fileID: 114520831104539482}
-  - component: {fileID: 82516013585131176}
   m_Layer: 14
   m_Name: Crow
   m_TagString: Untagged
@@ -276,6 +275,7 @@ GameObject:
   - component: {fileID: 114985398833293034}
   - component: {fileID: 82112261567854852}
   - component: {fileID: 82890086535532408}
+  - component: {fileID: 82768480812025018}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -817,15 +817,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &82516013585131176
+--- !u!82 &82768480812025018
 AudioSource:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1306119874549748}
+  m_GameObject: {fileID: 1803054565567872}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: a3deb91ad8b33054ab991aea2fcd8e1b,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 5145b9fce41c2224baaa54c1ce5a73e0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -834,10 +835,10 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 300
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -872,7 +873,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.823
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1048,16 +1049,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a345e6d15949d4f8ca3ad3acf8ab08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onLand:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onFly:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114520831104539482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1136,11 +1127,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 1
   deathLength: 0.5
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114985398833293034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1155,6 +1141,8 @@ MonoBehaviour:
   crowSounds:
   - {fileID: 82112261567854852}
   - {fileID: 82890086535532408}
+  attackSound: {fileID: 82768480812025018}
+  makeSoundProbability: 45
 --- !u!137 &137870003925804066
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
