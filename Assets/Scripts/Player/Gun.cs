@@ -177,12 +177,12 @@ public class Gun : MonoBehaviour, IItem
 	IEnumerator Reload()
 	{
 		onReloadStart.Invoke();
-		yield return new WaitForSeconds(reloadStartAnimation.length);
+		yield return new WaitForSecondsRealtime(reloadStartAnimation.length);
 
 		for (int i = bulletsInGun; i < gunCapacity; i++)
 		{
 			onReload.Invoke();
-			yield return new WaitForSeconds(reloadAnimation.length);
+			yield return new WaitForSecondsRealtime(reloadAnimation.length);
 			if (bullets.GetLength(0) > 0)
 				bullets[bulletsInGun].SetActive(true);
 			bulletsInGun++;
@@ -190,7 +190,7 @@ public class Gun : MonoBehaviour, IItem
         }
 
 		onReloadFinish.Invoke();
-		yield return new WaitForSeconds(reloadFinishAnimation.length);
+		yield return new WaitForSecondsRealtime(reloadFinishAnimation.length);
 		reloadRoutine = null;
 		ReturnToIdle();
 	}
@@ -227,7 +227,7 @@ public class Gun : MonoBehaviour, IItem
 
 	bool CanReload()
 	{
-		return  bulletsInGun < gunCapacity && Time.timeScale == 1f;
+		return bulletsInGun < gunCapacity;
 	}
 
 	bool ShouldPlayEmptyMagSound()
