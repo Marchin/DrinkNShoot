@@ -31,7 +31,7 @@ public class Life : MonoBehaviour
 	void Die()
 	{
 		skinnedMeshRenderer.enabled = false;
-		Invoke("Disable", deathLength);
+		Invoke("Disable", deathLength * Time.timeScale);
 	}
 	
 	public void TakeDamage()
