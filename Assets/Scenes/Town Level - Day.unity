@@ -41001,6 +41001,11 @@ Prefab:
       propertyPath: m_stage
       value: 
       objectReference: {fileID: 1867055564}
+    - target: {fileID: 114141254075659796, guid: 9c61c9ac601a4d9449757c75742e65d7,
+        type: 2}
+      propertyPath: m_difficultyLevel
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c61c9ac601a4d9449757c75742e65d7, type: 2}
   m_IsPrefabAsset: 0
@@ -41087,11 +41092,18 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 0.9855458
       objectReference: {fileID: 0}
-    - target: {fileID: 114175158310029008, guid: ee3cf5fc4130bec4bb5af2f35e43dab5,
-        type: 2}
-      propertyPath: useSound
-      value: 
-      objectReference: {fileID: 524631734}
+    - target: {fileID: 4005244034329848, guid: ee3cf5fc4130bec4bb5af2f35e43dab5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.268
+      objectReference: {fileID: 0}
+    - target: {fileID: 4005244034329848, guid: ee3cf5fc4130bec4bb5af2f35e43dab5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4005244034329848, guid: ee3cf5fc4130bec4bb5af2f35e43dab5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 3.741
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee3cf5fc4130bec4bb5af2f35e43dab5, type: 2}
   m_IsPrefabAsset: 0
