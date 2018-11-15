@@ -2,24 +2,26 @@
 
 public class Bait : MonoBehaviour {
     [SerializeField] LayerMask m_crowsLayer;
-    [SerializeField] float m_duration = 2f;
+    [SerializeField] float m_speed = 2f;
     [SerializeField] float m_radius = 2f;
-    [SerializeField] float m_height = 5f;
+    ParticleSystem m_particleSys;
     Vector3 m_source;
     Vector3 m_destination;
-    float m_rate; // 1/distance
+    float m_rate; // speed/distance
     float m_accu;
 
     private void Awake() {
-        enabled = false;
+        m_particleSys = GetComponentInChildren<ParticleSystem>();
         m_accu = 0f;
+        enabled = false;
     }
     
     private void Update() {
-        transform.position  = Vector3.Lerp(transform.position, 
+        transform.position  = Vector3.Lerp(m_source, 
             m_destination, m_accu);
         m_accu += m_rate * Time.deltaTime;
         if (m_accu >= 1f) {
+            m_particleSys.Play();
             Collider[] crows = Physics.OverlapSphere(transform.position, m_radius, m_crowsLayer);
             foreach (Collider crow in crows) {
                 crow.GetComponent<Crow>().Chase(transform.position);
@@ -34,7 +36,7 @@ public class Bait : MonoBehaviour {
         transform.position = m_source;
         Vector3 diff = to - from;
         diff.y = 0f;
-        m_rate = m_duration / diff.magnitude;
+        m_rate = 2f * m_speed / diff.magnitude;
         enabled = true;
     }
 
