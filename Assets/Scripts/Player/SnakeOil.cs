@@ -34,9 +34,9 @@ public class SnakeOil : Consumable
 		base.Update();
 
 		if (isApplyingEffect)
-		{
+		{				
 			deadEyeTimer += Time.unscaledDeltaTime;
-			if (HasToStopEffect())		
+			if (HasToStopEffect() || WantsToStopEffect())
 			{
 				deadEyeTimer = 0f;
 				isInUse = false;
@@ -58,6 +58,11 @@ public class SnakeOil : Consumable
 	bool HasToStopEffect()
 	{
 		return (deadEyeTimer >= deadEyeDuration);
+	}
+
+	bool WantsToStopEffect()
+	{
+		return (InputManager.Instance.GetUseItemButton() && isApplyingEffect);
 	}
 
 	IEnumerator GoBackToNormalTime()
