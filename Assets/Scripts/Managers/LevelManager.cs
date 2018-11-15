@@ -128,8 +128,10 @@ public class LevelManager : MonoBehaviour
         gameInStandBy = true;
 		completeStageUI.SetActive(true);
 
+        PlayerManager.Instance.StopDeadEyeEffect();
+
         hudUI.SetActive(false);
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
         GameManager.Instance.ShowCursor();
 
         cashEarnedInStage = targetsKilledInStage * cashEarnedPerKill;
@@ -173,8 +175,9 @@ public class LevelManager : MonoBehaviour
     {
         gameInStandBy = true;
         failLevelUI.SetActive(true);
+        PlayerManager.Instance.StopDeadEyeEffect();
         hudUI.SetActive(false);
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
         GameManager.Instance.ShowCursor();
         failLevelSound.Play();
         onGameOver.Invoke();

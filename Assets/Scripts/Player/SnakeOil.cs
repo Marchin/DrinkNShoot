@@ -71,9 +71,19 @@ public class SnakeOil : Consumable
 			yield return null;
 		}
 		
+		StopEffect();
+	}
+
+	public void StopEffect()
+	{
 		postProcessingBehaviour.profile.colorGrading.enabled = false;
 		Time.timeScale = 1f;
 		Time.fixedDeltaTime = previousFixedDeltaTime;
+	}
+
+	public bool IsApplyingEffect
+	{
+		get { return isApplyingEffect; }
 	}
 
 	public UnityEvent OnBackToNormalTime

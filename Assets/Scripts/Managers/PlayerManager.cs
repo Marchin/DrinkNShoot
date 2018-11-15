@@ -158,6 +158,22 @@ public class PlayerManager : MonoBehaviour
         return wasEnabled;
 	}
 
+	public void StopDeadEyeEffect()
+	{
+		Consumable consumable = weaponHolder.EquippedConsumable;
+
+		if (consumable.IsInUse)
+		{
+			consumable.CancelUse();
+			if (consumable.GetName() == "Snake Oil")
+			{
+				SnakeOil snakeOil = (SnakeOil)consumable;
+				if (snakeOil.IsApplyingEffect)
+					snakeOil.StopEffect();
+			}
+		}
+	}
+
 	public static PlayerManager Instance
 	{
 		get 
@@ -277,11 +293,6 @@ public class PlayerManager : MonoBehaviour
 	{
 		get { return totalKills; }
 		set { totalKills = value; }
-	}
-
-	public Gun CurrentGun
-	{
-		get { return weaponHolder.EquippedGun; }
 	}
 
 	public UnityEvent OnGunEnable
