@@ -53,10 +53,10 @@ public class Crow : MonoBehaviour {
             m_nextState = GetComponent<CrowFly>();
             m_crowSpawner.FreeLZ(ref m_currLZ);
             m_hasToPoop = false;
+            m_hasToFlip = false;
         } else if (m_hasToFlip) {
-            if((Object)m_nextState != GetComponent<CrowMovement>()) {
-                m_nextState = GetComponent<CrowFlip>();
-            }
+            m_nextState = GetComponent<CrowFlip>();
+            m_hasToFlip = false;
         }
         if (m_nextState != m_currState) {
             if ((Object)m_nextState == GetComponent<CrowMovement>()) {
