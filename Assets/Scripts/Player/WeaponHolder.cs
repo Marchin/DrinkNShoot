@@ -26,7 +26,7 @@ public class WeaponHolder : MonoBehaviour
 		SetEquippedGun();
 		SetEquippedConsumable();
 	}
-
+	
 	void Update()
 	{
 		if (CanSwapWeapon())

@@ -117,8 +117,8 @@ public class DrunkCrosshair : MonoBehaviour
                 drunkSway = Mathf.Lerp(LevelManager.Instance.DifficultyLevel * DRUNK_SWAY_MULT, 0f, drunkSwayInterpTime);
                 scale = Mathf.Lerp(1f + drunkSway * SCALE_MULT, 1f, scaleInterpTime);
             }
-            drunkSwayInterpTime += Time.deltaTime;
-            scaleInterpTime += Time.deltaTime;
+            drunkSwayInterpTime += Time.unscaledDeltaTime;
+            scaleInterpTime += Time.unscaledDeltaTime;
             if (drunkSwayInterpTime >= 1f)
             {
                 drunkSwayInterpTime = 0f;
@@ -129,7 +129,7 @@ public class DrunkCrosshair : MonoBehaviour
         else
         {
             scale = Mathf.Lerp(scaleAfterShot, scaleBeforeShot, scaleAtShotInterpTime);
-            scaleAtShotInterpTime += Time.deltaTime / gun.GetRecoilDuration();
+            scaleAtShotInterpTime += Time.unscaledDeltaTime / gun.GetRecoilDuration();
         }
 
         if (scale != previousScale)
