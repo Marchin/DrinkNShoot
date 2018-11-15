@@ -16,6 +16,8 @@ public abstract class Consumable : MonoBehaviour, IItem
 	[Header("Consumable Sounds")]
 	[SerializeField] AudioSource useSound;
 
+	WeaponHolder weaponHolder;
+	Coroutine useRoutine;
 	int amount = 0;
 	protected bool isInUse = false;
 	
@@ -25,12 +27,13 @@ public abstract class Consumable : MonoBehaviour, IItem
 	protected virtual void Start()
 	{
 		amount = PlayerManager.Instance.GetItemAmount(this);
+		weaponHolder = FindObjectOfType<WeaponHolder>();
 	}
 
 	protected virtual void Update()
 	{
 		if (InputManager.Instance.GetUseItemButton() && CanUse())
-			StartCoroutine(UseItem());
+			useRoutine = StartCoroutine(UseItem());
 	}
 
 	IEnumerator UseItem()
@@ -38,18 +41,29 @@ public abstract class Consumable : MonoBehaviour, IItem
 		isInUse = true;
 		//PlayerManager.Instance.DecreaseConsumableAmount(this);
         onUse.Invoke();
+        yield return new WaitForSeconds(useAnimation.length);
 		if (PlayerManager.Instance.GetItemAmount(this) == 0)
 			onEmpty.Invoke();
-        yield return new WaitForSeconds(useAnimation.length);
 		ApplyConsumableEffect();
 	}
 
 	bool CanUse()
 	{
-		return !isInUse && PlayerManager.Instance.GetItemAmount(this) > 0;
+		return (!isInUse && PlayerManager.Instance.GetItemAmount(this) > 0 &&
+				weaponHolder.EquippedGun.CurrentState != Gun.GunState.Reloading);
 	} 
 
 	protected abstract void ApplyConsumableEffect();
+
+	public void CancelUse()
+	{
+		isInUse = false;
+		if (useRoutine != null)
+		{
+			StopCoroutine(useRoutine);
+			useRoutine = null;
+		}
+	}
 
 	public void IncreaseAmount(int amount)
 	{
@@ -93,6 +107,11 @@ public abstract class Consumable : MonoBehaviour, IItem
 	public AudioSource UseSound
 	{
 		get { return useSound; }
+	}
+
+	public bool IsInUse
+	{
+		get { return isInUse; }
 	}
 
 	public UnityEvent OnUse
