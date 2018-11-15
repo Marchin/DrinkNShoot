@@ -79,7 +79,8 @@ public class DrunkCrosshair : MonoBehaviour
     {
         Vector3 previousPosition = position;
 
-        position.x = onLeftSide ? Screen.width / 2 + (Mathf.Cos(angle) - 1) * radius : Screen.width / 2 + (-Mathf.Cos(angle) + 1) * radius;
+        position.x = onLeftSide ? Screen.width / 2 + (Mathf.Cos(angle) - 1) * radius : 
+                                    Screen.width / 2 + (-Mathf.Cos(angle) + 1) * radius;
         position.y = Screen.height / 2 + Mathf.Sin(angle) * radius;
         angle += speed * Time.deltaTime;
         if (angle >= 2 * Mathf.PI)

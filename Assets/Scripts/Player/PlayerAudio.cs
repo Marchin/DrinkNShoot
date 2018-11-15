@@ -30,17 +30,19 @@ public class PlayerAudio : MonoBehaviour
 	
 	void InvokeReloadSound()
 	{
-		Invoke("PlayReloadSound", weaponHolder.EquippedGun.ReloadAnimation.length * 0.75f);
+		Invoke("PlayReloadSound", weaponHolder.EquippedGun.ReloadAnimation.length * 0.75f * Time.timeScale);
 	}
 
 	void CancelInvokeReloadSound()
 	{
 		CancelInvoke("PlayReloadSound");
 	}
+
 	void PlayReloadSound()
 	{
 		weaponHolder.EquippedGun.ReloadSound.Play();
 	}
+
 	void PlayEmptyGunSound()
 	{
 		weaponHolder.EquippedGun.EmptyGunSound.Play();

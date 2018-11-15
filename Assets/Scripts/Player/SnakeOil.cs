@@ -57,7 +57,7 @@ public class SnakeOil : Consumable
 
 	bool HasToStopEffect()
 	{
-		return (deadEyeTimer >= deadEyeDuration || PlayerManager.Instance.CurrentGun.BulletsInGun == 0);
+		return (deadEyeTimer >= deadEyeDuration);
 	}
 
 	IEnumerator GoBackToNormalTime()
