@@ -83,10 +83,13 @@ public class LevelManager : MonoBehaviour
         currentSpawnPoint = enemySpawnPoints[currentStageIndex].GetComponent<CrowTrigger>();
     }
 
-    void Start()
+    void OnEnable()
     {
         PlayerManager.Instance.SetComponentReferencesForLevel();
+    }
 
+    void Start()
+    {
         endLevelMenu = FindObjectOfType<EndLevelMenu>();
         hud = FindObjectOfType<HUD>();
 

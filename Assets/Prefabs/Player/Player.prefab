@@ -4220,7 +4220,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4790736716997508}
-  - component: {fileID: 114175158310029008}
   - component: {fileID: 82800663965635154}
   m_Layer: 9
   m_Name: BaitHolder
@@ -13381,26 +13380,6 @@ MonoBehaviour:
   shootSound: {fileID: 82769501209778446}
   reloadSound: {fileID: 82727552341599788}
   emptyGunSound: {fileID: 82199371098583074}
---- !u!114 &114175158310029008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1769178453013696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf1b6ece24386d44caeaff3edcd3c9f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  consumableName: Bait
-  maxAmount: 1
-  useAnimation: {fileID: 7400000, guid: b4bac5b190e668045aecf14ec57611af, type: 2}
-  useSound: {fileID: 82800663965635154}
-  baitPrefab: {fileID: 1467655070488600, guid: c2b8b48f7ee0f7f4b9ed72db0b131c1c, type: 2}
-  landingLayers:
-    serializedVersion: 2
-    m_Bits: 9216
-  range: 20
 --- !u!114 &114227046878976120
 MonoBehaviour:
   m_ObjectHideFlags: 1

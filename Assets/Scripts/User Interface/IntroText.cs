@@ -7,6 +7,9 @@ public class IntroText : MonoBehaviour
 {
 	[SerializeField] string[] slidesText;
 	[SerializeField] TextMeshProUGUI bodyText;
+	[SerializeField] Image[] firstSlideImages;
+	[SerializeField] Image[] secondSlideImages;
+	[SerializeField] Image[] thirdSlideImages;
 	[SerializeField] Button continueButton;
 	[SerializeField] Button skipButton;
 	[SerializeField] AnimationClip fadeOutAnimation;
@@ -38,11 +41,32 @@ public class IntroText : MonoBehaviour
 		pauseMenu.enabled = true;
 	}
 
-	IEnumerator SwapSlideText()
+	void SwapSlideImages(Image[] previousImages, Image[] nextImages)
+	{
+        foreach (Image image in previousImages)
+			image.gameObject.SetActive(false);
+        
+		foreach (Image image in nextImages)
+			image.gameObject.SetActive(true);
+	}
+
+	IEnumerator SwapSlide()
 	{
 		yield return new WaitForSecondsRealtime(textOutAnimation.length);
 
         bodyText.text = slidesText[currentSlideIndex];
+
+		switch (currentSlideIndex)
+		{
+			case 1:
+				SwapSlideImages(firstSlideImages, secondSlideImages);
+				break;
+			case 2:
+				SwapSlideImages(secondSlideImages, thirdSlideImages);
+				break;
+			default:
+				break;			
+		}
 
         continueButton.interactable = true;
         skipButton.interactable = true;
@@ -57,7 +81,7 @@ public class IntroText : MonoBehaviour
             continueButton.interactable = false;
             skipButton.interactable = false;
 			animator.SetTrigger("Text Out");
-			StartCoroutine(SwapSlideText());
+			StartCoroutine(SwapSlide());
 		}
 		else
 			FinishPresentation();
