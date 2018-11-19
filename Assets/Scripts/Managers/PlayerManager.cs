@@ -162,7 +162,7 @@ public class PlayerManager : MonoBehaviour
 	{
 		Consumable consumable = weaponHolder.EquippedConsumable;
 
-		if (consumable.IsInUse)
+		if (consumable && consumable.IsInUse)
 		{
 			consumable.CancelUse();
 			if (consumable.GetName() == "Snake Oil")

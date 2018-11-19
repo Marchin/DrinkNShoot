@@ -39,7 +39,7 @@ public abstract class Consumable : MonoBehaviour, IItem
 	IEnumerator UseItem()
 	{
 		isInUse = true;
-		//PlayerManager.Instance.DecreaseConsumableAmount(this);
+		PlayerManager.Instance.DecreaseConsumableAmount(this);
         onUse.Invoke();
         yield return new WaitForSeconds(useAnimation.length);
 		if (PlayerManager.Instance.GetItemAmount(this) == 0)
