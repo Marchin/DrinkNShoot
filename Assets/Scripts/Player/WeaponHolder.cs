@@ -34,7 +34,7 @@ public class WeaponHolder : MonoBehaviour
 	{
 		SetEquippedConsumable();
 	}
-	
+
 	void Update()
 	{
 		if (CanSwapWeapon())

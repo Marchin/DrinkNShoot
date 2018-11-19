@@ -56,24 +56,16 @@ public class LevelManager : MonoBehaviour
     bool inShootingStage = false;
 
     // Events
-    UnityEvent onEnemyKill;
-    UnityEvent onGameOver;
-    UnityEvent onQuitLevel;
-    UnityEvent onStartNextStage;
-    UnityEvent onFirstEmptyGun;
-    UnityEvent onClearFirstStage;
-    UnityEvent onShootingStageEnter;
+    UnityEvent onEnemyKill = new UnityEvent();
+    UnityEvent onGameOver = new UnityEvent();
+    UnityEvent onQuitLevel = new UnityEvent();
+    UnityEvent onStartNextStage = new UnityEvent();
+    UnityEvent onFirstEmptyGun = new UnityEvent();
+    UnityEvent onClearFirstStage = new UnityEvent();
+    UnityEvent onShootingStageEnter = new UnityEvent();
 
     void Awake()
-    {
-        onEnemyKill = new UnityEvent();
-        onGameOver = new UnityEvent();
-        onQuitLevel = new UnityEvent();
-        onStartNextStage = new UnityEvent();
-        onFirstEmptyGun = new UnityEvent();
-        onClearFirstStage = new UnityEvent();
-        onShootingStageEnter = new UnityEvent();
-        
+    {        
         enemySpawnPoints = new List<Transform>();    
         currentStageIndex = 0;
         foreach (Transform spawnPoint in crowSpawner.transform)

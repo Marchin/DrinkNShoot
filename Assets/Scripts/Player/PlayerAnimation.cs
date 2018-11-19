@@ -25,6 +25,7 @@ public class PlayerAnimation : MonoBehaviour
 	{
 		ChangeGunAnimations();
 		ChangeConsumableAnimations();
+		
 		weaponHolder.OnGunSwap.AddListener(ChangeGunAnimations);	
 		weaponHolder.OnConsumableSwap.AddListener(ChangeConsumableAnimations);	
 		LevelManager.Instance.OnStartNextStage.AddListener(InvokeSipTaking);
