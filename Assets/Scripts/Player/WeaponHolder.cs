@@ -23,7 +23,15 @@ public class WeaponHolder : MonoBehaviour
 	{
 		equippedGunType = initialGun;
 		equippedConsumableIndex = 0;
+	}
+
+	void OnEnable()
+	{
 		SetEquippedGun();
+	}
+	
+	void Start()
+	{
 		SetEquippedConsumable();
 	}
 	
