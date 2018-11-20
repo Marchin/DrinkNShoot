@@ -50,7 +50,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5296b08dd419c5142a54fcc8cdbb9ad7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -151,11 +151,6 @@ MonoBehaviour:
   maxAmount: 1
   useAnimation: {fileID: 7400000, guid: 15f7752e40c4d9e46a46bda3b26d0bda, type: 2}
   useSound: {fileID: 82478408809398116}
-  onUse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  deadEyeDuration: 7
-  transitionDuration: 1
+  deadEyeDuration: 10
   deadEyeFactor: 0.1
+  deadEyeExitSound: {fileID: 8300000, guid: 94ef80433e47ed143b6eeccb5c7dcfd6, type: 3}
