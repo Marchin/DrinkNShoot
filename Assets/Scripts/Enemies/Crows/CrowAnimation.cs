@@ -7,25 +7,34 @@ public class CrowAnimation : MonoBehaviour
 {
 	Animator animator;
 	Crow crow;
+	CrowMovement crowMovement;
 
 	void Awake()
 	{
 		animator = GetComponent<Animator>();
 		crow = GetComponentInParent<Crow>();
+		crowMovement = GetComponentInParent<CrowMovement>();
 	}
 
 	void Start()
 	{
-		crow.OnLand.AddListener(HasLanded);
-		crow.OnFly.AddListener(HasFlown);
+		crow.OnLand.AddListener(WalkAnimation);
+		crow.OnFly.AddListener(FlyAnimation);
+		crowMovement.OnStartWalking.AddListener(WalkAnimation);
+		crowMovement.OnStopWalking.AddListener(IdleAnimation);
 	}
 
-	void HasLanded()
+	void IdleAnimation()
 	{
-		animator.SetTrigger("Has Landed");
+		animator.SetTrigger("Has Stopped");
 	}
 
-	void HasFlown()
+	void WalkAnimation()
+	{
+		animator.SetTrigger("Has Started Walking");
+	}
+
+	void FlyAnimation()
 	{
 		animator.SetTrigger("Has Flown");
 	}
