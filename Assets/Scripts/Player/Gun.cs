@@ -39,9 +39,11 @@ public class Gun : MonoBehaviour, IItem
 	[SerializeField] [Tooltip("The names of the layers the gun will ignore when using raycasts.")]
 	string[] layersToIgnore;
 
-	[Header("Bullet Objects")]
+	[Header("Objects & Effects")]
 	[SerializeField] [Tooltip("The bullet game objects inside the gun.")]
 	GameObject[] bullets;
+	[SerializeField] [Tooltip("The muzzle flash effect associated to the gun.")]
+	ParticleSystem muzzleFlash;
 	
 	[Header("Gun Animations")]
 	[SerializeField] [Tooltip("The 'shoot' animation associated to the gun.")]
@@ -142,6 +144,8 @@ public class Gun : MonoBehaviour, IItem
 	// Private Methods
 	void Shoot()
 	{	
+		muzzleFlash.Play();
+
 		consecutiveShots++;
 		consecutiveShotsAtShot = consecutiveShots;
 
