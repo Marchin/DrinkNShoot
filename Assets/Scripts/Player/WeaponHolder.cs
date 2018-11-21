@@ -152,6 +152,11 @@ public class WeaponHolder : MonoBehaviour
 		get { return currentCrosshair; }
 	}
 
+	public int EquippedConsumableIndex
+	{
+		get { return equippedConsumableIndex; }
+	}
+
 	public UnityEvent OnGunSwapStart
 	{
 		get { return onGunSwapStart; }

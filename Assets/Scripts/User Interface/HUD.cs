@@ -6,6 +6,8 @@ public class HUD : MonoBehaviour
 {
 	[Header("HUD Elements")]
 	[SerializeField] Image crosshair;
+	[SerializeField] Sprite[] gunSprites;
+	[SerializeField] Sprite[] consumableSprites;
 	[SerializeField] GameObject ammoHUD;
 	[SerializeField] GameObject crowHUD;
 	[SerializeField] GameObject timerHUD;
@@ -66,10 +68,10 @@ public class HUD : MonoBehaviour
     {
 		weaponHolder = FindObjectOfType<WeaponHolder>();
 		
-		ChangeWeaponInDisplay();
+		ChangeGunInDisplay();
 		ChangeConsumableInDisplay();
 		
-		weaponHolder.OnGunSwap.AddListener(ChangeWeaponInDisplay);
+		weaponHolder.OnGunSwap.AddListener(ChangeGunInDisplay);
 		weaponHolder.OnConsumableSwap.AddListener(ChangeConsumableInDisplay);
 		LevelManager.Instance.OnEnemyKill.AddListener(ChangeKillsDisplay);
 		LevelManager.Instance.OnStartNextStage.AddListener(ChangeKillsDisplay);
@@ -229,7 +231,7 @@ public class HUD : MonoBehaviour
 		rankBanner.SetActive(false);
 	}
 
-	void ChangeWeaponInDisplay()
+	void ChangeGunInDisplay()
 	{
         weaponHolder.EquippedGun.OnShot.AddListener(ChangeAmmoDisplay);
         weaponHolder.EquippedGun.OnIncreaseBulletCount.AddListener(ChangeAmmoDisplay);
@@ -237,6 +239,8 @@ public class HUD : MonoBehaviour
         weaponHolder.CurrentCrosshair.OnScale.AddListener(ScaleCrosshair);
         weaponHolder.CurrentCrosshair.OnColorChange.AddListener(ChangeCrosshairColor);
         weaponHolder.CurrentCrosshair.OnMove.AddListener(MoveCrosshair);
+
+		ammoHUD.GetComponent<Image>().sprite = gunSprites[(int)weaponHolder.EquippedGun.TypeOfGun];
 
 		ChangeCrosshairColor();
 		ChangeAmmoDisplay();
@@ -249,7 +253,9 @@ public class HUD : MonoBehaviour
 			consumablesHUD.SetActive(true);
 			weaponHolder.EquippedConsumable.OnUse.AddListener(ChangeConsumablesDisplay);
 
-			ChangeConsumablesDisplay();
+            consumablesHUD.GetComponent<Image>().sprite = consumableSprites[weaponHolder.EquippedConsumableIndex];
+
+            ChangeConsumablesDisplay();
 		}
 		else
 			consumablesHUD.SetActive(false);

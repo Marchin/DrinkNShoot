@@ -2725,6 +2725,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crosshair: {fileID: 114497676728664862}
+  gunSprites:
+  - {fileID: 21300000, guid: 322355fc78295024d90cad7e1aa3aa68, type: 3}
+  - {fileID: 21300000, guid: de14722b50861da49ab2a76d1fde8c29, type: 3}
+  consumableSprites:
+  - {fileID: 21300000, guid: 4a60dcaff82e9e24fb0fe9482d76fd55, type: 3}
+  - {fileID: 21300000, guid: 6a560f58f01bb3340b51b095020989f7, type: 3}
   ammoHUD: {fileID: 1498930017341998}
   crowHUD: {fileID: 1321288065802792}
   timerHUD: {fileID: 1429175652898824}
@@ -3953,7 +3959,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190079
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_fontColorGradient:
@@ -4024,7 +4030,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -5129,7 +5135,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 51.85
+  m_fontSize: 58.8
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7725,7 +7731,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 322355fc78295024d90cad7e1aa3aa68, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a60dcaff82e9e24fb0fe9482d76fd55, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -8658,7 +8664,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190079
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_fontColorGradient:
@@ -8729,7 +8735,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -11205,7 +11211,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.4, y: 0.1}
-  m_AnchorMax: {x: 0.9, y: 0.7}
+  m_AnchorMax: {x: 0.9, y: 0.6}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11374,7 +11380,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 200, y: -250}
-  m_SizeDelta: {x: 300, y: 100}
+  m_SizeDelta: {x: 272, y: 136}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224793715180857962
 RectTransform:
