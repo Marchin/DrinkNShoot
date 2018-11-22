@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     [Header("Entities References")]
     [SerializeField] NavMeshAgent playersWagon;
     [SerializeField] CrowSpawner crowSpawner;
+    [SerializeField] Animation horseAnimation;
 
     [Header("UI References")]
     [SerializeField] GameObject completeStageUI;
@@ -235,6 +236,7 @@ public class LevelManager : MonoBehaviour
         currentStageIndex++;
 
         playersWagon.destination = enemySpawnPoints[currentStageIndex].position;
+        horseAnimation.Play();
         currentSpawnPoint = enemySpawnPoints[currentStageIndex].GetComponent<CrowTrigger>();
         currentSpawnPoint.EnableStage();
 
@@ -249,6 +251,7 @@ public class LevelManager : MonoBehaviour
     {
         crowSpawner.enabled = true;
         inShootingStage = true;
+        horseAnimation.Stop();
         onShootingStageEnter.Invoke();
     }
 
