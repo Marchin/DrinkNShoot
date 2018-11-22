@@ -866,6 +866,7 @@ GameObject:
   - component: {fileID: 4005244034329848}
   - component: {fileID: 33047946727862848}
   - component: {fileID: 23150906486829516}
+  - component: {fileID: 111736397891075238}
   m_Layer: 9
   m_Name: Horse
   m_TagString: Untagged
@@ -5889,7 +5890,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1140951746747008}
   m_LocalRotation: {x: 0.0038553206, y: -0.004305872, z: 0.00081699464, w: 0.999983}
-  m_LocalPosition: {x: 0.27296686, y: -0.13390386, z: 3.1615303}
+  m_LocalPosition: {x: 0.271, y: -0.136, z: 3.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4153601513136886}
@@ -7319,7 +7320,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1675826093082486}
   m_LocalRotation: {x: 0.0100061465, y: 0.7070529, z: -0.0098351445, w: -0.70702153}
-  m_LocalPosition: {x: 1.08, y: -0.566, z: -0.351}
+  m_LocalPosition: {x: 1.26, y: -0.57, z: -0.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4934779702102914}
@@ -10839,7 +10840,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1195755209449224}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.21, y: -0.48, z: 0.51}
+  m_LocalPosition: {x: 0.22, y: -0.47, z: -0.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4462441362945260}
@@ -12273,7 +12274,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1891905606091710}
-  m_Mesh: {fileID: 4300000, guid: 6ac77f49e7f888942a3d7bdb2763a4c0, type: 3}
+  m_Mesh: {fileID: 4300000, guid: e502fb70596ca5a429d45e9a7899d5d6, type: 3}
 --- !u!33 &33655021918856540
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -13595,6 +13596,21 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!111 &111736397891075238
+Animation:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1140951746747008}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 33645cd3786bc244abba9faf888f4656, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 33645cd3786bc244abba9faf888f4656, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114011891288755440
 MonoBehaviour:
   m_ObjectHideFlags: 1
