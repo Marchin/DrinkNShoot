@@ -565,6 +565,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114361722561429592, guid: a9f0eee962b6c8041a741d7dd3fd5ab5,
+        type: 2}
+      propertyPath: weaponHolderPrefab
+      value: 
+      objectReference: {fileID: 1877662900332184, guid: 5d300b936ab522d4da6e458ff59b5886,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9f0eee962b6c8041a741d7dd3fd5ab5, type: 2}
   m_IsPrefabAsset: 0
