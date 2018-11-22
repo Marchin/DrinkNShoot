@@ -62,6 +62,10 @@ public class HUD : MonoBehaviour
 		timerHUDAnimator = timerHUD.GetComponent<Animator>();
 		consumablesHUDAnimator = consumablesHUD.GetComponent<Animator>();
 		rankBannerAnimator = rankBanner.GetComponent<Animator>();
+
+		
+		darkGreen = new Color(0f, 0.3f, 0f);
+		darkRed = new Color(0.5f, 0.1f, 0.1f);
 	}
 
     void Start()
@@ -81,9 +85,6 @@ public class HUD : MonoBehaviour
 		objectiveBannerTimer = 0f;
 		objectiveBannerWasJustDisabled = false;
 		clockTickTimer = 0f;
-
-		darkGreen = new Color(0f, 0.3f, 0f);
-		darkRed = new Color(0.5f, 0.1f, 0.1f);
 
 		ChangeAmmoDisplay();
 		if (weaponHolder.EquippedConsumable)
@@ -159,13 +160,14 @@ public class HUD : MonoBehaviour
 		int minimumRequiredKills = LevelManager.Instance.MinimumRequiredKills;
 		int maximumRequiredKills = LevelManager.Instance.MaximumRequiredKills;
 		int requiredKillsForNextTier = LevelManager.Instance.RequiredKillsForNextTier;
+		int requiredKillsForCurrentTier = LevelManager.Instance.RequiredKillsForCurrentTier;
 
 		crowsText.text = targetsKilled < maximumRequiredKills ? targetsKilled.ToString() + "/" + requiredKillsForNextTier.ToString() :
 																targetsKilled.ToString();
 
 		crowsText.color = targetsKilled >= minimumRequiredKills ? darkGreen : Color.white;
 		
-		if (targetsKilled + 1 == requiredKillsForNextTier + 1)
+		if (targetsKilled == requiredKillsForCurrentTier)
 		{
 			crowHUDAnimator.SetTrigger("Has to Pop");
 			if (targetsKilled == minimumRequiredKills)

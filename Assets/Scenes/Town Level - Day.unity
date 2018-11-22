@@ -41076,6 +41076,21 @@ Prefab:
       propertyPath: m_stage
       value: 
       objectReference: {fileID: 1867055564}
+    - target: {fileID: 114141254075659796, guid: 9c61c9ac601a4d9449757c75742e65d7,
+        type: 2}
+      propertyPath: m_bronzeTierKills
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114141254075659796, guid: 9c61c9ac601a4d9449757c75742e65d7,
+        type: 2}
+      propertyPath: m_silverTierKills
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114141254075659796, guid: 9c61c9ac601a4d9449757c75742e65d7,
+        type: 2}
+      propertyPath: m_goldTierKills
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c61c9ac601a4d9449757c75742e65d7, type: 2}
   m_IsPrefabAsset: 0
