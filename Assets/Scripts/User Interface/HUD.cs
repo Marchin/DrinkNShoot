@@ -14,6 +14,8 @@ public class HUD : MonoBehaviour
 	[SerializeField] GameObject currencyHUD;
 	[SerializeField] GameObject consumablesHUD;
 	[SerializeField] GameObject rankBanner;
+	[SerializeField] Image rankImage;
+	[SerializeField] Sprite[] rankSprites;
 	
 	[Header("Audio Sources")]
 	[SerializeField] AudioSource slideInBannerSound;
@@ -41,9 +43,10 @@ public class HUD : MonoBehaviour
 	Animator crowHUDAnimator;
 	Animator timerHUDAnimator;
 	Animator consumablesHUDAnimator;
-	Color darkGreen;
-	Color darkRed;
-	Color yellow;
+	Color darkRedColor;
+	Color bronzeColor;
+	Color silverColor;
+	Color goldColor;
 	float objectiveBannerTimer;
 	float clockTickTimer;
 	bool objectiveBannerWasJustDisabled;
@@ -64,8 +67,10 @@ public class HUD : MonoBehaviour
 		rankBannerAnimator = rankBanner.GetComponent<Animator>();
 
 		
-		darkGreen = new Color(0f, 0.3f, 0f);
-		darkRed = new Color(0.5f, 0.1f, 0.1f);
+		darkRedColor = new Color(0.5f, 0.1f, 0.1f);
+		bronzeColor = new Color(0.6f, 0.3f, 0.1f);
+		silverColor = new Color(0.4f, 0.4f, 0.3f);
+		goldColor = new Color(0.6f, 0.5f, 0f);
 	}
 
     void Start()
@@ -107,7 +112,7 @@ public class HUD : MonoBehaviour
 
 	void ChangeCrosshairColor()
 	{
-		crosshair.color = DrunkCrosshair.TargetOnClearSight ? darkRed : Color.white;
+		crosshair.color = DrunkCrosshair.TargetOnClearSight ? darkRedColor : Color.white;
 	}
 
 	void MoveCrosshair()
@@ -129,7 +134,7 @@ public class HUD : MonoBehaviour
 		{
 			if (bulletsInCylinder == 0)
 				ammoHUDAnimator.SetTrigger("Has to Pop");
-			ammoText.color = darkRed;
+			ammoText.color = darkRedColor;
 		}
 		else
 			ammoText.color = Color.white;
@@ -164,25 +169,38 @@ public class HUD : MonoBehaviour
 
 		crowsText.text = targetsKilled < maximumRequiredKills ? targetsKilled.ToString() + "/" + requiredKillsForNextTier.ToString() :
 																targetsKilled.ToString();
-
-		crowsText.color = targetsKilled >= minimumRequiredKills ? darkGreen : Color.white;
 		
 		if (targetsKilled == requiredKillsForCurrentTier)
 		{
 			crowHUDAnimator.SetTrigger("Has to Pop");
 			if (targetsKilled == minimumRequiredKills)
+			{
+				crowsText.color = bronzeColor;
 				rankBannerText.text = "Bronze Rank Achieved!";
+				rankImage.sprite = rankSprites[0];
+			}
 			else
 			{
 				if (targetsKilled == maximumRequiredKills)
+				{
+					crowsText.color = goldColor;
 					rankBannerText.text = "Gold Rank Achieved!";
+					rankImage.sprite = rankSprites[2];
+				}
 				else
+				{
+					crowsText.color = silverColor;
 					rankBannerText.text = "Silver Rank Achieved!";
+					rankImage.sprite = rankSprites[1];					
+				}
 			}
 			rankBanner.SetActive(true);
 			rankBannerAnimator.SetTrigger("Start");
 			slideInBannerSound.Play();
 		}
+		else
+			if (crowsText.color != Color.white && targetsKilled < minimumRequiredKills)
+				crowsText.color = Color.white;
 	}
 
 	void ChangeTimerDisplay()
@@ -192,7 +210,7 @@ public class HUD : MonoBehaviour
 
 		if (timeLeft <= CRITICAL_TIME_LEFT)
 		{
-			timerText.color = darkRed;
+			timerText.color = darkRedColor;
 			clockTickTimer += Time.deltaTime;
 			if (clockTickTimer >= 1f)
 			{
