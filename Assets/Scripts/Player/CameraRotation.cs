@@ -13,22 +13,24 @@ public class CameraRotation : MonoBehaviour
 	float minHorizontalAngle;
 	float maxHorizontalAngle;
 	bool horizontalRotationClamped = false;
-	bool horizontalRotationBeingClamped = false;
+	bool focusingOnNewTarget = false;
 	
 	void Awake()
 	{
 		GameManager.Instance.HideCursor();
 		fpsCamera = GetComponentInChildren<Camera>().transform;
-		horizontalAngle = transform.localEulerAngles.y;
-		minHorizontalAngle = horizontalAngle - horizontalRange / 2f;
-		maxHorizontalAngle = horizontalAngle + horizontalRange / 2f;
 	}
 
 	void Start()
 	{
 		LevelManager.Instance.OnShootingStageEnter.AddListener(ChangeHorizontalClamping);
 		LevelManager.Instance.OnStartNextStage.AddListener(UnclampHorizontalRotation);
-	}
+
+        transform.LookAt(LevelManager.Instance.CurrentStagePosition);
+        horizontalAngle = transform.localEulerAngles.y;
+        minHorizontalAngle = horizontalAngle - horizontalRange / 2f;
+        maxHorizontalAngle = horizontalAngle + horizontalRange / 2f;
+    }
 
 	void Update()
 	{
@@ -42,7 +44,7 @@ public class CameraRotation : MonoBehaviour
 		if (horizontalRotationClamped)
 			horizontalAngle = Mathf.Clamp(horizontalAngle, minHorizontalAngle, maxHorizontalAngle);
 
-		if (!horizontalRotationBeingClamped)
+		if (!focusingOnNewTarget)
 			transform.eulerAngles = new Vector3(transform.eulerAngles.x, horizontalAngle, transform.eulerAngles.z);
 		fpsCamera.eulerAngles = new Vector3(verticalAngle, fpsCamera.eulerAngles.y, fpsCamera.eulerAngles.z);
 	}
@@ -60,19 +62,23 @@ public class CameraRotation : MonoBehaviour
 	}
 
 	IEnumerator FocusOnNextStage()
-	{
-        horizontalRotationBeingClamped = true;
-        
-		float timer = 0f;
+	{      
 		Vector3 targetDir = (LevelManager.Instance.CurrentStagePosition - LevelManager.Instance.CurrentSpawnPointPosition).normalized;
         Quaternion targetCentralRotation = Quaternion.LookRotation(targetDir);
 		Quaternion fromRotation = transform.rotation;
 
-		while (transform.rotation.eulerAngles.y != targetCentralRotation.eulerAngles.y)
+		if (transform.rotation.eulerAngles.y < targetCentralRotation.eulerAngles.y  - horizontalRange / 2f ||
+			transform.rotation.eulerAngles.y > targetCentralRotation.eulerAngles.y + horizontalRange / 2f)
 		{
-            transform.rotation = Quaternion.Slerp(fromRotation, targetCentralRotation, timer); 
-			timer += Time.unscaledDeltaTime / 3f;
-			yield return null;
+			float timer = 0f;
+        	focusingOnNewTarget = true;
+			
+			while (transform.rotation.eulerAngles.y != targetCentralRotation.eulerAngles.y)
+			{
+				transform.rotation = Quaternion.Slerp(fromRotation, targetCentralRotation, timer); 
+				timer += Time.unscaledDeltaTime / 3f;
+				yield return null;
+			}
 		}
 
 		horizontalAngle = targetCentralRotation.eulerAngles.y;
@@ -80,6 +86,6 @@ public class CameraRotation : MonoBehaviour
         maxHorizontalAngle = targetCentralRotation.eulerAngles.y + horizontalRange / 2f;
         
         horizontalRotationClamped = true;
-		horizontalRotationBeingClamped = false;
+		focusingOnNewTarget = false;
 	}
 }
