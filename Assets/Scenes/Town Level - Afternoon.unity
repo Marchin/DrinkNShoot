@@ -41866,6 +41866,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4642059976138002, guid: 76936369da83c1a49bbdc5e3991cfe9e,
     type: 2}
   m_PrefabInternal: {fileID: 1475102046}
+--- !u!111 &1475159475 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: 111736397891075238, guid: ee3cf5fc4130bec4bb5af2f35e43dab5,
+    type: 2}
+  m_PrefabInternal: {fileID: 284870849}
 --- !u!1001 &1475591589
 Prefab:
   m_ObjectHideFlags: 0
@@ -52709,6 +52714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playersWagon: {fileID: 612230486}
   crowSpawner: {fileID: 338437773}
+  horseAnimation: {fileID: 1475159475}
   completeStageUI: {fileID: 1109657755}
   failLevelUI: {fileID: 668830618}
   hudUI: {fileID: 559458589}
