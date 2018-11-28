@@ -113,6 +113,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &120517996 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114196161772288056, guid: 36b033feacb5c464ea7ce1c0f7e2854d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1095863051}
+  m_Script: {fileID: 11500000, guid: b8c8d90afd5ca9d45abcde124f75aa7f, type: 3}
 --- !u!1001 &347472561
 Prefab:
   m_ObjectHideFlags: 0
@@ -152,6 +158,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114959689278011794, guid: c929692529d03b3449025a1c20888751,
+        type: 2}
+      propertyPath: settingsMenu
+      value: 
+      objectReference: {fileID: 120517996}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c929692529d03b3449025a1c20888751, type: 2}
   m_IsPrefabAsset: 0

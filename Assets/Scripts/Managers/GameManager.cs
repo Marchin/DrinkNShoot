@@ -6,11 +6,11 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Game Properties")]
+    [Header("Loading Screen")]
     [SerializeField] GameObject loadingScreen;
-    [SerializeField] SettingsMenu.GfxSetting currentGfxSetting = SettingsMenu.GfxSetting.Wild;
-    [SerializeField] float currentSfxVolume = 0.75f;
-    [SerializeField] float currentMusicVolume = 0.75f;
+    
+    [Header("Settings Menu")]
+    [SerializeField] SettingsMenu settingsMenu;
 
     [Header("Scene Names")]
     [SerializeField] string mainMenuScene;
@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
     const float MIN_LOAD_TIME = 1.5f;
 
     static GameManager instance;
+    
+    SettingsMenu.GfxSetting currentGfxSetting = SettingsMenu.GfxSetting.Wild;
+    float currentSfxVolume = 0.75f;
+    float currentMusicVolume = 0.75f;
 
     Animator animator;
     Slider loadingBarSlider;
@@ -44,6 +48,15 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        currentGfxSetting = (SettingsMenu.GfxSetting)PlayerPrefs.GetInt("GfxSetting", (int)SettingsMenu.GfxSetting.Wild);
+        currentSfxVolume = PlayerPrefs.GetFloat("SfxVolume", 0.75f);
+        currentMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
+        tutorialEnabled = (PlayerPrefs.GetInt("TutorialEnabled", 1) == 1);
+        
+        settingsMenu.UpdateSfxVolume();
+        settingsMenu.UpdateMusicVolume();
+        settingsMenu.UpdateGraphicsSetting();
+
         SceneManager.sceneLoaded += OnSceneLoaded;
         QualitySettings.SetQualityLevel((int)currentGfxSetting);
         loadingBarSlider = loadingScreen.GetComponentInChildren<Slider>();
@@ -141,19 +154,44 @@ public class GameManager : MonoBehaviour
     public SettingsMenu.GfxSetting CurrentGfxSetting
     {
         get { return currentGfxSetting; }
-        set { currentGfxSetting = value; }
+        set
+        { 
+            currentGfxSetting = value;
+            PlayerPrefs.SetInt("GfxSetting", (int)currentGfxSetting);
+        }
     }
 
     public float CurrentSfxVolume
     {
         get { return currentSfxVolume; }
-        set { currentSfxVolume = value; }
+        set
+        {
+            currentSfxVolume = value;
+            PlayerPrefs.SetFloat("SfxVolume", currentSfxVolume);
+        }
     }
 
     public float CurrentMusicVolume
     {
         get { return currentSfxVolume; }
-        set { currentSfxVolume = value; }
+        set 
+        {
+            currentSfxVolume = value;
+            PlayerPrefs.SetFloat("MusicVolume", currentMusicVolume);
+        }
+    }
+
+    public bool TutorialEnabled
+    {
+        get { return tutorialEnabled; }
+        set 
+        {
+            tutorialEnabled = value;
+            if (tutorialEnabled)
+                PlayerPrefs.SetInt("TutorialEnabled", 1);
+            else
+                PlayerPrefs.SetInt("TutorialEnabled", 0);
+        }
     }
 
     public string MainMenuScene
@@ -166,9 +204,4 @@ public class GameManager : MonoBehaviour
         get { return storeScene; }
     }
 
-    public bool TutorialEnabled
-    {
-        get { return tutorialEnabled; }
-        set { tutorialEnabled = value; }
-    }
 }

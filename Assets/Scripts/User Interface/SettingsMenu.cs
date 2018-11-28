@@ -26,26 +26,14 @@ public class SettingsMenu : MonoBehaviour
 	void Start()
 	{
 		sfxSlider.value = GameManager.Instance.CurrentSfxVolume;
+		musicSlider.value = GameManager.Instance.CurrentSfxVolume;
 
-		ChangeGfxText();
+        gfxText.text = GameManager.Instance.CurrentGfxSetting.ToString();
 
 		if (GameManager.Instance.CurrentGfxSetting == GfxSetting.Wild)
 			increaseGfxButton.SetActive(false);
 		if (GameManager.Instance.CurrentGfxSetting == GfxSetting.Low)
 			decreaseGfxButton.SetActive(false);
-	}
-
-	void ChangeGfxText()
-	{
-		gfxText.text = GameManager.Instance.CurrentGfxSetting.ToString();
-	}
-
-	float GetMixerLevel(AudioMixer audioMixer)
-	{
-		float volume;
-		bool result = audioMixer.GetFloat("Volume", out volume);
-
-		return result ? volume : 0f;
 	}
 
 	public void SetSfxVolume(float volume)
@@ -68,7 +56,7 @@ public class SettingsMenu : MonoBehaviour
 			GameManager.Instance.CurrentGfxSetting = GameManager.Instance.CurrentGfxSetting;
 			QualitySettings.SetQualityLevel((int)GameManager.Instance.CurrentGfxSetting);
 
-			ChangeGfxText();
+            gfxText.text = GameManager.Instance.CurrentGfxSetting.ToString();
 
 			increaseGfxButton.GetComponent<Button>().interactable = false;
 
@@ -90,7 +78,7 @@ public class SettingsMenu : MonoBehaviour
 			GameManager.Instance.CurrentGfxSetting = GameManager.Instance.CurrentGfxSetting;
 			QualitySettings.SetQualityLevel((int)GameManager.Instance.CurrentGfxSetting);
 
-			ChangeGfxText();
+            gfxText.text = GameManager.Instance.CurrentGfxSetting.ToString();
 
 			decreaseGfxButton.GetComponent<Button>().interactable = false;
 
@@ -103,4 +91,19 @@ public class SettingsMenu : MonoBehaviour
 			decreaseGfxButton.GetComponent<Button>().interactable = true;			
 		}
 	}
+
+	public void UpdateGraphicsSetting()
+	{
+		QualitySettings.SetQualityLevel((int)GameManager.Instance.CurrentGfxSetting);
+	}
+
+	public void UpdateSfxVolume()
+	{
+        sfxMixer.SetFloat("Volume", Mathf.Log(GameManager.Instance.CurrentSfxVolume) * MIXER_MULT);
+    }
+
+	public void UpdateMusicVolume()
+	{
+        musicMixer.SetFloat("Volume", Mathf.Log(GameManager.Instance.CurrentMusicVolume) * MIXER_MULT);
+    }
 }
