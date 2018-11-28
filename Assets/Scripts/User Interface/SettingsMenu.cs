@@ -20,6 +20,9 @@ public class SettingsMenu : MonoBehaviour
 	[SerializeField] AudioMixer musicMixer;
 	[SerializeField] Slider sfxSlider;
 	[SerializeField] Slider musicSlider;
+
+	[Header("Other Settings")]
+	[SerializeField] Slider mouseSensitivitySlider;
 	
 	const float MIXER_MULT = 20f;
 
@@ -27,6 +30,7 @@ public class SettingsMenu : MonoBehaviour
 	{
 		sfxSlider.value = GameManager.Instance.CurrentSfxVolume;
 		musicSlider.value = GameManager.Instance.CurrentSfxVolume;
+		mouseSensitivitySlider.value = GameManager.Instance.CurrentMouseSensitivity;
 
         gfxText.text = GameManager.Instance.CurrentGfxSetting.ToString();
 
@@ -90,6 +94,11 @@ public class SettingsMenu : MonoBehaviour
 
 			decreaseGfxButton.GetComponent<Button>().interactable = true;			
 		}
+	}
+
+	public void SetMouseSensitivity(float sensitivity)
+	{
+		GameManager.Instance.CurrentMouseSensitivity = sensitivity;
 	}
 
 	public void UpdateGraphicsSetting()

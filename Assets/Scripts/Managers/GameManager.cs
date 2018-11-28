@@ -25,15 +25,15 @@ public class GameManager : MonoBehaviour
 
     static GameManager instance;
     
-    SettingsMenu.GfxSetting currentGfxSetting = SettingsMenu.GfxSetting.Wild;
-    float currentSfxVolume = 0.75f;
-    float currentMusicVolume = 0.75f;
-
     Animator animator;
     Slider loadingBarSlider;
     TextMeshProUGUI loadingText;
+    SettingsMenu.GfxSetting currentGfxSetting;
+    float currentSfxVolume;
+    float currentMusicVolume;
+    float currentMouseSensitivity;
+    bool tutorialEnabled;
     string nextSceneToLoad;
-    bool tutorialEnabled = true;
 
     void Awake()
     {
@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
         currentGfxSetting = (SettingsMenu.GfxSetting)PlayerPrefs.GetInt("GfxSetting", (int)SettingsMenu.GfxSetting.Wild);
         currentSfxVolume = PlayerPrefs.GetFloat("SfxVolume", 0.75f);
         currentMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
+        currentMouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", 0.75f);
         tutorialEnabled = (PlayerPrefs.GetInt("TutorialEnabled", 1) == 1);
         
         settingsMenu.UpdateSfxVolume();
@@ -178,6 +179,16 @@ public class GameManager : MonoBehaviour
         {
             currentSfxVolume = value;
             PlayerPrefs.SetFloat("MusicVolume", currentMusicVolume);
+        }
+    }
+
+    public float CurrentMouseSensitivity
+    {
+        get { return currentMouseSensitivity; }
+        set 
+        {
+            currentMouseSensitivity = value;
+            PlayerPrefs.SetFloat("MouseSensitivity", currentMouseSensitivity);
         }
     }
 

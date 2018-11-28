@@ -859,7 +859,7 @@ GameObject:
   - component: {fileID: 224792473673711786}
   - component: {fileID: 114937163767587352}
   m_Layer: 5
-  m_Name: Volume Slider
+  m_Name: Sensitivity Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3838,6 +3838,7 @@ MonoBehaviour:
   musicMixer: {fileID: 24100000, guid: 1808c34618d5f154aad8eb2f078c0401, type: 2}
   sfxSlider: {fileID: 114692569916960998}
   musicSlider: {fileID: 114466925786509106}
+  mouseSensitivitySlider: {fileID: 114937163767587352}
 --- !u!114 &114196495950957880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8878,13 +8879,24 @@ MonoBehaviour:
   m_FillRect: {fileID: 224831234002756140}
   m_HandleRect: {fileID: 224317662357362742}
   m_Direction: 0
-  m_MinValue: 0.01
+  m_MinValue: 0.25
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.5
+  m_Value: 0.75
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114196161772288056}
+        m_MethodName: SetMouseSensitivity
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114948376257476652

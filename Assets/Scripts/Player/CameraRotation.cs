@@ -37,8 +37,8 @@ public class CameraRotation : MonoBehaviour
 		float horizontalRotation = InputManager.Instance.GetHorizontalViewAxis() * rotationSpeed * Time.unscaledDeltaTime;
 		float verticalRotation = InputManager.Instance.GetVerticalViewAxis() * rotationSpeed * Time.unscaledDeltaTime;
 
-		horizontalAngle += horizontalRotation;
-		verticalAngle -= verticalRotation;
+		horizontalAngle += horizontalRotation * GameManager.Instance.CurrentMouseSensitivity;
+		verticalAngle -= verticalRotation * GameManager.Instance.CurrentMouseSensitivity;
 
 		verticalAngle = Mathf.Clamp(verticalAngle, -verticalRange, verticalRange);
 		if (horizontalRotationClamped)
