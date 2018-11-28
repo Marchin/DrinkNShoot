@@ -18,7 +18,6 @@ public class BaitItem : Consumable
 
     protected override void ApplyConsumableEffect()
     {
-        Gun gun = FindObjectOfType<Gun>();
 		Vector3 direction = (fpsCamera.ScreenToWorldPoint(DrunkCrosshair.Position)
          - fpsCamera.transform.position).normalized;
 		RaycastHit hit;
