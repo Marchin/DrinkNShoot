@@ -99,7 +99,6 @@ public class LevelManager : MonoBehaviour
             tutorialUI.SetActive(true);
             if (showIntroText)
                 introTextUI.SetActive(true);
-            GameManager.Instance.TutorialEnabled = false;
         }
     }
 
@@ -175,6 +174,8 @@ public class LevelManager : MonoBehaviour
         hudUI.SetActive(false);
         Time.timeScale = 0f;
         GameManager.Instance.ShowCursor();
+        if (currentStageIndex == maxStageIndex)
+            GameManager.Instance.TutorialEnabled = false;
         failLevelSound.Play();
         onGameOver.Invoke();
     }
@@ -194,7 +195,8 @@ public class LevelManager : MonoBehaviour
     public void QuitLevel()
     {
         onQuitLevel.Invoke();
-        GameManager.Instance.TutorialEnabled = true;
+        if (currentStageIndex == maxStageIndex)
+            GameManager.Instance.TutorialEnabled = false;
         GameManager.Instance.FadeToScene(GameManager.Instance.MainMenuScene);
     }
 

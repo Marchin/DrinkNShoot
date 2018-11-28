@@ -23,6 +23,7 @@ public class SettingsMenu : MonoBehaviour
 
 	[Header("Other Settings")]
 	[SerializeField] Slider mouseSensitivitySlider;
+	[SerializeField] Toggle tutorialEnabledToggle;
 	
 	const float MIXER_MULT = 20f;
 
@@ -31,6 +32,7 @@ public class SettingsMenu : MonoBehaviour
 		sfxSlider.value = GameManager.Instance.CurrentSfxVolume;
 		musicSlider.value = GameManager.Instance.CurrentSfxVolume;
 		mouseSensitivitySlider.value = GameManager.Instance.CurrentMouseSensitivity;
+		tutorialEnabledToggle.isOn = GameManager.Instance.TutorialEnabled;
 
         gfxText.text = GameManager.Instance.CurrentGfxSetting.ToString();
 
@@ -99,6 +101,11 @@ public class SettingsMenu : MonoBehaviour
 	public void SetMouseSensitivity(float sensitivity)
 	{
 		GameManager.Instance.CurrentMouseSensitivity = sensitivity;
+	}
+
+	public void SetTutorialEnabled(bool enabled)
+	{
+		GameManager.Instance.TutorialEnabled = enabled;
 	}
 
 	public void UpdateGraphicsSetting()
