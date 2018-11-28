@@ -5,8 +5,6 @@ using TMPro;
 public class MainMenu : MonoBehaviour
 {
 	[SerializeField] TextMeshProUGUI appVersionText;
-    
-	float musicTimer = 0f;
 
 	void Start()
 	{

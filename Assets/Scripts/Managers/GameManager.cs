@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     float currentMusicVolume;
     float currentMouseSensitivity;
     bool tutorialEnabled;
+    bool shouldPlaySplashVideo = true;
     string nextSceneToLoad;
 
     void Awake()
@@ -206,6 +207,12 @@ public class GameManager : MonoBehaviour
             else
                 PlayerPrefs.SetInt("TutorialEnabled", 0);
         }
+    }
+
+    public bool ShouldPlaySplashVideo
+    {
+        get { return shouldPlaySplashVideo; }
+        set { shouldPlaySplashVideo = value; }
     }
 
     public string MainMenuScene
