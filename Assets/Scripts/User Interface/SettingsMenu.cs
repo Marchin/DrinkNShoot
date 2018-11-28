@@ -7,7 +7,7 @@ public class SettingsMenu : MonoBehaviour
 {
 	public enum GfxSetting
 	{
-		Low, Medium, High, VeryHigh, Wild
+		Low, Medium, Wild
 	}
 
 	[Header("Graphics Settings")]
@@ -17,32 +17,27 @@ public class SettingsMenu : MonoBehaviour
 	
 	[Header("Audio Settings")]
 	[SerializeField] AudioMixer sfxMixer;
+	[SerializeField] AudioMixer musicMixer;
 	[SerializeField] Slider sfxSlider;
+	[SerializeField] Slider musicSlider;
 	
-	const string VERY_HIGH_STR = "Very High";
 	const float MIXER_MULT = 20f;
-	
-	GfxSetting currentGfxSetting;
 
 	void Start()
 	{
-		currentGfxSetting = GameManager.Instance.CurrentGfxSetting;
 		sfxSlider.value = GameManager.Instance.CurrentSfxVolume;
 
 		ChangeGfxText();
 
-		if (currentGfxSetting == GfxSetting.Wild)
+		if (GameManager.Instance.CurrentGfxSetting == GfxSetting.Wild)
 			increaseGfxButton.SetActive(false);
-		if (currentGfxSetting == GfxSetting.Low)
+		if (GameManager.Instance.CurrentGfxSetting == GfxSetting.Low)
 			decreaseGfxButton.SetActive(false);
 	}
 
 	void ChangeGfxText()
 	{
-		if (currentGfxSetting != GfxSetting.VeryHigh)
-			gfxText.text = currentGfxSetting.ToString();
-		else
-			gfxText.text = VERY_HIGH_STR;
+		gfxText.text = GameManager.Instance.CurrentGfxSetting.ToString();
 	}
 
 	float GetMixerLevel(AudioMixer audioMixer)
@@ -59,19 +54,25 @@ public class SettingsMenu : MonoBehaviour
 		sfxMixer.SetFloat("Volume", Mathf.Log(volume) * MIXER_MULT);
 	}
 
+	public void SetMusicVolume(float volume)
+	{
+		GameManager.Instance.CurrentMusicVolume = volume;
+		musicMixer.SetFloat("Volume", Mathf.Log(volume) * MIXER_MULT);
+	}
+
 	public void IncreaseGraphicsSetting()
 	{
-		if (currentGfxSetting != GfxSetting.Wild)
+		if (GameManager.Instance.CurrentGfxSetting != GfxSetting.Wild)
 		{
-			currentGfxSetting++;
-			GameManager.Instance.CurrentGfxSetting = currentGfxSetting;
-			QualitySettings.SetQualityLevel((int)currentGfxSetting);
+            GameManager.Instance.CurrentGfxSetting++;
+			GameManager.Instance.CurrentGfxSetting = GameManager.Instance.CurrentGfxSetting;
+			QualitySettings.SetQualityLevel((int)GameManager.Instance.CurrentGfxSetting);
 
 			ChangeGfxText();
 
 			increaseGfxButton.GetComponent<Button>().interactable = false;
 
-			if (currentGfxSetting == GfxSetting.Wild)
+			if (GameManager.Instance.CurrentGfxSetting == GfxSetting.Wild)
 				increaseGfxButton.SetActive(false);
 			else
 				if (!decreaseGfxButton.activeInHierarchy)
@@ -83,17 +84,17 @@ public class SettingsMenu : MonoBehaviour
 
 	public void DecreaseGraphicsSetting()
 	{
-		if (currentGfxSetting != GfxSetting.Low)
+		if (GameManager.Instance.CurrentGfxSetting != GfxSetting.Low)
 		{
-			currentGfxSetting--;
-			GameManager.Instance.CurrentGfxSetting = currentGfxSetting;
-			QualitySettings.SetQualityLevel((int)currentGfxSetting);
+            GameManager.Instance.CurrentGfxSetting--;
+			GameManager.Instance.CurrentGfxSetting = GameManager.Instance.CurrentGfxSetting;
+			QualitySettings.SetQualityLevel((int)GameManager.Instance.CurrentGfxSetting);
 
 			ChangeGfxText();
 
 			decreaseGfxButton.GetComponent<Button>().interactable = false;
 
-			if (currentGfxSetting == GfxSetting.Low)
+			if (GameManager.Instance.CurrentGfxSetting == GfxSetting.Low)
 				decreaseGfxButton.SetActive(false);
 			else
 				if (!increaseGfxButton.activeInHierarchy)

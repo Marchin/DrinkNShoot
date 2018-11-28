@@ -2358,11 +2358,11 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 72
-  m_fontSizeBase: 36
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 72
+  m_fontSizeMin: 60
   m_fontSizeMax: 150
   m_fontStyle: 0
   m_textAlignment: 514
@@ -3835,7 +3835,9 @@ MonoBehaviour:
   decreaseGfxButton: {fileID: 1404100293126220}
   increaseGfxButton: {fileID: 1092275719909034}
   sfxMixer: {fileID: 24100000, guid: a3deb91ad8b33054ab991aea2fcd8e1b, type: 2}
+  musicMixer: {fileID: 24100000, guid: 1808c34618d5f154aad8eb2f078c0401, type: 2}
   sfxSlider: {fileID: 114692569916960998}
+  musicSlider: {fileID: 114466925786509106}
 --- !u!114 &114196495950957880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5838,7 +5840,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114196161772288056}
-        m_MethodName: SetSfxVolume
+        m_MethodName: SetMusicVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject loadingScreen;
     [SerializeField] SettingsMenu.GfxSetting currentGfxSetting = SettingsMenu.GfxSetting.Wild;
     [SerializeField] float currentSfxVolume = 0.75f;
+    [SerializeField] float currentMusicVolume = 0.75f;
 
     [Header("Scene Names")]
     [SerializeField] string mainMenuScene;
@@ -144,6 +145,12 @@ public class GameManager : MonoBehaviour
     }
 
     public float CurrentSfxVolume
+    {
+        get { return currentSfxVolume; }
+        set { currentSfxVolume = value; }
+    }
+
+    public float CurrentMusicVolume
     {
         get { return currentSfxVolume; }
         set { currentSfxVolume = value; }
