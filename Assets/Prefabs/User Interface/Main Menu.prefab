@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114408170447898198}
   - component: {fileID: 114686449383374364}
   - component: {fileID: 114372696791322268}
+  - component: {fileID: 114586206811396918}
   - component: {fileID: 82514054218801584}
   - component: {fileID: 82858151218252444}
   m_Layer: 5
@@ -2287,7 +2288,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 1808c34618d5f154aad8eb2f078c0401,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 7ffbca348904926478dd23ac9b10d6d4, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
@@ -4932,8 +4933,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   appVersionText: {fileID: 114729647157502934}
-  themeSong: {fileID: 82858151218252444}
-  musicStartDelay: 5
 --- !u!114 &114388747382318862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6927,6 +6926,19 @@ MonoBehaviour:
   m_canvasRenderer: {fileID: 222219066603623240}
   m_TextComponent: {fileID: 114995217549525372}
   m_materialReferenceIndex: 1
+--- !u!114 &114586206811396918
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1003666454098192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61f660de355de3d46945144ca2dd18f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  themeSong: {fileID: 82858151218252444}
+  musicStartDelay: 1.5
 --- !u!114 &114598615860908512
 MonoBehaviour:
   m_ObjectHideFlags: 1
