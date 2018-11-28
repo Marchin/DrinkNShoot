@@ -54,9 +54,12 @@ public class GameManager : MonoBehaviour
         currentMouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", 0.75f);
         tutorialEnabled = (PlayerPrefs.GetInt("TutorialEnabled", 1) == 1);
         
-        settingsMenu.UpdateSfxVolume();
-        settingsMenu.UpdateMusicVolume();
-        settingsMenu.UpdateGraphicsSetting();
+        if (settingsMenu)
+        {
+            settingsMenu.UpdateSfxVolume();
+            settingsMenu.UpdateMusicVolume();
+            settingsMenu.UpdateGraphicsSetting();
+        }
 
         SceneManager.sceneLoaded += OnSceneLoaded;
         QualitySettings.SetQualityLevel((int)currentGfxSetting);

@@ -5,6 +5,9 @@ public class PauseMenu : MonoBehaviour
 {
 	[SerializeField] GameObject pauseMenuUI;
 	[SerializeField] GameObject hudUI;
+	[SerializeField] GameObject mainScreenUI;
+	[SerializeField] GameObject settingsMenuUI;
+	[SerializeField] GameObject returnButtonUI;
 	[SerializeField] Animator pauseMenuAnimator;
 	[SerializeField] AnimationClip fadeOutAnimation;
 	[SerializeField] AudioClip pauseSound;
@@ -49,6 +52,12 @@ public class PauseMenu : MonoBehaviour
 	public void Resume()
 	{
 		GameManager.Instance.HideCursor();
+		if (settingsMenuUI.activeInHierarchy && returnButtonUI.activeInHierarchy)
+		{
+			settingsMenuUI.SetActive(false);
+			returnButtonUI.SetActive(false);
+			mainScreenUI.SetActive(true);
+		}
 		Time.timeScale = timeScaleBeforePause;
 		pauseMenuAnimator.SetTrigger("Fade Out");
 		Invoke("OnFadeOutFinish", fadeOutAnimation.length);
