@@ -1787,6 +1787,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114959689278011794, guid: c929692529d03b3449025a1c20888751,
+        type: 2}
+      propertyPath: settingsMenu
+      value: 
+      objectReference: {fileID: 1978246727}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c929692529d03b3449025a1c20888751, type: 2}
   m_IsPrefabAsset: 0
@@ -56516,6 +56521,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4922337433136300, guid: 868539100ced5904d94af98e40bab8ad,
     type: 2}
   m_PrefabInternal: {fileID: 1975345103}
+--- !u!114 &1978246727 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114508045051306114, guid: 72e99585e7fb5b949af8000be46e9f86,
+    type: 2}
+  m_PrefabInternal: {fileID: 302597569}
+  m_Script: {fileID: 11500000, guid: b8c8d90afd5ca9d45abcde124f75aa7f, type: 3}
 --- !u!1001 &1979739509
 Prefab:
   m_ObjectHideFlags: 0
