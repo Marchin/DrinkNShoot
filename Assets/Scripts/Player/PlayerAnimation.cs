@@ -5,8 +5,6 @@ using UnityEngine.Animations;
 public class PlayerAnimation : MonoBehaviour
 {
 	[SerializeField] AnimatorOverrideController animatorOverrideController;
-	[SerializeField] AnimationClip[] handgunAnimations;
-	[SerializeField] AnimationClip[] rifleAnimations;
 	[SerializeField] AnimationClip sippingAnimation;
 	[SerializeField] Avatar[] possibleAvatars;
 	
@@ -92,7 +90,7 @@ public class PlayerAnimation : MonoBehaviour
 		animator.runtimeAnimatorController = animatorOverrideController;
 		animator.avatar = possibleAvatars[(int)currentGun.TypeOfGun];
 
-		animatorOverrideController["DEFAULT IDLE"] = currentGun.TypeOfGun == Gun.GunType.Handgun ? handgunAnimations[0] : rifleAnimations[0];
+		animatorOverrideController["DEFAULT IDLE"] =currentGun.IdleAnimation;;
 		animatorOverrideController["DEFAULT SHOOT"] = currentGun.ShootAnimation;
 		animatorOverrideController["DEFAULT RELOAD START"] = currentGun.ReloadStartAnimation;
 		animatorOverrideController["DEFAULT RELOAD"] = currentGun.ReloadAnimation;

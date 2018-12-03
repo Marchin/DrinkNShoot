@@ -46,6 +46,8 @@ public class Gun : MonoBehaviour, IItem
 	ParticleSystem muzzleFlash;
 	
 	[Header("Gun Animations")]
+	[SerializeField] [Tooltip("The 'idle' animation associated to the gun.")]
+	AnimationClip idleAnimation;
 	[SerializeField] [Tooltip("The 'shoot' animation associated to the gun.")]
 	AnimationClip shootAnimation;
 	[SerializeField] [Tooltip("The 'start to reload' animation associated to the gun.")]
@@ -323,29 +325,34 @@ public class Gun : MonoBehaviour, IItem
 		get { return bulletsInGun; }
 	}
 
+	public AnimationClip IdleAnimation
+	{
+		get { return idleAnimation; }
+	}
+
 	public AnimationClip ShootAnimation
 	{
-		get { return shootAnimation;}
+		get { return shootAnimation; }
 	}
 
 	public AnimationClip ReloadStartAnimation
 	{
-		get { return reloadStartAnimation;}
+		get { return reloadStartAnimation; }
 	}
 
 	public AnimationClip ReloadAnimation
 	{
-		get { return reloadAnimation;}
+		get { return reloadAnimation; }
 	}
 
 	public AnimationClip ReloadFinishAnimation
 	{
-		get { return reloadFinishAnimation;}
+		get { return reloadFinishAnimation; }
 	}
 	
 	public AnimationClip SwapGunAnimation
 	{
-		get { return swapGunAnimation;}
+		get { return swapGunAnimation; }
 	}
 
 	public AudioSource ShootSound

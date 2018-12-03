@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class PauseMenu : MonoBehaviour 
@@ -9,13 +10,15 @@ public class PauseMenu : MonoBehaviour
 	[SerializeField] GameObject settingsMenuUI;
 	[SerializeField] GameObject returnButtonUI;
 	[SerializeField] Animator pauseMenuAnimator;
-	[SerializeField] AnimationClip fadeOutAnimation;
+	[SerializeField] AnimationClip slideInAnimation;
+	[SerializeField] AnimationClip slideOutAnimation;
 	[SerializeField] AudioClip pauseSound;
 	
 	static bool isPaused;
 	
 	AudioSource audioSource;
 	float timeScaleBeforePause;
+	bool canResume;
 
     UnityEvent onPause = new UnityEvent();
     UnityEvent onResume = new UnityEvent();
@@ -23,6 +26,7 @@ public class PauseMenu : MonoBehaviour
 	void Awake()
 	{   
 		isPaused = false;
+		canResume = true;
 		audioSource = GetComponentInParent<AudioSource>();
     }
 
@@ -37,6 +41,23 @@ public class PauseMenu : MonoBehaviour
 		}
 	}
 
+	IEnumerator WaitToResume()
+	{
+        canResume = false;
+        yield return new WaitForSecondsRealtime(slideInAnimation.length);
+		canResume = true;
+	}
+
+    IEnumerator OnPauseMenuFadeOutFinish()
+    {
+		yield return new WaitForSecondsRealtime(slideOutAnimation.length);
+        Time.timeScale = timeScaleBeforePause;
+        pauseMenuUI.SetActive(false);
+        isPaused = false;
+        hudUI.SetActive(true);
+        onResume.Invoke();
+    }
+
 	public void Pause()
 	{
 		GameManager.Instance.ShowCursor();
@@ -46,35 +67,30 @@ public class PauseMenu : MonoBehaviour
 		pauseMenuUI.SetActive(true);
 		hudUI.SetActive(false);
 		isPaused = true;
+		StartCoroutine(WaitToResume());
 		onPause.Invoke();
 	}
 
 	public void Resume()
 	{
-		GameManager.Instance.HideCursor();
-		if (settingsMenuUI.activeInHierarchy && returnButtonUI.activeInHierarchy)
+		if (canResume)
 		{
-			settingsMenuUI.SetActive(false);
-			returnButtonUI.SetActive(false);
-			mainScreenUI.SetActive(true);
-		}
-		Time.timeScale = timeScaleBeforePause;
-		pauseMenuAnimator.SetTrigger("Fade Out");
-		Invoke("OnFadeOutFinish", fadeOutAnimation.length);
-		hudUI.SetActive(true);
-		isPaused = false;
-		onResume.Invoke();
+			GameManager.Instance.HideCursor();
+			if (settingsMenuUI.activeInHierarchy && returnButtonUI.activeInHierarchy)
+			{
+				settingsMenuUI.SetActive(false);
+				returnButtonUI.SetActive(false);
+				mainScreenUI.SetActive(true);
+			}
+			pauseMenuAnimator.SetTrigger("Fade Out");
+			StartCoroutine(OnPauseMenuFadeOutFinish());
+        }
 	}
 
 	public void Quit()
 	{
 		Time.timeScale = 1f;
 		LevelManager.Instance.QuitLevel();
-	}
-
-	void OnFadeOutFinish()
-	{
-		pauseMenuUI.SetActive(false);
 	}
 	
 	public static bool IsPaused
