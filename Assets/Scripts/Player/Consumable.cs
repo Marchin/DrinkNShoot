@@ -11,7 +11,7 @@ public abstract class Consumable : MonoBehaviour, IItem
 	int maxAmount = 1;
 	
 	[Header("Consumable Animations")]
-	[SerializeField] AnimationClip useAnimation;
+	[SerializeField] AnimationClip[] useAnimations;
 	
 	[Header("Consumable Sounds")]
 	[SerializeField] AudioSource useSound;
@@ -41,7 +41,7 @@ public abstract class Consumable : MonoBehaviour, IItem
 		isInUse = true;
 		PlayerManager.Instance.DecreaseConsumableAmount(this);
         onUse.Invoke();
-        yield return new WaitForSeconds(useAnimation.length);
+        yield return new WaitForSeconds(useAnimations[(int)weaponHolder.EquippedGun.TypeOfGun].length);
 		if (PlayerManager.Instance.GetItemAmount(this) == 0)
 			onEmpty.Invoke();
 		ApplyConsumableEffect();
@@ -101,7 +101,7 @@ public abstract class Consumable : MonoBehaviour, IItem
 
 	public AnimationClip UseAnimation
 	{
-		get { return useAnimation; }
+		get { return useAnimations[(int)weaponHolder.EquippedGun.TypeOfGun]; }
 	}
 
 	public AudioSource UseSound

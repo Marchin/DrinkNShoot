@@ -5,7 +5,7 @@ using UnityEngine.Animations;
 public class PlayerAnimation : MonoBehaviour
 {
 	[SerializeField] AnimatorOverrideController animatorOverrideController;
-	[SerializeField] AnimationClip sippingAnimation;
+	[SerializeField] AnimationClip[] sippingAnimations;
 	[SerializeField] Avatar[] possibleAvatars;
 	
 	const float SIPPING_DELAY = 0.75f;
@@ -75,7 +75,7 @@ public class PlayerAnimation : MonoBehaviour
 	void TakeASip()
 	{
 		animator.SetTrigger("Has Taken a Sip");
-		Invoke("ReEnableGunComponent", sippingAnimation.length);
+		Invoke("ReEnableGunComponent", sippingAnimations[(int)weaponHolder.EquippedGun.TypeOfGun].length);
 	}
 
 	void ReEnableGunComponent()
@@ -90,12 +90,15 @@ public class PlayerAnimation : MonoBehaviour
 		animator.runtimeAnimatorController = animatorOverrideController;
 		animator.avatar = possibleAvatars[(int)currentGun.TypeOfGun];
 
-		animatorOverrideController["DEFAULT IDLE"] =currentGun.IdleAnimation;;
+		animatorOverrideController["DEFAULT IDLE"] = currentGun.IdleAnimation;;
 		animatorOverrideController["DEFAULT SHOOT"] = currentGun.ShootAnimation;
 		animatorOverrideController["DEFAULT RELOAD START"] = currentGun.ReloadStartAnimation;
 		animatorOverrideController["DEFAULT RELOAD"] = currentGun.ReloadAnimation;
 		animatorOverrideController["DEFAULT RELOAD FINISH"] = currentGun.ReloadFinishAnimation;
 		animatorOverrideController["DEFAULT WEAPON SWAP"] = currentGun.SwapGunAnimation;
+		animatorOverrideController["DEFAULT TAKE A SIP"] = currentGun.TypeOfGun == Gun.GunType.Handgun ? sippingAnimations[0] : sippingAnimations[1];
+		
+		ChangeConsumableAnimations();
 
         currentGun.OnBackToIdle.AddListener(ResetTriggers);
         currentGun.OnShot.AddListener(ShootAnimation);
