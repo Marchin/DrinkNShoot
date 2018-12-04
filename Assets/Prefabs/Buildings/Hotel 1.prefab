@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4157616091304724}
+  - component: {fileID: 65259570127676798}
   m_Layer: 10
   m_Name: Hotel 1
   m_TagString: Untagged
@@ -306,3 +307,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1470680782660666}
   m_Mesh: {fileID: 4300000, guid: 2a9a6ff86026e5148a32c123ebccd0cc, type: 3}
+--- !u!65 &65259570127676798
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1020789633349492}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 13.38, y: 10, z: 6.5}
+  m_Center: {x: 0, y: 5, z: 0.36}
