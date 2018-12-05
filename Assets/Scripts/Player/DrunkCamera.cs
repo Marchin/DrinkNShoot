@@ -43,9 +43,10 @@ public class DrunkCamera : MonoBehaviour {
         Vector3 newRotation = transform.eulerAngles;
         m_oscillation = Mathf.Sin(f: Time.time * m_speed + m_HALF_PI);
         float a = Mathf.Abs(Mathf.Cos(f: Time.time * m_speed + m_HALF_PI));
-        transform.localPosition = new Vector3 (m_oscillation * Mathf.Abs(m_oscillation) * 0.35f, a * 0.07f, 0f);
+        float intensity = m_oscillation * m_shakeness * m_shakenessMult;
+        transform.localPosition = new Vector3 (m_oscillation * m_oscillation * intensity * 0.01f, a * 0.07f, 0f);
         transform.localPosition += m_initHeight * Vector3.up;
-        m_currRotation = -(m_oscillation * m_shakeness * m_shakenessMult);
+        m_currRotation = -(intensity) * 0.75f;
         if (Mathf.Sign(m_prevRot) != Mathf.Sign(m_currRotation)) {
             m_shakenessMult = Random.Range(m_min, 1f);
         }
