@@ -5,13 +5,22 @@ using TMPro;
 
 public class IntroText : MonoBehaviour
 {
+	[Header("Slides' Text")]
 	[SerializeField] string[] slidesText;
 	[SerializeField] TextMeshProUGUI bodyText;
+	
+	[Header("Slides' Images")]
 	[SerializeField] Image[] firstSlideImages;
 	[SerializeField] Image[] secondSlideImages;
 	[SerializeField] Image[] thirdSlideImages;
+	[SerializeField] Image[] fourthSlideImages;
+	[SerializeField] Image[] fifthSlideImages;
+
+	[Header("Interface Buttons")]
 	[SerializeField] Button continueButton;
 	[SerializeField] Button skipButton;
+
+	[Header("Intro Animations")]
 	[SerializeField] AnimationClip fadeOutAnimation;
 	[SerializeField] AnimationClip textOutAnimation;
 	
@@ -63,6 +72,12 @@ public class IntroText : MonoBehaviour
 				break;
 			case 2:
 				SwapSlideImages(secondSlideImages, thirdSlideImages);
+				break;
+			case 3:
+				SwapSlideImages(thirdSlideImages, fourthSlideImages);
+				break;
+			case 4:
+				SwapSlideImages(fourthSlideImages, fifthSlideImages);
 				break;
 			default:
 				break;			
