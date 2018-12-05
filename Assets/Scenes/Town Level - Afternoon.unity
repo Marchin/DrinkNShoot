@@ -12273,6 +12273,21 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224175324702429416, guid: 6e8a01a177c94ea4a80c939cc4c14e72,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.2000122
+      objectReference: {fileID: 0}
+    - target: {fileID: 224474332932268758, guid: 6e8a01a177c94ea4a80c939cc4c14e72,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -4.230011
+      objectReference: {fileID: 0}
+    - target: {fileID: 224445874931566746, guid: 6e8a01a177c94ea4a80c939cc4c14e72,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.7999878
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e8a01a177c94ea4a80c939cc4c14e72, type: 2}
   m_IsPrefabAsset: 0
@@ -41551,11 +41566,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4642059976138002, guid: 76936369da83c1a49bbdc5e3991cfe9e,
     type: 2}
   m_PrefabInternal: {fileID: 1475102046}
---- !u!111 &1475159475 stripped
-Animation:
-  m_CorrespondingSourceObject: {fileID: 111736397891075238, guid: ee3cf5fc4130bec4bb5af2f35e43dab5,
-    type: 2}
-  m_PrefabInternal: {fileID: 284870849}
 --- !u!1001 &1475591589
 Prefab:
   m_ObjectHideFlags: 0
@@ -52318,7 +52328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playersWagon: {fileID: 612230486}
   crowSpawner: {fileID: 338437773}
-  horseAnimation: {fileID: 1475159475}
+  horseAnimation: {fileID: 1275396984}
   completeStageUI: {fileID: 1109657755}
   failLevelUI: {fileID: 668830618}
   hudUI: {fileID: 559458589}
