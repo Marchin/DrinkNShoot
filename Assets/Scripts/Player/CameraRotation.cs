@@ -63,12 +63,11 @@ public class CameraRotation : MonoBehaviour
 
 	IEnumerator FocusOnNextStage()
 	{      
-		Vector3 targetDir = (LevelManager.Instance.CurrentStagePosition - LevelManager.Instance.CurrentSpawnPointPosition).normalized;
+		Vector3 targetDir = (LevelManager.Instance.CurrentStagePosition - LevelManager.Instance.CurrentSpawnPointPosition);
         Quaternion targetCentralRotation = Quaternion.LookRotation(targetDir);
 		Quaternion fromRotation = transform.rotation;
 
-		if (transform.rotation.eulerAngles.y < targetCentralRotation.eulerAngles.y  - horizontalRange / 2f ||
-			transform.rotation.eulerAngles.y > targetCentralRotation.eulerAngles.y + horizontalRange / 2f)
+		if (Quaternion.Angle(transform.rotation, targetCentralRotation) > horizontalRange / 2f)
 		{
 			float timer = 0f;
         	focusingOnNewTarget = true;
@@ -76,12 +75,13 @@ public class CameraRotation : MonoBehaviour
 			while (transform.rotation.eulerAngles.y != targetCentralRotation.eulerAngles.y)
 			{
 				transform.rotation = Quaternion.Slerp(fromRotation, targetCentralRotation, timer); 
-				timer += Time.unscaledDeltaTime / 3f;
+				timer += Time.unscaledDeltaTime;
 				yield return null;
 			}
+			
+			horizontalAngle = targetCentralRotation.eulerAngles.y;
 		}
 
-		horizontalAngle = targetCentralRotation.eulerAngles.y;
         minHorizontalAngle = targetCentralRotation.eulerAngles.y - horizontalRange / 2f;
         maxHorizontalAngle = targetCentralRotation.eulerAngles.y + horizontalRange / 2f;
         
