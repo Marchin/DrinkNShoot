@@ -9385,6 +9385,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114361722561429592, guid: a9f0eee962b6c8041a741d7dd3fd5ab5,
+        type: 2}
+      propertyPath: weaponHolderPrefab
+      value: 
+      objectReference: {fileID: 1877662900332184, guid: 5d300b936ab522d4da6e458ff59b5886,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9f0eee962b6c8041a741d7dd3fd5ab5, type: 2}
   m_IsPrefabAsset: 0
@@ -33039,6 +33045,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4371689569484632, guid: 008f596a7514be94e85594a0199b630e,
     type: 2}
   m_PrefabInternal: {fileID: 1274896235}
+--- !u!1 &1275396983 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1140951746747008, guid: ee3cf5fc4130bec4bb5af2f35e43dab5,
+    type: 2}
+  m_PrefabInternal: {fileID: 284870849}
+--- !u!111 &1275396984
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1275396983}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 33645cd3786bc244abba9faf888f4656, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 33645cd3786bc244abba9faf888f4656, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &1276583255
 Prefab:
   m_ObjectHideFlags: 0
