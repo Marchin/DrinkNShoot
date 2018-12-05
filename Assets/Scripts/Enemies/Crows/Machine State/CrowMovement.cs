@@ -14,12 +14,8 @@ public class CrowMovement : MonoBehaviour, IState {
     float m_distToFoot;
     bool m_moving;
     bool m_hasToFlip;
-
-    UnityEvent onStartWalking = new UnityEvent();
-    UnityEvent onStopWalking = new UnityEvent();
-
-    public UnityEvent OnStartWalking { get { return onStartWalking; } }
-    public UnityEvent OnStopWalking { get { return onStopWalking; } }
+    float m_journeyDist;
+    float m_velocity;
 
     private void OnEnable() {
         m_distToFront = GetComponent<BoxCollider>().size.z / 2f;
@@ -28,23 +24,26 @@ public class CrowMovement : MonoBehaviour, IState {
         m_hasToFlip = false;
         m_moving = false;
         m_timer = m_interval;
+        m_journeyDist = 0f;
     }
 
     public void StateUpdate(out IState nextState) {
         m_timer -= Time.deltaTime;
         if (m_timer <= 0f && !m_moving) {
             Move();
-            onStartWalking.Invoke();
         }
         if (m_moving) {
-            if (Vector3.Distance(transform.position, m_targetPosition) > m_NEGLIGIBLE) {
+            float dist = Vector3.Distance(transform.position, m_targetPosition);
+            if (dist > m_NEGLIGIBLE) {
                 transform.position = Vector3.Lerp(
                     transform.position, m_targetPosition, m_speed * Time.deltaTime);
+                m_velocity = dist / m_journeyDist;
             } else {
                 transform.position = m_targetPosition;
                 m_timer = m_interval;
+                m_velocity = 0f;
+                m_journeyDist = 0f;
                 m_moving = false;
-                onStopWalking.Invoke();
             }
         }
         if (m_hasToFlip) {
@@ -65,10 +64,16 @@ public class CrowMovement : MonoBehaviour, IState {
             out hit, m_distToFoot + 0.5f, m_landingZonesLayer);
         if (wasHit) {
             m_targetPosition = transform.position + transform.forward * distanceVariation;
+            m_journeyDist = Vector3.Distance(m_targetPosition, transform.position);
             m_moving = true;
         } else {
             m_hasToFlip = true;
         }
     }
 
+    public float Velocity {
+        get {
+            return m_velocity;
+        }
+    }
 }

@@ -18,24 +18,23 @@ public class CrowAnimation : MonoBehaviour
 
 	void Start()
 	{
-		crow.OnLand.AddListener(WalkAnimation);
-		crow.OnFly.AddListener(FlyAnimation);
-		crowMovement.OnStartWalking.AddListener(WalkAnimation);
-		crowMovement.OnStopWalking.AddListener(IdleAnimation);
+		crow.OnLand.AddListener(PlayMovementAnimation);
+		crow.OnFly.AddListener(PlayFlyAnimation);
 	}
 
-	void IdleAnimation()
+	void Update()
 	{
-		animator.SetTrigger("Has Stopped");
+		if ((Object)crow.CurrentState == crowMovement)
+			animator.SetFloat("Velocity", crowMovement.Velocity);
 	}
 
-	void WalkAnimation()
-	{
-		animator.SetTrigger("Has Started Walking");
-	}
-
-	void FlyAnimation()
+	void PlayFlyAnimation()
 	{
 		animator.SetTrigger("Has Flown");
+	}
+
+	void PlayMovementAnimation()
+	{
+		animator.SetTrigger("Has Landed");
 	}
 }

@@ -113,4 +113,10 @@ public class Crow : MonoBehaviour {
             }
         }
     }
+
+    public IState CurrentState {
+        get {
+            return m_currState;
+        }
+    }
 }
