@@ -56,10 +56,10 @@ public class WeaponHolder : MonoBehaviour
 			{
 				equippedGun = gun.GetComponent<Gun>();
 				currentCrosshair = gun.GetComponent<DrunkCrosshair>();
+				onGunSwap.Invoke();
 			}
 			i++;
 		}
-		onGunSwap.Invoke();
 	}
 
 	void SetEquippedConsumable()
@@ -75,11 +75,11 @@ public class WeaponHolder : MonoBehaviour
 				{
 					equippedConsumable = cons;
 					cons.OnEmpty.AddListener(UnequipConsumable);
+                    onConsumableSwap.Invoke();
 				}
 			}
 			i++;
 		}
-		onConsumableSwap.Invoke();
 	}
 
 	IEnumerator SwapGun()
@@ -95,8 +95,9 @@ public class WeaponHolder : MonoBehaviour
 		{
 			isSwappingGun = true;
 			onGunSwapStart.Invoke();
-			yield return new WaitForSeconds(equippedGun.SwapGunAnimation.length);
+			yield return new WaitForSeconds(equippedGun.SwapGunOutAnimation.length);
 			SetEquippedGun();
+			yield return new WaitForSeconds(equippedGun.SwapGunInAnimation.length);
 			isSwappingGun = false;
 		}
 	}

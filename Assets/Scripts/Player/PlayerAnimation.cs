@@ -56,9 +56,9 @@ public class PlayerAnimation : MonoBehaviour
 		animator.SetTrigger("Has Finished Reloading");
 	}
 
-	void SwapWeaponAnimation()
+	void SwapWeaponStartAnimation()
 	{
-		animator.SetTrigger("Has Swapped Weapon");
+		animator.SetTrigger("Has Started to Swap Weapon");
 	}
 
 	void UseItemAnimation()
@@ -95,8 +95,10 @@ public class PlayerAnimation : MonoBehaviour
 		animatorOverrideController["DEFAULT RELOAD START"] = currentGun.ReloadStartAnimation;
 		animatorOverrideController["DEFAULT RELOAD"] = currentGun.ReloadAnimation;
 		animatorOverrideController["DEFAULT RELOAD FINISH"] = currentGun.ReloadFinishAnimation;
-		animatorOverrideController["DEFAULT WEAPON SWAP"] = currentGun.SwapGunAnimation;
-		animatorOverrideController["DEFAULT TAKE A SIP"] = currentGun.TypeOfGun == Gun.GunType.Handgun ? sippingAnimations[0] : sippingAnimations[1];
+		animatorOverrideController["DEFAULT WEAPON SWAP OUT"] = currentGun.SwapGunOutAnimation;
+		animatorOverrideController["DEFAULT WEAPON SWAP IN"] = currentGun.SwapGunInAnimation;
+		animatorOverrideController["DEFAULT TAKE A SIP"] = currentGun.TypeOfGun == Gun.GunType.Handgun ? sippingAnimations[0] : 
+																										sippingAnimations[1];
 		
 		ChangeConsumableAnimations();
 
@@ -105,7 +107,7 @@ public class PlayerAnimation : MonoBehaviour
         currentGun.OnReloadStart.AddListener(ReloadStartAnimation);
         currentGun.OnReload.AddListener(ReloadAnimation);
         currentGun.OnReloadFinish.AddListener(FinishReloadingAnimation);
-        weaponHolder.OnGunSwapStart.AddListener(SwapWeaponAnimation);
+        weaponHolder.OnGunSwapStart.AddListener(SwapWeaponStartAnimation);
 	}
 
 	void ChangeConsumableAnimations()
