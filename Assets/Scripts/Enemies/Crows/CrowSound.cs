@@ -14,15 +14,23 @@ public class CrowSound : MonoBehaviour
 	static bool crowMakingSound = false;
 	
 	Crow crow;
+	CrowFly crowFly;
 
 	void Awake()
 	{
 		crow = GetComponentInParent<Crow>();
+		crowFly = GetComponentInParent<CrowFly>();
 	}
 
 	void Start()
 	{
 		crow.OnAttack.AddListener(PlayAttackSound);
+	}
+
+	void Update()
+	{
+		if ((Object)crow.CurrentState != crowFly)
+			PlayRandomCrowSound();
 	}
 
 	void PlayRandomCrowSound()

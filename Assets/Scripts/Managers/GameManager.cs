@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     float currentMusicVolume;
     float currentMouseSensitivity;
     bool tutorialEnabled;
+    int lastLevelUnlocked;
+    int totalLevels = 2;
     bool shouldPlaySplashVideo = true;
     string nextSceneToLoad;
 
@@ -54,6 +56,7 @@ public class GameManager : MonoBehaviour
         currentMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
         currentMouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", 0.75f);
         tutorialEnabled = (PlayerPrefs.GetInt("TutorialEnabled", 1) == 1);
+        lastLevelUnlocked = PlayerPrefs.GetInt("LatestLevel", 1);
         
         if (settingsMenu)
         {
@@ -206,6 +209,19 @@ public class GameManager : MonoBehaviour
                 PlayerPrefs.SetInt("TutorialEnabled", 1);
             else
                 PlayerPrefs.SetInt("TutorialEnabled", 0);
+        }
+    }
+
+    public int LastLevelUnlocked
+    {
+        get { return lastLevelUnlocked; }
+        set 
+        {
+            if (value <= totalLevels)
+            {
+                lastLevelUnlocked = value;
+                PlayerPrefs.SetInt("LatestLevel", lastLevelUnlocked);
+            }
         }
     }
 

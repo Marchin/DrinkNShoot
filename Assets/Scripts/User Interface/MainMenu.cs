@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
 	[SerializeField] TextMeshProUGUI appVersionText;
+	[SerializeField] Button[] levelsButtons;
 
 	void Start()
 	{
@@ -16,6 +18,18 @@ public class MainMenu : MonoBehaviour
 	{
 		GameManager.Instance.HideCursor();
         GameManager.Instance.FadeToScene(GameManager.Instance.GetLevelSceneName(level));
+	}
+
+	public void ShowUnlockedLevels()
+	{
+		int i = 1;
+		
+		foreach (Button levelButton in levelsButtons)
+		{
+			levelButton.interactable = (i <= GameManager.Instance.LastLevelUnlocked);
+			levelButton.GetComponent<EventTrigger>().enabled = levelButton.IsInteractable();
+			i++;
+		}
 	}
 
 	public void EnterStore()

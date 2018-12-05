@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] int cashEarnedGold = 175;
 	[SerializeField] bool showIntroText;
 	[SerializeField] bool showTutorial;
+	[SerializeField] int levelNumber;
 	[SerializeField] string levelName;
 	[SerializeField] string nextLevelName;
 
@@ -159,7 +160,10 @@ public class LevelManager : MonoBehaviour
 		if (currentStageIndex != maxStageIndex)
         	endLevelMenu.ChangeEndScreenText(cashEarnedInStage, targetsKilledInStage, stageCompletionTier);
 		else
+        {
+            GameManager.Instance.LastLevelUnlocked = levelNumber + 1;
 			endLevelMenu.ChangeEndScreenText(totalIncome, totalKills, stageCompletionTier, true, nextLevelName == "");
+        }
         
 		hud.ChangeCurrencyDisplay(totalIncome);
         completeLevelSound.Play();
