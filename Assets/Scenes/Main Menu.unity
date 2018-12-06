@@ -535,7 +535,23 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 82888277390862642, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8fda0c6fbdad36040b7ece5a726faa5f, type: 3}
+    - target: {fileID: 82888277390862642, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
+        type: 2}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82888277390862642, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
+        type: 2}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114572039665340678, guid: 1dd60bf3bda546c49af5cd9fc3702b45, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 1dd60bf3bda546c49af5cd9fc3702b45, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &1755764100
