@@ -27,6 +27,11 @@ public class PlayerAudio : MonoBehaviour
 	{
 		weaponHolder.EquippedGun.ShootSound.Play();
 	}
+
+	void PlayReloadStartSound()
+	{
+		weaponHolder.EquippedGun.ReloadStartSound.Play();
+	}
 	
 	void InvokeReloadSound()
 	{
@@ -61,6 +66,7 @@ public class PlayerAudio : MonoBehaviour
 	void ChangeGunSounds()
 	{
         weaponHolder.EquippedGun.OnShot.AddListener(PlayShootSound);
+        weaponHolder.EquippedGun.OnReloadStart.AddListener(InvokeReloadSound);
         weaponHolder.EquippedGun.OnReload.AddListener(InvokeReloadSound);
         weaponHolder.EquippedGun.OnEmptyGun.AddListener(PlayEmptyGunSound);
         weaponHolder.EquippedGun.OnReloadCancel.AddListener(CancelInvokeReloadSound);

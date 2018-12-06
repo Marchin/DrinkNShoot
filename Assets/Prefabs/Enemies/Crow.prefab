@@ -512,7 +512,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1306119874549748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 184.83626, y: 0.00000047683716, z: 215.706}
+  m_LocalPosition: {x: 180.30367, y: 0, z: 236.48672}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4464240437807232}
@@ -1437,7 +1437,7 @@ MonoBehaviour:
   - {fileID: 82736417434693570}
   - {fileID: 82078803441055802}
   attackSound: {fileID: 82768480812025018}
-  makeSoundProbability: 35
+  makeSoundProbability: 5
 --- !u!137 &137870003925804066
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

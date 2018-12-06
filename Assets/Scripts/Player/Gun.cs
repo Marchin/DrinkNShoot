@@ -64,6 +64,8 @@ public class Gun : MonoBehaviour, IItem
 	[Header("Gun Audio Sources")]
 	[SerializeField] [Tooltip("The'shoot' sound associated to the gun.")]
 	AudioSource shootSound;
+	[SerializeField] [Tooltip("The 'reload start' sound associated to the gun.")]
+	AudioSource reloadStartSound;
 	[SerializeField] [Tooltip("The 'reload' sound associated to the gun.")]
 	AudioSource reloadSound;
 	[SerializeField] [Tooltip("The sound the gun makes when it is fired while being empty.")]
@@ -371,6 +373,12 @@ public class Gun : MonoBehaviour, IItem
 	{
 		get { return reloadSound; }
 	}
+
+	public AudioSource ReloadStartSound
+	{
+		get { return reloadStartSound; }
+	}
+
 	public AudioSource EmptyGunSound
 	{
 		get { return emptyGunSound; }

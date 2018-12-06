@@ -20,7 +20,8 @@ public class HUD : MonoBehaviour
 	[Header("Audio Sources")]
 	[SerializeField] AudioSource slideInBannerSound;
 	[SerializeField] AudioSource slideOutBannerSound;
-	[SerializeField] AudioSource clockTickSound;
+	[SerializeField] AudioSource rankBannerSound;
+	[SerializeField] AudioSource[] clockTickSounds;
 	
 	[Header("Animations")]
 	[SerializeField] AnimationClip slidingAnimation;
@@ -196,7 +197,7 @@ public class HUD : MonoBehaviour
 			}
 			rankBanner.SetActive(true);
 			rankBannerAnimator.SetTrigger("Start");
-			slideInBannerSound.Play();
+			rankBannerSound.Play();
 		}
 		else
 			if (crowsText.color != Color.white && targetsKilled < minimumRequiredKills)
@@ -216,7 +217,8 @@ public class HUD : MonoBehaviour
 			{
 				timerHUDAnimator.SetTrigger("Has to Pop");
 				clockTickTimer = 0f;
-				clockTickSound.Play();
+				int randomIndex = Random.Range(0, clockTickSounds.Length);
+				clockTickSounds[randomIndex].Play();
 			}
 		}
 		else
