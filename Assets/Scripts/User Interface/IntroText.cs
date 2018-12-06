@@ -85,11 +85,14 @@ public class IntroText : MonoBehaviour
 				SwapSlideImages(fourthSlideImages, fifthSlideImages);
 				break;
 			default:
-				break;			
+				break;
 		}
 
         continueButton.interactable = true;
-        skipButton.interactable = true;
+		if (currentSlideIndex < slidesText.GetLength(0) - 1) 
+        	skipButton.interactable = true;
+		else
+			skipButton.gameObject.SetActive(false);
 	}
 
 	public void Continue()
