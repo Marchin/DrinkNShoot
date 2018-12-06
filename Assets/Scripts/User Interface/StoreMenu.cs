@@ -15,6 +15,7 @@ public class StoreMenu : MonoBehaviour
 	[SerializeField] GameObject[] itemPrices;
 	[SerializeField] string[] purchasingPanelTexts;
 	[SerializeField] AudioSource hoverOverItemSound;
+	[SerializeField] AudioSource purchaseItemSound;
 
 	void Start()
 	{
@@ -81,6 +82,12 @@ public class StoreMenu : MonoBehaviour
 	{
 		if (button.interactable)
 			hoverOverItemSound.Play();
+	}
+
+	public void PlayPurchaseItemSound(Button button)
+	{
+		if (button.interactable)
+			purchaseItemSound.Play();
 	}
 
 	public void QuitStore()
