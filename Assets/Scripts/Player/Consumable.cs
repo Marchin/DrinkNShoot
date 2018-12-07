@@ -12,9 +12,6 @@ public abstract class Consumable : MonoBehaviour, IItem
 	
 	[Header("Consumable Animations")]
 	[SerializeField] AnimationClip[] useAnimations;
-	
-	[Header("Consumable Sounds")]
-	[SerializeField] AudioSource useSound;
 
 	WeaponHolder weaponHolder;
 	Coroutine useRoutine;
@@ -102,11 +99,6 @@ public abstract class Consumable : MonoBehaviour, IItem
 	public AnimationClip UseAnimation
 	{
 		get { return useAnimations[(int)weaponHolder.EquippedGun.TypeOfGun]; }
-	}
-
-	public AudioSource UseSound
-	{
-		get { return useSound; }
 	}
 
 	public bool IsInUse

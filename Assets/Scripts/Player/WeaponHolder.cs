@@ -33,6 +33,16 @@ public class WeaponHolder : MonoBehaviour
 	void Start()
 	{
 		SetEquippedConsumable();
+
+		if (!equippedConsumable)
+		{
+			foreach (Transform consumable in consumableHolder)
+			{
+				SwapConsumable();
+				if (equippedConsumable)
+					break;
+			}
+		}
 	}
 
 	void Update()
@@ -122,21 +132,14 @@ public class WeaponHolder : MonoBehaviour
 	{
 		while (Time.timeScale != 1f)
 			yield return null;
-
-		int previousConsumableIndex = equippedConsumableIndex;
 		
 		SwapConsumable();
-		if (equippedConsumableIndex == previousConsumableIndex)
-			equippedConsumable = null;
 	}
 
 	void UnequipConsumable()
 	{
 		if (equippedConsumable.GetName() != "Snake Oil")
-		{
-			equippedConsumable = null;
 			SwapConsumable();
-		}
 		else
             StartCoroutine(SwapConsumableDelayed());	
 	}

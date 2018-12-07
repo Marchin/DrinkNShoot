@@ -9,13 +9,13 @@ public class PlayerAudio : MonoBehaviour
 	[SerializeField] AudioSource deadEyeExitSound;
 	[SerializeField] AudioSource cowboyYellSound;
 	[SerializeField] AudioSource bePoopedShoutSound;
-	[SerializeField] PoopImage poopImage;
 	[SerializeField] [Range(0f, 100f)]
 	float yellProbability = 15f;
 	[SerializeField] [Range(0f, 100f)]
 	float bePoopedShoutProbability = 15f;
 	
 	WeaponHolder weaponHolder;
+	PoopImage poopImage;
 
 	void Awake()
 	{
@@ -28,6 +28,8 @@ public class PlayerAudio : MonoBehaviour
 		ChangeConsumableSounds();
 		weaponHolder.OnGunSwap.AddListener(ChangeGunSounds);
 		weaponHolder.OnConsumableSwap.AddListener(ChangeConsumableSounds);
+
+		poopImage = FindObjectOfType<PoopImage>();
 		poopImage.OnPoopAppear.AddListener(PlayBePoopedShoutSound);
 	}
 
@@ -61,11 +63,6 @@ public class PlayerAudio : MonoBehaviour
 		weaponHolder.EquippedGun.EmptyGunSound.Play();
 	}
 
-	void PlayUseItemSound()
-	{
-		weaponHolder.EquippedConsumable.UseSound.Play();
-	}
-
 	void PlayDeadEyeExitSound()
 	{
 		deadEyeExitSound.Play();
@@ -95,14 +92,10 @@ public class PlayerAudio : MonoBehaviour
 
 	void ChangeConsumableSounds()
 	{
-		if (weaponHolder.EquippedConsumable)
+		if (weaponHolder.EquippedConsumable && weaponHolder.EquippedConsumable.GetName() == "Snake Oil")
 		{
-			weaponHolder.EquippedConsumable.OnUse.AddListener(PlayUseItemSound);
-			if (weaponHolder.EquippedConsumable.GetName() == "Snake Oil")
-			{
-				SnakeOil snakeOil = (SnakeOil)weaponHolder.EquippedConsumable;
-				snakeOil.OnBackToNormalTime.AddListener(PlayDeadEyeExitSound);
-			}
+			SnakeOil snakeOil = (SnakeOil)weaponHolder.EquippedConsumable;
+			snakeOil.OnBackToNormalTime.AddListener(PlayDeadEyeExitSound);
 		}
 	}
 

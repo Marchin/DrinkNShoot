@@ -44,7 +44,6 @@ public class LevelManager : MonoBehaviour
     Wagon wagon;
     CrowTrigger currentSpawnPoint;
     EndLevelMenu endLevelMenu;
-    HUD hud;
 	StageCompletionTier stageCompletionTier;
     int currentStageIndex;
     int maxStageIndex;
@@ -85,7 +84,6 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         endLevelMenu = FindObjectOfType<EndLevelMenu>();
-        hud = FindObjectOfType<HUD>();
         wagon = playersWagon.gameObject.GetComponent<Wagon>();
 
         crowSpawner.enabled = false;
