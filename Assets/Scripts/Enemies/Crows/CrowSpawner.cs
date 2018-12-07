@@ -6,7 +6,9 @@ using UnityEngine;
 public class CrowSpawner : MonoBehaviour {
 	[SerializeField] float m_spawnInterval = 2f;
 	[SerializeField] float m_poopInterval;
+	[SerializeField] float m_spawnDistance;
 	BoxCollider[] m_landingZones;
+	Camera m_camera;
 	sbyte[] m_LZOccupation;
 	ObjectPool m_pool;
 	float m_counter;
@@ -14,6 +16,10 @@ public class CrowSpawner : MonoBehaviour {
 	private void Awake() {
 		m_pool = GetComponent<ObjectPool>();
 		m_counter = m_spawnInterval;
+	}
+
+	private void Start() {
+		m_camera = FindObjectOfType<Camera>();	
 	}
 
 	private void OnEnable() {
@@ -24,7 +30,10 @@ public class CrowSpawner : MonoBehaviour {
 		if (m_counter <= 0f) {
 			GameObject go;
 			if (m_pool.Request(out go)) {
-				go.transform.position = new Vector3(180f, 80f, 150f);
+				float randAngle = Random.Range(0f, 360f);
+				go.transform.position = m_camera.transform.position +
+					new Vector3(Mathf.Sin(randAngle) * m_spawnDistance, 25f,
+						Mathf.Cos(randAngle) * m_spawnDistance);
 				Crow crow = go.GetComponent<Crow>();
 				go.GetComponent<CrowLand>().SetRotationToDestination();
 				crow.Init();

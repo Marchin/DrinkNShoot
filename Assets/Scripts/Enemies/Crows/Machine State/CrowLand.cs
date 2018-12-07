@@ -5,14 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(Crow))]
 public class CrowLand : MonoBehaviour, IState {
 	[SerializeField] LayerMask m_landingZonesLayer;
-	[SerializeField] LayerMask m_buildingsLayer;
 	[SerializeField] float m_flightSpeed;
 	[SerializeField] float m_turnSpeed;
-	[SerializeField] float m_landingRadius;
 	Crow m_crow;
+	LayerMask m_obstaclesLayer;
 	Vector3 m_targetPosition;
 	Quaternion m_targetRotation;
 	Vector3 m_direction;
+	Vector3 m_lastMovement;
 	const float m_NEGLIGIBLE = 0.01f;
 	float m_footOffset;
 	float m_targetY;
@@ -20,6 +20,7 @@ public class CrowLand : MonoBehaviour, IState {
 
 	private void Awake() {
 		m_crow = GetComponent<Crow>();
+		m_obstaclesLayer = m_crow.ObstaclesLayer;
 		m_footOffset = GetComponent<BoxCollider>().size.y * 0.5f;
 	}
 
@@ -27,27 +28,44 @@ public class CrowLand : MonoBehaviour, IState {
 		m_targetPosition = m_crow.GetLandingZone(out m_direction);
 		m_targetPosition.y += m_footOffset;
 		m_targetY = m_targetPosition.y;
-		m_targetPosition.y += 2f;
+		m_targetPosition.y += 3f;
 		m_rotCalculated = false;
+		m_lastMovement = transform.forward;
 	}
 
 	public void StateUpdate(out IState nextState) {
 		RaycastHit buildHit;
-		Physics.Raycast(transform.position, transform.forward,
-			out buildHit, 5f, m_buildingsLayer);
+		Physics.Raycast(transform.position, m_lastMovement,
+			out buildHit, 5f, m_obstaclesLayer);
 		RaycastHit landingHit;
 		Physics.Raycast(transform.position, m_targetPosition - transform.position,
 			out landingHit, 10f, m_landingZonesLayer);
+		Debug.DrawRay(buildHit.point, buildHit.normal, Color.cyan, 0.5f);
 		if (Vector3.Distance(transform.position, m_targetPosition) > m_NEGLIGIBLE) {
-			if (Vector3.Distance(transform.position, m_targetPosition) < 1.5f) {
+			if (Vector3.Distance(transform.position, m_targetPosition) < 1.5f 
+				&& !IsToCrash(landingHit, buildHit)) {
+
 				if (!m_rotCalculated) {
-					m_targetPosition.y = m_targetY;
+					RaycastHit hit;
+					if (Physics.Raycast(transform.position, Vector3.down,
+						out hit, 2f, m_landingZonesLayer)){
+
+						m_targetRotation = Quaternion.LookRotation(m_direction, hit.normal);
+						m_targetPosition = hit.point + hit.normal * m_footOffset;
+					} else {
+						m_targetRotation = Quaternion.LookRotation(m_direction);
+						m_targetPosition.y = m_targetY;
+					}
+					if (Vector3.Angle(transform.forward, m_direction) > 90f) {
+						m_direction = -m_direction;
+					}
 				}
 				transform.position = Vector3.Lerp(
-					transform.position, m_targetPosition, 2.25f * Time.deltaTime);
+					transform.position, m_targetPosition, 2f * Time.deltaTime);
 			} else if (IsToCrash(landingHit, buildHit)) {
 				Vector3 diff = m_targetPosition - transform.position;
-				Vector3 projection = diff - buildHit.normal * Vector3.Dot(diff, buildHit.normal);
+				Vector3 projection = diff - buildHit.normal *
+					Vector3.Dot(diff, buildHit.normal);
 				diff = transform.InverseTransformDirection(diff);
 				diff.x = 0f;
 				diff.z = Mathf.Abs(diff.z);
@@ -57,40 +75,52 @@ public class CrowLand : MonoBehaviour, IState {
 					projection.x *= -1f;
 					projection.z *= -1f;
 				}
+				Debug.DrawRay(buildHit.point, projection, Color.yellow, 1f);
 				m_targetRotation = Quaternion.LookRotation(projection);
-				transform.position += transform.forward * 0.5f * m_flightSpeed * Time.deltaTime;
+				if (buildHit.distance < 0.25f) {
+					transform.rotation = m_targetRotation;
+				}
+				m_lastMovement = transform.forward * 0.1f *
+					m_flightSpeed * Time.deltaTime;
+				transform.position += m_lastMovement;
 				m_rotCalculated = false;
 			} else {
 				Vector3 diff = m_targetPosition - transform.position;
 				diff = transform.InverseTransformDirection(diff);
+				diff = diff.normalized;
 				diff.x = 0f;
 				diff.z = Mathf.Abs(diff.z);
 				diff = transform.TransformDirection(diff);
-				diff = diff.normalized;
-				transform.position += diff * m_flightSpeed * Time.deltaTime;
+				float angle = Vector3.Angle(diff, m_targetPosition - transform.position);
+				if (angle > 178f && angle < 182f || angle == 90f) {
+					m_targetRotation = Quaternion.LookRotation(
+						transform.eulerAngles + 15f * Vector3.up);
+					transform.rotation = m_targetRotation;
+					m_rotCalculated = false;
+				}
+				m_lastMovement = diff.normalized * m_flightSpeed * Time.deltaTime;
+				transform.position += m_lastMovement;
 				if (!m_rotCalculated) {
-					m_targetRotation = Quaternion.LookRotation(m_targetPosition - transform.position);
+					m_targetRotation = Quaternion.LookRotation(
+						m_targetPosition - transform.position);
 				}
 			}
-			if (transform.position.y > m_targetY) {
-				if (landingHit.collider != null) {
-					if (buildHit.collider == null || landingHit.distance < buildHit.distance) {
-						// Debug.DrawRay(transform.position, Vector3.down, Color.magenta, 10f);
-						if (!m_rotCalculated) {
-							if (Vector3.Angle(transform.forward, m_direction) > 90f) {
-								m_direction = -m_direction;
-							}
-							m_targetRotation = Quaternion.LookRotation(
-								m_direction, landingHit.normal);
-							m_targetY = landingHit.transform.position.y + m_footOffset;
-							m_targetPosition.y = m_targetY;
-							Debug.DrawRay(landingHit.transform.position, landingHit.normal, Color.magenta, 10f);
-							m_rotCalculated = true;
-							if (landingHit.distance <= m_footOffset) {
-								m_targetPosition = transform.position;
-								transform.rotation = m_targetRotation;
-							}
+			if (landingHit.collider != null && 
+				Vector3.Angle(landingHit.normal, Vector3.up) < 45f) {
+
+				if (buildHit.collider == null || landingHit.distance < buildHit.distance) {
+					// Debug.DrawRay(transform.position, Vector3.down, Color.magenta, 10f);
+					if (!m_rotCalculated) {
+						if (Vector3.Angle(transform.forward, m_direction) > 90f) {
+							m_direction = -m_direction;
 						}
+						m_targetRotation = Quaternion.LookRotation(
+							m_direction, landingHit.normal);
+						m_targetY = landingHit.transform.position.y + m_footOffset;
+						m_targetPosition.y = m_targetY;
+						Debug.DrawRay(landingHit.transform.position,
+							landingHit.normal, Color.magenta, 10f);
+						m_rotCalculated = true;
 					}
 				}
 			}
@@ -100,25 +130,29 @@ public class CrowLand : MonoBehaviour, IState {
 					m_direction = -m_direction;
 				}
 				RaycastHit hit;
-				if (Physics.Raycast(transform.position, Vector3.down, out hit, 2f, m_landingZonesLayer)){
+				if (Physics.Raycast(transform.position,
+						Vector3.down, out hit, 2f, m_landingZonesLayer)) {
+
+					m_targetPosition = hit.point + hit.normal * m_footOffset;
 					m_targetRotation = Quaternion.LookRotation(m_direction, hit.normal);
 				}
 			}
 			transform.rotation = m_targetRotation;
 			transform.position = m_targetPosition;
-			transform.rotation = m_targetRotation;
 		}
-		if (Vector3.Distance(transform.eulerAngles, m_targetRotation.eulerAngles) > m_NEGLIGIBLE) {
-			float avoidingBuild = (buildHit.collider != null) ? 2f : 1f;
+		if (Vector3.Distance(transform.eulerAngles,
+				m_targetRotation.eulerAngles) > m_NEGLIGIBLE) {
+
+			float avoidingBuild = (buildHit.collider != null) ? 2.5f : 1f;
 			transform.rotation = Quaternion.RotateTowards(
-				transform.rotation, m_targetRotation, m_turnSpeed * avoidingBuild * Time.deltaTime);
+				transform.rotation, m_targetRotation, m_turnSpeed *
+				avoidingBuild * Time.deltaTime);
 		} else {
 			transform.rotation = m_targetRotation;
 		}
 		if ((transform.position == m_targetPosition) &&
 			(transform.rotation == m_targetRotation)) {
 
-			CancelInvoke();
 			nextState = GetComponent<CrowMovement>();
 		} else {
 			nextState = this;

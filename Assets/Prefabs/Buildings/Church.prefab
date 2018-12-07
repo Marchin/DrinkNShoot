@@ -21,12 +21,13 @@ GameObject:
   - component: {fileID: 4780255300392826}
   - component: {fileID: 33391541769477378}
   - component: {fileID: 23791723179074206}
+  - component: {fileID: 65920319328124248}
   m_Layer: 10
   m_Name: Church
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 87
   m_IsActive: 1
 --- !u!4 &4780255300392826
 Transform:
@@ -35,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1797707800773704}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 71.381874, y: 12.993742, z: -0.43499756}
+  m_LocalPosition: {x: 185.27, y: 13.82, z: 201.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,17 +57,17 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 4d0a2c3b4778f5e42976dda1b02822c6, type: 3}
-  - {fileID: 2100002, guid: 4d0a2c3b4778f5e42976dda1b02822c6, type: 3}
-  - {fileID: 2100004, guid: 4d0a2c3b4778f5e42976dda1b02822c6, type: 3}
-  - {fileID: 2100006, guid: 4d0a2c3b4778f5e42976dda1b02822c6, type: 3}
-  - {fileID: 2100008, guid: 4d0a2c3b4778f5e42976dda1b02822c6, type: 3}
-  - {fileID: 2100010, guid: 4d0a2c3b4778f5e42976dda1b02822c6, type: 3}
-  - {fileID: 2100012, guid: 4d0a2c3b4778f5e42976dda1b02822c6, type: 3}
-  - {fileID: 2100014, guid: 4d0a2c3b4778f5e42976dda1b02822c6, type: 3}
-  - {fileID: 2100016, guid: 4d0a2c3b4778f5e42976dda1b02822c6, type: 3}
-  - {fileID: 2100018, guid: 4d0a2c3b4778f5e42976dda1b02822c6, type: 3}
-  - {fileID: 2100020, guid: 4d0a2c3b4778f5e42976dda1b02822c6, type: 3}
+  - {fileID: 2100000, guid: 231d71faf24402a4c8013e8f744afbf1, type: 2}
+  - {fileID: 2100000, guid: 59e40eb6e31e88746b944cafe1d47566, type: 2}
+  - {fileID: 2100000, guid: f04a003e6f4ee9a458c4698cb93c2283, type: 2}
+  - {fileID: 2100000, guid: 8eee955460feb3b43b870adc74c2cca7, type: 2}
+  - {fileID: 2100000, guid: a6605e9805c31f044806d1dbad0f126c, type: 2}
+  - {fileID: 2100000, guid: 065f093478f64974a8ff3535f2a1f248, type: 2}
+  - {fileID: 2100000, guid: df5abaeda2788a1498d4203866a0c596, type: 2}
+  - {fileID: 2100000, guid: 7593409999edcad44aaa8bf01c53e08a, type: 2}
+  - {fileID: 2100000, guid: c4a54e359052b99448883f046c12e2f0, type: 2}
+  - {fileID: 2100000, guid: b34ed727446721d44b6f858ed05594ad, type: 2}
+  - {fileID: 2100000, guid: 441cd65f16f21964482c46195daf4575, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,3 +94,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1797707800773704}
   m_Mesh: {fileID: 4300000, guid: 4d0a2c3b4778f5e42976dda1b02822c6, type: 3}
+--- !u!65 &65920319328124248
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1797707800773704}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 13.237446, y: 26.282282, z: 18.589615}
+  m_Center: {x: 0.07993364, y: 0, z: -0.1943264}

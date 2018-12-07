@@ -8,6 +8,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(CrowFly))]
 
 public class Crow : MonoBehaviour {
+	public LayerMask ObstaclesLayer;
     CrowSpawner m_crowSpawner;
     BoxCollider m_collider;
     Vector3 m_playerPos;

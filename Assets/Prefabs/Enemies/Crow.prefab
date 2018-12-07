@@ -1340,6 +1340,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a345e6d15949d4f8ca3ad3acf8ab08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObstaclesLayer:
+    serializedVersion: 2
+    m_Bits: 9216
 --- !u!114 &114520831104539482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1355,7 +1358,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   m_flightSpeed: 12
-  m_turnSpeed: 140
+  m_turnSpeed: 120
 --- !u!114 &114535996998199986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1370,12 +1373,8 @@ MonoBehaviour:
   m_landingZonesLayer:
     serializedVersion: 2
     m_Bits: 32768
-  m_buildingsLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  m_flightSpeed: 12
-  m_turnSpeed: 140
-  m_landingRadius: 150
+  m_flightSpeed: 10
+  m_turnSpeed: 90
 --- !u!114 &114536975175338598
 MonoBehaviour:
   m_ObjectHideFlags: 1
