@@ -11,7 +11,6 @@ public class HUD : MonoBehaviour
 	[SerializeField] GameObject ammoHUD;
 	[SerializeField] GameObject crowHUD;
 	[SerializeField] GameObject timerHUD;
-	[SerializeField] GameObject currencyHUD;
 	[SerializeField] GameObject consumablesHUD;
 	[SerializeField] GameObject rankBanner;
 	[SerializeField] Image rankImage;
@@ -36,7 +35,6 @@ public class HUD : MonoBehaviour
     TextMeshProUGUI ammoText;
     TextMeshProUGUI crowsText;
     TextMeshProUGUI timerText;
-    TextMeshProUGUI currencyText;
     TextMeshProUGUI consumablesText;
 	TextMeshProUGUI rankBannerText;
 	Animator rankBannerAnimator;
@@ -57,7 +55,6 @@ public class HUD : MonoBehaviour
 		ammoText = ammoHUD.GetComponentInChildren<TextMeshProUGUI>();
 		crowsText = crowHUD.GetComponentInChildren<TextMeshProUGUI>();
 		timerText = timerHUD.GetComponentInChildren<TextMeshProUGUI>();
-		currencyText = currencyHUD.GetComponentInChildren<TextMeshProUGUI>();
 		consumablesText = consumablesHUD.GetComponentInChildren<TextMeshProUGUI>();
 		rankBannerText = rankBanner.GetComponentInChildren<TextMeshProUGUI>();
 
@@ -281,10 +278,5 @@ public class HUD : MonoBehaviour
 		}
 		else
 			consumablesHUD.SetActive(false);
-	}
-
-	public void ChangeCurrencyDisplay(int currency)
-	{
-		currencyText.text = currency.ToString();
 	}
 }

@@ -166,7 +166,6 @@ public class LevelManager : MonoBehaviour
 			endLevelMenu.ChangeEndScreenText(totalIncome, totalKills, stageCompletionTier, true, nextLevelName == "");
         }
         
-		hud.ChangeCurrencyDisplay(totalIncome);
         completeLevelSound.Play();
         onGameOver.Invoke();
     }

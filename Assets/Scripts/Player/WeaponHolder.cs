@@ -121,6 +121,7 @@ public class WeaponHolder : MonoBehaviour
 	void UnequipConsumable()
 	{
 		equippedConsumable = null;
+		SwapConsumable();
 	}
 
 	bool CanSwapWeapon()

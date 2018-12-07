@@ -14286,7 +14286,7 @@ MonoBehaviour:
   useSound: {fileID: 82074081024601698}
   deadEyeDuration: 10
   deadEyeFactor: 0.1
-  deadEyeExitSound: {fileID: 8300000, guid: 94ef80433e47ed143b6eeccb5c7dcfd6, type: 3}
+  deadEyeExitSound: {fileID: 8300000, guid: d8acede5fde32fb4d8d8bd9ecbef14bc, type: 3}
 --- !u!114 &114081357690762260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14359,19 +14359,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunType: 0
-  gunName: Revolver
-  gunCapacity: 5
-  fireRate: 1.5
-  range: 100
-  impactForce: 700
-  recoilSwayLevel: 50
-  shootingLayers:
-  - Crows
-  layersToIgnore:
-  - LandingZones
-  - CrowTriggers
-  - Ignore Raycast
-  - Particle Effects
+  gunName: 
+  gunCapacity: 0
+  fireRate: 0
+  range: 0
+  impactForce: 0
+  recoilSwayLevel: 0
+  shootingLayers: []
+  layersToIgnore: []
   bullets:
   - {fileID: 1136769234832984}
   - {fileID: 1755884833457254}
@@ -14379,15 +14374,13 @@ MonoBehaviour:
   - {fileID: 1865825171015406}
   - {fileID: 1988409890281400}
   muzzleFlash: {fileID: 198899261540778618}
-  idleAnimation: {fileID: 7400000, guid: 0aa6d8a2debe9664eb84fb5989b2b7d0, type: 2}
-  shootAnimation: {fileID: 7400000, guid: c46403b8112abf843be484799196e714, type: 2}
-  reloadStartAnimation: {fileID: 7400000, guid: 9c08178dbfeed7740807b034e4391053,
-    type: 2}
-  reloadAnimation: {fileID: 7400000, guid: 04fd28b82a87ee64d994b5553aa36f1a, type: 2}
-  reloadFinishAnimation: {fileID: 7400000, guid: 5442af4e760ea824f92e103864f6a98c,
-    type: 2}
-  swapGunOutAnimation: {fileID: 7400000, guid: ec0ca054d5899084a8bc76248be656e3, type: 2}
-  swapGunInAnimation: {fileID: 7400000, guid: a4548700b01e59b4d9b22f89577c38ca, type: 2}
+  idleAnimation: {fileID: 0}
+  shootAnimation: {fileID: 0}
+  reloadStartAnimation: {fileID: 0}
+  reloadAnimation: {fileID: 0}
+  reloadFinishAnimation: {fileID: 0}
+  swapGunOutAnimation: {fileID: 0}
+  swapGunInAnimation: {fileID: 0}
   shootSound: {fileID: 82042378312674656}
   reloadStartSound: {fileID: 82088978687395676}
   reloadSound: {fileID: 82437288799216816}
@@ -14404,7 +14397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   consumableName: Bait
-  maxAmount: 1
+  maxAmount: 3
   useAnimations:
   - {fileID: 7400000, guid: 120f7c19a4898fb4e867c845e5657c2b, type: 2}
   - {fileID: 7400000, guid: 5c9e2a60dc52861498c2e352ee303afc, type: 2}
@@ -14496,31 +14489,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2d509252c4ba54b8161b786510c260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunType: 1
-  gunName: Winchester
-  gunCapacity: 10
-  fireRate: 3
-  range: 500
-  impactForce: 700
-  recoilSwayLevel: 35
-  shootingLayers:
-  - Crows
-  layersToIgnore:
-  - LandingZones
-  - CrowTriggers
-  - Ignore Raycast
-  - Particle Effects
+  gunType: 0
+  gunName: 
+  gunCapacity: 0
+  fireRate: 0
+  range: 0
+  impactForce: 0
+  recoilSwayLevel: 0
+  shootingLayers: []
+  layersToIgnore: []
   bullets: []
   muzzleFlash: {fileID: 198438984321410198}
-  idleAnimation: {fileID: 7400000, guid: 4dc3fe2e8c2b54340b8b2da5ba019879, type: 2}
-  shootAnimation: {fileID: 7400000, guid: 2e9a03678564c9f49bb15404e366dd05, type: 2}
-  reloadStartAnimation: {fileID: 7400000, guid: c5c6a0ff9497b1c45ba4e5b8fb17e8d5,
-    type: 2}
-  reloadAnimation: {fileID: 7400000, guid: 34e3d1b546fdf3940b02c77adf9193ef, type: 2}
-  reloadFinishAnimation: {fileID: 7400000, guid: aea85083ce81ffa4696eb7676bc8af48,
-    type: 2}
-  swapGunOutAnimation: {fileID: 7400000, guid: 2177bbe61e0b67d4cab05e77fecac36f, type: 2}
-  swapGunInAnimation: {fileID: 7400000, guid: 4d3406439df5d0b419c19926fb223ea4, type: 2}
+  idleAnimation: {fileID: 0}
+  shootAnimation: {fileID: 0}
+  reloadStartAnimation: {fileID: 0}
+  reloadAnimation: {fileID: 0}
+  reloadFinishAnimation: {fileID: 0}
+  swapGunOutAnimation: {fileID: 0}
+  swapGunInAnimation: {fileID: 0}
   shootSound: {fileID: 82770186563315262}
   reloadStartSound: {fileID: 82137635487647118}
   reloadSound: {fileID: 82586381693312744}
