@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1933459612393212}
+  m_RootGameObject: {fileID: 1468856169781568}
   m_IsPrefabAsset: 1
---- !u!1 &1933459612393212
+--- !u!1 &1468856169781568
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4266779756110512}
-  - component: {fileID: 114857489526844550}
-  - component: {fileID: 82604638783920086}
+  - component: {fileID: 4822533854292872}
+  - component: {fileID: 114531355529929866}
+  - component: {fileID: 82682273954698314}
   m_Layer: 9
   m_Name: BaitHolder
   m_TagString: Untagged
@@ -28,12 +28,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4266779756110512
+--- !u!4 &4822533854292872
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1933459612393212}
+  m_GameObject: {fileID: 1468856169781568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -41,12 +41,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &82604638783920086
+--- !u!82 &82682273954698314
 AudioSource:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1933459612393212}
+  m_GameObject: {fileID: 1468856169781568}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -136,21 +136,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &114857489526844550
+--- !u!114 &114531355529929866
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1933459612393212}
+  m_GameObject: {fileID: 1468856169781568}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf1b6ece24386d44caeaff3edcd3c9f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   consumableName: Bait
-  maxAmount: 1
-  useAnimation: {fileID: 7400000, guid: 15f7752e40c4d9e46a46bda3b26d0bda, type: 2}
-  useSound: {fileID: 82604638783920086}
+  maxAmount: 3
+  useAnimations:
+  - {fileID: 7400000, guid: 120f7c19a4898fb4e867c845e5657c2b, type: 2}
+  - {fileID: 7400000, guid: 5c9e2a60dc52861498c2e352ee303afc, type: 2}
+  useSound: {fileID: 82682273954698314}
   baitPrefab: {fileID: 1467655070488600, guid: c2b8b48f7ee0f7f4b9ed72db0b131c1c, type: 2}
   landingLayers:
     serializedVersion: 2

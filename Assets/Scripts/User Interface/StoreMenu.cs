@@ -11,6 +11,7 @@ public class StoreMenu : MonoBehaviour
 
 	[SerializeField] TextMeshProUGUI currencyText;
 	[SerializeField] TextMeshProUGUI itemPurchasingText;
+	[SerializeField] TextMeshProUGUI[] consumablesAmountText;
 	[SerializeField] Button[] itemPurchaseButtons;
 	[SerializeField] GameObject[] itemPrices;
 	[SerializeField] string[] purchasingPanelTexts;
@@ -26,6 +27,13 @@ public class StoreMenu : MonoBehaviour
 		foreach (IItem item in StoreManager.Instance.ItemsStock.Keys)
 		{
 			itemPrices[i].GetComponentInChildren<TextMeshProUGUI>().text = StoreManager.Instance.ItemsStock[item].ToString();
+			if (item.GetItemType() != ItemType.Gun)
+			{
+				string currentAmount = item.GetAmount().ToString();
+				string maxAmount = item.GetMaxAmount().ToString();
+				
+				consumablesAmountText[i].text = currentAmount + "/" + maxAmount;
+			}
 			if (PlayerManager.Instance.HasItem(item) && PlayerManager.Instance.GetItemAmount(item) == item.GetMaxAmount())
 			{
 				itemPurchaseButtons[i].interactable = false;
@@ -42,6 +50,8 @@ public class StoreMenu : MonoBehaviour
 
 		if (wasPurchased)
 		{
+			purchaseItemSound.Play();
+			
 			switch (itemName)
 			{
 				case "Winchester":
@@ -61,7 +71,12 @@ public class StoreMenu : MonoBehaviour
 			{
 				case ItemOnSale.SnakeOil:
 				case ItemOnSale.Bait:
-					if (PlayerManager.Instance.GetItemAmount(itemName) == PlayerManager.Instance.GetItemMaxAmount(itemName))
+                    int currentAmount = PlayerManager.Instance.GetItemAmount(itemName);
+                    int maxAmount = PlayerManager.Instance.GetItemMaxAmount(itemName);
+					
+					consumablesAmountText[(int)purchasedItem].text = currentAmount.ToString() + "/" + maxAmount.ToString();
+					
+					if (currentAmount == maxAmount)
 					{
 						itemPurchaseButtons[(int)purchasedItem].interactable = false;
 						itemPrices[(int)purchasedItem].SetActive(false);
@@ -75,19 +90,18 @@ public class StoreMenu : MonoBehaviour
 			itemPurchasingText.text = purchasingPanelTexts[0];
 		}
 		else
-            itemPurchasingText.text = purchasingPanelTexts[1];
+		{
+			if (PlayerManager.Instance.Currency >= StoreManager.Instance.GetItemPrice(itemName))
+            	itemPurchasingText.text = purchasingPanelTexts[2];
+			else
+            	itemPurchasingText.text = purchasingPanelTexts[1];
+		}
     }
 
 	public void PlayHoverOverItemSound(Button button)
 	{
-		if (button.interactable)
+		if (button.IsInteractable())
 			hoverOverItemSound.Play();
-	}
-
-	public void PlayPurchaseItemSound(Button button)
-	{
-		if (button.interactable)
-			purchaseItemSound.Play();
 	}
 
 	public void QuitStore()
