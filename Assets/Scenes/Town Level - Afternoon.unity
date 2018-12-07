@@ -9384,7 +9384,7 @@ Prefab:
         type: 2}
       propertyPath: weaponHolderPrefab
       value: 
-      objectReference: {fileID: 1877662900332184, guid: 5d300b936ab522d4da6e458ff59b5886,
+      objectReference: {fileID: 1306910451827352, guid: 5d300b936ab522d4da6e458ff59b5886,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9f0eee962b6c8041a741d7dd3fd5ab5, type: 2}
@@ -33055,11 +33055,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4371689569484632, guid: 008f596a7514be94e85594a0199b630e,
     type: 2}
   m_PrefabInternal: {fileID: 1274896235}
---- !u!111 &1275396984 stripped
-Animation:
-  m_CorrespondingSourceObject: {fileID: 111514461253600860, guid: ee3cf5fc4130bec4bb5af2f35e43dab5,
-    type: 2}
-  m_PrefabInternal: {fileID: 284870849}
 --- !u!1001 &1276583255
 Prefab:
   m_ObjectHideFlags: 0
@@ -52309,7 +52304,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playersWagon: {fileID: 612230486}
   crowSpawner: {fileID: 338437773}
-  horseAnimation: {fileID: 1275396984}
   completeStageUI: {fileID: 1109657755}
   failLevelUI: {fileID: 668830618}
   hudUI: {fileID: 559458589}
