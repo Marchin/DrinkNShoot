@@ -85,6 +85,7 @@ public class Gun : MonoBehaviour, IItem
 	// Events
     UnityEvent onBackToIdle = new UnityEvent();
     UnityEvent onShot = new UnityEvent();
+    UnityEvent onShotTarget = new UnityEvent();
     UnityEvent onReloadStart = new UnityEvent();
     UnityEvent onReload = new UnityEvent();
     UnityEvent onReloadFinish = new UnityEvent();
@@ -161,7 +162,6 @@ public class Gun : MonoBehaviour, IItem
 			bullets[bulletsInGun].SetActive(false);
 		
 		float hitProbability = DrunkCrosshair.GetHitProbability();
-		bool hitSomething = false;
 		Vector3 direction = (fpsCamera.ScreenToWorldPoint(DrunkCrosshair.Position) - fpsCamera.transform.position).normalized;
 		RaycastHit hit;
 		
@@ -173,7 +173,10 @@ public class Gun : MonoBehaviour, IItem
 			Rigidbody targetRigidbody = hit.transform.GetComponent<Rigidbody>();
 
 			if (targetLife)
+			{
 				targetLife.TakeDamage();
+				onShotTarget.Invoke();
+			}
 
 			if (targetRigidbody)
 			{
@@ -393,6 +396,11 @@ public class Gun : MonoBehaviour, IItem
 	public UnityEvent OnShot
 	{
 		get { return onShot; }
+	}
+
+	public UnityEvent OnShotTarget
+	{
+		get { return onShotTarget; }
 	}
 
 	public UnityEvent OnReloadStart

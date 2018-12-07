@@ -7,6 +7,13 @@ public class PlayerAudio : MonoBehaviour
 	[SerializeField] AudioSource burpingSound;
 	[SerializeField] AudioSource deadEyeEnterSound;
 	[SerializeField] AudioSource deadEyeExitSound;
+	[SerializeField] AudioSource cowboyYellSound;
+	[SerializeField] AudioSource bePoopedShoutSound;
+	[SerializeField] PoopImage poopImage;
+	[SerializeField] [Range(0f, 100f)]
+	float yellProbability = 15f;
+	[SerializeField] [Range(0f, 100f)]
+	float bePoopedShoutProbability = 15f;
 	
 	WeaponHolder weaponHolder;
 
@@ -21,6 +28,7 @@ public class PlayerAudio : MonoBehaviour
 		ChangeConsumableSounds();
 		weaponHolder.OnGunSwap.AddListener(ChangeGunSounds);
 		weaponHolder.OnConsumableSwap.AddListener(ChangeConsumableSounds);
+		poopImage.OnPoopAppear.AddListener(PlayBePoopedShoutSound);
 	}
 
 	void PlayShootSound()
@@ -63,6 +71,18 @@ public class PlayerAudio : MonoBehaviour
 		deadEyeExitSound.Play();
 	}
 
+	void PlayCowboyYellSound()
+	{
+		if (Random.Range(0f, 100f) < yellProbability)
+			cowboyYellSound.Play();
+	}
+
+	void PlayBePoopedShoutSound()
+	{
+		if (Random.Range(0f, 100f) < bePoopedShoutProbability)
+			bePoopedShoutSound.Play();
+	}
+
 	void ChangeGunSounds()
 	{
         weaponHolder.EquippedGun.OnShot.AddListener(PlayShootSound);
@@ -70,6 +90,7 @@ public class PlayerAudio : MonoBehaviour
         weaponHolder.EquippedGun.OnReload.AddListener(InvokeReloadSound);
         weaponHolder.EquippedGun.OnEmptyGun.AddListener(PlayEmptyGunSound);
         weaponHolder.EquippedGun.OnReloadCancel.AddListener(CancelInvokeReloadSound);
+        weaponHolder.EquippedGun.OnShotTarget.AddListener(PlayCowboyYellSound);
 	}
 
 	void ChangeConsumableSounds()
