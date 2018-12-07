@@ -13134,7 +13134,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: a3deb91ad8b33054ab991aea2fcd8e1b,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 5296b08dd419c5142a54fcc8cdbb9ad7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 74c749d78847a534d9f401080ac25950, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -14093,8 +14093,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 63964a6812327fe4786161f34fbdcb91, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 049968bbc37a68e4882953bfa2bc3df0, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -14278,7 +14278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2d509252c4ba54b8161b786510c260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunType: 0
+  gunType: 1
   gunName: Winchester
   gunCapacity: 10
   fireRate: 3

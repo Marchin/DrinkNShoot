@@ -42,9 +42,9 @@ public abstract class Consumable : MonoBehaviour, IItem
 		PlayerManager.Instance.DecreaseConsumableAmount(this);
         onUse.Invoke();
         yield return new WaitForSeconds(useAnimations[(int)weaponHolder.EquippedGun.TypeOfGun].length);
+		ApplyConsumableEffect();
 		if (PlayerManager.Instance.GetItemAmount(this) == 0)
 			onEmpty.Invoke();
-		ApplyConsumableEffect();
 	}
 
 	bool CanUse()

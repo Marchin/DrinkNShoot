@@ -32,7 +32,6 @@ public class SnakeOil : Consumable
 	protected override void Update()
 	{
 		base.Update();
-
 		if (isApplyingEffect)
 		{				
 			deadEyeTimer += Time.unscaledDeltaTime;
