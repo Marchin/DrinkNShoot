@@ -160,9 +160,8 @@ public class Gun : MonoBehaviour, IItem
 		if (bullets.GetLength(0) > 0)
 			bullets[bulletsInGun].SetActive(false);
 		
-		onShot.Invoke();
-
 		float hitProbability = DrunkCrosshair.GetHitProbability();
+		bool hitSomething = false;
 		Vector3 direction = (fpsCamera.ScreenToWorldPoint(DrunkCrosshair.Position) - fpsCamera.transform.position).normalized;
 		RaycastHit hit;
 		
@@ -182,7 +181,9 @@ public class Gun : MonoBehaviour, IItem
 				targetRigidbody.AddForceAtPosition(-hit.normal * impactForce * forcePercentage, hit.point);
 			}
 		}
-	}
+
+        onShot.Invoke(); 
+    }
 
 	IEnumerator Reload()
 	{	

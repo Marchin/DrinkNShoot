@@ -3,25 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(Crow))]
+[RequireComponent(typeof(Life))]
 public class CrowAudio : MonoBehaviour
 {
 	[SerializeField] AudioSource[] crowSounds;
 	[SerializeField] AudioSource attackSound;
+	[SerializeField] AudioSource deathSound;
 	[SerializeField] [Range(0f, 100f)]	
 	float makeSoundProbability = 25f;
 	
 	static bool crowMakingSound = false;
 	
 	Crow crow;
+	Life crowLife;
 
 	void Awake()
 	{
 		crow = GetComponentInParent<Crow>();
+		crowLife = GetComponentInParent<Life>();
 	}
 
 	void Start()
 	{
 		crow.OnAttack.AddListener(PlayAttackSound);
+		crowLife.OnDeath.AddListener(PlayDeathSound);
+
+		crowLife.DeathLength = deathSound.clip.length;
 	}
 
 	void Update()
@@ -43,6 +51,11 @@ public class CrowAudio : MonoBehaviour
 	void PlayAttackSound()
 	{
 		attackSound.Play();
+	}
+
+	void PlayDeathSound()
+	{	
+		deathSound.Play();
 	}
 
 	void ReEnableSoundPlayback()
