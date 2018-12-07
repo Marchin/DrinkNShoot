@@ -13,7 +13,6 @@ public class LevelManager : MonoBehaviour
     [Header("Entities References")]
     [SerializeField] NavMeshAgent playersWagon;
     [SerializeField] CrowSpawner crowSpawner;
-    [SerializeField] Animation horseAnimation;
 
     [Header("UI References")]
     [SerializeField] GameObject completeStageUI;
@@ -42,9 +41,9 @@ public class LevelManager : MonoBehaviour
     static LevelManager instance;
 
     List<Transform> enemySpawnPoints;
+    Wagon wagon;
     CrowTrigger currentSpawnPoint;
     EndLevelMenu endLevelMenu;
-    HUD hud;
 	StageCompletionTier stageCompletionTier;
     int currentStageIndex;
     int maxStageIndex;
@@ -85,7 +84,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         endLevelMenu = FindObjectOfType<EndLevelMenu>();
-        hud = FindObjectOfType<HUD>();
+        wagon = playersWagon.gameObject.GetComponent<Wagon>();
 
         crowSpawner.enabled = false;
         playersWagon.destination = currentSpawnPoint.transform.position;
@@ -165,7 +164,6 @@ public class LevelManager : MonoBehaviour
 			endLevelMenu.ChangeEndScreenText(totalIncome, totalKills, stageCompletionTier, true, nextLevelName == "");
         }
         
-		hud.ChangeCurrencyDisplay(totalIncome);
         completeLevelSound.Play();
         onGameOver.Invoke();
     }
@@ -242,7 +240,7 @@ public class LevelManager : MonoBehaviour
         currentStageIndex++;
 
         playersWagon.destination = enemySpawnPoints[currentStageIndex].position;
-        horseAnimation.Play();
+        wagon.Move();
         currentSpawnPoint = enemySpawnPoints[currentStageIndex].GetComponent<CrowTrigger>();
         currentSpawnPoint.EnableStage();
 
@@ -257,7 +255,7 @@ public class LevelManager : MonoBehaviour
     {
         crowSpawner.enabled = true;
         inShootingStage = true;
-        horseAnimation.Stop();
+        wagon.Stop();
         onShootingStageEnter.Invoke();
     }
 

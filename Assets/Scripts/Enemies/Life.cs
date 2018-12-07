@@ -6,11 +6,11 @@ using UnityEngine.Events;
 public class Life : MonoBehaviour 
 {
 	[SerializeField] int hitPoints;
-	[SerializeField] float deathLength;
 	
 	ParticleSystem featherExplosion;
 	SkinnedMeshRenderer skinnedMeshRenderer;
 	int totalHitPoints;
+	float deathLength;
 
 	UnityEvent onDeath = new UnityEvent();
 	
@@ -49,6 +49,12 @@ public class Life : MonoBehaviour
 	void Disable()
 	{
 		GetComponent<Crow>().Die();
+	}
+
+	public float DeathLength
+	{
+		get { return deathLength; }
+		set { deathLength = value; }
 	}
 
 	public UnityEvent OnDeath

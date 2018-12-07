@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PoopImage : MonoBehaviour {
@@ -7,6 +8,11 @@ public class PoopImage : MonoBehaviour {
     [SerializeField] float m_fadeDuration;
     FadePoop[] m_images;
     AudioSource m_soundFX;
+    
+    UnityEvent onPoopAppear = new UnityEvent();
+
+    public UnityEvent OnPoopAppear {get{return onPoopAppear;}}
+    
     public float MaxAlpha {get{return m_maxAlpha;}}
     public float Duration {get{return m_duration;}}
     public float FadeDuration {get{return m_fadeDuration;}}
@@ -23,5 +29,6 @@ public class PoopImage : MonoBehaviour {
     public void Poop() {
         m_soundFX.Play();
         m_images[Random.Range(0, m_images.Length)].Poop();
+        onPoopAppear.Invoke();
     }
 }

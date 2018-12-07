@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 public class IntroText : MonoBehaviour
 {
 	[Header("Slides' Text")]
@@ -25,12 +27,14 @@ public class IntroText : MonoBehaviour
 	[SerializeField] AnimationClip textOutAnimation;
 	
 	Animator animator;
+	AudioSource introTheme;
 	PauseMenu pauseMenu;
 	int currentSlideIndex = 0;
 
 	void Awake()
 	{
 		animator = GetComponent<Animator>();
+		introTheme = GetComponent<AudioSource>();
 		pauseMenu = transform.GetComponentInParent<PauseMenu>();
 		pauseMenu.enabled = false;
 		bodyText.text = slidesText[currentSlideIndex];
@@ -46,6 +50,7 @@ public class IntroText : MonoBehaviour
 
 	void DeactivateObject()
 	{
+		introTheme.Stop();
 		gameObject.SetActive(false);
 		pauseMenu.enabled = true;
 	}
@@ -80,11 +85,14 @@ public class IntroText : MonoBehaviour
 				SwapSlideImages(fourthSlideImages, fifthSlideImages);
 				break;
 			default:
-				break;			
+				break;
 		}
 
         continueButton.interactable = true;
-        skipButton.interactable = true;
+		if (currentSlideIndex < slidesText.GetLength(0) - 1) 
+        	skipButton.interactable = true;
+		else
+			skipButton.gameObject.SetActive(false);
 	}
 
 	public void Continue()

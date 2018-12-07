@@ -455,26 +455,6 @@ Prefab:
       propertyPath: m_TargetCamera
       value: 
       objectReference: {fileID: 1051280936}
-    - target: {fileID: 114611929408467090, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114611929408467090, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114364957537120852, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114364957537120852, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114953031943473798, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
         type: 2}
       propertyPath: m_havePropertiesChanged
@@ -485,12 +465,12 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114451798381274182, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
+    - target: {fileID: 114611929408467090, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114451798381274182, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
+    - target: {fileID: 114611929408467090, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -505,12 +485,42 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114386568818887318, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114386568818887318, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114258226221019734, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114258226221019734, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114451798381274182, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114451798381274182, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114364957537120852, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114364957537120852, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -525,17 +535,23 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114386568818887318, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
+    - target: {fileID: 82888277390862642, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
         type: 2}
-      propertyPath: m_havePropertiesChanged
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8fda0c6fbdad36040b7ece5a726faa5f, type: 3}
+    - target: {fileID: 82888277390862642, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
+        type: 2}
+      propertyPath: Loop
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114386568818887318, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
+    - target: {fileID: 82888277390862642, guid: 1dd60bf3bda546c49af5cd9fc3702b45,
         type: 2}
-      propertyPath: m_isInputParsingRequired
+      propertyPath: m_Volume
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114572039665340678, guid: 1dd60bf3bda546c49af5cd9fc3702b45, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 1dd60bf3bda546c49af5cd9fc3702b45, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &1755764100

@@ -64,6 +64,8 @@ public class Gun : MonoBehaviour, IItem
 	[Header("Gun Audio Sources")]
 	[SerializeField] [Tooltip("The'shoot' sound associated to the gun.")]
 	AudioSource shootSound;
+	[SerializeField] [Tooltip("The 'reload start' sound associated to the gun.")]
+	AudioSource reloadStartSound;
 	[SerializeField] [Tooltip("The 'reload' sound associated to the gun.")]
 	AudioSource reloadSound;
 	[SerializeField] [Tooltip("The sound the gun makes when it is fired while being empty.")]
@@ -83,6 +85,7 @@ public class Gun : MonoBehaviour, IItem
 	// Events
     UnityEvent onBackToIdle = new UnityEvent();
     UnityEvent onShot = new UnityEvent();
+    UnityEvent onShotTarget = new UnityEvent();
     UnityEvent onReloadStart = new UnityEvent();
     UnityEvent onReload = new UnityEvent();
     UnityEvent onReloadFinish = new UnityEvent();
@@ -158,8 +161,6 @@ public class Gun : MonoBehaviour, IItem
 		if (bullets.GetLength(0) > 0)
 			bullets[bulletsInGun].SetActive(false);
 		
-		onShot.Invoke();
-
 		float hitProbability = DrunkCrosshair.GetHitProbability();
 		Vector3 direction = (fpsCamera.ScreenToWorldPoint(DrunkCrosshair.Position) - fpsCamera.transform.position).normalized;
 		RaycastHit hit;
@@ -172,7 +173,10 @@ public class Gun : MonoBehaviour, IItem
 			Rigidbody targetRigidbody = hit.transform.GetComponent<Rigidbody>();
 
 			if (targetLife)
+			{
 				targetLife.TakeDamage();
+				onShotTarget.Invoke();
+			}
 
 			if (targetRigidbody)
 			{
@@ -180,7 +184,9 @@ public class Gun : MonoBehaviour, IItem
 				targetRigidbody.AddForceAtPosition(-hit.normal * impactForce * forcePercentage, hit.point);
 			}
 		}
-	}
+
+        onShot.Invoke(); 
+    }
 
 	IEnumerator Reload()
 	{	
@@ -371,6 +377,12 @@ public class Gun : MonoBehaviour, IItem
 	{
 		get { return reloadSound; }
 	}
+
+	public AudioSource ReloadStartSound
+	{
+		get { return reloadStartSound; }
+	}
+
 	public AudioSource EmptyGunSound
 	{
 		get { return emptyGunSound; }
@@ -384,6 +396,11 @@ public class Gun : MonoBehaviour, IItem
 	public UnityEvent OnShot
 	{
 		get { return onShot; }
+	}
+
+	public UnityEvent OnShotTarget
+	{
+		get { return onShotTarget; }
 	}
 
 	public UnityEvent OnReloadStart

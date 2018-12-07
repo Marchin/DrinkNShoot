@@ -68,6 +68,15 @@ public class StoreManager : MonoBehaviour
 		return wasPurchased;
 	}
 
+	public int GetItemPrice(string itemName)
+	{
+		foreach (IItem item in itemsStock.Keys)
+			if (item.GetName() == itemName)
+				return itemsStock[item];
+		
+		return -1;
+	}
+
 	public Dictionary<IItem, int> ItemsStock
 	{
 		get { return itemsStock; }

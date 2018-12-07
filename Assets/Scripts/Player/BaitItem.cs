@@ -31,6 +31,6 @@ public class BaitItem : Consumable
             bait.GetComponent<Bait>().SetPath(transform.position, destination);
         }
         bait.SetActive(true);
-
+        isInUse = false;
     }
 }
