@@ -16,8 +16,6 @@ public class SettingsMenu : MonoBehaviour
 	[SerializeField] GameObject increaseGfxButton;
 	
 	[Header("Audio Settings")]
-	[SerializeField] AudioMixer sfxMixer;
-	[SerializeField] AudioMixer musicMixer;
 	[SerializeField] Slider sfxSlider;
 	[SerializeField] Slider musicSlider;
 
@@ -28,9 +26,9 @@ public class SettingsMenu : MonoBehaviour
 	const float MIXER_MULT = 20f;
 
 	void Start()
-	{
+	{		
 		sfxSlider.value = GameManager.Instance.CurrentSfxVolume;
-		musicSlider.value = GameManager.Instance.CurrentSfxVolume;
+		musicSlider.value = GameManager.Instance.CurrentMusicVolume;
 		mouseSensitivitySlider.value = GameManager.Instance.CurrentMouseSensitivity;
 		tutorialEnabledToggle.isOn = GameManager.Instance.TutorialEnabled;
 
@@ -45,13 +43,13 @@ public class SettingsMenu : MonoBehaviour
 	public void SetSfxVolume(float volume)
 	{
 		GameManager.Instance.CurrentSfxVolume = volume;
-		sfxMixer.SetFloat("Volume", Mathf.Log(volume) * MIXER_MULT);
+		GameManager.Instance.SfxMixer.SetFloat("Volume", Mathf.Log(volume) * MIXER_MULT);
 	}
 
 	public void SetMusicVolume(float volume)
 	{
 		GameManager.Instance.CurrentMusicVolume = volume;
-		musicMixer.SetFloat("Volume", Mathf.Log(volume) * MIXER_MULT);
+		GameManager.Instance.MusicMixer.SetFloat("Volume", Mathf.Log(volume) * MIXER_MULT);
 	}
 
 	public void IncreaseGraphicsSetting()
@@ -108,18 +106,8 @@ public class SettingsMenu : MonoBehaviour
 		GameManager.Instance.TutorialEnabled = enabled;
 	}
 
-	public void UpdateGraphicsSetting()
+	public static float GetActualVolume(float volume)
 	{
-		QualitySettings.SetQualityLevel((int)GameManager.Instance.CurrentGfxSetting);
+		return (Mathf.Log(volume) * MIXER_MULT);
 	}
-
-	public void UpdateSfxVolume()
-	{
-        sfxMixer.SetFloat("Volume", Mathf.Log(GameManager.Instance.CurrentSfxVolume) * MIXER_MULT);
-    }
-
-	public void UpdateMusicVolume()
-	{
-        musicMixer.SetFloat("Volume", Mathf.Log(GameManager.Instance.CurrentMusicVolume) * MIXER_MULT);
-    }
 }

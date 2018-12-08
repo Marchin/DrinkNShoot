@@ -614,7 +614,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 1879414338393738}
-  settingsMenu: {fileID: 0}
+  sfxMixer: {fileID: 24100000, guid: a3deb91ad8b33054ab991aea2fcd8e1b, type: 2}
+  musicMixer: {fileID: 24100000, guid: 1808c34618d5f154aad8eb2f078c0401, type: 2}
   mainMenuScene: Main Menu
   storeScene: Store Menu
   levelScenes:

@@ -2,15 +2,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     [Header("Loading Screen")]
     [SerializeField] GameObject loadingScreen;
-    
-    [Header("Settings Menu")]
-    [SerializeField] SettingsMenu settingsMenu;
+
+    [Header("Audio Mixers")]
+    [SerializeField] AudioMixer sfxMixer;
+    [SerializeField] AudioMixer musicMixer;
 
     [Header("Scene Names")]
     [SerializeField] string mainMenuScene;
@@ -57,18 +59,30 @@ public class GameManager : MonoBehaviour
         currentMouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", 0.75f);
         tutorialEnabled = (PlayerPrefs.GetInt("TutorialEnabled", 1) == 1);
         lastLevelUnlocked = PlayerPrefs.GetInt("LatestLevel", 1);
-        
-        if (settingsMenu)
-        {
-            settingsMenu.UpdateSfxVolume();
-            settingsMenu.UpdateMusicVolume();
-            settingsMenu.UpdateGraphicsSetting();
-        }
+
+        UpdateGraphicsSetting();
+        UpdateSfxVolume();
+        UpdateMusicVolume();
 
         SceneManager.sceneLoaded += OnSceneLoaded;
         QualitySettings.SetQualityLevel((int)currentGfxSetting);
         loadingBarSlider = loadingScreen.GetComponentInChildren<Slider>();
         loadingText = loadingScreen.GetComponentInChildren<TextMeshProUGUI>();
+    }
+
+    public void UpdateGraphicsSetting()
+    {
+        QualitySettings.SetQualityLevel((int)currentGfxSetting);
+    }
+
+    public void UpdateSfxVolume()
+    {
+        sfxMixer.SetFloat("Volume", SettingsMenu.GetActualVolume(currentSfxVolume));
+    }
+
+    public void UpdateMusicVolume()
+    {
+        musicMixer.SetFloat("Volume", SettingsMenu.GetActualVolume(currentMusicVolume));
     }
 
     IEnumerator LoadSceneAsynchronously(string nextSceneToLoad)
@@ -159,6 +173,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public AudioMixer SfxMixer
+    {
+        get { return sfxMixer; }
+    }
+
+    public AudioMixer MusicMixer
+    {
+        get { return musicMixer; }
+    }
+
     public SettingsMenu.GfxSetting CurrentGfxSetting
     {
         get { return currentGfxSetting; }
@@ -181,10 +205,10 @@ public class GameManager : MonoBehaviour
 
     public float CurrentMusicVolume
     {
-        get { return currentSfxVolume; }
+        get { return currentMusicVolume; }
         set 
         {
-            currentSfxVolume = value;
+            currentMusicVolume = value;
             PlayerPrefs.SetFloat("MusicVolume", currentMusicVolume);
         }
     }
@@ -240,5 +264,4 @@ public class GameManager : MonoBehaviour
     {
         get { return storeScene; }
     }
-
 }
