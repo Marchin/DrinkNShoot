@@ -1693,7 +1693,6 @@ GameObject:
   - component: {fileID: 114410698944535446}
   - component: {fileID: 114572416068531460}
   - component: {fileID: 114897318463296778}
-  - component: {fileID: 114572039665340678}
   - component: {fileID: 82910068477417528}
   - component: {fileID: 82888277390862642}
   m_Layer: 5
@@ -2434,11 +2433,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 1808c34618d5f154aad8eb2f078c0401,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 7ffbca348904926478dd23ac9b10d6d4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8fda0c6fbdad36040b7ece5a726faa5f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6333,7 +6332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuUI: {fileID: 1691551897293788}
   splashVideo: {fileID: 1925261430740606}
-  video: {fileID: 32900000, guid: 0c0936b16c9d152419ae1c2690b40b08, type: 3}
+  video: {fileID: 32900000, guid: 951fcea248b53cc41a99ddcea604332d, type: 3}
 --- !u!114 &114438203004893902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7887,19 +7886,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114572039665340678
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1691551897293788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f660de355de3d46945144ca2dd18f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  themeSong: {fileID: 82888277390862642}
-  musicStartDelay: 2.5
 --- !u!114 &114572416068531460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13657,7 +13643,7 @@ VideoPlayer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1925261430740606}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 0c0936b16c9d152419ae1c2690b40b08, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 951fcea248b53cc41a99ddcea604332d, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
