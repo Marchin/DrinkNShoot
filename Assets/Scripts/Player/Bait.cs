@@ -4,6 +4,7 @@ public class Bait : MonoBehaviour {
     [SerializeField] LayerMask m_crowsLayer;
     [SerializeField] float m_speed = 2f;
     [SerializeField] float m_radius = 2f;
+    [SerializeField] AudioSource m_breakSound;
     ParticleSystem m_particleSys;
     Vector3 m_source;
     Vector3 m_destination;
@@ -22,6 +23,7 @@ public class Bait : MonoBehaviour {
         m_accu += m_rate * Time.deltaTime;
         if (m_accu >= 1f) {
             m_particleSys.Play();
+            m_breakSound.Play();
             Collider[] crows = Physics.OverlapSphere(transform.position, m_radius, m_crowsLayer);
             foreach (Collider crow in crows) {
                 crow.GetComponent<Crow>().Chase(transform.position);
@@ -44,5 +46,4 @@ public class Bait : MonoBehaviour {
         Gizmos.DrawWireSphere(transform.position, m_radius);
         Gizmos.DrawWireSphere(m_destination, 1f);
     }
-
 }

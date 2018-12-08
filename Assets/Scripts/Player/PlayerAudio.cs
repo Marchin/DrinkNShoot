@@ -7,6 +7,7 @@ public class PlayerAudio : MonoBehaviour
 	[SerializeField] AudioSource burpingSound;
 	[SerializeField] AudioSource deadEyeEnterSound;
 	[SerializeField] AudioSource deadEyeExitSound;
+	[SerializeField] AudioSource throwItemSound;
 	[SerializeField] AudioSource cowboyYellSound;
 	[SerializeField] AudioSource bePoopedShoutSound;
 	[SerializeField] [Range(0f, 100f)]
@@ -113,5 +114,10 @@ public class PlayerAudio : MonoBehaviour
 	public void PlayDeadEyeEnterSound()
 	{
 		deadEyeEnterSound.Play();
+	}
+
+	public void PlayTwrowItemSound()
+	{
+		throwItemSound.Play();
 	}
 }
