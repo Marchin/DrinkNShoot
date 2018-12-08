@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
 	void Start()
 	{
 		GameManager.Instance.ShowCursor();
-		appVersionText.text = "Application Version: " + Application.version;
+		appVersionText.text = "v" + Application.version;
 	}
 
 	public void Play(int level)
