@@ -799,6 +799,7 @@ GameObject:
   - component: {fileID: 23150906486829516}
   - component: {fileID: 111514461253600860}
   - component: {fileID: 82773232931532494}
+  - component: {fileID: 114368380101809872}
   m_Layer: 9
   m_Name: Horse
   m_TagString: Untagged
@@ -4042,6 +4043,7 @@ GameObject:
   - component: {fileID: 4251256920202698}
   - component: {fileID: 95913487148726626}
   - component: {fileID: 82352582334133652}
+  - component: {fileID: 114704695121174658}
   m_Layer: 9
   m_Name: Wagon - Player
   m_TagString: Untagged
@@ -14246,6 +14248,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: 77ce9f79eb0999a46a67ac0012cd005b, type: 2}
+--- !u!114 &114368380101809872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1140951746747008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a53027ec53416488200479f83a5fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_audioToPause: {fileID: 82773232931532494}
 --- !u!114 &114407748400993006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14359,6 +14373,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deltaBlur: 0.7
   drunkCamera: {fileID: 114738178892442202}
+--- !u!114 &114704695121174658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1675826093082486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a53027ec53416488200479f83a5fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_audioToPause: {fileID: 82352582334133652}
 --- !u!114 &114738178892442202
 MonoBehaviour:
   m_ObjectHideFlags: 1
