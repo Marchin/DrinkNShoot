@@ -19,4 +19,9 @@ public class MenuMusicPlayer : MonoBehaviour
             }
         }
     }
+
+    public AudioSource ThemeSong
+    {
+        get { return themeSong; }
+    }
 }

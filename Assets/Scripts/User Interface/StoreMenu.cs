@@ -28,9 +28,6 @@ public class StoreMenu : MonoBehaviour
 	[SerializeField] string[] purchasingPanelTexts;
 	[SerializeField] string[] descriptionPanelTexts;
 
-	[Header("Other Properties")]
-	[SerializeField] float descriptionPanelDuration;
-
     [Header("Animations")]
     [SerializeField] AnimationClip descriptionPopOutAnimation;
 
@@ -40,12 +37,15 @@ public class StoreMenu : MonoBehaviour
 	[SerializeField] AudioSource notPurchaseItemSound;
 	[SerializeField] AudioSource descriptionPopInSound;
 	[SerializeField] AudioSource descriptionPopOutSound;
+	[SerializeField] AudioSource[] descriptionVoiceActing;
 
 	Animator descriptionAnimator;
+	MenuMusicPlayer musicPlayer;
 
 	void Awake()
 	{
 		descriptionAnimator = descriptionPanel.GetComponent<Animator>();
+		musicPlayer = GetComponent<MenuMusicPlayer>();
 	}
 
 	void Start()
@@ -143,34 +143,42 @@ public class StoreMenu : MonoBehaviour
 
 	public void PopInDescription(int itemIndex)
 	{	
+		musicPlayer.ThemeSong.volume = 0.25f;
+		
 		foreach (Button button in itemDescriptionButtons)
 			button.interactable = false;	
+		
 		itemDescriptionText.text = descriptionPanelTexts[itemIndex];
 		descriptionPanel.SetActive(true);
 		descriptionPopInSound.Play();
-		StartCoroutine(PopOutDescription());
+		descriptionVoiceActing[itemIndex].PlayDelayed(0.1f);
+		StartCoroutine(PopOutDescription(itemIndex));
 	}
 
-    IEnumerator PopOutDescription()
+    IEnumerator PopOutDescription(int itemIndex)
     {
 		float timer = 0f;
 		
-		while (timer < descriptionPanelDuration)
+		while (timer < descriptionVoiceActing[itemIndex].clip.length)
 		{
 			timer += Time.deltaTime;
 			if (InputManager.Instance.GetFireButton())
-				timer = descriptionPanelDuration;
+				timer = descriptionVoiceActing[itemIndex].clip.length;
 
 			yield return null;
 		}
 
         descriptionAnimator.SetTrigger("Pop Out");
         descriptionPopOutSound.Play();
+		if (descriptionVoiceActing[itemIndex].isPlaying)
+			descriptionVoiceActing[itemIndex].Stop();
 		Invoke("DisableDescription", descriptionPopOutAnimation.length);
     }
 
 	public void DisableDescription()
 	{
+		musicPlayer.ThemeSong.volume = 1f;
+
 		descriptionPanel.SetActive(false);
         foreach (Button button in itemDescriptionButtons)
             button.interactable = true;
