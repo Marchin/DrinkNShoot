@@ -24,6 +24,9 @@ public class CrowFly : MonoBehaviour, IState {
         if (buildHit.collider != null && buildHit.distance < diff.magnitude) {
             Vector3 projection = diff - buildHit.normal *
                 Vector3.Dot(diff, buildHit.normal);
+            if (Vector3.Angle(projection, Vector3.down) < 45f) {
+                projection = Vector3.Cross(projection, buildHit.normal);
+            }
             diff = transform.InverseTransformDirection(diff);
             diff.x = 0f;
             diff.z = Mathf.Abs(diff.z);

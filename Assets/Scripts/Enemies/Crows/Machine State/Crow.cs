@@ -11,6 +11,7 @@ public class Crow : MonoBehaviour {
 	public LayerMask ObstaclesLayer;
     CrowSpawner m_crowSpawner;
     BoxCollider m_collider;
+    BoxCollider m_LZCollider;
     Vector3 m_playerPos;
     IState m_currState;
     IState m_nextState;
@@ -81,9 +82,9 @@ public class Crow : MonoBehaviour {
     }
 
     public Vector3 GetLandingZone(out Vector3 direction) {
-        BoxCollider landingZone = m_crowSpawner.PickOneOfLessOccupiedLZ(out m_currLZ);
-        float offSetX = landingZone.size.x * 0.5f - m_collider.size.x;
-        float offSetZ = landingZone.size.z * 0.5f - m_collider.size.z;
+        m_LZCollider = m_crowSpawner.PickOneOfLessOccupiedLZ(out m_currLZ);
+        float offSetX = m_LZCollider.size.x * 0.5f - m_collider.size.x;
+        float offSetZ = m_LZCollider.size.z * 0.5f - m_collider.size.z;
         if (offSetX < 0f)offSetX = 0f;
         if (offSetZ < 0f)offSetZ = 0f;
         Vector3 offSet = new Vector3(
@@ -91,9 +92,13 @@ public class Crow : MonoBehaviour {
             0f,
             Random.Range(-offSetZ, offSetZ)
         );
-        offSet = landingZone.transform.TransformDirection(offSet);
-        direction = landingZone.transform.forward;
-        return (landingZone.bounds.center + offSet);
+        offSet = m_LZCollider.transform.TransformDirection(offSet);
+        direction = m_LZCollider.transform.forward;
+        return (m_LZCollider.bounds.center + offSet);
+    }
+
+    public BoxCollider GetLZCollider() {
+        return m_LZCollider;
     }
 
     public void Poop() {
