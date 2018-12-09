@@ -1,22 +1,52 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class StoreMenu : MonoBehaviour
 {
-	enum ItemOnSale
+	public enum ItemOnSale
 	{
         None = -1, Winchester, SnakeOil, Bait
 	}
 
+	[Header("Texts")]
 	[SerializeField] TextMeshProUGUI currencyText;
 	[SerializeField] TextMeshProUGUI itemPurchasingText;
+	[SerializeField] TextMeshProUGUI itemDescriptionText;
 	[SerializeField] TextMeshProUGUI[] consumablesAmountText;
+
+	[Header("Buttons")]
 	[SerializeField] Button[] itemPurchaseButtons;
-	[SerializeField] GameObject[] itemPrices;
+	[SerializeField] Button[] itemDescriptionButtons;
+
+    [Header("Game Objects")]
+    [SerializeField] GameObject[] itemPrices;
+	[SerializeField] GameObject descriptionPanel;
+
+	[Header("Texts' Contents")]
 	[SerializeField] string[] purchasingPanelTexts;
-	[SerializeField] AudioSource hoverOverItemSound;
+	[SerializeField] string[] descriptionPanelTexts;
+
+	[Header("Other Properties")]
+	[SerializeField] float descriptionPanelDuration;
+
+    [Header("Animations")]
+    [SerializeField] AnimationClip descriptionPopOutAnimation;
+
+    [Header("Audio Sources")]
+    [SerializeField] AudioSource hoverOverItemSound;
 	[SerializeField] AudioSource purchaseItemSound;
+	[SerializeField] AudioSource notPurchaseItemSound;
+	[SerializeField] AudioSource descriptionPopInSound;
+	[SerializeField] AudioSource descriptionPopOutSound;
+
+	Animator descriptionAnimator;
+
+	void Awake()
+	{
+		descriptionAnimator = descriptionPanel.GetComponent<Animator>();
+	}
 
 	void Start()
 	{
@@ -91,6 +121,8 @@ public class StoreMenu : MonoBehaviour
 		}
 		else
 		{
+			notPurchaseItemSound.Play();
+
 			if (PlayerManager.Instance.Currency >= StoreManager.Instance.GetItemPrice(itemName))
             	itemPurchasingText.text = purchasingPanelTexts[2];
 			else
@@ -104,8 +136,43 @@ public class StoreMenu : MonoBehaviour
 			hoverOverItemSound.Play();
 	}
 
-	public void QuitStore()
+    public void QuitStore()
+    {
+        GameManager.Instance.FadeToScene(GameManager.Instance.MainMenuScene);
+    }
+
+	public void PopInDescription(int itemIndex)
+	{	
+		foreach (Button button in itemDescriptionButtons)
+			button.interactable = false;	
+		itemDescriptionText.text = descriptionPanelTexts[itemIndex];
+		descriptionPanel.SetActive(true);
+		descriptionPopInSound.Play();
+		StartCoroutine(PopOutDescription());
+	}
+
+    IEnumerator PopOutDescription()
+    {
+		float timer = 0f;
+		
+		while (timer < descriptionPanelDuration)
+		{
+			timer += Time.deltaTime;
+			if (InputManager.Instance.GetFireButton())
+				timer = descriptionPanelDuration;
+
+			yield return null;
+		}
+
+        descriptionAnimator.SetTrigger("Pop Out");
+        descriptionPopOutSound.Play();
+		Invoke("DisableDescription", descriptionPopOutAnimation.length);
+    }
+
+	public void DisableDescription()
 	{
-		GameManager.Instance.FadeToScene(GameManager.Instance.MainMenuScene);
+		descriptionPanel.SetActive(false);
+        foreach (Button button in itemDescriptionButtons)
+            button.interactable = true;
 	}
 }
