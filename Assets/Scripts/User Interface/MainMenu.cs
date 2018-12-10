@@ -6,30 +6,12 @@ using TMPro;
 public class MainMenu : MonoBehaviour
 {
 	[SerializeField] TextMeshProUGUI appVersionText;
-	[SerializeField] Button[] levelsButtons;
+	[SerializeField] AudioSource hoverOverButtonSound;
 
 	void Start()
 	{
 		GameManager.Instance.ShowCursor();
 		appVersionText.text = "v" + Application.version;
-	}
-
-	public void Play(int level)
-	{
-		GameManager.Instance.HideCursor();
-        GameManager.Instance.FadeToScene(GameManager.Instance.GetLevelSceneName(level));
-	}
-
-	public void ShowUnlockedLevels()
-	{
-		int i = 1;
-		
-		foreach (Button levelButton in levelsButtons)
-		{
-			levelButton.interactable = (i <= GameManager.Instance.LastLevelUnlocked);
-			levelButton.GetComponent<EventTrigger>().enabled = levelButton.IsInteractable();
-			i++;
-		}
 	}
 
 	public void EnterStore()
@@ -41,4 +23,10 @@ public class MainMenu : MonoBehaviour
 	{
 		GameManager.Instance.QuitApplication();
 	}
+
+    public void PlayHoverOverButtonSound(Button button)
+    {
+        if (button.IsInteractable())
+            hoverOverButtonSound.Play();
+    }
 }
