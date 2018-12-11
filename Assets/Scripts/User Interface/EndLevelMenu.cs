@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
@@ -24,6 +25,8 @@ public class EndLevelMenu : MonoBehaviour
     [SerializeField] Animator stageCompleteAnimator;
     [SerializeField] AnimationClip levelFailedFadeOutAnimation;
     [SerializeField] AnimationClip stageCompleteFadeOutAnimation;
+    [SerializeField] AudioSource scoreIncreaseSound;
+    [SerializeField] AudioSource finalScoreSound;
 
 	TextMeshProUGUI[] cashBonusesTexts = {null, null, null};
 	bool lastStageOfLevel = false;
@@ -65,6 +68,22 @@ public class EndLevelMenu : MonoBehaviour
         LevelManager.Instance.RestartLevel();
 	}
 
+	IEnumerator IncreaseScoreCounter(int maxCash, int maxKills)
+	{
+		scoreIncreaseSound.Play();
+
+		for (int i = 0; i <= 100; i++)
+		{
+            cashAmountText.text = "$" + ((int)(maxCash * ((float)i / 100f))).ToString();
+            killsAmountText.text = ((int)(maxKills * ((float)i / 100f))).ToString();
+			
+			yield return new WaitForSecondsRealtime(0.02f);
+		}
+
+		scoreIncreaseSound.Stop();
+		finalScoreSound.Play();
+	}
+
 	public void RestartLevel()
 	{
         Time.timeScale = 1f;
@@ -88,7 +107,8 @@ public class EndLevelMenu : MonoBehaviour
 		LevelManager.Instance.QuitLevel();
 	}
 
-	public void ChangeEndScreenText(int cash, int kills, LevelManager.StageCompletionTier tier, bool levelCompleted = false, bool lastLevel = false)
+	public void ChangeEndScreenText(int cash, int kills, LevelManager.StageCompletionTier tier, bool levelCompleted = false, 
+									bool lastLevel = false)
 	{
 		if (levelCompleted)
 		{
@@ -103,8 +123,10 @@ public class EndLevelMenu : MonoBehaviour
 			lastStageOfLevel = true;
 		}
 
-        cashAmountText.text = "$" + cash.ToString();
-        killsAmountText.text = kills.ToString();
+		cashAmountText.text = "$0";
+		killsAmountText.text = "0";
+
+		StartCoroutine(IncreaseScoreCounter(cash, kills));
 
 		Image[] goldImages = goldTierUI.GetComponentsInChildren<Image>(true);		
 		Image[] silverImages = silverTierUI.GetComponentsInChildren<Image>(true);

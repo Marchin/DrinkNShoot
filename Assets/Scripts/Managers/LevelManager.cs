@@ -121,13 +121,8 @@ public class LevelManager : MonoBehaviour
     void CompleteStage()
     {
         gameInStandBy = true;
-		completeStageUI.SetActive(true);
 
         PlayerManager.Instance.StopDeadEyeEffect();
-
-        hudUI.SetActive(false);
-        Time.timeScale = 0f;
-        GameManager.Instance.ShowCursor();
 
         cashEarnedInStage = targetsKilledInStage * cashEarnedPerKill;
 
@@ -156,7 +151,12 @@ public class LevelManager : MonoBehaviour
         PlayerManager.Instance.Currency += cashEarnedInStage;
         PlayerManager.Instance.TotalKills += targetsKilledInStage;
 
-		if (currentStageIndex != maxStageIndex)
+        Time.timeScale = 0f;
+        hudUI.SetActive(false);
+        completeStageUI.SetActive(true);
+        GameManager.Instance.ShowCursor();
+
+        if (currentStageIndex != maxStageIndex)
         	endLevelMenu.ChangeEndScreenText(cashEarnedInStage, targetsKilledInStage, stageCompletionTier);
 		else
         {
@@ -171,10 +171,10 @@ public class LevelManager : MonoBehaviour
     void FailLevel()
     {
         gameInStandBy = true;
-        failLevelUI.SetActive(true);
         PlayerManager.Instance.StopDeadEyeEffect();
-        hudUI.SetActive(false);
         Time.timeScale = 0f;
+        hudUI.SetActive(false);
+        failLevelUI.SetActive(true);
         GameManager.Instance.ShowCursor();
         if (currentStageIndex == maxStageIndex)
             GameManager.Instance.TutorialEnabled = false;
