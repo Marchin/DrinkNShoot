@@ -7,6 +7,8 @@ public class CameraRotation : MonoBehaviour
 	[SerializeField] float horizontalRange;
 	[SerializeField] float verticalRange;
 	
+	const float NEGLIGIBLE_ANGLE = 5f;
+
 	Transform fpsCamera;
 	float horizontalAngle = 0f;
 	float verticalAngle = 0f;
@@ -72,14 +74,14 @@ public class CameraRotation : MonoBehaviour
 			float timer = 0f;
         	focusingOnNewTarget = true;
 			
-			while (transform.rotation.eulerAngles.y != targetCentralRotation.eulerAngles.y)
+			while (Quaternion.Angle(transform.rotation, targetCentralRotation) > NEGLIGIBLE_ANGLE)
 			{
 				transform.rotation = Quaternion.Slerp(fromRotation, targetCentralRotation, timer); 
 				timer += Time.unscaledDeltaTime;
 				yield return null;
 			}
 			
-			horizontalAngle = targetCentralRotation.eulerAngles.y;
+			horizontalAngle = transform.eulerAngles.y;
 		}
 
         minHorizontalAngle = targetCentralRotation.eulerAngles.y - horizontalRange / 2f;
