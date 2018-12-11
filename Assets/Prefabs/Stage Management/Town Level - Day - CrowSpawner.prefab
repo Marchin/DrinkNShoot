@@ -256,8 +256,8 @@ MonoBehaviour:
   m_stage: {fileID: 0}
   m_difficultyLevel: 4
   m_completionTime: 90
-  m_bronzeTierKills: 18
-  m_silverTierKills: 20
+  m_bronzeTierKills: 15
+  m_silverTierKills: 18
   m_goldTierKills: 22
   m_poolSize: 10
   playerTag: Player
@@ -293,8 +293,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_stage: {fileID: 0}
   m_difficultyLevel: 0
-  m_completionTime: 45
-  m_bronzeTierKills: 5
+  m_completionTime: 40
+  m_bronzeTierKills: 3
   m_silverTierKills: 7
   m_goldTierKills: 10
   m_poolSize: 6
@@ -340,10 +340,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_stage: {fileID: 0}
-  m_difficultyLevel: 6
+  m_difficultyLevel: 5
   m_completionTime: 120
   m_bronzeTierKills: 20
-  m_silverTierKills: 22
-  m_goldTierKills: 24
+  m_silverTierKills: 23
+  m_goldTierKills: 26
   m_poolSize: 12
   playerTag: Player

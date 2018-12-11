@@ -143,13 +143,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1956340567117090}
-  m_LocalRotation: {x: -0.0033069977, y: -0.7029995, z: 0.0021435346, w: 0.7111795}
-  m_LocalPosition: {x: 170.49, y: 0.77, z: 271.82}
+  m_LocalRotation: {x: -0.00341519, y: -0.7394414, z: 0.0019665833, w: 0.6732095}
+  m_LocalPosition: {x: 170.22, y: 0.77, z: 270.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4687057465018054}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -0.097, y: -89.338005, z: 0.441}
+  m_LocalEulerAnglesHint: {x: -0.097, y: -95.369, z: 0.441}
 --- !u!4 &4611620189105290
 Transform:
   m_ObjectHideFlags: 1
@@ -254,11 +254,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_stage: {fileID: 0}
-  m_difficultyLevel: 9
+  m_difficultyLevel: 7
   m_completionTime: 240
-  m_bronzeTierKills: 30
+  m_bronzeTierKills: 28
   m_silverTierKills: 32
-  m_goldTierKills: 34
+  m_goldTierKills: 35
   m_poolSize: 15
   playerTag: Player
 --- !u!114 &114268280217793206
@@ -287,11 +287,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_stage: {fileID: 0}
-  m_difficultyLevel: 6
+  m_difficultyLevel: 5
   m_completionTime: 120
   m_bronzeTierKills: 20
   m_silverTierKills: 23
-  m_goldTierKills: 27
+  m_goldTierKills: 26
   m_poolSize: 10
   playerTag: Player
 --- !u!114 &114534691556309614
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_stage: {fileID: 0}
-  m_difficultyLevel: 8
+  m_difficultyLevel: 6
   m_completionTime: 120
   m_bronzeTierKills: 22
   m_silverTierKills: 25
@@ -328,8 +328,8 @@ MonoBehaviour:
   m_difficultyLevel: 4
   m_completionTime: 60
   m_bronzeTierKills: 10
-  m_silverTierKills: 12
-  m_goldTierKills: 15
+  m_silverTierKills: 13
+  m_goldTierKills: 16
   m_poolSize: 7
   playerTag: Player
 --- !u!114 &114820652841015664

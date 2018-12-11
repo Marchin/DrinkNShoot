@@ -24,7 +24,7 @@ public class InputPC : IInput
 
 	public bool GetPauseButton()
 	{
-		return Input.GetButtonDown("Cancel");
+		return Input.GetButtonDown("Pause");
 	}
 
 	public float GetSwapItemAxis()

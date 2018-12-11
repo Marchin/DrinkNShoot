@@ -41,10 +41,10 @@ public class PauseMenu : MonoBehaviour
 		}
 	}
 
-	IEnumerator WaitToResume()
+	IEnumerator WaitToResume(float timeToWait)
 	{
         canResume = false;
-        yield return new WaitForSecondsRealtime(slideInAnimation.length);
+        yield return new WaitForSecondsRealtime(timeToWait);
 		canResume = true;
 	}
 
@@ -67,7 +67,7 @@ public class PauseMenu : MonoBehaviour
 		pauseMenuUI.SetActive(true);
 		hudUI.SetActive(false);
 		isPaused = true;
-		StartCoroutine(WaitToResume());
+		StartCoroutine(WaitToResume(slideInAnimation.length));
 		onPause.Invoke();
 	}
 
