@@ -6684,7 +6684,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1665918096900382}
   m_LocalRotation: {x: -0.0038553206, y: 0.004305872, z: -0.00081699464, w: 0.999983}
-  m_LocalPosition: {x: 181.78, y: 1.42, z: 219.65}
+  m_LocalPosition: {x: 181.84, y: 1.47, z: 226.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4005244034329848}
@@ -12920,7 +12920,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: a3deb91ad8b33054ab991aea2fcd8e1b,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 974bd934580679d458645aa4636e5cbe, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -13784,7 +13784,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: a3deb91ad8b33054ab991aea2fcd8e1b,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: bc7a6fc0cdcd31f489c7498090a458d2, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -14146,7 +14146,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 33645cd3786bc244abba9faf888f4656, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!114 &114012725452955188

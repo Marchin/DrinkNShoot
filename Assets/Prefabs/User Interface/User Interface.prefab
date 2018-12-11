@@ -2111,7 +2111,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: a3deb91ad8b33054ab991aea2fcd8e1b,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: bb4b31a2f471c4244bf33b4e90875688, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b25d8b6ba4bca20498859b79c85cf19c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -4558,6 +4558,7 @@ MonoBehaviour:
   bronzeTierUI: {fileID: 1660038884795400}
   silverTierUI: {fileID: 1599547124881036}
   goldTierUI: {fileID: 1192734901685668}
+  scoreAmountPanel: {fileID: 224894737770771948}
   possibleTitles:
   - Stage Complete
   - Level Complete
@@ -4570,6 +4571,8 @@ MonoBehaviour:
   possibleButtonNames:
   - Continue
   - Play Next
+  scoreAmountPanelScaleIncrease: 0.5
+  scoreAmountPanelAnimDuration: 2
   levelFailedAnimator: {fileID: 95768670250868908}
   stageCompleteAnimator: {fileID: 95046128385201872}
   levelFailedFadeOutAnimation: {fileID: 7400000, guid: 063722bd70839e941a500d86a8f0b432,
@@ -8973,7 +8976,7 @@ MonoBehaviour:
   drunkInstructions:
   - You get drunker after clearing each stage.
   - 'The drunker you are, the less accurate your shots become. '
-  - Shoot when the crosshair turns red - that means the shot will be deadly.
+  - Shoot when the crosshair turns red - that means that the shot will be deadly.
   - Use your ammo carefully, cowboy!
   slidingAnimation: {fileID: 7400000, guid: 6c2b8d7dd9c31914abbcabf6f50d1cf5, type: 2}
   slideInSound: {fileID: 82916057437204124}

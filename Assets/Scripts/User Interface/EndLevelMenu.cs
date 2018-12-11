@@ -17,10 +17,13 @@ public class EndLevelMenu : MonoBehaviour
 	[SerializeField] GameObject bronzeTierUI;
 	[SerializeField] GameObject silverTierUI;
 	[SerializeField] GameObject goldTierUI;
+	[SerializeField] Transform scoreAmountPanel;
 	[SerializeField] string[] possibleTitles;
 	[SerializeField] string[] possibleCashLegends;
 	[SerializeField] string[] possibleKillsLegends;
 	[SerializeField] string[] possibleButtonNames;
+	[SerializeField] float scoreAmountPanelScaleIncrease;
+	[SerializeField] float scoreAmountPanelAnimDuration;
     [SerializeField] Animator levelFailedAnimator;
     [SerializeField] Animator stageCompleteAnimator;
     [SerializeField] AnimationClip levelFailedFadeOutAnimation;
@@ -70,18 +73,34 @@ public class EndLevelMenu : MonoBehaviour
 
 	IEnumerator IncreaseScoreCounter(int maxCash, int maxKills)
 	{
+		float scaleTimer = 0f;
+		float iterationIncrement = scoreAmountPanelScaleIncrease / 100f;
+		Vector3 normalScale = scoreAmountPanel.localScale;
+		Vector3 scaleIncrement = new Vector3(iterationIncrement, iterationIncrement, 0f);
+
 		scoreIncreaseSound.Play();
 
 		for (int i = 0; i <= 100; i++)
 		{
             cashAmountText.text = "$" + ((int)(maxCash * ((float)i / 100f))).ToString();
             killsAmountText.text = ((int)(maxKills * ((float)i / 100f))).ToString();
+			scoreAmountPanel.localScale += scaleIncrement;
 			
 			yield return new WaitForSecondsRealtime(0.02f);
 		}
 
 		scoreIncreaseSound.Stop();
 		finalScoreSound.Play();
+
+		Vector3 currentScale = scoreAmountPanel.localScale;
+
+		while (scoreAmountPanel.localScale != normalScale)
+		{
+			scoreAmountPanel.localScale = Vector3.Lerp(currentScale, normalScale, scaleTimer);
+			scaleTimer += Time.unscaledDeltaTime;
+
+			yield return null;
+		}
 	}
 
 	public void RestartLevel()

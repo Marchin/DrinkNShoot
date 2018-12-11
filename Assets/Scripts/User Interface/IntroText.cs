@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
@@ -30,6 +31,8 @@ public class IntroText : MonoBehaviour
 	AudioSource introTheme;
 	PauseMenu pauseMenu;
 	int currentSlideIndex = 0;
+
+	UnityEvent onPresentationFinished = new UnityEvent();
 
 	void Awake()
 	{
@@ -123,5 +126,11 @@ public class IntroText : MonoBehaviour
 		PlayerManager.Instance.EnablePlayerComponent(PlayerManager.PlayerComponent.CameraRotationComp);
 		
 		Invoke("DeactivateObject", fadeOutAnimation.length);
+		onPresentationFinished.Invoke();
+	}
+
+	public UnityEvent OnPresentationFinished
+	{
+		get { return onPresentationFinished; }
 	}
 }

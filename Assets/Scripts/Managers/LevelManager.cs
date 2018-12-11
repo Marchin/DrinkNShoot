@@ -53,7 +53,6 @@ public class LevelManager : MonoBehaviour
     int totalKills = 0;
     int cashEarnedInStage = 0;
     int totalIncome = 0;
-    bool hasNotifiedEmptyGun = false;
     bool inShootingStage = false;
 
     // Events
@@ -98,8 +97,13 @@ public class LevelManager : MonoBehaviour
             playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().EquippedGun.OnEmptyGun.AddListener(FirstEmptyGunNotice);
             tutorialUI.SetActive(true);
             if (showIntroText)
+            {
                 introTextUI.SetActive(true);
+                introTextUI.GetComponent<IntroText>().OnPresentationFinished.AddListener(StartMovingWagon);
+            }
         }
+        else
+            wagon.Move();
     }
 
     void Update()
@@ -116,6 +120,11 @@ public class LevelManager : MonoBehaviour
                     FailLevel();
             }
         }
+    }
+
+    void StartMovingWagon()
+    {
+        wagon.Move();
     }
 
     void CompleteStage()
@@ -204,9 +213,9 @@ public class LevelManager : MonoBehaviour
 
     void FirstEmptyGunNotice()
     {
-        if (!hasNotifiedEmptyGun)
+        if (timeLeft > 10f)
         {
-            hasNotifiedEmptyGun = true;
+            playersWagon.GetComponentInChildren<WeaponHolder>().EquippedGun.OnEmptyGun.RemoveListener(FirstEmptyGunNotice);
             onFirstEmptyGun.Invoke();
         }
     }
