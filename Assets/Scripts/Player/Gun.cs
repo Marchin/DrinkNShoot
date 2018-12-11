@@ -13,7 +13,7 @@ public class Gun : MonoBehaviour, IItem
 
 	public enum GunState
 	{
-		Idle, Shooting, Reloading
+		Idle, Shooting, Reloading, EmptyGun
 	}
 	
 	// Serialized Fields
@@ -50,6 +50,8 @@ public class Gun : MonoBehaviour, IItem
 	AnimationClip idleAnimation;
 	[SerializeField] [Tooltip("The 'shoot' animation associated to the gun.")]
 	AnimationClip shootAnimation;
+	[SerializeField] [Tooltip("The 'empty gun' animation associated to the gun.")]
+	AnimationClip emptyGunAnimation;
 	[SerializeField] [Tooltip("The 'start to reload' animation associated to the gun.")]
 	AnimationClip reloadStartAnimation;
 	[SerializeField] [Tooltip("The 'reload' animation associated to the gun.")]
@@ -124,7 +126,10 @@ public class Gun : MonoBehaviour, IItem
 					}
 					else
 						if (ShouldPlayEmptyMagSound())
+						{
 							onEmptyGun.Invoke();
+							currentState = GunState.EmptyGun;
+						}
 				}
 				else
 					if (InputManager.Instance.GetReloadButton() && CanReload())
@@ -142,6 +147,10 @@ public class Gun : MonoBehaviour, IItem
 			case GunState.Reloading:
 				if (InputManager.Instance.GetFireButton())
 					StopReloading();
+				break;
+			case GunState.EmptyGun:
+				if (!IsInvoking("ReturnToIdle"))
+					Invoke("ReturnToIdle", emptyGunAnimation.length);
 				break;
 			default:
 				break;
@@ -336,6 +345,11 @@ public class Gun : MonoBehaviour, IItem
 	public AnimationClip IdleAnimation
 	{
 		get { return idleAnimation; }
+	}
+
+	public AnimationClip EmptyGunAnimation
+	{
+		get { return emptyGunAnimation; }
 	}
 
 	public AnimationClip ShootAnimation

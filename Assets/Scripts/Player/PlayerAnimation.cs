@@ -36,32 +36,38 @@ public class PlayerAnimation : MonoBehaviour
 				animator.ResetTrigger(parameter.name);
 	}
 
-	void ShootAnimation() 
+	void PlayShootAnimation() 
 	{
 		animator.SetTrigger("Has Shot");
 	}
 
-	void ReloadStartAnimation() 
+	void PlayEmptyGunAnimation() 
+	{
+		if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Base.Empty Gun"))
+			animator.SetTrigger("Has Empty Gun");
+	}
+
+	void PlayReloadStartAnimation() 
 	{
 		animator.SetTrigger("Has Started Reloading");
 	}
 
-	void ReloadAnimation() 
+	void PlayReloadAnimation() 
 	{
 		animator.SetTrigger("Has Reloaded");
 	}
 
-	void FinishReloadingAnimation() 
+	void PlayFinishReloadingAnimation() 
 	{
 		animator.SetTrigger("Has Finished Reloading");
 	}
 
-	void SwapWeaponStartAnimation()
+	void PlaySwapWeaponStartAnimation()
 	{
 		animator.SetTrigger("Has Started to Swap Weapon");
 	}
 
-	void UseItemAnimation()
+	void PlayUseItemAnimation()
 	{
 		animator.SetTrigger("Has Used Item");
 	}
@@ -69,10 +75,10 @@ public class PlayerAnimation : MonoBehaviour
 	void InvokeSipTaking()
 	{
 		PlayerManager.Instance.DisablePlayerComponent(PlayerManager.PlayerComponent.GunComp);
-		Invoke("TakeASip", SIPPING_DELAY);
+		Invoke("PlayTakeASip", SIPPING_DELAY);
 	}
 
-	void TakeASip()
+	void PlayTakeASip()
 	{
 		animator.SetTrigger("Has Taken a Sip");
 		Invoke("ReEnableGunComponent", sippingAnimations[(int)weaponHolder.EquippedGun.TypeOfGun].length);
@@ -92,6 +98,7 @@ public class PlayerAnimation : MonoBehaviour
 
 		animatorOverrideController["DEFAULT IDLE"] = currentGun.IdleAnimation;;
 		animatorOverrideController["DEFAULT SHOOT"] = currentGun.ShootAnimation;
+		animatorOverrideController["DEFAULT EMPTY GUN"] = currentGun.EmptyGunAnimation;
 		animatorOverrideController["DEFAULT RELOAD START"] = currentGun.ReloadStartAnimation;
 		animatorOverrideController["DEFAULT RELOAD"] = currentGun.ReloadAnimation;
 		animatorOverrideController["DEFAULT RELOAD FINISH"] = currentGun.ReloadFinishAnimation;
@@ -103,11 +110,12 @@ public class PlayerAnimation : MonoBehaviour
 		ChangeConsumableAnimations();
 
         currentGun.OnBackToIdle.AddListener(ResetTriggers);
-        currentGun.OnShot.AddListener(ShootAnimation);
-        currentGun.OnReloadStart.AddListener(ReloadStartAnimation);
-        currentGun.OnReload.AddListener(ReloadAnimation);
-        currentGun.OnReloadFinish.AddListener(FinishReloadingAnimation);
-        weaponHolder.OnGunSwapStart.AddListener(SwapWeaponStartAnimation);
+        currentGun.OnShot.AddListener(PlayShootAnimation);
+        currentGun.OnEmptyGun.AddListener(PlayEmptyGunAnimation);
+        currentGun.OnReloadStart.AddListener(PlayReloadStartAnimation);
+        currentGun.OnReload.AddListener(PlayReloadAnimation);
+        currentGun.OnReloadFinish.AddListener(PlayFinishReloadingAnimation);
+        weaponHolder.OnGunSwapStart.AddListener(PlaySwapWeaponStartAnimation);
 	}
 
 	void ChangeConsumableAnimations()
@@ -116,7 +124,7 @@ public class PlayerAnimation : MonoBehaviour
 		if (currentConsumable)
 		{
 			animatorOverrideController["DEFAULT USE ITEM"] = currentConsumable.UseAnimation;
-			currentConsumable.OnUse.AddListener(UseItemAnimation);
+			currentConsumable.OnUse.AddListener(PlayUseItemAnimation);
 		}
 	}
 }
