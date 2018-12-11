@@ -150,7 +150,7 @@ public class Gun : MonoBehaviour, IItem
 				break;
 			case GunState.EmptyGun:
 				if (!IsInvoking("ReturnToIdle"))
-					Invoke("ReturnToIdle", emptyGunAnimation.length);
+					Invoke("ReturnToIdle", emptyGunAnimation.length * Time.timeScale);
 				break;
 			default:
 				break;
