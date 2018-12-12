@@ -22,7 +22,7 @@ public class CrowLand : MonoBehaviour, IState {
 		m_crow = GetComponent<Crow>();
 		m_obstaclesLayer = m_crow.ObstaclesLayer;
 		BoxCollider crowCollider = GetComponent<BoxCollider>();
-		m_footOffset = crowCollider.size.y * 0.5f - 0.1f;
+		m_footOffset = crowCollider.size.y * 0.5f - 0.05f;
 		m_frontOffset = crowCollider.size.z * 0.8f;
 	}
 

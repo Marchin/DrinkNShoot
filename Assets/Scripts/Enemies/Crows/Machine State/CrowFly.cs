@@ -26,7 +26,7 @@ public class CrowFly : MonoBehaviour, IState {
     private void OnEnable() {
         m_positioned = false;
 	    m_playerToStageNorm = m_crow.PlayerToStage.normalized;
-        m_destination = m_target.position + 5f * m_playerToStageNorm + 0.5f*Vector3.down;
+        m_destination = m_target.position + 4f * m_playerToStageNorm;
     }
 
     public void StateUpdate(out IState nextState) {
