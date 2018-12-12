@@ -20,7 +20,7 @@ public class CrowFly : MonoBehaviour, IState {
         m_crow = GetComponent<Crow>();
 		m_obstaclesLayer = m_crow.ObstaclesLayer;
         m_poopImage = FindObjectOfType<PoopImage>();
-		m_frontOffset = GetComponent<BoxCollider>().size.z * 0.5f;
+		m_frontOffset = GetComponent<BoxCollider>().size.z * 0.8f;
     }
 
     private void OnEnable() {
