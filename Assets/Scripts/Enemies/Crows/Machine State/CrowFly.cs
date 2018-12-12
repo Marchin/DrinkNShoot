@@ -65,12 +65,6 @@ public class CrowFly : MonoBehaviour, IState {
             m_diff.z = Mathf.Abs(m_diff.z);
             m_diff = transform.TransformDirection(m_diff);
             m_targetRotation =  Quaternion.LookRotation(m_destination - transform.position);
-            float angle = Vector3.Angle(m_diff, m_destination - transform.position);
-            if ((angle > 178f && angle < 182f) || angle == 90f) {
-                m_targetRotation = Quaternion.LookRotation(
-                    transform.eulerAngles + 30f*Vector3.up);
-                transform.rotation = m_targetRotation;
-            }
             transform.position += m_diff.normalized * m_flightSpeed * Time.deltaTime *
                 (m_positioned? 0.5f : 1f);
         }

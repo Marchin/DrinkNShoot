@@ -35,7 +35,7 @@ public class CrowLand : MonoBehaviour, IState {
 	public void StateUpdate(out IState nextState) {
 		RaycastHit buildHit;
 		Physics.Raycast(transform.position, m_lastMovement,
-			out buildHit, 8f, m_obstaclesLayer);
+			out buildHit, 5f, m_obstaclesLayer);
 		RaycastHit landingHit;
 		Physics.Raycast(transform.position, m_targetPosition - transform.position,
 			out landingHit, 10f, m_landingZonesLayer);
@@ -81,6 +81,9 @@ public class CrowLand : MonoBehaviour, IState {
 				if (buildHit.distance < 0.25f) {
 					transform.rotation = m_targetRotation;
 				}
+				if (Vector3.Angle(buildHit.normal, Vector3.up) < 45f) {
+
+				}
 				m_lastMovement = transform.forward * 0.1f *
 					m_flightSpeed * Time.deltaTime;
 				transform.position += m_lastMovement;
@@ -94,18 +97,10 @@ public class CrowLand : MonoBehaviour, IState {
 				diff = transform.TransformDirection(diff);
 				float angle = Vector3.SignedAngle(
 					diff, m_targetPosition - transform.position, Vector3.up);
-				if (angle == 180f || angle == 90f) {
-					m_targetRotation = Quaternion.LookRotation(
-						transform.eulerAngles + 5f * Vector3.up);
-					transform.rotation = m_targetRotation;
-					m_rotCalculated = false;
-				}
 				m_lastMovement = diff.normalized * m_flightSpeed * Time.deltaTime;
 				transform.position += m_lastMovement;
-				if (!m_rotCalculated) {
-					m_targetRotation = Quaternion.LookRotation(
-						m_targetPosition - transform.position);
-				}
+				m_targetRotation = Quaternion.LookRotation(
+					m_targetPosition - transform.position);
 			}
 			if (landingHit.collider != null &&
 				Vector3.Angle(landingHit.normal, Vector3.up) < 45f) {
