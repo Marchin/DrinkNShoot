@@ -126,8 +126,7 @@ public class CrowLand : MonoBehaviour, IState {
 			} else {
 				RaycastHit hit;
 				if (Physics.Raycast(transform.position,
-					Vector3.down, out hit, 1f, m_landingZonesLayer) &&
-					hit.collider == m_LZCollider) {
+					Vector3.down, out hit, 2f , m_landingZonesLayer)) {
 						
 					if (Vector3.Angle(transform.forward, m_direction) > 90f) {
 						m_direction = -m_direction;
@@ -140,6 +139,9 @@ public class CrowLand : MonoBehaviour, IState {
 					transform.position = m_targetPosition;
 				}
 			}
+		} else {
+			transform.rotation = m_targetRotation;
+			transform.position = m_targetPosition;
 		}
 		if (Vector3.Distance(transform.eulerAngles,
 				m_targetRotation.eulerAngles) > m_NEGLIGIBLE) {
