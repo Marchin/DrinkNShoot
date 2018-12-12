@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4157616091304724}
   - component: {fileID: 65259570127676798}
+  - component: {fileID: 65316221723945772}
   m_Layer: 10
   m_Name: Hotel 1
   m_TagString: Untagged
@@ -88,6 +89,22 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!1 &1664609400074398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4457824610826852}
+  - component: {fileID: 65528479056630552}
+  m_Layer: 10
+  m_Name: RoofCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1747970802149702
 GameObject:
@@ -158,6 +175,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4550839835714104}
+  - {fileID: 4457824610826852}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -202,6 +220,19 @@ Transform:
   m_Father: {fileID: 4233060598566972}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4457824610826852
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1664609400074398}
+  m_LocalRotation: {x: 0, y: 0, z: -0.08715578, w: 0.9961947}
+  m_LocalPosition: {x: 7.629, y: 3.897, z: 0.278}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4157616091304724}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10}
 --- !u!4 &4550839835714104
 Transform:
   m_ObjectHideFlags: 1
@@ -319,3 +350,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 13.38, y: 10, z: 6.5}
   m_Center: {x: 0, y: 5, z: 0.36}
+--- !u!65 &65316221723945772
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1020789633349492}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.95, y: 0.64, z: 5.92}
+  m_Center: {x: 7.61, y: 0.22, z: 0.15}
+--- !u!65 &65528479056630552
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1664609400074398}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3, y: 0.38, z: 5.52}
+  m_Center: {x: 0, y: 0, z: 0}
