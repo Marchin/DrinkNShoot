@@ -22,7 +22,6 @@ public class PlayerAnimation : MonoBehaviour
 	void Start() 
 	{
 		ChangeGunAnimations();
-		ChangeConsumableAnimations();
 		
 		weaponHolder.OnGunSwap.AddListener(ChangeGunAnimations);	
 		weaponHolder.OnConsumableSwap.AddListener(ChangeConsumableAnimations);	
@@ -106,9 +105,7 @@ public class PlayerAnimation : MonoBehaviour
 		animatorOverrideController["DEFAULT WEAPON SWAP IN"] = currentGun.SwapGunInAnimation;
 		animatorOverrideController["DEFAULT TAKE A SIP"] = currentGun.TypeOfGun == Gun.GunType.Handgun ? sippingAnimations[0] : 
 																										sippingAnimations[1];
-		
-		ChangeConsumableAnimations();
-
+	
         currentGun.OnBackToIdle.AddListener(ResetTriggers);
         currentGun.OnShot.AddListener(PlayShootAnimation);
         currentGun.OnEmptyGun.AddListener(PlayEmptyGunAnimation);
@@ -116,7 +113,9 @@ public class PlayerAnimation : MonoBehaviour
         currentGun.OnReload.AddListener(PlayReloadAnimation);
         currentGun.OnReloadFinish.AddListener(PlayFinishReloadingAnimation);
         weaponHolder.OnGunSwapStart.AddListener(PlaySwapWeaponStartAnimation);
-	}
+
+        ChangeConsumableAnimations();
+    }
 
 	void ChangeConsumableAnimations()
 	{

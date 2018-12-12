@@ -23,27 +23,20 @@ public class WeaponHolder : MonoBehaviour
 	{
 		equippedGunType = initialGun;
 		equippedConsumableIndex = 0;
-	}
 
-	void OnEnable()
-	{
-		SetEquippedGun();
-	}
-	
-	void Start()
-	{
-		SetEquippedConsumable();
+        SetEquippedGun();
+        SetEquippedConsumable();
 
-		if (!equippedConsumable)
-		{
-			foreach (Transform consumable in consumableHolder)
-			{
-				SwapConsumable();
-				if (equippedConsumable)
-					break;
-			}
-		}
-	}
+        if (!equippedConsumable)
+        {
+            foreach (Transform consumable in consumableHolder)
+            {
+                SwapConsumable();
+                if (equippedConsumable)
+                    break;
+            }
+        }
+    }
 
 	void Update()
 	{
