@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4810252626645380}
   - component: {fileID: 33180634101665386}
   - component: {fileID: 23837609728489132}
+  - component: {fileID: 64623191533465822}
   m_Layer: 11
   m_Name: Cactus 2
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1421097788522210}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30.945145, y: 1.4858475, z: 14.319763}
+  m_LocalPosition: {x: 32.816666, y: 1.1958475, z: 12.344116}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -82,4 +83,18 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1421097788522210}
+  m_Mesh: {fileID: 4300000, guid: 0ad54f168dcb5d748b088bc75e2a9836, type: 3}
+--- !u!64 &64623191533465822
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1421097788522210}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 0ad54f168dcb5d748b088bc75e2a9836, type: 3}

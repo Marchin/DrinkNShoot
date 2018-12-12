@@ -9,45 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1443941930215764}
+  m_RootGameObject: {fileID: 1665249619559546}
   m_IsPrefabAsset: 1
---- !u!1 &1443941930215764
+--- !u!1 &1665249619559546
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4589346336972786}
-  - component: {fileID: 33817100690134178}
-  - component: {fileID: 23987669465863160}
-  - component: {fileID: 64938946175028446}
-  m_Layer: 11
-  m_Name: Cactus 1
+  - component: {fileID: 4830365858086946}
+  - component: {fileID: 33312133150894196}
+  - component: {fileID: 23853961600102278}
+  - component: {fileID: 65546236753314328}
+  m_Layer: 10
+  m_Name: Hotel 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 119
   m_IsActive: 1
---- !u!4 &4589346336972786
+--- !u!4 &4830365858086946
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1443941930215764}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.140823, y: 2.122199, z: 13.101044}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1665249619559546}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 32.80358, y: 6.564915, z: 34.975006}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23987669465863160
+--- !u!23 &23853961600102278
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1443941930215764}
+  m_GameObject: {fileID: 1665249619559546}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -57,7 +57,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: b5cccfe9efd6d464db9e9a83a73b8c1e, type: 2}
+  - {fileID: 2100000, guid: c6d9643c101f1274381ac18de9cb3055, type: 2}
+  - {fileID: 2100000, guid: 6937b7519c45c514480046d00bb28b68, type: 2}
+  - {fileID: 2100000, guid: fe67cb569e81b3a47974a935fd683a0a, type: 2}
+  - {fileID: 2100000, guid: 06a697a0294eee64aa7ad4ecac5212e3, type: 2}
+  - {fileID: 2100000, guid: 39eb587e5f53f3946b520cb5c6f0c0da, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,24 +81,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33817100690134178
+--- !u!33 &33312133150894196
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1443941930215764}
-  m_Mesh: {fileID: 4300000, guid: 6cdacea4c556b6f47900d5bcb1ac8f5d, type: 3}
---- !u!64 &64938946175028446
-MeshCollider:
+  m_GameObject: {fileID: 1665249619559546}
+  m_Mesh: {fileID: 4300000, guid: 6c70cdc727f08dc44a33c9c14454e867, type: 3}
+--- !u!65 &65546236753314328
+BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1443941930215764}
+  m_GameObject: {fileID: 1665249619559546}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 6cdacea4c556b6f47900d5bcb1ac8f5d, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.054581817, y: 0.09398716, z: 0.118549876}
+  m_Center: {x: 0.00000011920929, y: -0.000000007450581, z: 0}

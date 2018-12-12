@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33391541769477378}
   - component: {fileID: 23791723179074206}
   - component: {fileID: 65920319328124248}
+  - component: {fileID: 65161929513741230}
   m_Layer: 10
   m_Name: Church
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1797707800773704}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 185.27, y: 13.82, z: 201.5}
+  m_LocalPosition: {x: 71.381874, y: 12.993742, z: -0.43499756}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -94,6 +95,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1797707800773704}
   m_Mesh: {fileID: 4300000, guid: 4d0a2c3b4778f5e42976dda1b02822c6, type: 3}
+--- !u!65 &65161929513741230
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1797707800773704}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.1465607, y: 16.586449, z: 4.421158}
+  m_Center: {x: -0.40387726, y: 4.8478603, z: 4.2635574}
 --- !u!65 &65920319328124248
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -104,5 +117,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 13.237446, y: 26.282282, z: 18.589615}
-  m_Center: {x: 0.07993364, y: 0, z: -0.1943264}
+  m_Size: {x: 13.237446, y: 9.6947, z: 18.589615}
+  m_Center: {x: 0.07993364, y: -8.29379, z: -0.1943264}
