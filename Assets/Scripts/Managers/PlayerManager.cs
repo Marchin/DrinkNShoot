@@ -19,8 +19,10 @@ public class PlayerManager : MonoBehaviour
 	DrunkCamera drunkCamera;
 	WeaponHolder weaponHolder;
 	Animator playerAnimator;
-	int currency = 1000;
+	int currency;
 	int totalKills;
+	bool[] hasGun = { true, false };
+	int[] consumablesAmount = { 0, 0 };
 
     UnityEvent onGunEnable = new UnityEvent();
     UnityEvent onGunDisable = new UnityEvent();
@@ -34,21 +36,37 @@ public class PlayerManager : MonoBehaviour
             activeGuns = new List<Gun>();
             activeConsumables = new List<Consumable>();
 
+			currency = PlayerPrefs.GetInt("Currency", 0);
+
+			hasGun[1] = (PlayerPrefs.GetInt("Has Winchester", 0) == 1);
+
+			int i = 0;
+
             foreach (Transform gunObject in weaponHolderPrefab.GetComponent<WeaponHolder>().GunHolder)
             {
-                if (gunObject.gameObject.activeSelf)
+                if (hasGun[i])
                 {
+					gunObject.gameObject.SetActive(true);
                     Gun gun = gunObject.GetComponent<Gun>();
                     if (gun)
                         activeGuns.Add(gun);
                 }
+				i++;
             }
 
-            foreach (Transform consumableObject in weaponHolderPrefab.GetComponent<WeaponHolder>().ConsumableHolder)
+			i = 0;
+            
+			foreach (Transform consumableObject in weaponHolderPrefab.GetComponent<WeaponHolder>().ConsumableHolder)
             {
                 Consumable consumable = consumableObject.GetComponent<Consumable>();
                 if (consumable)
+				{
+					string consName = consumable.GetName();
                     activeConsumables.Add(consumable);
+					consumablesAmount[i] = PlayerPrefs.GetInt(consName + " Amount", 0);
+					consumable.IncreaseAmount(consumablesAmount[i]);
+				}
+				i++;
             }
 		}
 		else
@@ -196,13 +214,35 @@ public class PlayerManager : MonoBehaviour
 	public void AddGun(Gun gun)
 	{
 		activeGuns.Add(gun);
+		switch (gun.TypeOfGun)
+		{
+			case Gun.GunType.Rifle:
+				PlayerPrefs.SetInt("Has Winchester", 1);
+				break;
+			default:
+				break;
+		}
 	}
 
 	public void AddConsumableStock(string consumableName, int amount)
 	{
 		foreach (Consumable consumable in activeConsumables)
 			if (consumable.GetName() == consumableName)
+			{
 				consumable.IncreaseAmount(amount);
+
+				int amountToSave = consumable.GetAmount();
+
+				switch (consumableName)
+				{
+					case "Snake Oil":
+						PlayerPrefs.SetInt("Snake Oil Amount", amountToSave);
+						break;
+					case "Bait":
+						PlayerPrefs.SetInt("Bait Amount", amountToSave);
+						break;
+				}
+			}
 	}
 
 	public bool HasGun(Gun gun)
@@ -280,13 +320,31 @@ public class PlayerManager : MonoBehaviour
 	{
 		foreach (Consumable consumable in activeConsumables)
 			if (consumable.GetName() == cons.GetName())
-				consumable.ReduceAmount();		
+			{
+				consumable.ReduceAmount();
+                
+				int amountToSave = consumable.GetAmount();
+
+                switch (consumable.GetName())
+                {
+                    case "Snake Oil":
+                        PlayerPrefs.SetInt("Snake Oil Amount", amountToSave);
+                        break;
+                    case "Bait":
+                        PlayerPrefs.SetInt("Bait Amount", amountToSave);
+                        break;
+                }
+			}
 	}
 
 	public int Currency
 	{
 		get { return currency; }
-		set { currency = value; }
+		set 
+		{ 
+			currency = value; 
+			PlayerPrefs.SetInt("Currency", currency);
+		}
 	}
 
 	public int TotalKills

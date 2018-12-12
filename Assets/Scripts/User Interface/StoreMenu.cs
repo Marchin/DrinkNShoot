@@ -59,7 +59,7 @@ public class StoreMenu : MonoBehaviour
 			itemPrices[i].GetComponentInChildren<TextMeshProUGUI>().text = StoreManager.Instance.ItemsStock[item].ToString();
 			if (item.GetItemType() != ItemType.Gun)
 			{
-				string currentAmount = item.GetAmount().ToString();
+				string currentAmount = PlayerManager.Instance.GetItemAmount(item).ToString();
 				string maxAmount = item.GetMaxAmount().ToString();
 				
 				consumablesAmountText[i].text = currentAmount + "/" + maxAmount;

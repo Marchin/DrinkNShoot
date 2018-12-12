@@ -351,7 +351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1078882849385600
 GameObject:
   m_ObjectHideFlags: 1
@@ -9203,10 +9203,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunType: 0
-  gunName: 
+  gunName: Revolver
   gunCapacity: 5
   fireRate: 1.5
-  range: 100
+  range: 125
   impactForce: 700
   recoilSwayLevel: 50
   shootingLayers:
@@ -9225,6 +9225,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 198816973520047502}
   idleAnimation: {fileID: 7400000, guid: 0aa6d8a2debe9664eb84fb5989b2b7d0, type: 2}
   shootAnimation: {fileID: 7400000, guid: c46403b8112abf843be484799196e714, type: 2}
+  emptyGunAnimation: {fileID: 7400000, guid: 315bda8f0eebb7e4599ba8c36d521221, type: 2}
   reloadStartAnimation: {fileID: 7400000, guid: 9c08178dbfeed7740807b034e4391053,
     type: 2}
   reloadAnimation: {fileID: 7400000, guid: 04fd28b82a87ee64d994b5553aa36f1a, type: 2}
@@ -9252,7 +9253,6 @@ MonoBehaviour:
   useAnimations:
   - {fileID: 7400000, guid: 120f7c19a4898fb4e867c845e5657c2b, type: 2}
   - {fileID: 7400000, guid: 5c9e2a60dc52861498c2e352ee303afc, type: 2}
-  useSound: {fileID: 82924071798602420}
   baitPrefab: {fileID: 1467655070488600, guid: c2b8b48f7ee0f7f4b9ed72db0b131c1c, type: 2}
   landingLayers:
     serializedVersion: 2
@@ -9274,7 +9274,6 @@ MonoBehaviour:
   useAnimations:
   - {fileID: 7400000, guid: 120f7c19a4898fb4e867c845e5657c2b, type: 2}
   - {fileID: 7400000, guid: 5c9e2a60dc52861498c2e352ee303afc, type: 2}
-  useSound: {fileID: 82267871779289512}
   deadEyeDuration: 10
   deadEyeFactor: 0.1
   deadEyeExitSound: {fileID: 8300000, guid: d8acede5fde32fb4d8d8bd9ecbef14bc, type: 3}
@@ -9317,7 +9316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2d509252c4ba54b8161b786510c260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunType: 0
+  gunType: 1
   gunName: Winchester
   gunCapacity: 10
   fireRate: 3
@@ -9335,6 +9334,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 198745831045622430}
   idleAnimation: {fileID: 7400000, guid: 4dc3fe2e8c2b54340b8b2da5ba019879, type: 2}
   shootAnimation: {fileID: 7400000, guid: 2e9a03678564c9f49bb15404e366dd05, type: 2}
+  emptyGunAnimation: {fileID: 7400000, guid: 11c1757d943ddf942a8da99aaa8315da, type: 2}
   reloadStartAnimation: {fileID: 7400000, guid: c5c6a0ff9497b1c45ba4e5b8fb17e8d5,
     type: 2}
   reloadAnimation: {fileID: 7400000, guid: 34e3d1b546fdf3940b02c77adf9193ef, type: 2}
