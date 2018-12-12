@@ -1,0 +1,349 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1237074589934550}
+  m_IsPrefabAsset: 1
+--- !u!1 &1186176147879550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4668853583846074}
+  - component: {fileID: 65577041068130382}
+  - component: {fileID: 114386948915948472}
+  m_Layer: 16
+  m_Name: CrowTrigger 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1237074589934550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4200324305611614}
+  - component: {fileID: 114335444113852710}
+  - component: {fileID: 114634694487766322}
+  m_Layer: 0
+  m_Name: Town Level - Night - CrowSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1304384708713580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4311669384513204}
+  - component: {fileID: 65796227250610728}
+  - component: {fileID: 114230255722256524}
+  m_Layer: 16
+  m_Name: CrowTrigger 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1419957114614886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4298882033607170}
+  m_Layer: 0
+  m_Name: Pool of Objects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1698579947623060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4476012061412676}
+  - component: {fileID: 65733358495372138}
+  - component: {fileID: 114695240714078136}
+  m_Layer: 16
+  m_Name: CrowTrigger 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1738460391404262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4977380313585420}
+  - component: {fileID: 65317025142503708}
+  - component: {fileID: 114405960649650044}
+  m_Layer: 16
+  m_Name: CrowTrigger 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4200324305611614
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1237074589934550}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4977380313585420}
+  - {fileID: 4311669384513204}
+  - {fileID: 4668853583846074}
+  - {fileID: 4476012061412676}
+  - {fileID: 4298882033607170}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4298882033607170
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1419957114614886}
+  m_LocalRotation: {x: -0.0038553206, y: 0.004305872, z: -0.00081699464, w: 0.999983}
+  m_LocalPosition: {x: 182.618, y: 1.4729862, z: 236.56062}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4200324305611614}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4311669384513204
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1304384708713580}
+  m_LocalRotation: {x: -0.00393761, y: 0.9859731, z: -0.00016189608, w: 0.16685794}
+  m_LocalPosition: {x: 172.1, y: 0.79, z: 219.54}
+  m_LocalScale: {x: 1, y: 1, z: 1.0000002}
+  m_Children: []
+  m_Father: {fileID: 4200324305611614}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -0.057000004, y: 160.79001, z: -0.448}
+--- !u!4 &4476012061412676
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1698579947623060}
+  m_LocalRotation: {x: -0.0039301445, y: 0.99093235, z: -0.00029145484, w: 0.1343041}
+  m_LocalPosition: {x: 173.04, y: 0.74, z: 189.97}
+  m_LocalScale: {x: 1.000001, y: 1, z: 1.0000007}
+  m_Children: []
+  m_Father: {fileID: 4200324305611614}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -0.027, y: 164.563, z: -0.45100003}
+--- !u!4 &4668853583846074
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1186176147879550}
+  m_LocalRotation: {x: -0.0038597384, y: 0.99997777, z: -0.00079586543, w: 0.005388722}
+  m_LocalPosition: {x: 173.56, y: 0.77, z: 204.11}
+  m_LocalScale: {x: 1.0000005, y: 1, z: 1.0000007}
+  m_Children: []
+  m_Father: {fileID: 4200324305611614}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0.089, y: 179.382, z: -0.44300002}
+--- !u!4 &4977380313585420
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1738460391404262}
+  m_LocalRotation: {x: -0.0030057216, y: 0.61210835, z: 0.0025488466, w: 0.7907641}
+  m_LocalPosition: {x: 143.68, y: 0.56, z: 216.32}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4200324305611614}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.45100003, y: 75.485, z: 0.020000001}
+--- !u!65 &65317025142503708
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1738460391404262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 1, z: 4}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65577041068130382
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1186176147879550}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 1, z: 4}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65733358495372138
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1698579947623060}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 1, z: 4}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65796227250610728
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1304384708713580}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 1, z: 4}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114230255722256524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1304384708713580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_stage: {fileID: 0}
+  m_difficultyLevel: 6
+  m_completionTime: 120
+  m_bronzeTierKills: 27
+  m_silverTierKills: 30
+  m_goldTierKills: 33
+  m_poolSize: 10
+  playerTag: Player
+--- !u!114 &114335444113852710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1237074589934550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d48e1ce2b1a23245b74b10dbd4872fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolType: 0
+  m_gameObject: {fileID: 1306119874549748, guid: 66bfa892b68e0e14baf4dabf67e229db,
+    type: 2}
+  m_size: 8
+--- !u!114 &114386948915948472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1186176147879550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_stage: {fileID: 0}
+  m_difficultyLevel: 7
+  m_completionTime: 120
+  m_bronzeTierKills: 30
+  m_silverTierKills: 33
+  m_goldTierKills: 36
+  m_poolSize: 12
+  playerTag: Player
+--- !u!114 &114405960649650044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1738460391404262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_stage: {fileID: 0}
+  m_difficultyLevel: 5
+  m_completionTime: 100
+  m_bronzeTierKills: 25
+  m_silverTierKills: 30
+  m_goldTierKills: 35
+  m_poolSize: 10
+  playerTag: Player
+--- !u!114 &114634694487766322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1237074589934550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6bbeadb66324194ba82a435e2e6c3b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_spawnInterval: 2
+  m_poopInterval: 10
+  m_spawnDistance: 50
+--- !u!114 &114695240714078136
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1698579947623060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83234ce347bc10341a59161c71646c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_stage: {fileID: 0}
+  m_difficultyLevel: 8
+  m_completionTime: 240
+  m_bronzeTierKills: 40
+  m_silverTierKills: 45
+  m_goldTierKills: 50
+  m_poolSize: 16
+  playerTag: Player
