@@ -12,7 +12,8 @@ public class Crow : MonoBehaviour {
     CrowSpawner m_crowSpawner;
     BoxCollider m_collider;
     BoxCollider m_LZCollider;
-    Vector3 m_playerPos;
+    Transform m_playerTranform;
+    Vector3 m_playerToStage;
     IState m_currState;
     IState m_nextState;
     int m_currLZ;
@@ -26,6 +27,7 @@ public class Crow : MonoBehaviour {
     public UnityEvent OnLand { get { return onLand; } }
     public UnityEvent OnFly { get { return onFly; } }
     public UnityEvent OnAttack { get { return onAttack; } }
+    public Vector3 PlayerToStage { get { return m_playerToStage; } }
 
     private void Awake() {
         m_hasToPoop = false;
@@ -36,7 +38,7 @@ public class Crow : MonoBehaviour {
     }
 
     private void OnEnable() {
-        m_playerPos = FindObjectOfType<DrunkCamera>().transform.position;
+        m_playerTranform = FindObjectOfType<Wagon>().transform;
         SetStateActive(GetComponent<CrowMovement>(), false);
         SetStateActive(GetComponent<CrowLand>(), false);
         SetStateActive(GetComponent<CrowFlip>(), false);
@@ -102,7 +104,7 @@ public class Crow : MonoBehaviour {
     }
 
     public void Poop() {
-        GetComponent<CrowFly>().SetDestination(m_playerPos + Vector3.up * 3f);
+        GetComponent<CrowFly>().SetDestination(m_playerTranform);
         onAttack.Invoke();
         m_hasToPoop = true;
     }
@@ -119,6 +121,10 @@ public class Crow : MonoBehaviour {
             }
         }
     }
+
+	public void SetPlayerToStageVector(Vector3 direction) {
+		m_playerToStage = direction;
+	}
 
     public IState CurrentState {
         get {

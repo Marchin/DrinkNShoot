@@ -29,6 +29,8 @@ public class CrowTrigger : MonoBehaviour {
 			LevelManager.Instance.EnterShootingStage();
 			m_crowSpawner.SetLandingZones(m_landingZones);
 			m_crowSpawner.SetSize(m_poolSize);
+			m_crowSpawner.SetPlayerToStageVector(
+				m_stage.transform.position - transform.position);
 		}
 	}
 

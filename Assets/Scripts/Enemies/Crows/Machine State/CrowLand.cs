@@ -35,7 +35,7 @@ public class CrowLand : MonoBehaviour, IState {
 	public void StateUpdate(out IState nextState) {
 		RaycastHit buildHit;
 		Physics.Raycast(transform.position, m_lastMovement,
-			out buildHit, 10f, m_obstaclesLayer);
+			out buildHit, 8f, m_obstaclesLayer);
 		RaycastHit landingHit;
 		Physics.Raycast(transform.position, m_targetPosition - transform.position,
 			out landingHit, 10f, m_landingZonesLayer);
@@ -47,7 +47,7 @@ public class CrowLand : MonoBehaviour, IState {
 				if (!m_rotCalculated) {
 					RaycastHit hit;
 					if (Physics.Raycast(transform.position, Vector3.down,
-							out hit, 2f, m_landingZonesLayer)) {
+						out hit, 2f, m_landingZonesLayer)) {
 
 						m_targetRotation = Quaternion.LookRotation(m_direction, hit.normal);
 						m_targetPosition = hit.point + hit.normal * m_footOffset;

@@ -8,6 +8,7 @@ public class CrowSpawner : MonoBehaviour {
 	[SerializeField] float m_poopInterval;
 	[SerializeField] float m_spawnDistance;
 	BoxCollider[] m_landingZones;
+	Vector3 m_playerToStage;
 	Camera m_camera;
 	sbyte[] m_LZOccupation;
 	ObjectPool m_pool;
@@ -36,6 +37,7 @@ public class CrowSpawner : MonoBehaviour {
 						Mathf.Cos(randAngle) * m_spawnDistance);
 				Crow crow = go.GetComponent<Crow>();
 				go.GetComponent<CrowLand>().SetRotationToDestination();
+				crow.SetPlayerToStageVector(m_playerToStage);
 				crow.Init();
 				m_counter = m_spawnInterval;
 			}
@@ -99,5 +101,9 @@ public class CrowSpawner : MonoBehaviour {
 
 	public void SetSize(int size) {
 		m_pool.SetSize(size);
+	}
+
+	public void SetPlayerToStageVector(Vector3 direction) {
+		m_playerToStage = direction;
 	}
 }
