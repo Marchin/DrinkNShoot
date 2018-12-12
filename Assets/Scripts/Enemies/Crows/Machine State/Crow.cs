@@ -48,6 +48,7 @@ public class Crow : MonoBehaviour {
     public void Init() {
         m_currState = GetComponent<CrowLand>();
         SetStateActive(m_currState, true);
+        onFly.Invoke();
     }
 
     private void Update() {

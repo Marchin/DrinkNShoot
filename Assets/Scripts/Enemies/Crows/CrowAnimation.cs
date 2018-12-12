@@ -20,6 +20,7 @@ public class CrowAnimation : MonoBehaviour
 	{
 		crow.OnLand.AddListener(PlayMovementAnimation);
 		crow.OnFly.AddListener(PlayFlyAnimation);
+		crow.OnAttack.AddListener(PlayAttackAnimation);
 	}
 
 	void Update()
@@ -30,11 +31,18 @@ public class CrowAnimation : MonoBehaviour
 
 	void PlayFlyAnimation()
 	{
-		animator.SetTrigger("Has Flown");
+		animator.SetBool("Flying", true);
+		animator.SetBool("Attacking", false);
 	}
 
 	void PlayMovementAnimation()
 	{
-		animator.SetTrigger("Has Landed");
+		animator.SetBool("Flying", false);
+		animator.SetBool("Attacking", false);
+	}
+
+	void PlayAttackAnimation() 
+	{
+		animator.SetBool("Attacking", true);
 	}
 }
