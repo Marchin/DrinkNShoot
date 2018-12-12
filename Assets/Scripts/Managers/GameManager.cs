@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] string storeScene;
     [SerializeField] string[] levelScenes;
 
+    [Header("Game Properties")]
+    [SerializeField] int totalLevels;
+
     [Header("Animations")]
     [SerializeField] AnimationClip fadeInAnimation;
     [SerializeField] AnimationClip fadeOutAnimation;
@@ -36,7 +39,6 @@ public class GameManager : MonoBehaviour
     float currentMouseSensitivity;
     bool tutorialEnabled;
     int lastLevelUnlocked;
-    int totalLevels = 2;
     bool shouldPlaySplashVideo = true;
     string nextSceneToLoad;
 
