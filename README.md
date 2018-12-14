@@ -20,7 +20,7 @@ This is a game (demo/protoype/vertical slice) developed by students from <a href
 (in alphabetical order)
 
 - **Santiago Ibarra** - *Art / Game Design* - </a> <a href="https://www.artstation.com/santiago_ibarra"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/artstation.svg" /></a>
-- **Martín Ignacio Monterrosa** - *Programming / Game Design* - <a href="https://www.linkedin.com/in/martín-ignacio-monterrosa-301174145"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/linkedin.svg" /></a> <a href="https://github.com/Marchin"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/github.svg" /></a>
+- **Martín Ignacio Monterrosa** - *Programming / Game Design* - <a href="https://www.linkedin.com/in/martin-ignacio-monterrosa-301174145"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/linkedin.svg" /></a> <a href="https://github.com/Marchin"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/github.svg" /></a>
 - **Ignacio Mosconi** - *Programming / Game Design* - <a href="https://github.com/Ignacio-Mosconi"> <img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/github.svg" /></a> <a href="nacho7577@hotmail.com"> nacho7577@hotmail.com </a>
 - **María Soledad Pérez Bianco** - *Audio*
 - **Matías Pilotto** - *Testing* - <a href="https://github.com/Pailott"> <img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/github.svg" /></a>
