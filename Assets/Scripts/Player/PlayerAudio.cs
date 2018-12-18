@@ -4,7 +4,6 @@
 public class PlayerAudio : MonoBehaviour 
 {
 	[SerializeField] AudioSource drinkingSound;
-	[SerializeField] AudioSource burpingSound;
 	[SerializeField] AudioSource deadEyeEnterSound;
 	[SerializeField] AudioSource deadEyeExitSound;
 	[SerializeField] AudioSource throwItemSound;
@@ -104,11 +103,6 @@ public class PlayerAudio : MonoBehaviour
 	public void PlayDrinkingSound()
 	{
 		drinkingSound.Play();
-	}
-
-	public void PlayBurpingSound()
-	{
-		burpingSound.Play();
 	}
 
 	public void PlayDeadEyeEnterSound()
