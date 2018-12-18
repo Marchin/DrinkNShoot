@@ -25,7 +25,10 @@ public class CrowAudio : MonoBehaviour
 	}
 
 	void Start()
-	{
+	{	
+		LevelManager.Instance.OnGameOver.AddListener(DisableAudio);
+		LevelManager.Instance.OnStartNextStage.AddListener(EnableAudio);
+
 		crow.OnAttack.AddListener(PlayAttackSound);
 		crowLife.OnDeath.AddListener(PlayDeathSound);
 
@@ -61,5 +64,21 @@ public class CrowAudio : MonoBehaviour
 	void ReEnableSoundPlayback()
 	{
 		crowMakingSound = false;
+	}
+
+	void DisableAudio()
+	{
+		foreach (AudioSource sound in crowSounds)
+			sound.enabled = false;
+		attackSound.enabled = false;
+		deathSound.enabled = false;
+	}
+
+	void EnableAudio()
+	{
+        foreach (AudioSource sound in crowSounds)
+            sound.enabled = false;
+        attackSound.enabled = false;
+        deathSound.enabled = false;
 	}
 }

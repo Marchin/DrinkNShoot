@@ -200,12 +200,14 @@ public class LevelManager : MonoBehaviour
     public void RestartLevel()
     {
         onQuitLevel.Invoke();
+        playersWagon.GetComponentInChildren<WeaponHolder>().EquippedGun.StopReloadingImmediately();
         GameManager.Instance.FadeToScene(levelName);
     }
 
     public void QuitLevel()
     {
         onQuitLevel.Invoke();
+        playersWagon.GetComponentInChildren<WeaponHolder>().EquippedGun.StopReloadingImmediately();
         if (currentStageIndex == maxStageIndex)
             GameManager.Instance.TutorialEnabled = false;
         GameManager.Instance.FadeToScene(GameManager.Instance.MainMenuScene);
@@ -222,7 +224,7 @@ public class LevelManager : MonoBehaviour
 
     void SetGunsCrosshairsParameters()
     {
-        DrunkCrosshair[] crosshairs = playersWagon.gameObject.GetComponentInChildren<WeaponHolder>().GetComponentsInChildren<DrunkCrosshair>(true);
+        DrunkCrosshair[] crosshairs = playersWagon.GetComponentInChildren<WeaponHolder>().GetComponentsInChildren<DrunkCrosshair>(true);
 
         foreach (DrunkCrosshair crosshair in crosshairs)
         {

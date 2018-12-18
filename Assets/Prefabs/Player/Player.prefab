@@ -68,12 +68,12 @@ GameObject:
   - component: {fileID: 114918779429879684}
   - component: {fileID: 114481839011226496}
   - component: {fileID: 82117189629780286}
-  - component: {fileID: 82823140418319596}
   - component: {fileID: 82231903350003314}
   - component: {fileID: 82711761547778886}
   - component: {fileID: 82560613527131684}
   - component: {fileID: 82279556801871642}
   - component: {fileID: 82700308307106392}
+  - component: {fileID: 114380305612098482}
   m_Layer: 9
   m_Name: Character's Arms
   m_TagString: Untagged
@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 82398880035622732}
   - component: {fileID: 82405537968933994}
   - component: {fileID: 82619250376757812}
+  - component: {fileID: 114421014880704558}
   m_Layer: 9
   m_Name: Revolver
   m_TagString: Untagged
@@ -3325,6 +3326,7 @@ GameObject:
   - component: {fileID: 82154635443834918}
   - component: {fileID: 82704381293328178}
   - component: {fileID: 82723125051283430}
+  - component: {fileID: 114376484148779586}
   m_Layer: 9
   m_Name: Winchester
   m_TagString: Untagged
@@ -6685,7 +6687,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1665918096900382}
   m_LocalRotation: {x: -0.0038553206, y: 0.004305872, z: -0.00081699464, w: 0.999983}
-  m_LocalPosition: {x: 181.78, y: 1.42, z: 219.65}
+  m_LocalPosition: {x: 181.84, y: 1.47, z: 226.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4005244034329848}
@@ -13978,102 +13980,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &82823140418319596
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1015485352503310}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: a3deb91ad8b33054ab991aea2fcd8e1b,
-    type: 2}
-  m_audioClip: {fileID: 8300000, guid: 049968bbc37a68e4882953bfa2bc3df0, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 164
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 300
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!82 &82857970959507554
 AudioSource:
   m_ObjectHideFlags: 1
@@ -14334,7 +14240,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a53027ec53416488200479f83a5fba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_audioToPause: {fileID: 82773232931532494}
+  m_audioToPause:
+  - {fileID: 82773232931532494}
+  m_stopOnPauseMenu: 1
+  m_resumeAfterStageCompletion: 1
+--- !u!114 &114376484148779586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1577349617439122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a53027ec53416488200479f83a5fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_audioToPause:
+  - {fileID: 82857970959507554}
+  - {fileID: 82154635443834918}
+  - {fileID: 82704381293328178}
+  - {fileID: 82723125051283430}
+  m_stopOnPauseMenu: 1
+  m_resumeAfterStageCompletion: 0
+--- !u!114 &114380305612098482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015485352503310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a53027ec53416488200479f83a5fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_audioToPause:
+  - {fileID: 82117189629780286}
+  - {fileID: 82231903350003314}
+  - {fileID: 82711761547778886}
+  - {fileID: 82560613527131684}
+  - {fileID: 82279556801871642}
+  - {fileID: 82700308307106392}
+  m_stopOnPauseMenu: 1
+  m_resumeAfterStageCompletion: 0
 --- !u!114 &114407748400993006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14383,6 +14330,24 @@ MonoBehaviour:
   reloadStartSound: {fileID: 82619250376757812}
   reloadSound: {fileID: 82398880035622732}
   emptyGunSound: {fileID: 82405537968933994}
+--- !u!114 &114421014880704558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1059961904949766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a53027ec53416488200479f83a5fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_audioToPause:
+  - {fileID: 82549527161618402}
+  - {fileID: 82398880035622732}
+  - {fileID: 82405537968933994}
+  - {fileID: 82619250376757812}
+  m_stopOnPauseMenu: 1
+  m_resumeAfterStageCompletion: 0
 --- !u!114 &114458190783112758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14416,7 +14381,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drinkingSound: {fileID: 82117189629780286}
-  burpingSound: {fileID: 82823140418319596}
   deadEyeEnterSound: {fileID: 82231903350003314}
   deadEyeExitSound: {fileID: 82711761547778886}
   throwItemSound: {fileID: 82279556801871642}
@@ -14462,7 +14426,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a53027ec53416488200479f83a5fba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_audioToPause: {fileID: 82352582334133652}
+  m_audioToPause:
+  - {fileID: 82352582334133652}
+  m_stopOnPauseMenu: 1
+  m_resumeAfterStageCompletion: 1
 --- !u!114 &114738178892442202
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,19 +1,31 @@
 ﻿using UnityEngine;
 
 public class SoundPauseController : MonoBehaviour {
-    [SerializeField] AudioSource m_audioToPause;
+    [SerializeField] AudioSource[] m_audioToPause;
+    [SerializeField] bool m_stopOnPauseMenu = true;
+    [SerializeField] bool m_resumeAfterStageCompletion = true;
 
     private void Start() {
-        PauseMenu pauseMenu  = FindObjectOfType<PauseMenu>();
-        pauseMenu.OnPause.AddListener(Pause);
-        pauseMenu.OnResume.AddListener(Resume);
+        if (m_stopOnPauseMenu)
+        {
+            PauseMenu pauseMenu  = FindObjectOfType<PauseMenu>();
+            pauseMenu.OnPause.AddListener(Pause);
+            pauseMenu.OnResume.AddListener(Resume);
+        }      
+
+        LevelManager.Instance.OnGameOver.AddListener(Pause);
+        if (m_resumeAfterStageCompletion)
+            LevelManager.Instance.OnStartNextStage.AddListener(Resume);
     }
 
-    void Pause() {
-        m_audioToPause.Pause();
+    private void Pause() {
+        foreach (AudioSource audio in m_audioToPause)
+            if (audio.isPlaying)
+                audio.Pause();
     }
 
-    void Resume() {
-        m_audioToPause.Play();
+    private void Resume() {
+        foreach (AudioSource audio in m_audioToPause)
+            audio.UnPause();
     }
 }

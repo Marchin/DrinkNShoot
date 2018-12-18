@@ -236,14 +236,13 @@ public class Gun : MonoBehaviour, IItem
 			Invoke("ReturnToIdle", reloadFinishAnimation.length);
 		}
 	}
+	
 	public void StopReloadingImmediately()
 	{
 		if (reloadRoutine != null)
 		{
 			StopCoroutine(reloadRoutine);
 			reloadRoutine = null;
-			onReloadCancel.Invoke();
-			onReloadFinish.Invoke();
 			ReturnToIdle();
 		}
 	}

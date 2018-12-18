@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 82078803441055802}
   - component: {fileID: 82768480812025018}
   - component: {fileID: 82595491454423576}
+  - component: {fileID: 114818405708125138}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -1484,6 +1485,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rotationSpeed: 180
+--- !u!114 &114818405708125138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1803054565567872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a53027ec53416488200479f83a5fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_audioToPause:
+  - {fileID: 82112261567854852}
+  - {fileID: 82890086535532408}
+  - {fileID: 82157306768612864}
+  - {fileID: 82736417434693570}
+  - {fileID: 82078803441055802}
+  - {fileID: 82768480812025018}
+  - {fileID: 82595491454423576}
+  m_stopOnPauseMenu: 1
+  m_resumeAfterStageCompletion: 0
 --- !u!114 &114887743929369184
 MonoBehaviour:
   m_ObjectHideFlags: 1
