@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 95127427398704488}
   - component: {fileID: 82336595237886440}
   - component: {fileID: 114417551465722508}
+  - component: {fileID: 114571040181185768}
   m_Layer: 10
   m_Name: polySurface2588
   m_TagString: Untagged
@@ -921,8 +922,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1479129576207886}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 43.607895, y: -8.354769, z: -28.502762}
+  m_LocalRotation: {x: -0, y: -0.898874, z: -0, w: 0.4382072}
+  m_LocalPosition: {x: 42.842545, y: -11.734769, z: 102.2451}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4085234124063366}
@@ -1199,7 +1200,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: a3deb91ad8b33054ab991aea2fcd8e1b,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 13c5e43357f59724d809c0544ecd9795, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
@@ -1315,4 +1316,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_audioToPause:
   - {fileID: 82336595237886440}
-  m_stopAudioOnPauseMenu: 1
+  m_stopOnPauseMenu: 1
+  m_resumeAfterStageCompletion: 1
+--- !u!114 &114571040181185768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1181641987781742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96da184274ffef24d97643a7917156bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio: {fileID: 82336595237886440}

@@ -22191,6 +22191,7 @@ GameObject:
   - component: {fileID: 1842429580}
   - component: {fileID: 1842429582}
   - component: {fileID: 1842429583}
+  - component: {fileID: 1842429584}
   m_Layer: 0
   m_Name: Level Manager
   m_TagString: Untagged
@@ -22445,7 +22446,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: a3deb91ad8b33054ab991aea2fcd8e1b,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 31c0aca7266543c49bbad6e2085f5480, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
@@ -22545,6 +22546,18 @@ MonoBehaviour:
   - {fileID: 1842429582}
   m_stopOnPauseMenu: 0
   m_resumeAfterStageCompletion: 1
+--- !u!114 &1842429584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1842429577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96da184274ffef24d97643a7917156bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio: {fileID: 1842429582}
 --- !u!1001 &1843306862
 Prefab:
   m_ObjectHideFlags: 0

@@ -63,6 +63,7 @@ public class LevelManager : MonoBehaviour
     UnityEvent onFirstEmptyGun = new UnityEvent();
     UnityEvent onClearFirstStage = new UnityEvent();
     UnityEvent onShootingStageEnter = new UnityEvent();
+    UnityEvent onStartPlayingEnvironmentSounds = new UnityEvent();
 
     void Awake()
     {        
@@ -99,11 +100,14 @@ public class LevelManager : MonoBehaviour
             if (showIntroText)
             {
                 introTextUI.SetActive(true);
-                introTextUI.GetComponent<IntroText>().OnPresentationFinished.AddListener(StartMovingWagon);
+                introTextUI.GetComponent<IntroText>().OnPresentationFinished.AddListener(StartPlayingEnvironmentSounds);
             }
         }
-        else
+        if (!showIntroText || !showTutorial || !GameManager.Instance.TutorialEnabled)
+        {
+            onStartPlayingEnvironmentSounds.Invoke();
             wagon.Move();
+        }
     }
 
     void Update()
@@ -122,9 +126,10 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void StartMovingWagon()
+    void StartPlayingEnvironmentSounds()
     {
         wagon.Move();
+        onStartPlayingEnvironmentSounds.Invoke();
     }
 
     void CompleteStage()
@@ -319,6 +324,11 @@ public class LevelManager : MonoBehaviour
     public UnityEvent OnShootingStageEnter
     {
         get { return onShootingStageEnter; }
+    }
+
+    public UnityEvent OnStartPlayingEnvironmentSounds
+    {
+        get { return onStartPlayingEnvironmentSounds; }
     }
 
     public bool GameInStandBy
