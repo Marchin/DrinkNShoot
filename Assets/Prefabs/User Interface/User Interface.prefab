@@ -8632,10 +8632,14 @@ MonoBehaviour:
   mainScreenUI: {fileID: 1441905226611260}
   settingsMenuUI: {fileID: 1987143378225122}
   returnButtonUI: {fileID: 1961140932517450}
+  mainScreenButtons:
+  - {fileID: 114398246263601842}
+  - {fileID: 114603203432254928}
+  - {fileID: 114372862569514968}
   pauseMenuAnimator: {fileID: 95431363243271334}
   slideInAnimation: {fileID: 7400000, guid: e93d4ea3549a1f547bb1e27030cc4b70, type: 2}
   slideOutAnimation: {fileID: 7400000, guid: f889e00cc3f569447bb3b7d181d01934, type: 2}
-  pauseSound: {fileID: 8300000, guid: 5296b08dd419c5142a54fcc8cdbb9ad7, type: 3}
+  pauseSound: {fileID: 8300000, guid: 93d2a8973567e374c90b07d2ab20406a, type: 3}
 --- !u!114 &114729364169573660
 MonoBehaviour:
   m_ObjectHideFlags: 1

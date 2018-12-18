@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class PauseMenu : MonoBehaviour 
@@ -9,6 +10,7 @@ public class PauseMenu : MonoBehaviour
 	[SerializeField] GameObject mainScreenUI;
 	[SerializeField] GameObject settingsMenuUI;
 	[SerializeField] GameObject returnButtonUI;
+	[SerializeField] Button[] mainScreenButtons;
 	[SerializeField] Animator pauseMenuAnimator;
 	[SerializeField] AnimationClip slideInAnimation;
 	[SerializeField] AnimationClip slideOutAnimation;
@@ -32,20 +34,19 @@ public class PauseMenu : MonoBehaviour
 
 	void Update()
 	{
-		if (InputManager.Instance.GetPauseButton() && !LevelManager.Instance.GameInStandBy)
-		{
-			if (!isPaused)
-				Pause();
-			else
-				Resume();
-		}
+		if (InputManager.Instance.GetPauseButton() && !LevelManager.Instance.GameInStandBy && !isPaused)
+			Pause();
 	}
 
 	IEnumerator WaitToResume(float timeToWait)
 	{
         canResume = false;
+		foreach (Button button in mainScreenButtons)
+			button.interactable = false;
         yield return new WaitForSecondsRealtime(timeToWait);
 		canResume = true;
+        foreach (Button button in mainScreenButtons)
+            button.interactable = true;
 	}
 
     IEnumerator OnPauseMenuFadeOutFinish()
